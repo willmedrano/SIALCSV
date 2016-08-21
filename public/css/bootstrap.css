@@ -27,6 +27,11 @@ section,
 summary {
   display: block;
 }
+footer{
+  background: #C3003C;
+}
+
+
 audio,
 canvas,
 progress,
