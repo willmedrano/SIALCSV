@@ -2,36 +2,21 @@
 <html>
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link href="jumbotron-narrow.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    {!!Html::style('css/bootstrap.min.css')!!}
+    {!!Html::style('css/metisMenu.min.css')!!}
+    {!!Html::style('css/sb-admin-2.css')!!}
+    {!!Html::style('css/font-awesome.min.css')!!}
+    {!!Html::style('css/bootstrap.css')!!}
 </head>
 <body>
-	
+    
 
 <div class="jumbotron">
-        <h1>RESGISTRAR PROVEEDOR</h1>
-
-        {!! Form::open() !!}
-    <div class="form-group">
-    <section>
-        
-    
-        
-    
-    	{!! Form::label('Nombre: ') !!}
-    	{!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Ingese el nombre del proveedor', 'requiered', 'size'=> 10, 'maxlength'=>4]) !!}
-
-        {!! Form::label('Apellido: ') !!}
-        {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Ingese el Apellido del proveedor']) !!}
-     </section>
-    </div>
-{!! Form::close() !!}
-
-        
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+       
+       @yield('content') 
       </div>
 </body>
 </html>
