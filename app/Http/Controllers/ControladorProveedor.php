@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class Controladorproveerdor extends Controller
+class ControladorProveedor extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class Controladorproveerdor extends Controller
      */
     public function index()
     {
-        //
+        $provee= \SIALCSV\User::All();
+     return view('proveedor.index');
     }
 
     /**
@@ -26,7 +27,7 @@ class Controladorproveerdor extends Controller
      */
     public function create()
     {
-        //
+        return view('proveedor.create');
     }
 
     /**
@@ -37,7 +38,13 @@ class Controladorproveerdor extends Controller
      */
     public function store(Request $request)
     {
-        //
+       User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => $request['password'],
+        ]);
+        
+        return redirect('/usuario')->with('message','store');
     }
 
     /**
