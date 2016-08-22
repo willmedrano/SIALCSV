@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProveedoreTable extends Migration
+class CreateProveedorsTable extends Migration
 {
     /**
      * Run the migrations.
