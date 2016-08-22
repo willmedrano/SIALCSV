@@ -30,3 +30,5 @@ Route::get('/prueba', function () {
 Route::get('probados', function () {
     return view('probandos');
 });
+
+Route::resource('prove',"controladorproveedor2");

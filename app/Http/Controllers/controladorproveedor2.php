@@ -26,7 +26,7 @@ class controladorproveedor2 extends Controller
      */
     public function create()
     {
-        //
+        return view('prove.create');
     }
 
     /**
