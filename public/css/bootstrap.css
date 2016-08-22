@@ -6759,4 +6759,18 @@ button.close {
     display: none !important;
   }
 }
+.form-control
+{
+  size: 10;
+     color: blue;
+    text-align: center;
+}
+
+
+body {
+    background-color: lightblue;
+}
+
+
+
 /*# sourceMappingURL=bootstrap.css.map */
