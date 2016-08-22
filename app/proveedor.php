@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class proveedores extends Model
+class proveedor extends Model
 {
     //
-    protected $table = "proveedor"
+    protected $table = "proveedores"
     protected $primarykey = "idProve"
 }

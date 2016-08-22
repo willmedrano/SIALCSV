@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProveedoresTable extends Migration
+class CreateProveedoreTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateProveedoresTable extends Migration
      */
     public function up()
     {
-        Schem:: create('proveedor',function(Blueprint $table){
+        Schem:: create('proveedores',function(Blueprint $table){
 
             $table->increments('idProve');
             $table->string('nom');
