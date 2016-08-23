@@ -7,7 +7,7 @@
     <title></title>
     {!!Html::style('css/bootstrap.min.css')!!}
      
-    {!!Html::style('css/docs.min.css')!!} 
+    {!!Html::style('css/docs.min.css')!!} {!!Html::style('css/bootstrap.css')!!} 
     
    
 </head>
