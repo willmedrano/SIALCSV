@@ -1,7 +1,7 @@
 @extends('probandos')
     @section('content')
     
-<form method="get" action="">
+<form method="get" action="http://sialcsv.app/">
   <div class="form-group">
     <label for="exampleInputEmail1">Nombre</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" >
