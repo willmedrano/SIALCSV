@@ -1,15 +1,16 @@
 @extends('probandos')
     @section('content')
     
-<form >
+<form method="get" action="http://sialcsv.app/">
   <div class="form-group">
     <label for="exampleInputEmail1">Nombre</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" >
     <small id="emailHelp" class="form-text text-muted">nombre del Empleado.</small>
+
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Apellido</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Apellido">
+    <input type="text" class="form-control" required  id="exampleInputPassword1" placeholder="Apellido">
   </div>
   <div class="form-group">
     <label for="exampleSelect1">Cargo</label>
@@ -26,6 +27,10 @@
     <fieldset class="form-group">
     
   <button type="submit" class="btn btn-primary">Submit</button>
+
+  <input type="submit" name="bonton" value="laravel">
+  
+  <button type="button" class="btn btn-xs btn-link">Info</button>
 </form>
     
         

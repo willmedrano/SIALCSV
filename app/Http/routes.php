@@ -20,8 +20,8 @@ Route::get('/', function () {
 Route::get('prueba', 'PruebaControler@index');
 
 
-Route::get('/prueba2', function () {
-    return view('prueba2');
+Route::get('/pru', function () {
+    return view('pru');
 });
 
 Route::get('/prueba', function () {
