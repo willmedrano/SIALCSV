@@ -9,4 +9,5 @@ class proveedor extends Model
     //
     protected $table = "proveedores"
     protected $primarykey = "idProve"
+    
 }

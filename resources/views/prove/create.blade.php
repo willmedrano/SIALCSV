@@ -1,38 +1,60 @@
 @extends('probandos')
     @section('content')
     
-<form method="get" action="gffhdj">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Nombre</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" >
-    <small id="emailHelp" class="form-text text-muted">nombre del Empleado.</small>
+<section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Contact Me</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Name</label>
+                                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Phone Number</label>
+                                <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Message</label>
+                                <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Apellido</label>
-    <input type="text" class="form-control" required  id="exampleInputPassword1" placeholder="Apellido">
-  </div>
-  <div class="form-group">
-    <label for="exampleSelect1">Cargo</label>
-    <select class="form-control" id="exampleSelect1">
-      <option>Administrador</option>
-      <option>Vendedor</option>
-    </select>
-  </div>
-  
-  <div class="form-group">
-    <label for="exampleTextarea">Descripción</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-  </div>
-    <fieldset class="form-group">
-    
-  <button type="submit" class="btn btn-primary">Submit</button>
-
-  <input type="submit" name="bonton" value="laravel">
-  
-  <button type="button" class="btn btn-xs btn-link">Info</button>
-</form>
-    
         
       
 
