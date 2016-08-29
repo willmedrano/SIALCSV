@@ -1,61 +1,43 @@
 @extends('probandos')
-    @section('content')
-    
-<section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Contact Me</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" id="contactForm" novalidate>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Email Address</label>
-                                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Phone Number</label>
-                                <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Message</label>
-                                <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <br>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Send</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<?php $message=Session::get('message')?>
 
-        
-      
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Proveedor Creado
+</div>
+@endif
+@section('content')
+
+
+    {!! Form::open(['route'=>'prove.store','method'=>'POST']) !!}
+        <div class="form-group">
+        {!! Form::label('Nombre:')!!}
+        {!! Form::text('nom',null,['class'=>'form-control','placeholder'=>'Ingrese el Nombre del Proveedor','autofocus' ]) !!}
+        </div>
+
+        <div class="form-group">
+        {!! Form::label('Telefono:')!!}
+        {!!Form::tel('tel',null,['class'=>'form-control','placeholder'=>'Ingrese el Telefono del Proveedor']) !!}
+        </div>  
+
+        <div class="form-group">
+        {!! Form::label('NIT:')!!}
+        <input type="text" name="nit" value="" placeholder="nit" class="form-control" >
+         </div>
+
+        <div class="form-group">    
+        {!! Form::label('Dirrecion:')!!}
+        {!!Form::textarea('dir',null,['class'=>'form-control','placeholder'=>'Ingrese la Dirrecion del Proveedor']) !!}
+        </div>
+        {!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
+
+
+
+    {!! Form::close() !!}
+
+    
+
+
 
         @stop

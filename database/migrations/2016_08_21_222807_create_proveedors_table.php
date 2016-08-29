@@ -14,12 +14,12 @@ class CreateProveedorsTable extends Migration
     {
         Schema:: create('proveedores',function(Blueprint $table){
 
-            $table->increments('idProve');
+            $table->increments('id');
             $table->string('nom');
             $table->string('tel');
             $table->string('NIT');
             $table->string('dir');
-
+            $table->timestamps();
         });
     }
 

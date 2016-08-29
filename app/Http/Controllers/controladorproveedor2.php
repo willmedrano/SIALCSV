@@ -16,7 +16,9 @@ class controladorproveedor2 extends Controller
      */
     public function index()
     {
-        //
+        $prove =\App\proveedor::All();
+
+        return view('prove.index',compact('prove'));
     }
 
     /**
@@ -26,6 +28,7 @@ class controladorproveedor2 extends Controller
      */
     public function create()
     {
+        //carpeta prove
         return view('prove.create');
     }
 
@@ -38,6 +41,15 @@ class controladorproveedor2 extends Controller
     public function store(Request $request)
     {
         //
+        \App\proveedor::create([
+            'nom'=>$request['nom'],
+            'tel'=>$request['tel'],
+            'NIT'=>$request['nit'],
+            'dir'=>$request['dir'],
+
+            ]);
+        return redirect('/prove/create')->with('message','store');
+
     }
 
     /**
