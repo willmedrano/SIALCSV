@@ -12,6 +12,10 @@
 
     {!! Form::open(['route'=>'prove.store','method'=>'POST']) !!}
         <div class="form-group">
+        <br>
+        <br>
+        <br>
+        <br>
         {!! Form::label('Nombre:')!!}
         {!! Form::text('nom',null,['class'=>'form-control','placeholder'=>'Ingrese el Nombre del Proveedor','autofocus' ]) !!}
         </div>
