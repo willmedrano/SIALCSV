@@ -38,3 +38,4 @@ Route::get('/pru2', function () {
 });
 
 Route::resource('inve',"inventario");
+Route::resource('emp',"empleado");
