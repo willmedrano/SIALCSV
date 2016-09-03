@@ -36,3 +36,5 @@ Route::resource('prove',"controladorproveedor2");
 Route::get('/pru2', function () {
     return view('empleado.FormEmp');
 });
+
+Route::resource('inve',"inventario");
