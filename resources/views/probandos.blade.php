@@ -13,7 +13,6 @@
     {!!Html::style('css/vendor.css')!!}  
       
     {!!Html::style('css/app.css')!!}  
-    {!!Html::style('css/app-green.css')!!}
     
  |        
          

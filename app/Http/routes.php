@@ -21,7 +21,7 @@ Route::get('prueba', 'PruebaControler@index');
 
 
 Route::get('/pru', function () {
-    return view('pru');
+    return view('inventario.formIntv');
 });
 
 Route::get('/prueba', function () {
