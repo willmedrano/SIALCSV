@@ -32,3 +32,7 @@ Route::get('probados', function () {
 });
 
 Route::resource('prove',"controladorproveedor2");
+
+Route::get('/pru2', function () {
+    return view('empleado.FormEmp');
+});
