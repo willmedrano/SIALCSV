@@ -84,11 +84,11 @@ $(function() {
 	    },
 	    messages: {
 	        username: {
-	            required: "Please enter username",
-	            email: "Please enter a valid email address"
+	            required: "Por favor, introduzca el usuario",
+	            email: "Por favor, introduce una dirección de correo electrónico válida"
 	        },
-	        password:  "Please enter password",
-	        agree: "Please accept our policy"
+	        password:  "Por favor, ingrese contraseña",
+	        agree: "Por favor, acepte nuestra política"
 	    },
 	    invalidHandler: function() {
 			animate({
