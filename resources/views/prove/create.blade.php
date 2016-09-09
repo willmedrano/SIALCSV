@@ -1,46 +1,64 @@
 @extends('probandos')
 <?php $message=Session::get('message')?>
 
-@if($message=='store')
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Exito!!</strong> Proveedor Creado
-</div>
-@endif
+
 @section('content')
 
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+                <article class="content forms-page">
+                    <div class="title-block">
+                        <h3 class="title">
+        Proveedores
+    </h3>
+                        <p class="title-description"> Registro de Proveedores </p>
+                    </div>
+            <!--<div class="subtitle-block">
+                        <h3 class="subtitle">
+        Formulario de Producto
+    </h3> </div>-->
+                    <section class="section">
+                        <div class="row sameheight-container">
+                            <div >
+                                <div class="card card-block sameheight-item" >
+                                    <div class="title-block" align="center">
+                                        <h3 class="title">
+                        Formulario de Proveedores
+                    </h3> </div>
+                                    <form role="form" >
+                                      
+                                        <div class="form-group"> 
+                                             <label class="control-label">NOMBRE: </label>
+                                             <input type="text" class="form-control underlined" placeholder="Escriba el nombre"> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">NIT: </label> 
+                                            <input type="text" class="form-control underlined" placeholder="0000-000000-000-0">
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="control-label">TELEFONO: </label> 
+                                                <input type="text" class="form-control underlined" placeholder="0000-0000" 
+                                                class="fa fa-hpome"
+                                                > 
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">DIRECCION: </label> 
+                                            <input type="text" class="form-control underlined" placeholder="Direccion"> 
+                                        </div>
+                                         <div class="form-group">
+                                            <button  class="btn-success">Guardar</button>
+                                            <button  class="btn-secundary">Limpiar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </section>
 
-    {!! Form::open(['route'=>'prove.store','method'=>'POST']) !!}
-        <div class="form-group">
-        <br>
-        <br>
-        <br>
-        <br>
-        {!! Form::label('Nombre:')!!}
-        {!! Form::text('nom',null,['class'=>'form-control','placeholder'=>'Ingrese el Nombre del Proveedor','autofocus' ]) !!}
-        </div>
-
-        <div class="form-group">
-        {!! Form::label('Telefono:')!!}
-        {!!Form::tel('tel',null,['class'=>'form-control','placeholder'=>'Ingrese el Telefono del Proveedor']) !!}
-        </div>  
-
-        <div class="form-group">
-        {!! Form::label('NIT:')!!}
-        <input type="text" name="nit" value="" placeholder="nit" class="form-control" >
-         </div>
-
-        <div class="form-group">    
-        {!! Form::label('Dirrecion:')!!}
-        {!!Form::textarea('dir',null,['class'=>'form-control','placeholder'=>'Ingrese la Dirrecion del Proveedor']) !!}
-        </div>
-        {!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 
 
+         </article>
 
-    {!! Form::close() !!}
-
-    
 
 
 

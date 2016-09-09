@@ -27,12 +27,36 @@ Route::get('/pru', function () {
 Route::get('/prueba', function () {
     return view('prueba');
 });
+
+
 Route::get('probados', function () {
     return view('probandos');
 });
+Route::get('/form1','ControladorMultiformularios@formulario1Muestra');
+Route::get('/form11','ControladorMultiformularios@formulario1Muestra2');
+
+Route::get('/form2','ControladorMultiformularios@formulario2Muestra');
+Route::get('/form22','ControladorMultiformularios@formulario2Muestra2');
+
+Route::get('/form3','ControladorMultiformularios@formulario3Muestra');
+Route::get('/form33','ControladorMultiformularios@formulario3Muestra3');
+
+Route::get('/form4','ControladorMultiformularios@formulario4Muestra');
+Route::get('/form44','ControladorMultiformularios@formulario4Muestra4');
 
 Route::resource('prove',"controladorproveedor2");
 
+Route::resource('compra',"contoladorCompra");
+
+Route::resource('escuela',"ControladorEscuelas");
+
+Route::resource('contrato',"ControladorContrato");
+
+
+
 Route::get('/pru2', function () {
     return view('empleado.FormEmp');
+});
+Route::get('/table', function () {
+    return view('tabla');
 });
