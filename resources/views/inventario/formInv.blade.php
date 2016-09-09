@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
                 <article class="content forms-page">
                     <div class="title-block">
                         <h3 class="title">
@@ -24,14 +25,48 @@
 					</h3> </div>
                                     <form role="form" >
                                         <div class="form-group">
-                                        	<label class="control-label">Nombre</label> 
-                                        	<input type="text" class="form-control underlined" placeholder="Nombre del producto"> 
+                                        	<label class="control-label">Codigo:</label> 
+                                        	<input type="text" class="form-control underlined" placeholder="Codigo del producto"> 
                                         </div>
 
                                         <div class="form-group">
-                                        	<label class="control-label">Nombre</label> 
-                                        	<input type="text" class="form-control underlined"> 
+                                        	<label class="control-label">Nombre:</label> 
+                                        	<input type="text" class="form-control underlined" placeholder="Nombre del producto"> 
                                         </div>
+
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label">Marca:</label> 
+                                            <input type="text" class="form-control underlined" placeholder="Marca del producto" > 
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Tipo:</label> 
+                                            <input type="text" class="form-control underlined" placeholder="Tipo producto" > 
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            
+                                            
+                                                
+                                                 
+                                                 <div class="col-md-6"> 
+                                                 <label class="control-label">Precio:</label> 
+                                                 <div class="input-group">
+
+                                                 <span class="input-group-addon">$</span>
+                                                 <input type="text" class="form-control"  placeholder="Some text here">
+                                                    <span class="input-group-addon">.00</span> </div>
+                                                  </div>
+                                                 
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Tipo:</label> 
+                                            <input type="text" class="form-control underlined" placeholder="Tipo producto" > 
+                                        </div>
+
 
                                         <div class="form-group"> <label class="control-label">Input Password</label> <input type="password" class="form-control underlined"> </div>
                                         <div class="form-group"> <label class="control-label">Placeholder Input</label> <input type="text" class="form-control underlined" placeholder="Placeholder text"> </div>

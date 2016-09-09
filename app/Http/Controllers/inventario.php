@@ -17,6 +17,8 @@ class inventario extends Controller
     public function index()
     {
         //
+        
+        return view('inventario.index');
     }
 
     /**
@@ -27,6 +29,7 @@ class inventario extends Controller
     public function create()
     {
         //
+        return view('inventario.formInv');
     }
 
     /**
