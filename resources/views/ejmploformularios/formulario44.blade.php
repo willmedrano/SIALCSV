@@ -35,7 +35,7 @@
                                 
                                 <div class="form-group has-success"> <label class="control-label" for="inputSuccess1">DIRECCION:</label> <input type="text" class="form-control" id="inputSuccess1"> <span class="has-success">llene el campo.</span> </div>
                                 <div align="center">
-                                   <button class="btn-success" align="center">Guardar</button>
+                                   <button class="btn btn-success btn-lg" align="center">Guardar</button>
                                 </div>
                            
                                             

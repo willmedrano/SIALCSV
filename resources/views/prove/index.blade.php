@@ -14,12 +14,12 @@
                     </div>
                     <section class="section">
                         <div class="row">
-                            <div class="col-md-6">
+                            
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
                                             <h3 class="title">
-							Basic example
+							
 						</h3> </div>
                                         <section class="example">
                                             <table class="table">
@@ -48,7 +48,7 @@
                                             </table>
                                         </section>
                                     </div>
-                                </div>
+                                
                             </div>
                            </div>
                            </section>

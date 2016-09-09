@@ -57,6 +57,12 @@ Route::resource('contrato',"ControladorContrato");
 Route::get('/pru2', function () {
     return view('empleado.FormEmp');
 });
+<<<<<<< HEAD
 Route::get('/table', function () {
     return view('tabla');
 });
+=======
+
+Route::resource('inve',"inventario");
+Route::resource('emp',"empleado");
+>>>>>>> 0703c3b3f0efa1652ce682389ed038998571cb23
