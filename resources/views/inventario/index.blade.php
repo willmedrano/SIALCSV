@@ -12,7 +12,11 @@
 legend{
     color: #36A0FF;
 }
+h2
+{
+    color: #36A0FF;
 }
+
     
 </style>
 
@@ -20,9 +24,10 @@ legend{
 
                 <article class="content forms-page">
                     <div class="title-block">
-                        <h3 class="title">
-        Inventario
-    </h3>
+                    <span class=""><i class="fa fa-archive bigicon icon_nav" > Inventario</i></span>
+                        <h2 >
+        
+    </h2>
                         <p class="title-description"> Registro de Producto </p>
                     </div>
             <!--<div class="subtitle-block">
@@ -46,16 +51,16 @@ legend{
                         <div class="form-group">
 
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon icon_nav" ></i></span>
-                            <div class="col-md-8">
+                            <div class="col-md-2">
 
                                 <input id="fname" name="name" type="text" placeholder="Codigo del Producto" class="form-control">
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-adjust bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="lname" name="name" type="text" placeholder="Apellido" class="form-control">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square bigicon"></i></span>
+                            <div class="col-md-4">
+                                <input id="lname" name="name" type="text" placeholder="Nombre del Producto" class="form-control">
                             </div>
                         </div>
 <br>

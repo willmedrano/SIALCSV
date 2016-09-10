@@ -110,7 +110,7 @@
                                     <a class="dropdown-item" href="#"> <i class="fa fa-bell icon"></i> Notificaciones </a>
                                     <a class="dropdown-item" href="#"> <i class="fa fa-gear icon"></i> Configuraciones </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login.html"> <i class="fa fa-power-off icon"></i> Salir </a>
+                                    <a class="dropdown-item" href="/log/create"> <i class="fa fa-power-off icon"></i> Salir </a>
                                 </div>
                             </li>
                         </ul>
