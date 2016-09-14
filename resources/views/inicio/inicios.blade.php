@@ -1,6 +1,21 @@
 
 
 <!doctype html>
+
+<style type="text/css" >
+    
+
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+legend{
+    color: #36A0FF;
+}
+}
+    
+</style>
 <html class="no-js" lang="en">
 
     <head>
@@ -63,21 +78,26 @@
                         <p class="text-xs-center">INICIAR SESION PARA CONTINUAR</p>
                         <form id="login-form" action="/index.html" method="GET" novalidate="">
                             <div class="form-group"> 
+                            <i class="fa fa-user bigicon"></i>
                                 <label for="username">Usuario</label> 
-                                 <input type="email" class="form-control underlined" name="username" id="username" placeholder="Usuario" required> 
+                                 <input type="email" class="form-control" name="username" id="username" placeholder="Usuario" required> 
                             </div>
                             <div class="form-group"> 
+                                 <i class="fa fa-unlock-alt bigicon"></i>
                                  <label for="password">Contraseña</label> 
-                                 <input type="password" class="form-control underlined" name="password" id="password" placeholder="Contraseña" required> 
+                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required> 
                             </div>
                              
 
                             <div class="form-group"> 
-                            <label for="remember">
-            <input class="checkbox" id="remember" type="checkbox"> 
-            <span>Recordarme</span>
-          </label> <a href="reset.html" class="forgot-btn pull-right">¿Olvido su contraseña?</a> </div>
-                            <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Entrar</button> </div>
+                            
+                 </label> <a href="reset.html" class="forgot-btn pull-right">¿Olvido su contraseña?</a> 
+                 </div>
+                 <br>
+                 <br>
+                            <div class="form-group"> 
+                            <button type="submit" class="btn btn-block btn-primary">Entrar</button> 
+                            </div>
                             
                         </form>
                     </div>
