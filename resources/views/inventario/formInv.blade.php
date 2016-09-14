@@ -2,92 +2,124 @@
 
 @section('content')
 
+         
+    <
+<style type="text/css" >
+    
+
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+legend{
+    color: #36A0FF;
+}
+h2
+{
+    color: #36A0FF;
+}
+
+    
+</style>
+
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
                 <article class="content forms-page">
                     <div class="title-block">
-                        <h3 class="title">
-		Inventario
-	</h3>
+                    <span class=""><i class="fa fa-archive bigicon icon_nav" > Inventario</i></span>
+                        <h2 >
+        
+    </h2>
                         <p class="title-description"> Registro de Producto </p>
                     </div>
-			<!--<div class="subtitle-block">
+            <!--<div class="subtitle-block">
                         <h3 class="subtitle">
-		Formulario de Producto
-	</h3> </div>-->
+        Formulario de Producto
+    </h3> </div>-->
                     <section class="section">
                         <div class="row sameheight-container">
                             <div >
                                 <div class="card card-block sameheight-item" >
                                     <div class="title-block" align="center">
                                         <h3 class="title">
-						Formulario de producto
-					</h3> </div>
-                                    <form role="form" >
-                                        <div class="form-group">
-                                        	<label class="control-label">Codigo:</label> 
-                                        	<input type="text" class="form-control underlined" placeholder="Codigo del producto"> 
-                                        </div>
-
-                                        <div class="form-group">
-                                        	<label class="control-label">Nombre:</label> 
-                                        	<input type="text" class="form-control underlined" placeholder="Nombre del producto"> 
-                                        </div>
-
-                                        
-                                        <div class="form-group">
-                                            <label class="control-label">Marca:</label> 
-                                            <input type="text" class="form-control underlined" placeholder="Marca del producto" > 
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label">Tipo:</label> 
-                                            <input type="text" class="form-control underlined" placeholder="Tipo producto" > 
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            
-                                            
-                                                
-                                                 
-                                                 <div class="col-md-6"> 
-                                                 <label class="control-label">Precio:</label> 
-                                                 <div class="input-group">
-
-                                                 <span class="input-group-addon">$</span>
-                                                 <input type="text" class="form-control"  placeholder="Some text here">
-                                                    <span class="input-group-addon">.00</span> </div>
-                                                  </div>
-                                                 
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label">Tipo:</label> 
-                                            <input type="text" class="form-control underlined" placeholder="Tipo producto" > 
-                                        </div>
+                        Formulario de producto
+                    </h3> </div>
 
 
-                                        <div class="form-group"> <label class="control-label">Input Password</label> <input type="password" class="form-control underlined"> </div>
-                                        <div class="form-group"> <label class="control-label">Placeholder Input</label> <input type="text" class="form-control underlined" placeholder="Placeholder text"> </div>
-                                        <div class="form-group"> <label class="control-label">Disabled Input</label> <input type="text" disabled="disabled" class="form-control underlined" placeholder="Disabled input text"> </div>
-                                        <div class="form-group"> <label class="control-label">Static control</label>
-                                            <p class="form-control-static underlined">email@example.com</p>
-                                        </div>
-                                        <div class="form-group"> <label class="control-label">Readonly Input</label> <input type="text" readonly="readonly" class="form-control underlined" value="Readonly input text"> </div>
-                                        <div class="form-group"> <label class="control-label">Textarea</label> <textarea rows="3" class="form-control underlined"></textarea> </div>
-                                    </form>
-                                </div>
+                <form class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center" align="center">Producto</legend>
+
+                        <div class="form-group">
+
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-barcode bigicon icon_nav" ></i></span>
+                            <div class="col-md-3">
+
+                                <input id="cod" name="cod" type="text" placeholder="Codigo del Producto" class="form-control">
                             </div>
-                            
                         </div>
-                    </section>
+                        <br>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
+                            <div class="col-md-4">
+                                <input id="nomP" name="nomP" type="text" placeholder="Nombre del Producto" class="form-control">
+                            </div>
+                        </div>
+<br>
+<div class="row row-sm stats-container">
+<div class="col-xs-12 col-sm-6 stat-col">
+                                                <div class="stat-icon"> <i class="fa fa-rocket"></i> </div>
+                                                <div class="stat">
+                                                    <div class="value"> 5407 </div>
+                                                    <div class="name"> Active items </div>
+                                                </div> <progress class="progress stat-progress" value="75" max="100">
+                                <div class="progress">
+                                    <span class="progress-bar" style="width: 75%;"></span>
+                                </div>
+                            </progress> </div>
+                                </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="marca" name="marca" type="text" placeholder="Marca " class="form-control">
+                            </div>
+                        </div>
+                        <br>
 
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            <div class="col-xs-3">
+                                <input id="tipo" name="tipo" type="text" placeholder="tipo" class="form-control">
+                            </div>
+                        </div>
+                        <br>
+                        
+                         <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            <div class="col-xs-3">
+                                <input id="tipo" name="tipo" type="text" placeholder="tipo" class="form-control">
+                            </div>
+                        </div>
+                        <br>
 
-
-         </article>
-
-
-
-
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="message" name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7"></textarea>
+                            </div>
+                        </div>
+                            <br>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center" align="center">
+                                <button type="submit"  class="btn btn-primary btn-lg">Guardar</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+  
 @stop
