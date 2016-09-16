@@ -130,7 +130,7 @@ h2,h1
   </div>
 </div>
 <!--fin de modal -->
-                    <div class="title-block">
+                    <div class="title-block ">
                         <h1 class="title">
     
 
@@ -143,18 +143,18 @@ h2,h1
 
 
                         
-                    <section class="section">
+                    <section class="section table-responsive">
 
 
                             
                                 <button type="submit"  class="btn btn-primary btn-lg">Imprimir</button>
                             
                             
-                        <div class="row">
+                        <div class="row table-responsive">
                             
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="card-title-block">
+                                <div class="card table-responsive">
+                                    <div class="card-block table-responsive">
+                                        <div class="card-title-block table-responsive">
                                             <h3 class="title">
                             
                         </h3> </div>
