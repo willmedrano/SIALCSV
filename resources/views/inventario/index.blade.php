@@ -11,10 +11,7 @@ thead{
      border:1;
 
 }
-td{
-     background: #ffffe6;
 
-}
 h2
 {
     color: #36A0FF;
@@ -81,17 +78,17 @@ h2
                                                         <td>{{ $prove->tel }}</td>
                                                         <td>{{ $prove->NIT }}</td>
                                                         <td>{{ $prove->dir }}</td>
-                                                        <td><button type="submit"  class="btn btn-info btn-lg">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-lg gris" >Desactivo</button></td>
+                                                        <td><button type="submit"  class="btn btn-info btn-sm">Modificar</button></td>
+                                                        <td><button type="submit"  class="btn btn-sm gris" >Desactivo</button></td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" bgcolor="#ffffe6">{{  $prove->id }}</th>
+                                                        <th scope="row">{{  $prove->id }}</th>
                                                         <td>{{ $prove->nom }}</td>
                                                         <td>{{ $prove->tel }}</td>
                                                         <td>{{ $prove->NIT }}</td>
                                                         <td>{{ $prove->dir }}</td>
-                                                        <td><button type="submit"  class="btn btn-info btn-lg">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-primary btn-lg">  A c t i v o  </button></td>
+                                                        <td><button type="submit"  class="btn btn-info btn-sm">Modificar</button></td>
+                                                        <td><button type="submit"  class="btn btn-primary btn-sm">  A c t i v o  </button></td>
                                                     </tr>
                                                     
 

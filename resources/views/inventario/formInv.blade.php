@@ -3,7 +3,7 @@
 @section('content')
 
          
-    <
+    {!!Html::style('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css')!!}
 <style type="text/css" >
     
 
@@ -44,11 +44,8 @@ h2
                     <section class="section">
                         <div class="row sameheight-container">
                             <div >
-                                <div class="card card-block sameheight-item" >
-                                    <div class="title-block" align="center">
-                                        <h3 class="title">
-                        
-                    </h3> </div>
+                                <div class=\ >
+                                    
 
                        {!!Html::style('assets/plugins/bootstrap/bootstrap.css')!!}  
                     {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
@@ -56,14 +53,17 @@ h2
                     {!!Html::style('assets/css/style.css')!!}  
                     {!!Html::style('ssets/css/main-style.css')!!} 
 
+
                 
 <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h1 class="panel-title">Formulario de producto</h1>
 
                              </div>
+                             <div align="center">
                              <h2 align="center"> Producto </h2> 
-
+                             <br>
+</div>
                 <form class="form-horizontal" method="post">
                     <fieldset>
                         
@@ -79,39 +79,59 @@ h2
                         <br>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input id="nomP" name="nomP" type="text" placeholder="Nombre del Producto" class="form-control">
+                                
+                            </div>
+
+                            <span class="col-md-1  text-center"><i class="fa fa-dropbox bigicon"></i></span>
+                            <div class="col-md-3">
+                                <input id="nomP" name="nomP" type="text" placeholder="Unidades de una Caja" class="form-control">
+                                
                             </div>
                         </div>
+
+                        
 <br>
                         <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
-                            <div class="col-md-8">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-tags bigicon"></i></span>
+                            <div class="col-md-3">
                                 <input id="marca" name="marca" type="text" placeholder="Marca " class="form-control">
                             </div>
                         </div>
                         <br>
 
                         <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-percent bigicon"></i></span>
                             <div class="col-xs-3">
-                                <input id="tipo" name="tipo" type="text" placeholder="tipo" class="form-control">
+                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje de ganancia por unidad" class="form-control">
                             </div>
+
+                            <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
+                            <div class="col-xs-3">
+                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje de ganancia por Caja" class="form-control">
+                            </div>
+
                         </div>
                         <br>
                         
                          <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-truck bigicon"></i></span>
                             <div class="col-xs-3">
-                                <input id="tipo" name="tipo" type="text" placeholder="tipo" class="form-control">
+                                <select class=" form-control">
+                            <option>--Selecione un Proveedor--</option>
+                            <option>Vendedor</option>
+                            <option>Otros</option>
+                           
+                        </select>
                             </div>
                         </div>
                         <br>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
-                            <div class="col-md-8">
-                                <textarea class="form-control" id="message" name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7"></textarea>
+                            <div class="col-md-7">
+                                <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
                             </div>
                         </div>
                             <br>
