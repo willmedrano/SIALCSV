@@ -26,7 +26,7 @@ class empleado extends Controller
      */
     public function create()
     {
-         return view('empleado.FormEmp');
+         return view('compra.modificarcompra');
     }
 
     /**

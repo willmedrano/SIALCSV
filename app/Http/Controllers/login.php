@@ -26,7 +26,9 @@ class login extends Controller
      */
     public function create()
     {
-        return view('inicio.inicios');
+        return view('seguridad.permitir');
+        
+        //return view('compra.modificarcompra');
     }
 
     /**
@@ -35,9 +37,9 @@ class login extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        return view('inicio.inicios');
     }
 
     /**
