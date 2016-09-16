@@ -27,6 +27,7 @@ class contoladorCompra extends Controller
     public function create()
     {
         return view('compra.createcompra');//
+        //return view('compra.modificarcompra');
     }
 
     /**
