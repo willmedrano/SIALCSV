@@ -3,7 +3,7 @@
 @section('content')
 
          
-    {!!Html::style('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css')!!}
+    
 <style type="text/css" >
     
 
