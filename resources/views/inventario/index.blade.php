@@ -12,9 +12,10 @@ thead{
 
 }
 
-h2,h1
+h2,h1,span
 {
     color: #36A0FF;
+
 }
 .gris{
     background:#8c8c8c; 
@@ -35,7 +36,8 @@ h2,h1
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridModalLabel">Modificar Producto</h4>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel">Modificar Producto</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
@@ -43,63 +45,60 @@ h2,h1
                     <fieldset>
                         
 
-                        <div class="form-group">
-            
-                            <span class="col-md-1  text-center"><i class="fa fa-barcode bigicon icon_nav" ></i></span >
-                                                      <div class="col-md-3">
-
-                                <input id="cod" name="cod" type="text" placeholder="Codigo del Producto" class="form-control">
-                            </div>
-                        </div>
                         <br>
                         <div class="form-group">
-                            <span class="col-md-1  text-center"><i class="fa fa-book bigicon"></i></span>
-                            <div class="col-md-3">
-                                <input id="nomP" name="nomP" type="text" placeholder="Nombre del Producto" class="form-control">
+                            <span class="col-md-2  text-center" ><label >Nombre: </label></span>
+                            <div class="col-md-6">
+                                <input id="nomP" name="nomP" type="text" placeholder="Nombre del Producto" class="form-control" >
                                 
                             </div>
 
-                            <span class="col-md-1  text-center"><i class="fa fa-dropbox bigicon"></i></span>
-                            <div class="col-md-3">
-                                <input id="nomP" name="nomP" type="text" placeholder="Unidades de una Caja" class="form-control">
+                            
+                            
+                        </div>
+<br>
+                        <div class="form-group">
+                            <span class="col-md-2  text-center"><label >Marca: </label></span>
+                            <div class="col-md-5">
+                                <input id="nomP" name="nomP" type="text" placeholder="Marca del producto" class="form-control">
                                 
                             </div>
                         </div>
-
+<br>
+                        <div class="form-group">
+                            <span class="col-md-2  text-center"><label >Ganancia: </label></span>
+                            <div class="col-xs-5">
+                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje por unidad" class="form-control">
+                            </div>
+                        </div>
                         
 <br>
                         <div class="form-group">
-                            <span class="col-md-1  text-center"><i class="fa fa-tags bigicon"></i></span>
+                            <span class="col-md-2  text-center"><label >Unidades: </label></span>
                             <div class="col-md-3">
-                                <input id="marca" name="marca" type="text" placeholder="Marca " class="form-control">
+                                <input id="marca" name="marca" type="text" placeholder="por caja " class="form-control">
+
                             </div>
+                            <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i>
                         </div>
-                        <br>
+                        
 
-                        <div class="form-group">
-                            <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
-                            <div class="col-xs-3">
-                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje de ganancia por unidad" class="form-control">
-                            </div>
-
-                            
-
-                        </div>
+                        
                         <br>
                         <div class="form-group">
                             
 
-                            <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
-                            <div class="col-xs-3">
-                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje de ganancia por Caja" class="form-control">
+                            <span class="col-md-2  text-center"><label >Ganancia: </label></span>
+                            <div class="col-xs-5">
+                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje por Caja" class="form-control">
                             </div>
 
                         </div>
                         <br>
                         
                          <div class="form-group">
-                            <span class="col-md-1  text-center"><i class="fa fa-truck bigicon"></i></span>
-                            <div class="col-xs-3">
+                            <span class="col-md-2  text-center"><label >Proveedor: </label></span>
+                            <div class="col-xs-7">
                                 <select class=" form-control">
                             <option>--Selecione un Proveedor--</option>
                             <option>Vendedor</option>
@@ -111,7 +110,7 @@ h2,h1
                         <br>
 
                         <div class="form-group">
-                            <span class="col-md-1 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <span class="col-md-2 text-center"><label >Descripción:</label></span>
                             <div class="col-md-7">
                                 <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
                             </div>
@@ -123,8 +122,8 @@ h2,h1
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>
