@@ -47,18 +47,31 @@ h2
                                 <div class="card card-block sameheight-item" >
                                     <div class="title-block" align="center">
                                         <h3 class="title">
-                        Formulario de producto
+                        
                     </h3> </div>
 
+                       {!!Html::style('assets/plugins/bootstrap/bootstrap.css')!!}  
+                    {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
+                    {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
+                    {!!Html::style('assets/css/style.css')!!}  
+                    {!!Html::style('ssets/css/main-style.css')!!} 
+
+                
+<div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">Formulario de producto</h1>
+
+                             </div>
+                             <h2 align="center"> Producto </h2> 
 
                 <form class="form-horizontal" method="post">
                     <fieldset>
-                        <legend class="text-center" align="center">Producto</legend>
+                        
 
                         <div class="form-group">
-
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-barcode bigicon icon_nav" ></i></span>
-                            <div class="col-md-3">
+            
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-barcode bigicon icon_nav" ></i></span >
+                                                      <div class="col-md-3">
 
                                 <input id="cod" name="cod" type="text" placeholder="Codigo del Producto" class="form-control">
                             </div>
@@ -111,6 +124,8 @@ h2
                 </form>
             </div>
         </div>
+        </div>
     </div>
 </section> 
+</article>
 @stop
