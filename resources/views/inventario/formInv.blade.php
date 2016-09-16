@@ -23,7 +23,11 @@ h2
     
 </style>
 
-<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+
+
+
+
 
                 <article class="content forms-page">
                     <div class="title-block">
@@ -67,18 +71,6 @@ h2
                             </div>
                         </div>
 <br>
-<div class="row row-sm stats-container">
-<div class="col-xs-12 col-sm-6 stat-col">
-                                                <div class="stat-icon"> <i class="fa fa-rocket"></i> </div>
-                                                <div class="stat">
-                                                    <div class="value"> 5407 </div>
-                                                    <div class="name"> Active items </div>
-                                                </div> <progress class="progress stat-progress" value="75" max="100">
-                                <div class="progress">
-                                    <span class="progress-bar" style="width: 75%;"></span>
-                                </div>
-                            </progress> </div>
-                                </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
                             <div class="col-md-8">
@@ -120,6 +112,5 @@ h2
             </div>
         </div>
     </div>
-</section>
-  
+</section> 
 @stop

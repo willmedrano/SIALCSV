@@ -12,9 +12,9 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     {!!Html::style('css/vendor.css')!!}  
       
-    {!!Html::style('css/app.css')!!}  
+    {!!Html::style('css/app-green.css')!!}  
     
- |        
+        
          
         <!-- Place favicon.ico in the root directory -->
         

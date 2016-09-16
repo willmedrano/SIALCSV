@@ -17,8 +17,10 @@ class inventario extends Controller
     public function index()
     {
         //
+        $prove =\App\proveedor::All();
+
+        return view('inventario.index',compact('prove'));
         
-        return view('inventario.index');
     }
 
     /**
