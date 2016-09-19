@@ -170,7 +170,8 @@ h2,h1,span
                                                         <th>Precio de Caja</th>
                                                         <th>Proveedor</th>
                                                         <th>Descripcion</th>
-                                                        <th colspan="2" rowspan="">Acciones</th>
+                                                        <th colspan="1" rowspan="">Accion</th>
+                                                        <th colspan="1" rowspan="">Estado</th>
                                                        
                                                     </tr>
                                                 </thead>

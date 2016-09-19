@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class inventario extends Controller
+class ventas extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,6 @@ class inventario extends Controller
     public function index()
     {
         //
-        $prove =\App\proveedor::All();
-
-        return view('inventario.index',compact('prove'));
-        
     }
 
     /**
@@ -31,8 +27,6 @@ class inventario extends Controller
     public function create()
     {
         //
-        //return view('ventas.venta');
-         return view('inventario.formInv');
     }
 
     /**

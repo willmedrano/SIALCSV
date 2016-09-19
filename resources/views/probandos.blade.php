@@ -41,18 +41,8 @@
                     <div class="header-block header-block-collapse hidden-lg-up"> <button class="collapse-btn" id="sidebar-collapse-btn">
           <i class="fa fa-bars"></i>
         </button> </div>
-                    <div class="header-block header-block-search hidden-sm-down">
-                        <form role="search">
-                            <div class="input-container"> <i class="fa fa-search"></i> <input type="search" placeholder="Search">
-                                <div class="underline"></div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="header-block header-block-buttons">
-                        <a href="https://github.com/modularcode/modular-admin-html" class="btn btn-oval btn-sm rounded-s header-btn"> <i class="fa fa-github-alt"></i> . </a>
-                        <a href="https://github.com/modularcode/modular-admin-html/releases/download/v1.0.1/modular-admin-html-1.0.1.zip" class="btn btn-oval btn-sm rounded-s header-btn"> <i class="fa fa-cloud-download"></i> . </a>
-                    </div>
-                    <div class="header-block header-block-nav">
+                    
+                                        <div class="header-block header-block-nav">
                         <ul class="nav-profile">
                             <li class="notifications new">
                                 <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
@@ -66,7 +56,7 @@
                                                     <div class="img" style="background-image: url('assets/faces/3.jpg')"></div>
                                                 </div>
                                                 <div class="body-col">
-                                                    <p> <span class="accent">Zack Alien</span> pushed new commit: <span class="accent">Fix page load performance issue</span>. </p>
+                                                    <p> <span class="accent">Paquete Escolar</span> Entrega de paquetes en: <span class="accent">2 dias centro escolar "Sor Henriquez"</span>. </p>
                                                 </div>
                                             </a>
                                         </li>
@@ -76,7 +66,7 @@
                                                     <div class="img" style="background-image: url('assets/faces/3.jpg')"></div>
                                                 </div>
                                                 <div class="body-col">
-                                                    <p> <span class="accent">Amaya Hatsumi</span> started new task: <span class="accent">Dashboard UI design.</span>. </p>
+                                                    <p> <span class="accent">Pago a proveedor</span> pagar cuota 11 a  : <span class="accent">Libreria Americana.</span>. </p>
                                                 </div>
                                             </a>
                                         </li>
@@ -86,7 +76,7 @@
                                                     <div class="img" style="background-image: url('assets/faces/3.jpg')"></div>
                                                 </div>
                                                 <div class="body-col">
-                                                    <p> <span class="accent">Andy Nouman</span> deployed new version of <span class="accent">NodeJS REST Api V3</span> </p>
+                                                    <p> <span class="accent">Poca existencia</span> Cuadernos #2 <span class="accent">Comprar producto</span> </p>
                                                 </div>
                                             </a>
                                         </li>
@@ -94,7 +84,7 @@
                                     <footer>
                                         <ul>
                                             <li> <a href="">
-                      View All
+                      Ver Todo
                     </a> </li>
                                         </ul>
                                     </footer>
@@ -136,10 +126,14 @@
                                         <li> <a href="/prove/create">
                     Ver Productos
                   </a> </li>
+
+                  <li> <a href="/prove/create">
+                    Inventario Disponible
+                  </a> </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href=""> <i class="fa fa-bar-chart"></i> Graficas <i class="fa arrow"></i> </a>
+                                    <a href=""> <i class="fa fa-bar-chart"></i> Escuelas <i class="fa arrow"></i> </a>
                                     <ul>
                                         <li> <a href="charts-flot.html">
                     PRUEBAS
@@ -150,7 +144,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href=""> <i class="fa fa-table"></i> Tablas <i class="fa arrow"></i> </a>
+                                    <a href=""> <i class="fa fa-table"></i> Compras <i class="fa arrow"></i> </a>
                                     <ul>
                                         <li> <a href="/prove">
                     Proveedores
@@ -161,7 +155,12 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="forms.html"> <i class="fa fa-pencil-square-o"></i> Formulario </a>
+                                    <a href="forms.html"> <i class="fa fa-pencil-square-o"></i> Empleados<i class="fa arrow"></i> </a> </a>
+                                    <ul>
+                                        <li> <a href="buttons.html">
+                    Paquetes
+                  </a> </li>
+                  </ul>
                                 </li>
                                 <li>
                                     <a href=""> <i class="fa fa-desktop"></i> Proveedores <i class="fa arrow"></i> </a>
@@ -210,8 +209,34 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/modularcode/modular-admin-html"> <i class="fa fa-github-alt"></i> Compras </a>
+                                <a href=""> <i class="fa fa-file-text-o"></i> Reportes <i class="fa arrow"></i> </a>
+                                    
+                                    <ul>
+                                        <li> <a href="buttons.html">
+                                        Paquetes
+                                            </a> </li>
+                                    </ul>
                                 </li>
+                                <li>
+                                    <a href="forms.html"> <i class="fa fa-pencil-square-o"></i> Contabilidad<i class="fa arrow"></i> </a> </a>
+                                    <ul>
+                                        <li> <a href="buttons.html">
+                    Paquetes
+                  </a> </li>
+                  </ul>
+                                </li>
+                                <li>
+
+                                 <li>
+                                <a href=""> <i class="fa fa-github-alt"></i> Seguridad<i class="fa arrow"></i> </a>
+                                    
+                                    <ul>
+                                        <li> <a href="buttons.html">
+                                        Paquetes
+                                            </a> </li>
+                                    </ul>
+                                </li>
+
                             </ul>
                         </nav>
                     </div>
