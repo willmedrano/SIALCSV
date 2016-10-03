@@ -22,7 +22,11 @@ h2,h1,span
 }
  .title-description{
    font-size: 0px;   
- }   
+ } 
+ .gris{
+    background:#8c8c8c; 
+    color:white;
+}  
 </style>
    
                
@@ -36,7 +40,7 @@ h2,h1,span
                         <h2 >
         
     </h2>
-                        <p class="title-description"> Registro de Producto </p>
+                        <p class="title-description"> Registro de veNTAS </p>
                     </div>
                       
                     <section class="section">
@@ -55,11 +59,11 @@ h2,h1,span
                 
 <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title">Formulario de producto</h1>
+                                <h1 class="panel-title">Formulario de Ventas</h1>
 
                              </div>
                              <div align="center">
-                             <h2 align="center"> Producto </h2> 
+                             <h2 align="center"> Ventas </h2> 
                              <br>
 </div>
 <!--Inicio de modal -->
@@ -75,6 +79,16 @@ h2,h1,span
         <div class="container-fluid bd-example-row">
           <form class="form-horizontal" method="post">
                     <fieldset>
+
+                          <div class="form-group">
+                            <span class="col-md-2  text-center" ><label ># Factura: </label></span>
+                            <div class="col-md-6">
+                                <input id="nomP" name="nomP" type="text" placeholder="Correlativo de la factura" class="form-control" >
+                                
+                            </div>
+                        </div>   
+
+
                         <div class="form-group">
                             <span class="col-md-2  text-center" ><label >Nombre: </label></span>
                             <div class="col-md-6">
@@ -128,6 +142,72 @@ h2,h1,span
     </div>
   </div>
 </div>
+
+<!--Inicio de modal -->
+                <div id="gridSystemModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel2">Realizar Venta Sin Factura</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid bd-example-row">
+          <form class="form-horizontal" method="post">
+                    <fieldset>
+                        
+                        <div class="form-group">
+                            <span class="col-md-2  text-center"><label >Descuento: </label></span>
+                            <div class="col-md-5">
+                                <input id="nomP" name="nomP" type="text" placeholder="% de descuento" class="form-control">  
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-2  text-center"><label >Sub-Total: </label></span>
+                            <div class="col-xs-5">
+                                <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-2  text-center"><label >Iva: </label></span>
+                            <div class="col-md-3">
+                                <input id="marca" name="marca" type="text" placeholder="IVA agregado " class="form-control">
+
+                            </div>
+                            <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i>
+                        </div>
+                        <div class="form-group">
+                            
+
+                            <span class="col-md-2  text-center"><label >Total: </label></span>
+                            <div class="col-xs-5">
+                                <input id="tipo" name="tipo" type="text" placeholder="Total a pagar" class="form-control">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-2 text-center"><label >Descripción:</label></span>
+                            <div class="col-md-7">
+                                <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion de la venta" rows="7"></textarea>
+                            </div>
+                        </div>    
+                    </fieldset>
+                </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Vender</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
                                         <form class="form-horizontal" method="post" >
                                             
@@ -277,6 +357,8 @@ h2,h1,span
                                     <div class="form-group">
                                                 <div class="col-md-12 text-center" align="center">
                                                     <button   class="btn btn-lg btn-primary active" data-toggle="modal" data-target="#gridSystemModal">Facturar</button>
+
+                                                    <button   class="btn gris btn-lg" data-toggle="modal" data-target="#gridSystemModal2">Sin Facturar</button>
                                                 </div>                  
                                             </div>
 

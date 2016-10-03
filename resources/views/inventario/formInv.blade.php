@@ -1,4 +1,12 @@
 @extends('probandos')
+<?php $message=Session::get('message')?>
+
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Producto Guardado
+</div>
+@endif
 
 @section('content')
 
@@ -64,7 +72,8 @@ h2
                              <h2 align="center"> Producto </h2> 
                              <br>
 </div>
-                <form class="form-horizontal" method="post">
+                 {!! Form::open(['route'=>'inve.store','method'=>'POST','class'=>'form-horizontal']) !!}
+                
                     <fieldset>
                         
 
@@ -80,13 +89,13 @@ h2
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="nomP" name="nomP" type="text" placeholder="Nombre del Producto" class="form-control">
+                                <input id="nom" name="nom" type="text" placeholder="Nombre del Producto" class="form-control">
                                 
                             </div>
 
                             <span class="col-md-1  text-center"><i class="fa fa-dropbox bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="nomP" name="nomP" type="text" placeholder="Unidades de una Caja" class="form-control">
+                                <input id="uniCaja" name="uniCaja" type="text" placeholder="Unidades de una Caja" class="form-control">
                                 
                             </div>
                         </div>
@@ -104,12 +113,12 @@ h2
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-percent bigicon"></i></span>
                             <div class="col-xs-3">
-                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje de ganancia por unidad" class="form-control">
+                                <input id="gUni" name="gUni" type="text" placeholder="porcentaje de ganancia por unidad" class="form-control">
                             </div>
 
                             <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
                             <div class="col-xs-3">
-                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje de ganancia por Caja" class="form-control">
+                                <input id="gCaja" name="gCaja" type="text" placeholder="porcentaje de ganancia por Caja" class="form-control">
                             </div>
 
                         </div>
@@ -118,9 +127,9 @@ h2
                          <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-truck bigicon"></i></span>
                             <div class="col-xs-3">
-                                <select class=" form-control">
+                                <select class=" form-control" name="idProve">
                             <option>--Selecione un Proveedor--</option>
-                            <option>Vendedor</option>
+                            <option  value="1" >Vendedor</option>
                             <option>Otros</option>
                            
                         </select>
@@ -131,7 +140,7 @@ h2
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
                             <div class="col-md-7">
-                                <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
+                                <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
                             </div>
                         </div>
                             <br>
@@ -141,7 +150,7 @@ h2
                             </div>
                         </div>
                     </fieldset>
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
         </div>

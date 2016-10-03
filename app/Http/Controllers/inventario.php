@@ -18,8 +18,8 @@ class inventario extends Controller
     {
         //
         $prove =\App\proveedor::All();
-
-        return view('inventario.index',compact('prove'));
+       // return view('layouts.inicio');
+       return view('inventario.index',compact('prove'));
         
     }
 
@@ -31,8 +31,12 @@ class inventario extends Controller
     public function create()
     {
         //
-        //return view('ventas.venta');
-         return view('inventario.formInv');
+        //return view('ventas.facturar');
+       // return view('ventas.venta');
+        return view('inventario.formInv');
+        
+       //return view('inventario.lotes');
+
     }
 
     /**
@@ -44,6 +48,19 @@ class inventario extends Controller
     public function store(Request $request)
     {
         //
+
+        \App\producto::create([
+            'cod' => $request['cod'],
+            'nom' => $request['nom'],
+            'marca' => $request['marca'],
+            'uniCaja' => $request['uniCaja'],
+            'idProve' => $request['idProve'],
+            'gUni' => $request['marca'],
+            'gCaja' => $request['gCaja'],
+            'desc' => $request['desc'],
+        ]);
+        
+        return redirect('inve/create')->with('message','store');
     }
 
     /**

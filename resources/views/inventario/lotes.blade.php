@@ -133,7 +133,7 @@ h2,h1,span
                         <h1 class="title">
     
 
-        Tabla Productos
+        Inventario Disponible
     </h1>
 
 
@@ -164,14 +164,14 @@ h2,h1,span
                                                         <th>Codigo</th>
                                                         <th>Nombre</th>
                                                         <th>Marca</th>
+                                                        <th>Unidades Disponibles</th>
                                                         <th>Costo Promedio</th>
                                                         <th>Precio de venta</th>
                                                         <th>#Unidades Caja</th>
                                                         <th>Precio de Caja</th>
                                                         <th>Proveedor</th>
                                                         <th>Descripcion</th>
-                                                        <th colspan="1" rowspan="">Accion</th>
-                                                        <th colspan="1" rowspan="">Estado</th>
+                                                        
                                                        
                                                     </tr>
                                                 </thead>
@@ -183,27 +183,28 @@ h2,h1,span
                                                         <th scope="row" >00000000</th>
                                                         <td>Lapiz #2</td>
                                                         <td>Facela</td>
+                                                        <td>100</td>   
                                                         <td>0.10</td>
                                                         <td>0.11</td>
                                                         <td>12</td>
                                                         <td>1.10</td>
                                                         <td>Libreria la paz</td>
                                                         <td>lapiz amarrillo vitrina #2</td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-sm gris" >Desactivo</button></td>
+                                                        
+                                                        
                                                     </tr>
                                                     <tr>
                                                         <th scope="row" >00000001</th>
                                                         <td>Cuaderno #2</td>
                                                         <td>Facela</td>
+                                                        <td>50</td>
                                                         <td>1.00</td>
                                                         <td>1.10</td>
                                                         <td>1</td>
                                                         <td>1.10</td>
                                                         <td>Libreria la paz</td>
                                                         <td>Cuaderno #2 rayado vitrina #2</td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-sm btn-primary" > A c t i v o </button></td>
+                                                        
                                                     </tr>
                                                     
                                                     
@@ -212,7 +213,6 @@ h2,h1,span
                                                       
                                                 </tbody>
                                             </table>
-                                            
                                         </section>
                                     </div>
                                 
