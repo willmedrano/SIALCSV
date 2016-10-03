@@ -16,7 +16,7 @@ class contoladorCompra extends Controller
      */
     public function index()
     {
-      //    
+      return view('compra.modificarcompra');   
     }
 
     /**
@@ -26,8 +26,8 @@ class contoladorCompra extends Controller
      */
     public function create()
     {
-        return view('compra.createcompra');//
-        //return view('compra.modificarcompra');
+         //return view('compra.createcompra');//
+       return view('compra.detalledecompra');
     }
 
     /**

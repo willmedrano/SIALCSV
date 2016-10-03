@@ -29,7 +29,8 @@ class controladorproveedor2 extends Controller
     public function create()
     {
         //carpeta prove
-        return view('prove.create');
+       return view('prove.create');
+//return view('prove.buscar');
     }
 
     /**

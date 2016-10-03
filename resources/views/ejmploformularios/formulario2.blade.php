@@ -1,76 +1,141 @@
-@extends('plan')
+@extends('probandos')
 
 @section('content')
+<style>
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+thead{
+     background: #ffffcc;
+     border:1;
 
+}
 
-       <!-- Core CSS - Include with every page -->
-    {!!Html::style('assets/plugins/bootstrap/bootstrap.css')!!}  
-    {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
-    {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
-     {!!Html::style('assets/css/style.css')!!}  
-      {!!Html::style('ssets/css/main-style.css')!!} 
-              
-<div class="content-top">
-  
-            <div class="col-sm-12 col-sm-offset-3 col-md-10 col-md-offset-3 main">        
-               
-                        <div class="row placeholders">          
-          <div class="col-sm-7">           
-      
-  
-                    
-<div class="panel panel-success">
-          <div class="panel-heading">
-           <h1 class="panel-title">Registro de Contrato</h1>
-       
-          </div>
+h2,h1,span
+{
+    color: #36A0FF;
 
+}
 
-
-                                <div class="card card-block sameheight-item" style="height: 445px;">
-                                 <div class="panel-body">
-                                    <form >
-                                     
-                                        
-                                             <label class="control-label">Escuelas: </label>
-                                            <select name="idtipopgo" class="form-control">
-                                              <option selected="">seleccione el Centro Escolar</option>
-                                                <option>escuela 1 </option>
-                                                <option>escuela 2 </option>
-                                                
-                                            </select>
-                                     
-                                        
-                                            <label class="control-label">fecha de Inicia: </label> 
-                                          
-                                            <input type="date" id="fecha" class="form-control underlined">
-
-                                       
-                                         
-                                            <label class="control-label">fecha de Finaliza: </label> 
-                                          
-                                            <input type="date" id="fecha" class="form-control underlined">
-
+.gris{
+    background:#8c8c8c; 
+    color:white;
+}
+.quitarborder{
  
-                                        
-                                                <div class="form-group has-success"> <label class="control-label" for="inputSuccess1">Monto:</label> <input type="text" class="form-control" id="inputSuccess1"> <span class="has-success">Solo numeros.</span> </div>
-                                       
+    color:white;
+}
 
-                                       
-                                            <button class="btn-block btn-sm btn-success" align="center">Guardar</button>
-                                            <button class="btn-block btn-sm btn-danger">Limpiar</button>
-                                        </form>
-                                  
+.formatoTabla {
+    
+    font-size: 16px;
+    text-align: center;
+   }
+    
+</style>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+                <article class="content static-tables-page">
+
+                    
+                    <div class="title-block">
+                     <span class="col-md-1  text-center">
+         <i class="fa fa-money bigicon"></i>
+          </span>
+
+                        <h1 class="title">
+    
+
+        Registro de Libro Diario
+    </h1>
 
 
+                        <p class="title-description"> Libro Diario  </p>
+                    </div>
 
 
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-
- </div>
                         
+                    <section class="section">
+
+                                <button type="submit"  class="btn btn-primary btn-lg">Imprimir</button>
+                            
+                        <div class="row">
+                            
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="card-title-block">
+                                          
+                                        <section class="example">
+                                            <table class="table table-bordered" style="width:100%" >
+                                                <thead align="center">
+                                                    <tr>
+                                                       
+                                                        <th width="100">Fecha</th>
+                                                        <th width="200">Codigo</th>
+                                                        <th >Detalle</th>
+                                                        <th width="170">Debe</th>
+                                                        <th width="170">Haber</th>
+                                                       
+                                                       
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                 <tr>
+                                                         <th colspan="5" style="
+    text-align: center;">partida # 1</th>
+                                                        
+                                                    </tr>
+
+                                                   
+                                                     <tr>
+                                                         <th scope="row" >19/08/2016</th>
+                                                        <td>41523</td>
+                                                        <td>Gastos de mantenimiento</td>
+                                                        <td>5.00</td>
+                                                        <td></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <th scope="row" >19/08/2016</th>
+                                                        <td>111</td>
+                                                        <td>Caja</td>
+                                                        <td></td>
+                                                        <td>5.00</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th ></th>
+                                                        
+                                                        <td colspan="2">para comprar una escoba y un palo de trapeado...</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                      
+                                                    </tr>
+
+                                                      
+                                                </tbody>
+                                            </table>
+                                             <div class="form-group" align="right">
+                                                  <span class="col-md-1 col-md-offset-7 "><i class="fa fa-dollar (alias) bigicon"></i></span>
+                                               <div class="col-xs-2">
+
+                                                <input id="fname" name="name" type="text" class="form-control" placeholder="5.00 " >
+                                                </div>
+                                        
+                                               <div class="col-xs-2">
+
+                                                <input id="fname" name="name" type="text" class="form-control" placeholder="5.00">
+                                                </div>
+                                                </div> 
+
+                                        </section>
+                                    </div>
+                                
+                            </div>
+                           </div>
+                           </section>
+                           </article>
+
+                          
+                           
 
 @stop

@@ -48,6 +48,7 @@ Route::resource('prove',"controladorproveedor2");
 
 Route::resource('compra',"contoladorCompra");
 
+Route::resource('escuelas',"ControladorEscuelas@listaescuela");
 Route::resource('escuela',"ControladorEscuelas");
 
 Route::resource('contrato',"ControladorContrato");

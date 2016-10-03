@@ -133,53 +133,65 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href=""> <i class="fa fa-bar-chart"></i> Escuelas <i class="fa arrow"></i> </a>
+                                    <a href=""> <i class="fa fa-dropbox"></i> paquetes <i class="fa arrow"></i> </a>
                                     <ul>
                                         <li> <a href="charts-flot.html">
-                    PRUEBAS
+                    Ingresar escuela
+                  </a> </li>
+                  <li> <a href="charts-morris.html">
+                    Ingresar contrato
                   </a> </li>
                                         <li> <a href="charts-morris.html">
-                    PRUEBAS2
+                    Ver escuelas
+                  </a> </li>
+                  
+                  <li> <a href="charts-morris.html">
+                    Ver contratos
                   </a> </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href=""> <i class="fa fa-table"></i> Compras <i class="fa arrow"></i> </a>
+
+                                    <a href=""> <i class="fa fa-shopping-cart "></i> Compras <i class="fa arrow"></i> </a>
                                     <ul>
                                         <li> <a href="/prove">
-                    Proveedores
+                    Ingresar compras
                   </a> </li>
                                         <li> <a href="responsive-tables.html">
-                    Empleados
+                   Pago de compras
+                  </a></li>
+                                        <li> <a href="responsive-tables.html">
+                     Ver detalle de compras
                   </a> </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="forms.html"> <i class="fa fa-pencil-square-o"></i> Empleados<i class="fa arrow"></i> </a> </a>
+                                    <a href="forms.html"> <i class="fa fa-truck"></i>Proveedores<i class="fa arrow"></i> </a> </a>
                                     <ul>
                                         <li> <a href="buttons.html">
-                    Paquetes
+                        Ingresar proveedor
+                  </a> </li>
+                    <li> <a href="buttons.html">
+                        Ver proveedor
                   </a> </li>
                   </ul>
                                 </li>
                                 <li>
-                                    <a href=""> <i class="fa fa-desktop"></i> Proveedores <i class="fa arrow"></i> </a>
+                                    <a href=""> <i class="fa fa-money"></i>Ciclo contable <i class="fa arrow"></i> </a>
                                     <ul>
                                         <li> <a href="buttons.html">
-                    Paquetes
+                    Ingresar Cuentas
                   </a> </li>
                                         <li> <a href="cards.html">
-                    Escuelas
+                    Ver catalogo de cuentas
                   </a> </li>
                                         <li> <a href="typography.html">
-                    Contratos
+                    Ingresar partidas
                   </a> </li>
                                         <li> <a href="icons.html">
-                    Pagos
+                    Realizar libro diario
                   </a> </li>
-                                        <li> <a href="grid.html">
-                    Formulario
-                  </a> </li>
+                                       
                                     </ul>
                                 </li>
                                 <li>
@@ -317,7 +329,9 @@
         </div>
         {!! Html::script('js/vendor.js') !!}
         {!! Html::script('js/app.js') !!}
-                
+        @section('scripts')
+        @show
+
         
     </body>
 

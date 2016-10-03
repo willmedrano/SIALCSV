@@ -7,10 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    {!!Html::style('css/bootstrap.min.css')!!}
-    {!!Html::style('css/metisMenu.min.css')!!}
-    {!!Html::style('css/sb-admin-2.css')!!}
-    {!!Html::style('css/font-awesome.min.css')!!}
+       
+                    {!!Html::style('assets/plugins/bootstrap/bootstrap.css')!!}  
+                    {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
+                    {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
+                    {!!Html::style('assets/css/style.css')!!}  
+                    {!!Html::style('ssets/css/main-style.css')!!} 
 </head>
 
 <body>

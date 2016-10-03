@@ -1,47 +1,213 @@
-@extends('plan')
+@extends('probandos')
 
 @section('content')
-  
-<div class="content-top">
-        
+<style type="text/css" >
+    
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+.legend{
+    color: #36A0FF;
+}
+.title
+{
+    color: #36A0FF;
+}
+.title{
+  font-size: 25px;  
+}
+ .title-description{
+   font-size: 15px;   
+ }  
+ .formatoTabla {
    
-            <div class="col-sm-12 col-sm-offset-3 col-md-10 col-md-offset-3 main">        
+} 
+thead{
+     background: #ffffcc;
+     border:1;
+
+}
+h2,h1,span
+{
+    color: #36A0FF;
+    font-size: 15px; 
+}
+</style>
+   
                
-                        <div class="row placeholders">          
-          <div class="col-sm-7">           
-      
-        
-<div class="panel panel-primary">
-          <div class="panel-heading">
-            <h1 class="panel-title">Registro Proveedor</h1>
-          </div>
 
+                <article class="content forms-page" >
+                  
+                   
+                    <div class="title-block">
+                    <span class="col-md-1  text-center">
+                        <i class="fa fa-building-o bigicon"></i>
+                     </span>
+                        <h1 class="title">Partidas</h1>
+                        <p class="title-description">Registo de Partidas</p> 
+                         
+                           
+                    </div>
+                      
+                    {!!Html::style('assets/plugins/bootstrap/bootstrap.css')!!}  
+                    {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
+                    {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
+                    {!!Html::style('assets/css/style.css')!!}  
+                    {!!Html::style('ssets/css/main-style.css')!!} 
 
+                       <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">Formulario de Partidas</h1>
+                             </div>
+<h2 align="center">Partidas</h2>
+                <section class="section">
+                    
+                       <div >
+                                    <div class="card card-block sameheight-item" >
 
-                                <div class="card card-block sameheight-item" style="height: 550px;">
-                                 <div class="panel-body">
-                                    <form role="form">
-                                <div class="form-group has-success"> <label class="control-label" for="inputSuccess1">NOMBRE:</label> <input type="text" class="form-control" id="inputSuccess1"> <span class="has-success">Solo letras.</span> </div>
-                                <div class="form-group has-success">
-                                <label class="control-label" for="inputWarning1">NIT:</label> <input type="text" class="form-control" id="inputWarning1"> <span class="has-success">solo numero.</span> </div>
-                                <div class="form-group has-success">
-                                <label class="control-label" for="inputError1">TELEFONO:</label> <input type="text" class="form-control" id="inputError1"> <span class="has-success">solo numeros.</span> </div>
+                                        <form class="form-horizontal" method="post" >
+                                            <br>           
+                                            <br>
+
+                                                <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-home bigicon"></i></span>
+                            <div class="col-md-3">
+                                <select name="idtipopgo" class="form-control">
+                                                        <option selected="">seleccione la cuenta</option>
+                                                        <option>caja </option>
+                                                        <option>bancos</option>
+                                                     </select> 
                                 
-                                <div class="form-group has-success"> <label class="control-label" for="inputSuccess1">DIRECCION:</label> <input type="text" class="form-control" id="inputSuccess1"> <span class="has-success">llene el campo.</span> </div>
-                            <button class="btn-block btn-sm btn-success" align="center">Guardar</button>
-                                            <button class="btn-block btn-sm btn-danger">Limpiar</button>
-                                        </form>
-                                  
+                            </div>
 
-
-
-
-                                </div>
+                            <span class="col-md-1  text-center"><i class="fa fa-money bigicon"></i></span>
+                            <div class="col-md-3">
+                                <input id="email" name="email" type="txt" placeholder="Digite la cantidad " class="form-control">
                             </div>
                         </div>
+                                            <br>
+                                           <br>
+                                         <div class="form-group">
+                                                <span class="col-md-1 col-md-offset-2 text-center">
+                                                    <i class="fa fa-dollar (alias) bigicon"></i>
+                                                </span>
+                                                <div class="col-xs-3"> 
+                                                   <select name="idtipopgo" class="form-control">
+                                                        <option selected="">Debe</option>
+                                                        <option>Haber </option>
+                                                        
+                                                     </select> 
+                                                     <span class="has-success">Lo que desea cargar</span>
+                                                </div>
+                                                 <span class="col-md-1  text-center">
+                                                    <i class="fa fa-calendar bigicon"></i>
+                                                </span>
+                                                <div class="col-xs-3"> 
+                                                      <input id="email" name="email" type="date" placeholder="digite la fecha de entrega " class="form-control"><span class="has-success">Si desea cambiar la fceha.</span> 
+                                                </div> 
+                                        </div>
+                                        <br>
+                                         <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <div class="col-md-7">
+                                <textarea class="form-control" id="message" name="message" placeholder="Direccion" rows="2"></textarea>
+                            </div>
                         </div>
+                                       
+                                           <br>
+                                         
+                              
+                                        <div class="form-group">
+                            <div class="col-md-12 text-center" align="center">
+                                <button type="submit" class="btn btn-primary btn-lg">Agregar transaccion</button>
+                            </div>
 
- </div>
+                            
+                        </div>
+                        <table class="table table-bordered" style="width:100%" >
+                                                <thead align="center">
+                                                    <tr>
+                                                       
+                                                        <th width="100">Fecha</th>
+                                                        <th width="200">Codigo</th>
+                                                        <th >Detalle</th>
+                                                        <th width="170">Debe</th>
+                                                        <th width="170">Haber</th>
+                                                       
+                                                       
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                <tr>
+                                                         <th colspan="5" style="
+    text-align: center;">partida # 1</th>
+                                                        
+                                                    </tr>
+
+                                                   
+                                                     <tr>
+                                                         <th scope="row" >19/08/2016</th>
+                                                        <td>41523</td>
+                                                        <td>Gastos de mantenimiento</td>
+                                                        <td>5.00</td>
+                                                        <td></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <th scope="row" >19/08/2016</th>
+                                                        <td>111</td>
+                                                        <td>Caja</td>
+                                                        <td></td>
+                                                        <td>5.00</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th ></th>
+                                                        
+                                                        <td colspan="2">para comprar una escoba y un palo de trapeado...</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                      
+                                                    </tr>
+ 
+                                                      
+                                                </tbody>
+                                            </table>
+                                             <div class="form-group" align="right">
+
+                                                  <span class="col-md-1 col-md-offset-7 "><i class="fa fa-dollar (alias) bigicon"></i></span>
+                                               <div class="col-xs-2">
+
+                                                <input id="fname" name="name" type="text" class="form-control" placeholder="5.00 " >
+                                                </div>
+                                        
+                                               <div class="col-xs-2">
+
+                                                <input id="fname" name="name" type="text" class="form-control" placeholder="5.00">
+                                                </div>
+                                                </div> 
+                                                <div class="form-group">
+                                                     <div class="col-md-12 text-center" align="center">
+                                                    <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+                                                 </div>
+                                                    
+                                                </div>
+                                           
+                                        </form>
+                                    </div>
+
+
+
+
+                              </div>
                         
+ 
+                     
+                    </section>
 
+                    </div> 
+    
 @stop
+
+
+                    

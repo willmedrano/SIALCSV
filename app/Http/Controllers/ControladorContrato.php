@@ -16,7 +16,7 @@ class ControladorContrato extends Controller
      */
     public function index()
     {
-        //
+        return view('paquetesescolares.contrato.index');
     }
 
     /**
