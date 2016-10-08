@@ -17,9 +17,11 @@ class inventario extends Controller
     public function index()
     {
         //
-        $prove =\App\proveedor::All();
+        $pro =\App\producto::proPro();
+        
        // return view('layouts.inicio');
-       return view('inventario.index',compact('prove'));
+
+       return view('inventario.index',compact('pro'));
         
     }
 
@@ -33,7 +35,8 @@ class inventario extends Controller
         //
         //return view('ventas.facturar');
        // return view('ventas.venta');
-        return view('inventario.formInv');
+        $prov =\App\proveedor::All();
+        return view('inventario.formInv',compact('prov'));
         
        //return view('inventario.lotes');
 
@@ -51,11 +54,11 @@ class inventario extends Controller
 
         \App\producto::create([
             'cod' => $request['cod'],
-            'nom' => $request['nom'],
+            'nomProd' => $request['nom'],
             'marca' => $request['marca'],
             'uniCaja' => $request['uniCaja'],
             'idProve' => $request['idProve'],
-            'gUni' => $request['marca'],
+            'gUni' => $request['gUni'],
             'gCaja' => $request['gCaja'],
             'desc' => $request['desc'],
         ]);
@@ -72,7 +75,11 @@ class inventario extends Controller
     public function show($id)
     {
         //
+        $pro2 =\App\producto::mostrar($id);
+        return view('inventario.index',compact('pro2'));
+       
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -83,6 +90,7 @@ class inventario extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -95,6 +103,10 @@ class inventario extends Controller
     public function update(Request $request, $id)
     {
         //
+         $this->producto->fill($request->all());
+         $this->producto->save();
+         Session::flash('message','producto Editada Correctamente');
+         return Redirect::to('/formInv');
     }
 
     /**

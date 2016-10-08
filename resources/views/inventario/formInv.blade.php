@@ -129,8 +129,10 @@ h2
                             <div class="col-xs-3">
                                 <select class=" form-control" name="idProve">
                             <option>--Selecione un Proveedor--</option>
-                            <option  value="1" >Vendedor</option>
-                            <option>Otros</option>
+                            @foreach($prov as $prov)
+
+                                <option  value="{{ $prov->id }}" >{{ $prov->nom }}</option>
+                            @endforeach
                            
                         </select>
                             </div>

@@ -15,15 +15,16 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cod');
-            $table->string('nom');
+            $table->string('nomProd');
             $table->string('marca');
             $table->Integer('uniCaja');
             $table->Integer('idProve')->unsigned();
             $table->foreign('idProve')->references('id')->on('proveedores');
             $table->Integer('gUni');
             $table->Integer('gCaja');
-            $table->boolean('estado')->default(true);
             $table->string('desc');
+            $table->boolean('estado')->default(true);
+            
             $table->timestamps();
         });
     }

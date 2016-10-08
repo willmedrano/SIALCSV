@@ -30,6 +30,57 @@ h2,h1,span
                 <article class="content static-tables-page">
 
 
+
+        <div id="gridSystemModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="alert-warning">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel3">Desactivar PRODUCTO</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid bd-example-row">
+          <form action="">
+              <label for="">¿Seguro que desea cambiar el estado del producto?</label>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fin del modal 3-- >
+<div id="gridSystemModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="alert-warning">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel2">Activar Producto</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid bd-example-row">
+          <form action="">
+              <label for="">¿Seguro que desea cambiar el estado del producto?</label>
+              
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fin del modal 2-- >
+        
+
+
 <!--Inicio de modal -->
                 <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -41,7 +92,7 @@ h2,h1,span
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
-          <form class="form-horizontal" method="p<os></os>t">
+          <form class="form-horizontal" method="post">
                     <fieldset>
                         
 
@@ -129,6 +180,11 @@ h2,h1,span
   </div>
 </div>
 <!--fin de modal -->
+
+
+
+
+
                     <div class="title-block ">
                         <h1 class="title">
     
@@ -176,40 +232,39 @@ h2,h1,span
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
+                                                    @foreach($pro as $pro)
                                                 
 
                                                     <tr>
-                                                        <th scope="row" >00000000</th>
-                                                        <td>Lapiz #2</td>
+                                                        <th scope="row" >{{ $pro->cod }}</th>
+                                                        <td>{{ $pro->nomProd }}</td>
                                                         <td>Facela</td>
                                                         <td>0.10</td>
                                                         <td>0.11</td>
-                                                        <td>12</td>
+                                                        <td>{{ $pro->uniCaja }}</td>
                                                         <td>1.10</td>
-                                                        <td>Libreria la paz</td>
-                                                        <td>lapiz amarrillo vitrina #2</td>
+                                                        
+                                                                    <td>{{ $pro->nom }}</td>
+                                                                
+                                                        
+                                                        <td>{{ $pro->desc }}</td>
+                                                        
                                                         <td><button type="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-sm gris" >Desactivo</button></td>
+                                                         @if($pro->estado==true)
+                                                            <td><button type="submit"  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gridSystemModal3">A c t i v o</button></td>
+                                                        @endif
+
+                                                        @if($pro->estado==false)
+                                                            <td><button type="submit"  class="btn btn-sm gris" data-toggle="modal" data-target="#gridSystemModal3">Desactivo</button></td>
+                                                        @endif
+                                                       
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row" >00000001</th>
-                                                        <td>Cuaderno #2</td>
-                                                        <td>Facela</td>
-                                                        <td>1.00</td>
-                                                        <td>1.10</td>
-                                                        <td>1</td>
-                                                        <td>1.10</td>
-                                                        <td>Libreria la paz</td>
-                                                        <td>Cuaderno #2 rayado vitrina #2</td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-sm btn-primary" > A c t i v o </button></td>
-                                                    </tr>
+                                                  
                                                     
                                                     
 
                                                     
-                                                      
+                                                      @endforeach
                                                 </tbody>
                                             </table>
                                             
