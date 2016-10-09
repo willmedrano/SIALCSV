@@ -10,14 +10,13 @@ class producto extends Model
     protected $table = "productos";
    
 
-   protected $fillable = ['cod','nomProd','marca','uniCaja','idProve','gUni', 'gCaja','estado','desc'];
+   protected $fillable = ['cod','nomProd','marca','uniCaja','idProve','gUni', 'gCaja','estado','desc','cPromedio'];
 
    //para sacar de dos tablas recordar poner use DB arriba
    public static function proPro(){
    		 return DB::table('productos')
             ->join('proveedores', 'productos.idProve', '=', 'proveedores.id')
-            
-            ->select('productos.*',  'proveedores.nom')
+            ->select('productos.*',  'proveedores.*')
             ->get();
    }
    //fin

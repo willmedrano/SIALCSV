@@ -94,7 +94,18 @@ h2,h1,span
         <div class="container-fluid bd-example-row">
           <form class="form-horizontal" method="post">
                     <fieldset>
-                        
+                        <br>
+                        <div class="form-group">
+                            <span class="col-md-2  text-center" ><label >ID: </label></span>
+                            <div class="col-md-6">
+                                <input id="idProd" name="ipProd" type="text" placeholder="Nombre del Producto" class="form-control" >
+                                
+                            </div>
+
+                            
+                            
+                        </div>
+                    
 
                         <br>
                         <div class="form-group">
@@ -139,14 +150,14 @@ h2,h1,span
                         <div class="form-group">
                             
 
-                            <span class="col-md-2  text-center"><label >Ganancia: </label></span>
+                            <span class="col-md-2  text-center"><label >Ganancia Caja : </label></span>
                             <div class="col-xs-5">
                                 <input id="gan2" name="gan2" type="text" placeholder="porcentaje por Caja" class="form-control">
                             </div>
 
                         </div>
                         <br>
-                       
+                       <br>
                          <div class="form-group">
                             <span class="col-md-2  text-center"><label >Proveedor: </label></span>
                             <div class="col-xs-7">
@@ -224,8 +235,10 @@ h2,h1,span
                                                         <th>Nombre</th>
                                                         <th>Marca</th>
                                                         <th>Costo Promedio</th>
+                                                        <th>%Ganacias</th>
                                                         <th>Precio de venta</th>
                                                         <th>#Unidades Caja</th>
+                                                        <th>%Ganancias</th>
                                                         <th>Precio de Caja</th>
                                                         <th>Proveedor</th>
                                                         <th>Descripcion</th>
@@ -242,10 +255,20 @@ h2,h1,span
                                                         <th scope="row" >{{ $pro->cod }}</th>
                                                         <td>{{ $pro->nomProd }}</td>
                                                         <td>{{ $pro->marca }}</td>
-                                                        <td>0.10</td>
-                                                        <td>0.11</td>
+                                                        <td>{{ $pro->cPromedio}}</td>
+                                                        <td>{{ $pro->gUni}}</td>
+                                                        <td>
+                                                           <?php
+                                                            $a=(($pro->cPromedio*($pro->gUni/100))+$pro->cPromedio);
+                                                            echo $a;
+                                                            ?>
+                                                        </td>
                                                         <td>{{ $pro->uniCaja }}</td>
-                                                        <td>1.10</td>
+                                                        <td>{{ $pro->gCaja }}</td>
+                                                        <td><?php
+                                                            $a=(($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio);
+                                                            echo $a;
+                                                            ?></td>
                                                         
                                                                     <td>{{ $pro->nom }}</td>
                                                                 
@@ -287,7 +310,7 @@ h2,h1,span
       event.preventDefault();
       //var id= $(this).attr('data-id');
       //var route = "/inve/"+id+"/edit";
-      var id= $(this).attr('data-id');s
+      var id= $(this).attr('data-id');
       nombre =$(this).parent().parent().children("td:eq(0)").text();
       marca =$(this).parent().parent().children("td:eq(1)").text();
       ganan =$(this).parent().parent().children("td:eq(2)").text();
