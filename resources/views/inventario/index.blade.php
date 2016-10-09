@@ -111,7 +111,7 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Marca: </label></span>
                             <div class="col-md-5">
-                                <input id="nomP" name="nomP" type="text" placeholder="Marca del producto" class="form-control">
+                                <input id="marca" name="marca" type="text" placeholder="Marca del producto" class="form-control">
                                 
                             </div>
                         </div>
@@ -119,7 +119,7 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Ganancia: </label></span>
                             <div class="col-xs-5">
-                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje por unidad" class="form-control">
+                                <input id="gan" name="gan" type="text" placeholder="porcentaje por unidad" class="form-control">
                             </div>
                         </div>
                         
@@ -127,7 +127,7 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Unidades: </label></span>
                             <div class="col-md-3">
-                                <input id="marca" name="marca" type="text" placeholder="por caja " class="form-control">
+                                <input id="uni" name="uni" type="text" placeholder="por caja " class="form-control">
 
                             </div>
                             <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i>
@@ -141,19 +141,22 @@ h2,h1,span
 
                             <span class="col-md-2  text-center"><label >Ganancia: </label></span>
                             <div class="col-xs-5">
-                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje por Caja" class="form-control">
+                                <input id="gan2" name="gan2" type="text" placeholder="porcentaje por Caja" class="form-control">
                             </div>
 
                         </div>
                         <br>
-                        
+                       
                          <div class="form-group">
                             <span class="col-md-2  text-center"><label >Proveedor: </label></span>
                             <div class="col-xs-7">
                                 <select class=" form-control">
-                            <option>--Selecione un Proveedor--</option>
-                            <option>Vendedor</option>
-                            <option>Otros</option>
+                             @foreach($prov as $prov)
+                                
+                                
+                                <option  value="{{ $prov->id }}" >{{ $prov->nom }}</option>
+                                
+                            @endforeach
                            
                         </select>
                             </div>
@@ -163,7 +166,7 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2 text-center"><label >Descripción:</label></span>
                             <div class="col-md-7">
-                                <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
+                                <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
                             </div>
                         </div>
                             <br>
@@ -231,14 +234,14 @@ h2,h1,span
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="hola">
                                                     @foreach($pro as $pro)
                                                 
 
                                                     <tr>
                                                         <th scope="row" >{{ $pro->cod }}</th>
                                                         <td>{{ $pro->nomProd }}</td>
-                                                        <td>Facela</td>
+                                                        <td>{{ $pro->marca }}</td>
                                                         <td>0.10</td>
                                                         <td>0.11</td>
                                                         <td>{{ $pro->uniCaja }}</td>
@@ -249,7 +252,7 @@ h2,h1,span
                                                         
                                                         <td>{{ $pro->desc }}</td>
                                                         
-                                                        <td><button type="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">Modificar</button></td>
+                                                        <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $pro->id }}">Modificar</a></td>
                                                          @if($pro->estado==true)
                                                             <td><button type="submit"  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gridSystemModal3">A c t i v o</button></td>
                                                         @endif
@@ -275,8 +278,42 @@ h2,h1,span
                            </div>
                            </section>
                            </article>
+@section('scripts')
+   
+<script>
+  
+  $(function(){
+    $('body').on('click','#hola a',function(event){
+      event.preventDefault();
+      //var id= $(this).attr('data-id');
+      //var route = "/inve/"+id+"/edit";
+      var id= $(this).attr('data-id');s
+      nombre =$(this).parent().parent().children("td:eq(0)").text();
+      marca =$(this).parent().parent().children("td:eq(1)").text();
+      ganan =$(this).parent().parent().children("td:eq(2)").text();
+      Unidades =$(this).parent().parent().children("td:eq(3)").text();
+      ganan2 =$(this).parent().parent().children("td:eq(4)").text();
+      Unidades =$(this).parent().parent().children("td:eq(5)").text();
+      provee =$(this).parent().parent().children("td:eq(6)").text();
+      descr =$(this).parent().parent().children("td:eq(7)").text();
 
-                          
+      alert(nombre);
+        $("#nomP").val(nombre);
+        $("#marca").val(marca);
+        $("#gan").val(ganan);
+        $("#uni").val(Unidades);
+        $("#gan2").val(ganan2);
+        $("#hi").val(provee);
+        $("#desc").val(descr);
+        
+  $('#gridSystemModal').modal('show');
+    });
+    });
+  
+</script>
+  @endsection                         
+
+                        
                            
 
 @stop()

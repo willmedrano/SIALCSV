@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\producto;
 class inventario extends Controller
 {
     /**
@@ -14,14 +14,21 @@ class inventario extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){// espara realizar un filtro antes 
+        $this->beforeFilter('@find',['only' => ['edit','update','destroy']]);
+    }
+
+    public function find(Route $route){
+        $this->producto = producto::find($route->getParameter('inve'));// recibe lo que tenemos ya definido en routas 
+    }
     public function index()
     {
         //
         $pro =\App\producto::proPro();
-        
+        $prov =\App\proveedor::All();
        // return view('layouts.inicio');
-
-       return view('inventario.index',compact('pro'));
+       return view('inventario.index',compact('pro'),compact('prov'));
         
     }
 
@@ -90,6 +97,7 @@ class inventario extends Controller
     public function edit($id)
     {
         //
+        return response()->json($this->producto->toArray());
 
     }
 

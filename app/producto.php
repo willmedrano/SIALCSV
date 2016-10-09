@@ -17,7 +17,7 @@ class producto extends Model
    		 return DB::table('productos')
             ->join('proveedores', 'productos.idProve', '=', 'proveedores.id')
             
-            ->select('productos.cod','productos.nomProd','productos.marca','productos.uniCaja','productos.desc','productos.estado',  'proveedores.nom')
+            ->select('productos.*',  'proveedores.nom')
             ->get();
    }
    //fin
