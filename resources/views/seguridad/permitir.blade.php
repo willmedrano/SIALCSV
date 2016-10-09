@@ -44,6 +44,7 @@ legend{
                                     <di>
                                     <div class="card card-block sameheight-item" >
 
+
                                          <form class="form-horizontal" method="post">
 
 
@@ -51,18 +52,18 @@ legend{
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title">
+                                            <h2>
                             Empleados
                         </h3> 
                         <br>
                          <div class="form-group" align="right">
-                                                  <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon icon_nav"></i>Buscar</span>
+                                                  <span class="col-md-1 col-md-offset-8 text-center"><i class="fa fa-search bigicon icon_nav"></i>Buscar</span>
                                                <div class="col-xs-3">
 
                                                 <input id="fname" name="name" type="text"  class="form-control">
                                                 </div>
                                                    </div>
-
+                          
 
                         </div>
                                         <section class="example">
@@ -81,40 +82,31 @@ legend{
                                             <th> Apellido </th>
                                             <th> Telefono </th>
                                             <th> Correo </th>
-                                            <th> Correo </th>
+                                            <th> Cargo </th>
                                             <th> Acceso </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
-                                        <tr align="center">
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                             <td>-</td>
-                                             <td><button class="btn btn-success active">Permitir</button></td>
-                                        </tr>
 
-                                          <tr align="center">
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                             <td>-</td>
-                                             <td><button class="btn btn-success active">Permitir</button></td>
-                                        </tr>
-                                          <tr align="center">
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                             <td>-</td>
-                                             <td><button class="btn btn-success active">Permitir</button></td>
-                                        </tr>
+
+                                    @foreach($emple as $emple)
+                                                    <tr>
+                                                        <td>{{ $emple->id }}</td>
+                                                        <td>{{ $emple->nom }}</td>
+                                                        <td>{{ $emple->ape }}</td>
+                                                        <td>{{ $emple->tel }}</td>
+                                                        <td>{{ $emple->sex }}</td>
+                                                        <td>{{ $emple->cargo }}</td>
+                                                        
+                                                <td>{!! link_to_route('log.edit',$title='Permitir',$parameters=$emple->id, $attributes=['class'=>'btn btn-success active']) !!}</td>
+                                                    
+
+                                                    </tr>
+
+                                                    
+                                                      @endforeach  
+                                        
+                                        
                                     </tbody>
                                                      </table>
                                                             
@@ -133,17 +125,21 @@ legend{
                     <br>
                     <br>
                     
+                    
+                  {!! Form::model($emple,['route'=>['log.store',$emple->id],'method'=>'PUT', 'class'=>'form-horizontal'])!!}
                                             <div  align="center">
 
                                                 <div>
-                                                    <IMG SRC="#" WIDTH=120 HEIGHT=130 ALT="Obra de K. Haring">
+                                                    <IMG src="assets/faces/3.jpg"  WIDTH=120 HEIGHT=130 ALT="Foto" >
                                                 </div>
 
                                                 <div class="col-xs-12" align="center">
                                                     <br>
                                                    
 
-                                                 </div>
+                                                 </div
+
+                                                 >
                                             </div> 
     
                                              
@@ -154,10 +150,11 @@ legend{
 
 
                                                  
-                                                  <span class="col-md-1 col-md-offset-2 text-center"><i>Codigo</i></span>
+
+                                                 <span class="col-md-1 col-md-offset-2 text-center"><i>Codigo</i></span>
                             <div class="col-xs-2">
 
-                                <input id="fname" name="name" type="text"  class="form-control">
+                                <input id="fname" name="name" type="text"  value={{ $emple->id }} class="form-control">
                             </div>
 
                             
@@ -169,11 +166,11 @@ legend{
                                                     <span class="col-md-1 col-md-offset-2 text-center"><i>Nombre</i></span>
                                                 <div class="col-xs-3">
 
-                                                <input id="fname" name="name" type="text"  class="form-control">
+                                                <input id="fname" name="lognom" type="text"  value= {{ $emple->nom }} class="form-control">
                                                 </div>
                                                  <div class="col-xs-3">
 
-                                                <input id="fname" name="name" type="text"  class="form-control">
+                                                <input id="fname" name="logape" type="text"  class="form-control">
                                                 </div>
                             
                                                 
@@ -184,12 +181,9 @@ legend{
                                                      <span class="col-md-1 col-md-offset-2 text-center"><i>Telefono</i></span>
                                                 <div class="col-xs-3">
 
-                                                <input id="fname" name="name" type="text"  class="form-control">
+                                                <input id="fname" name="logtel" type="text"  class="form-control">
                                                 </div>
-                                                 <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
+                                                
                                                       </div>
                                                 
 
@@ -229,9 +223,11 @@ legend{
                                                     <button type="submit"  class="btn btn-primary btn-lg">Guardar</button>
                                                 </div>                  
                                             </div>
-                                               
+
+                                                      
+                                              {!! Form::close() !!} 
                   
-                                      </form>
+                                     
                                     
                                 </div>
                             </div>

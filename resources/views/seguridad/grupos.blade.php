@@ -65,7 +65,7 @@ legend{
                                             
                                                 <div class="col-md-12" >
                                                      <div class="panel-body"> 
-<div class="table-responsive">
+                            <div class="table-responsive">
                              <br>
                                 <table class="table  table-bordered table-hover" id="dataTables-example">
                                     <thead >

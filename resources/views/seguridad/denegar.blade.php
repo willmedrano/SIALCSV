@@ -56,7 +56,7 @@ legend{
                         </h3> 
                         <br>
                          <div class="form-group" align="right">
-                                                  <span class="col-md-1 col-md-offset-8 text-center"><i>Buscar</i></span>
+                                                  <span class="col-md-1 col-md-offset-8 text-center"><i class="fa fa-search bigicon icon_nav"></i>Buscar</span>
                                                <div class="col-xs-3">
 
                                                 <input id="fname" name="name" type="text"  class="form-control">

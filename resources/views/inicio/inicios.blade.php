@@ -76,16 +76,17 @@ legend{
       </h1> </header>
                     <div class="auth-content">
                         <p class="text-xs-center">INICIAR SESION PARA CONTINUAR</p>
-                        <form id="login-form" action="/index.html" method="GET" novalidate="">
+
+                      {!! Form::open(['route'=>'logear.store','method'=>'POST'])!!}
                             <div class="form-group"> 
                             <i class="fa fa-user bigicon"></i>
                                 <label for="username">Usuario</label> 
-                                 <input type="email" class="form-control" name="username" id="username" placeholder="Usuario" required> 
+                                 <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" required> 
                             </div>
                             <div class="form-group"> 
                                  <i class="fa fa-unlock-alt bigicon"></i>
                                  <label for="password">Contraseña</label> 
-                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required> 
+                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" > 
                             </div>
                              
 
@@ -99,11 +100,11 @@ legend{
                             <button type="submit" class="btn btn-block btn-primary">Entrar</button> 
                             </div>
                             
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
                 <div class="text-xs-center">
-                    <a href="index.html" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Volver </a>
+                    <a href="index.html" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Regresar </a>
                 </div>
             </div>
         </div>
