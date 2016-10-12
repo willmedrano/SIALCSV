@@ -16,7 +16,8 @@ class producto extends Model
    public static function proPro(){
    		 return DB::table('productos')
             ->join('proveedores', 'productos.idProve', '=', 'proveedores.id')
-            ->select('productos.*',  'proveedores.*')
+            ->select('productos.*',  'proveedores.nom')
+            ->orderBy('productos.id')
             ->get();
    }
    //fin

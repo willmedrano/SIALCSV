@@ -26,7 +26,7 @@
     input:focus {
         outline:0px;
     }
-    .ok {
+    .ok{
         border-color:blue;
     }
     </style>
@@ -43,23 +43,29 @@
  
             // Definimos las mascaras para cada input
             $("#date").mask("99/99/9999");
-            $("#movil").mask("999 99 99 99");
-            $("#letras").mask("aaa");
+            $("#movil").mask("9999-9999");
+            $("#letras").mask("99999999");
             $("#comodines").mask("?");
         });
     </script>
 </head>
  
 <body>
+<form action="">
 <h1>Mascaras en los inputs</h1>
 <h2>Aqui se muestra como utilizar el plugin de jquery maskedinput para poner mascaras en nuestros inputs.</h2>
  
 <div><span>numero con dos decimales</span><input type="text" id="numero1"> 9,99 (generamos un evento al rellenarlo)</div>
-<div><span>fecha</span><input type="text" id="date"> 99/99/9999</div>
+<div><span>fecha</span><input type="text" id="date" > 99/99/9999</div>
 <div><span>movil</span><input type="text" id="movil"> 999 99 99 99</div>
-<div><span>Solo tres letras</span><input type="text" id="letras"> aaa</div>
+<div><span>Solo tres letras</span><input type="text"  id="letras"> aaa</div>
+<input type="submit" name="" value="hola">
+</form>
  
 <p><a href="http://digitalbush.com/projects/masked-input-plugin">http://digitalbush.com/projects/masked-input-plugin</a></p>
 <p><a href="http://www.lawebdelprogramador.com">http://www.lawebdelprogramador.com</a></p>
 </body>
 </html>
+
+
+

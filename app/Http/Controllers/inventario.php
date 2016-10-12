@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\producto;
+use Session;
+use Redirect;
 class inventario extends Controller
 {
     /**
@@ -15,20 +17,14 @@ class inventario extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(){// espara realizar un filtro antes 
-        $this->beforeFilter('@find',['only' => ['edit','update','destroy']]);
-    }
-
-    public function find(Route $route){
-        $this->producto = producto::find($route->getParameter('inve'));// recibe lo que tenemos ya definido en routas 
-    }
+   
     public function index()
     {
         //
         $pro =\App\producto::proPro();
         $prov =\App\proveedor::All();
        // return view('layouts.inicio');
-       return view('inventario.index',compact('pro'),compact('prov'));
+       return view('inventario.index',compact('pro','pro2'),compact('prov'));
         
     }
 
@@ -97,8 +93,9 @@ class inventario extends Controller
     public function edit($id)
     {
         //
-        return response()->json($this->producto->toArray());
-
+        //return response()->json($this->producto->toArray());
+        $pro3=producto::find($id);
+        return view('inve.index',compact('$pro3'));
     }
 
     /**
@@ -111,11 +108,37 @@ class inventario extends Controller
     public function update(Request $request, $id)
     {
         //
-         $this->producto->fill($request->all());
-         $this->producto->save();
-         Session::flash('message','producto Editada Correctamente');
-         return Redirect::to('/formInv');
+        $productos = producto::find($id);
+        $aux=$request['hi2'];
+
+        if($aux=='1')
+        {
+        $productos->nomProd = $request['nomProd'];
+        $productos->marca = $request['marca'];
+        $productos->gUni = $request['gUni'];
+        $productos->gCaja = $request['gCaja'];
+        $productos->uniCaja = $request['uniCaja'];
+        $productos->idProve = $request['idProve'];
+        
+
+        $productos->desc = $request['desc'];
+        }
+        if($aux=='2')
+        {
+            $productos->estado =true;
+        }
+        if($aux=='3')
+        {
+            $productos->estado =false;
+        }
+
+
+        $productos->save();
+
+        Session::flash('mensaje','¡Registro Actualizado!');
+        return redirect::to('/inve');
     }
+     
 
     /**
      * Remove the specified resource from storage.

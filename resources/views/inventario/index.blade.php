@@ -29,60 +29,63 @@ h2,h1,span
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <article class="content static-tables-page">
 
-
-
-        <div id="gridSystemModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+@foreach ($pro as $cat3)
+ <div id="gridSystemModal3{{$cat3->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="alert-warning">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel3">Desactivar PRODUCTO</h4>
+<h4 class="modal-title" id="gridModalLabel3">ACTIVAR PRODUCTO</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
-          <form action="">
+          {!!Form::model($cat3,['method'=>'PATCH','route'=>['inve.update',$cat3->id]])!!}
               <label for="">¿Seguro que desea cambiar el estado del producto?</label>
-          </form>
+              <input type="hidden" name="hi" value="{{ $cat3->estado }}">
+              <input type="hidden" name="hi2" value="2">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+          {!!Form::close()!!}
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Aceptar</button>
-      </div>
+      
     </div>
   </div>
 </div>
-<!-- fin del modal 3-- >
-<div id="gridSystemModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+@endforeach()
+@foreach ($pro as $cat2)
+<div id="gridSystemModal2{{$cat2->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="alert-warning">
+      <div class="modal-header alert-warning" bgcolor="blue">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel2">Activar Producto</h4>
+<h4 class="modal-title" id="gridModalLabel3" >Desactivar PRODUCTO</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
-          <form action="">
+           {!!Form::model($cat2,['method'=>'PATCH','route'=>['inve.update',$cat2->id]])!!}
               <label for="">¿Seguro que desea cambiar el estado del producto?</label>
-              
-          </form>
+              <input type="hidden" name="hi" value="{{ $cat2->estado }}">
+              <input type="hidden" name="hi2" value="3">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+          {!!Form::close()!!}
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Aceptar</button>
-      </div>
+      
     </div>
   </div>
 </div>
-<!-- fin del modal 2-- >
-        
+@endforeach ()
 
-
-<!--Inicio de modal -->
-                <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+@foreach ($pro as $cat)
+<div  id="Edit{{$cat->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">> 
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -92,26 +95,25 @@ h2,h1,span
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
-          <form class="form-horizontal" method="post">
-                    <fieldset>
+      {!!Form::model($cat,['method'=>'PATCH','route'=>['inve.update',$cat->id]])!!}
+      <fieldset>
+      <input type="hidden" name="hi2" value="1">
                         <br>
                         <div class="form-group">
-                            <span class="col-md-2  text-center" ><label >ID: </label></span>
+                            <span class="col-md-2  text-center" ><label >Codigo: </label></span>
                             <div class="col-md-6">
-                                <input id="idProd" name="ipProd" type="text" placeholder="Nombre del Producto" class="form-control" >
+                                <input disabled id="id" name="id" type="text" placeholder="Nombre del Producto" class="form-control" value="{{ $cat->cod }}">
                                 
                             </div>
 
                             
                             
-                        </div>
-                    
-
+                        </div>                
                         <br>
                         <div class="form-group">
                             <span class="col-md-2  text-center" ><label >Nombre: </label></span>
                             <div class="col-md-6">
-                                <input id="nomP" name="nomP" type="text" placeholder="Nombre del Producto" class="form-control" >
+                                <input id="nomProd" name="nomProd" type="text" placeholder="Nombre del Producto" class="form-control" value="{{ $cat->nomProd }}">
                                 
                             </div>
 
@@ -121,27 +123,27 @@ h2,h1,span
 <br>
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Marca: </label></span>
-                            <div class="col-md-5">
-                                <input id="marca" name="marca" type="text" placeholder="Marca del producto" class="form-control">
+                            <div class="col-md-6">
+                                <input id="marca" name="marca" type="text" placeholder="Marca del producto" class="form-control" value="{{ $cat->marca }}">
                                 
                             </div>
                         </div>
 <br>
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Ganancia: </label></span>
-                            <div class="col-xs-5">
-                                <input id="gan" name="gan" type="text" placeholder="porcentaje por unidad" class="form-control">
+                            <div class="col-md-6">
+                                <input id="gUni" name="gUni" type="text" placeholder="porcentaje por unidad" class="form-control" value="{{ $cat->gUni }}">
                             </div>
                         </div>
                         
 <br>
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Unidades: </label></span>
-                            <div class="col-md-3">
-                                <input id="uni" name="uni" type="text" placeholder="por caja " class="form-control">
+                            <div class="col-md-6">
+                                <input id="uniCaja" name="uniCaja" type="text" placeholder="por caja " class="form-control" value="{{ $cat->uniCaja}}">
 
                             </div>
-                            <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i>
+                            <!--span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i-->
                         </div>
                         
 
@@ -151,8 +153,8 @@ h2,h1,span
                             
 
                             <span class="col-md-2  text-center"><label >Ganancia Caja : </label></span>
-                            <div class="col-xs-5">
-                                <input id="gan2" name="gan2" type="text" placeholder="porcentaje por Caja" class="form-control">
+                            <div class="col-md-6">
+                                <input id="gCaja" name="gCaja" type="text" placeholder="porcentaje por Caja" class="form-control" value="{{ $cat->gCaja }}">
                             </div>
 
                         </div>
@@ -160,13 +162,15 @@ h2,h1,span
                        <br>
                          <div class="form-group">
                             <span class="col-md-2  text-center"><label >Proveedor: </label></span>
-                            <div class="col-xs-7">
-                                <select class=" form-control">
-                             @foreach($prov as $prov)
+                            <div class="col-md-6">
+                                <select class=" form-control" name="idProve">
+                             @foreach($prov as $prove)
+                                
+                                <option  value="{{ $prove->id }}" >{{ $prove->nom }}</option>
                                 
                                 
-                                <option  value="{{ $prov->id }}" >{{ $prov->nom }}</option>
                                 
+
                             @endforeach
                            
                         </select>
@@ -176,24 +180,33 @@ h2,h1,span
 
                         <div class="form-group">
                             <span class="col-md-2 text-center"><label >Descripción:</label></span>
-                            <div class="col-md-7">
-                                <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
+                            <div class="col-md-6">
+                                <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7" >{{   $cat->desc }}</textarea>
                             </div>
                         </div>
                             <br>
                         
                     </fieldset>
-                </form>
+                    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+     
+      {!!Form::close()!!}     
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
+      
     </div>
   </div>
 </div>
-<!--fin de modal -->
+
+
+@endforeach
+
+
+                        
+
+             
 
 
 
@@ -252,7 +265,7 @@ h2,h1,span
                                                 
 
                                                     <tr>
-                                                        <th scope="row" >{{ $pro->cod }}</th>
+                                                        <td>{{ $pro->cod }}</td>
                                                         <td>{{ $pro->nomProd }}</td>
                                                         <td>{{ $pro->marca }}</td>
                                                         <td>{{ $pro->cPromedio}}</td>
@@ -263,10 +276,10 @@ h2,h1,span
                                                             echo $a;
                                                             ?>
                                                         </td>
-                                                        <td>{{ $pro->uniCaja }}</td>
+                                                        <td >{{ $pro->uniCaja }}</td>
                                                         <td>{{ $pro->gCaja }}</td>
                                                         <td><?php
-                                                            $a=(($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio);
+                                                            $a=((($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio))*$pro->uniCaja;
                                                             echo $a;
                                                             ?></td>
                                                         
@@ -275,14 +288,19 @@ h2,h1,span
                                                         
                                                         <td>{{ $pro->desc }}</td>
                                                         
-                                                        <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $pro->id }}">Modificar</a></td>
+                                                        <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $pro->id }}" data-toggle="modal" data-target="#Edit{{ $pro->id }}">Modificar</a>
+
+
+
+                                                        </td>
                                                          @if($pro->estado==true)
-                                                            <td><button type="submit"  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gridSystemModal3">A c t i v o</button></td>
+                                                            <td><button type="submit"  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gridSystemModal2{{$pro->id}}">A c t i v o</button></td>
                                                         @endif
 
                                                         @if($pro->estado==false)
-                                                            <td><button type="submit"  class="btn btn-sm gris" data-toggle="modal" data-target="#gridSystemModal3">Desactivo</button></td>
+                                                            <td><button type="submit"  class="btn btn-sm gris" data-toggle="modal" data-target="#gridSystemModal3{{$pro->id}}">Desactivo</button></td>
                                                         @endif
+
                                                        
                                                     </tr>
                                                   
@@ -291,6 +309,7 @@ h2,h1,span
 
                                                     
                                                       @endforeach
+
                                                 </tbody>
                                             </table>
                                             
@@ -301,42 +320,7 @@ h2,h1,span
                            </div>
                            </section>
                            </article>
-@section('scripts')
-   
-<script>
-  
-  $(function(){
-    $('body').on('click','#hola a',function(event){
-      event.preventDefault();
-      //var id= $(this).attr('data-id');
-      //var route = "/inve/"+id+"/edit";
-      var id= $(this).attr('data-id');
-      nombre =$(this).parent().parent().children("td:eq(0)").text();
-      marca =$(this).parent().parent().children("td:eq(1)").text();
-      ganan =$(this).parent().parent().children("td:eq(2)").text();
-      Unidades =$(this).parent().parent().children("td:eq(3)").text();
-      ganan2 =$(this).parent().parent().children("td:eq(4)").text();
-      Unidades =$(this).parent().parent().children("td:eq(5)").text();
-      provee =$(this).parent().parent().children("td:eq(6)").text();
-      descr =$(this).parent().parent().children("td:eq(7)").text();
 
-      alert(nombre);
-        $("#nomP").val(nombre);
-        $("#marca").val(marca);
-        $("#gan").val(ganan);
-        $("#uni").val(Unidades);
-        $("#gan2").val(ganan2);
-        $("#hi").val(provee);
-        $("#desc").val(descr);
-        
-  $('#gridSystemModal').modal('show');
-    });
-    });
-  
-</script>
-  @endsection                         
-
-                        
                            
 
 @stop()
