@@ -4,23 +4,23 @@ $(document).ready(function(){
 
 function Carga(){//esta funcion es para llenar la tabla
 	var tablaDatos = $("#datos");
-	var route = "http://localhost:9090/escuelas";
+	var route = "/escuelas";
 
 	$("#datos").empty();
 	var con=1;
 	$.get(route, function(res){
 		$(res).each(function(key,value){
-			tablaDatos.append("<tr><td>"+con+"</td>"+"<td>"+value.nomesc+"</td><td>"+value.nomdirec+"</td><td>"+value.telesc+"</td><td>"+value.diresc+"</td><td><button value="+value.idescuela+" OnClick='Mostrar(this);' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal'>Modificar</button></td><td><button class='btn btn-primary btn-sm' value="+value.idescuela+" OnClick='Estados(this);'>Activo</button></td></tr>");
+			tablaDatos.append("<tr><td>"+con+"</td>"+"<td>"+value.nomesc+"</td><td>"+value.nomdirec+"</td><td>"+value.telesc+"</td><td>"+value.diresc+"</td><td><button value="+value.id+" OnClick='Mostrar(this);' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal'>Modificar</button></td><td><button class='btn btn-primary btn-sm' value="+value.id+" OnClick='Estados(this);'>Activo</button></td></tr>");
 		con++;
 		});
 	});
 }
 
 function Mostrar(btn){//aqui es para que los cargu en la ventana modal los datos a modificar
-	var route = "http://localhost:9090/escuela/"+btn.value+"/edit";
+	var route = "/escuela/"+btn.value+"/edit";
 
 	$.get(route, function(res){
-		$("#idescuela").val(res.idescuela);
+		$("#idescuela").val(res.id);
 		$("#nomesc").val(res.nomesc);
 		$("#nomdirec").val(res.nomdirec);
 		$("#telesc").val(res.telesc);
@@ -36,7 +36,7 @@ $("#actualizar").click(function(){
 	var dnomdirec= $("#nomdirec").val();
 	var dtelesc= $("#telesc").val();
 	var ddiresc= $("#diresc").val();
-	var route = "http://localhost:9090/escuela/"+value+"";
+	var route = "/escuela/"+value+"";
 	var token = $("#token").val();//aqui recupero de mi variable toque para decirle a laravel no es intencionada
 	var data ='nomesc='+dnomesc+'&nomdirec='+dnomdirec+'&telesc='+dtelesc+'&diresc='+ddiresc;//cuidadito esto espara poder guardar en la base de datos
 	$.ajax({
@@ -47,6 +47,7 @@ $("#actualizar").click(function(){
 		data: data,
 		success: function(){
 			Carga();
+
 			$("#myModal").modal('toggle');// se oculte la ventana modal despues de haber actualizado
 			$("#msj-success").fadeIn();//me muestra un msj que se actualizado para que lo note el usuario
 		}
@@ -54,10 +55,10 @@ $("#actualizar").click(function(){
 });
 
 function Estados(btn){//aqui es para que los cargu en la ventana modal los datos a modificar
-	var route = "http://localhost:9090/escuela/"+btn.value+"/edit";
+	var route = "/escuela/"+btn.value+"/edit";
 
 	$.get(route, function(res){
-		$("#idescuela").val(res.idescuela);
+		$("#idescuela").val(res.id);
 		$("#nomesc").val(res.nomesc);
 		$("#nomdirec").val(res.nomdirec);
 		$("#telesc").val(res.telesc);
@@ -66,3 +67,6 @@ function Estados(btn){//aqui es para que los cargu en la ventana modal los datos
 		
 	});
 }
+
+
+

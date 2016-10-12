@@ -4,7 +4,7 @@ $("#registro").click(function(){
 	var dtelesc = $("#telesc").val();
 	var ddiresc = $("#diresc").val();
 
-	var route = "http://localhost:9090//escuela";
+	var route = "/escuela";
 	var token = $("#token").val();
     var data ='nomesc='+dnomesc+'&nomdirec='+dnomdirec+'&telesc='+dtelesc+'&diresc='+ddiresc;
 

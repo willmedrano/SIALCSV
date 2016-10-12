@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\compras;
 class contoladorCompra extends Controller
 {
     /**
@@ -24,10 +24,13 @@ class contoladorCompra extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-         //return view('compra.createcompra');//
-       return view('compra.detalledecompra');
+    public function create(Request $request)
+    {   
+       // $pro =\App\compra::mostrarcompra($request);
+        $prov =\App\proveedor::All();
+        return view('compra.createcompra',compact('prov'));
+      
+       
     }
 
     /**
@@ -38,7 +41,13 @@ class contoladorCompra extends Controller
      */
     public function store(Request $request)
     {
-        //
+        compras::create([
+            'tipopago' => $request['formap'],
+            'montocompra' => $request['total'],
+            'fechacompra' => $request['fechacompra'], 
+        ]);
+        return redirect('compra/create');
+        //return redirect('compra/create');
     }
 
     /**
@@ -49,7 +58,10 @@ class contoladorCompra extends Controller
      */
     public function show($id)
     {
-        //
+        
+         $pro2 =\App\producto::mostrar($id);
+        return view('compra.createcompra',compact('pro2'));
+
     }
 
     /**

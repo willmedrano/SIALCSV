@@ -26,7 +26,7 @@ class EscuelaRequest extends Request
         return [
         'nomesc'=>'required|max:255',
         'nomdirec'=>'required|max:255',
-        'telesc'=>'required|unique:posts|max:8',
+        'telesc'=>'required|unique:posts|max:9',
         'diresc'=>'required|unique:posts|max:255',
         
         ];

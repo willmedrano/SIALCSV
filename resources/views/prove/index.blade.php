@@ -42,7 +42,7 @@ h2,h1,span
 
 
 <!--Inicio de modal -->
-                <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,6 +51,8 @@ h2,h1,span
 <h4 class="modal-title" id="gridModalLabel">Modificar datos del proveedor</h4>
       </div>
       <div class="modal-body">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+        <input type="hidden" id="id">
         <div class="container-fluid bd-example-row">
  
           <form class="form-horizontal" method="post">
@@ -178,32 +180,9 @@ h2,h1,span
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="datosprove">
 
-                                                @foreach($prove as $prove)
-
-                                                    <tr>
-                                                       
-                                                        <th scope="row">1</th>
-                                                        <td>Juan</td>
-                                                        <td>7212-2345</td>
-                                                        <td>1010-040970-101-7</td>
-                                                        <td>San Salvador, San Salvador </td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-sm gris" >Desactivo</button></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Mario</td>
-                                                        <td>7812-2345</td>
-                                                        <td>1010-040973-101-7</td>
-                                                        <td>San Vicente, San vicente </td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-primary btn-sm">  A c t i v o  </button></td>
-                                                    </tr>
-                                                    
-
-                                                    @endforeach
+                                              
                                                       
                                                 </tbody>
                                             </table>
@@ -218,4 +197,66 @@ h2,h1,span
                           
                            
 
-@stop()
+@endsection
+  @section('scripts')
+<script  type="text/javascript" >
+ $(document).ready(function(){
+  Carga();
+});
+
+function Carga(){//esta funcion es para llenar la tabla
+  var tablaDatos = $("#datosprove");
+  var route = "/prove";
+
+  $("#datosprove").empty();
+  var con=1;
+  $.get(route, function(res){
+    $(res).each(function(key,value){
+      tablaDatos.append("<tr><td>"+con+"</td>"+"<td>"+value.nom+"</td><td>"+value.tel+"</td><td>"+value.nit+"</td><td>"+value.dir+"</td><td><button value="+value.id+" OnClick='Mostrar(this);' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal'>Modificar</button></td><td><button class='btn btn-primary btn-sm' value="+value.id+" OnClick='Estados(this);'>Activo</button></td></tr>");
+    con++;
+    });
+  });
+}
+
+function Mostrar(btn){//aqui es para que los cargu en la ventana modal los datos a modificar
+  var route = "/escuela/"+btn.value+"/edit";
+
+  $.get(route, function(res){
+    $("#idescuela").val(res.idescuela);
+    $("#nomesc").val(res.nomesc);
+    $("#nomdirec").val(res.nomdirec);
+    $("#telesc").val(res.telesc);
+    $("#diresc").val(res.diresc);
+
+    
+  });
+}
+
+$("#actualizar").click(function(){
+  var value = $("#idescuela").val();//recupera los datos del html
+  var dnomesc= $("#nomesc").val();
+  var dnomdirec= $("#nomdirec").val();
+  var dtelesc= $("#telesc").val();
+  var ddiresc= $("#diresc").val();
+  var route = "/escuela/"+value+"";
+  var token = $("#token").val();//aqui recupero de mi variable toque para decirle a laravel no es intencionada
+  var data ='nomesc='+dnomesc+'&nomdirec='+dnomdirec+'&telesc='+dtelesc+'&diresc='+ddiresc;//cuidadito esto espara poder guardar en la base de datos
+  $.ajax({
+    url: route,
+    headers: {'X-CSRF-TOKEN': token},
+    type: 'PUT',
+    dataType: 'json',
+    data: data,
+    success: function(){
+      Carga();
+
+      $("#myModal").modal('toggle');// se oculte la ventana modal despues de haber actualizado
+      $("#msj-success").fadeIn();//me muestra un msj que se actualizado para que lo note el usuario
+    }
+  });
+});
+
+
+
+</script>
+@endsection

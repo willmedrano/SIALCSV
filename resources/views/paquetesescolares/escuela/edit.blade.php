@@ -65,7 +65,7 @@ h2,h1,span
 
                                        
                                         
-                                      {!! Form::model($escuelas, ['route'=> ['escuela.update', $escuelas->idescuela],'method'=>'PUT']) !!}
+                                      {!! Form::model($escuelas, ['route'=> ['escuela.update', $escuelas->id],'method'=>'PUT']) !!}
                                             <br>           
                                             <br>
 

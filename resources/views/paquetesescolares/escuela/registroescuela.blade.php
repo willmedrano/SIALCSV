@@ -32,13 +32,11 @@ h2,h1,span
 </style>
 {!!Html::script('js/jquery-1.9.0.min.js')!!}
   {!!Html::script('js/jquery.maskedinput.js')!!}
-
-
-   <script type="text/javascript">
+ <script type="text/javascript">
 jQuery(function($) {
       $.mask.definitions['~']='[+-]';
       $('#date').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
-      $('#telesc').mask('999-9999');
+      $('#telesc').mask('9999-9999');
       $('#phoneext').mask("(999) 999-9999? x99999");
       $("#tin").mask("99-9999999");
       $("#ssn").mask("999-99-9999");
@@ -48,12 +46,19 @@ jQuery(function($) {
       $('input,form').attr('autocomplete','off');
    });
 </script>
+
+ 
+
+
  
                 <article class="content forms-page" >
-                  <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
+                @if(Session::has('message'))
+                  <div class="alert alert-success alert-dismissible" role="alert">
+
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Escuela Agregada Correctamente.</strong> 
+<strong>Escuela sea Agregado Correctamente.</strong> 
 </div>
+@endif
 <div id="msj-error" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <strong id="msj"></strong> 
@@ -98,11 +103,8 @@ jQuery(function($) {
                 <section class="section">
                     
                        <div >
-                                   <div class="form-horizontal card card-block sameheight-item" >
-
-                                      <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-                                        
-                                        {!! Form::open() !!}
+                                   <div class="card card-block sameheight-item" >
+ {!! Form::open(['route'=>'escuela.store','method'=>'POST','class'=>'form-horizontal']) !!}
                                             <br>           
                                             <br>
 
@@ -133,7 +135,7 @@ jQuery(function($) {
                                                 </span>
                                                 <div class="col-xs-4"> 
                                                
-                                                 <input id="telesc" tabindex="3" name="telesc" type="text" placeholder="Ingrese el Telefono de la escuela" class="form-control"> 
+                                                 <input id="telesc" name="telesc" type="text" placeholder="Ingrese el Telefono de la escuela" class="form-control"> 
                                                 
                                                 </div> 
                                         </div>
@@ -150,11 +152,12 @@ jQuery(function($) {
                               
                                         <div class="form-group">
                             <div class="col-md-12 text-center" align="center">
-                              {!!link_to('#', $title='Registrar', $attributes = ['id'=>'registro', 'class'=>'btn btn-primary'], $secure = null)!!}
+                               <button type="submit"  class="btn btn-primary btn-lg">Guardar</button>
                             </div>
 
                             
                         </div>
+
                                            
                                        {!! Form::close() !!}
                                     </div>
@@ -171,7 +174,4 @@ jQuery(function($) {
                     </div>
 
 @endsection
-  @section('scripts')
-    {!!Html::script('js/script3.js')!!}
-    
-  @endsection
+ 

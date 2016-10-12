@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\proveedor;
 class controladorproveedor2 extends Controller
 {
     /**
@@ -16,7 +16,7 @@ class controladorproveedor2 extends Controller
      */
     public function index()
     {
-        $prove =\App\proveedor::All();
+        $prove =proveedor::All();
 
         return view('prove.index',compact('prove'));
     }
@@ -72,7 +72,9 @@ class controladorproveedor2 extends Controller
      */
     public function edit($id)
     {
-        //
+        $escuelas= Escuelas::find($id);
+        
+        return response()->json($prove->toArray());
     }
 
     /**

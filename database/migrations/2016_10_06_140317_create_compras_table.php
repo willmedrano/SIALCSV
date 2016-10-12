@@ -3,23 +3,20 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEscuelasTable extends Migration
+class CreateComprasTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up()//Aqui estomos creando la tabla compras y definimos los campos que tendra dicha tabla.
     {
-        Schema::create('escuelas', function (Blueprint $table) {
-
-            //$table->increments('idescuela');
+        Schema::create('compras', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nomesc');
-            $table->string('nomdirec');
-            $table->string('telesc');
-            $table->string('diresc');
+            $table->string('tipopago');
+            $table->string('montocompra');
+            $table->date('fechacompra');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateEscuelasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('escuelas');
+        Schema::drop('compras');
     }
 }
