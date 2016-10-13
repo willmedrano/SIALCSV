@@ -82,7 +82,7 @@ h2
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-barcode bigicon icon_nav" ></i></span >
                                                       <div class="col-md-3">
 
-                                <input id="cod" name="cod" type="text" placeholder="Codigo del Barra" class="form-control">
+                                <input id="cod" name="cod" type="text" placeholder="Codigo del Barra" required autocomplete="off" class="form-control">
                             </div>
                         </div>
                         <br>

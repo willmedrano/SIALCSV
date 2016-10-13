@@ -18,7 +18,10 @@ class contoladorCompra extends Controller
      */
     public function index()
     {
-      return view('compra.modificarcompra');   
+      //return view('compra.modificarcompra'); 
+      $aux =\App\auxiliar::auxComp();
+       // return view('layouts.inicio');
+       return view('compra.create',compact('aux'));  
     }
 
     /**
@@ -28,9 +31,10 @@ class contoladorCompra extends Controller
      */
     public function create(Request $request)
     {   
+        $aux =\App\auxiliar::auxComp();
        // $pro =\App\compra::mostrarcompra($request);
         $prov =\App\proveedor::All();
-        return view('compra.createcompra',compact('prov'));
+        return view('compra.createcompra',compact('prov','aux'));
       
        
     }
@@ -56,17 +60,30 @@ class contoladorCompra extends Controller
     public function store(Request $request)
     {
         
-       echo "hola";
-       /* compras::create([
+       //echo "hola";
+        compras::create([
             'tipopago' => $request['formap'],
             'montocompra' => $request['total'],
             'fechacompra' => $request['fechacompra'], 
         ]);
-        detalle_compra::create([
-            'tipopago' => $request['formap'],
-            'montocompra' => $request['descompra'],
-            'fechacompra' => $request['fechacompra'], 
-        ]);*/
+        $ids;
+        $gAux =\App\compras::All();
+        foreach ($gAux as $valor2) {
+            $ids=$valor2->id;
+        }
+
+        $gAux =\App\auxiliar::All();
+        foreach ($gAux as $valor) {
+            detalle_compra::create([
+                'preciocomp' => $valor->preciocomp2,
+                'descompra' => $valor->descompra2,
+                'cancompra' => $valor->cancompra2,
+                'idprods' => $valor->idprods2,
+                'idcomps' => $ids,
+
+            ]);
+        }
+        
         return redirect('compra/create');
         //return redirect('compra/create');
     }
