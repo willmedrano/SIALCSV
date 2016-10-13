@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\compras;
+use App\detalle_compra;
+use App\producto;
 class contoladorCompra extends Controller
 {
     /**
@@ -39,13 +41,32 @@ class contoladorCompra extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function llenadoProducto($codigopro){
+    $producto=producto::where('cod',$codigopro)->get();
+    /*foreach ($producto as $p) {
+      $codigopro=$p->id;
+    }*/
+
+    //echo $producto->toArray();
+    
+   // $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
+    //return Response::json($producto);
+    return response()->json($producto->toArray());
+  }
     public function store(Request $request)
     {
-        compras::create([
+        
+       echo "hola";
+       /* compras::create([
             'tipopago' => $request['formap'],
             'montocompra' => $request['total'],
             'fechacompra' => $request['fechacompra'], 
         ]);
+        detalle_compra::create([
+            'tipopago' => $request['formap'],
+            'montocompra' => $request['descompra'],
+            'fechacompra' => $request['fechacompra'], 
+        ]);*/
         return redirect('compra/create');
         //return redirect('compra/create');
     }

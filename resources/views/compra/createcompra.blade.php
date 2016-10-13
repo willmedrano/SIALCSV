@@ -80,13 +80,13 @@ h2,h1,span
                 <div class="card card-block sameheight-item" >
                      {!! Form::open(['route'=>'compra.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm1','name'=>'frm1']) !!}
                         <br><br>
-                        <div class="form-group">
+                        <div class="form-group" id="aux">
 
                             <span class="col-md-1 col-md-offset-2 text-center">
                             <i class="fa fa-barcode bigicon"></i>
                             </span>
                             <div class="col-xs-3"> 
-                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control"> 
+                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" > 
                             </div>
                         </div>
                         <br> 
@@ -95,7 +95,7 @@ h2,h1,span
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input id="nomproducto" name="nomproducto" type="text" placeholder="Nombre del Producto" class="form-control">
+                            <input id="nomproducto" name="nomproducto1" type="text" placeholder="Nombre del Producto" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
                             <i class="fa fa-credit-card bigicon"></i>
@@ -149,9 +149,9 @@ h2,h1,span
                      <div class="col-xs-3">
                      <input id="subtotalcomp" name="subtotalcomp" type="text" placeholder="subtotal" class="form-control" disabled="true">
                      </div>
-                     <span class="col-md-1  text-center"><i class="fa fa-dollar bigicon"></i></span>
+                     <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
                       <div class="col-xs-3">
-                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control">
+                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
                       </div>
                      </div>
                      <br>
@@ -166,10 +166,11 @@ h2,h1,span
                             <div class="table-responsive" align="center" >
                              <br>
                                 
-                                <table id="tabla" class="table table-bordered">
+                                <table id="tabla" name="tabla" class="table table-bordered">
                                     <thead valign="bottom" align="right" >
                                         <tr  class="warning">
                                             <th align="center" >#</th>
+                                            <th align="center" >codigo</th>
                                             <th align="center" >producto</th>
                                             <th align="center">cantidad</th>
                                             <th align="center" >precio</th>
@@ -216,7 +217,6 @@ h2,h1,span
                                                     
                                                  
                                                     <select class="form-control" name="formap" id="formap">
-                                                        <option >Seleccione tipo de pago</option>
                                                         <option value="Contado">Contado</option>
                                                         <option value="Credito">Credito </option>   
                                                     </select>
@@ -270,11 +270,7 @@ $time=time();
         return date('Y-m-d',mktime(0,0,0,$mon,$day+$dia,$year));    
     }
    $total=0; 
-function calculartotal(){
-     
-   
-     return $total;
-     }
+
 
   
 ?>
@@ -289,20 +285,44 @@ function sumar()
 var a=document.frm1.cantcomp.value;
 var b=document.frm1.preciocomp.value;
 var c=(parseFloat(a)*parseFloat(b)).toFixed(4);
+var d=document.frm1.descompra.value;
+var e=parseFloat(d);
+var f=0;
 if(isNaN(a)){
    a=1;
   }
   if(isNaN(b)){
    b=1;
   }
-  var c= a*b;
+    c= a*b;
   if(isNaN(c)){
-   c=0;
+   c=1;
   }
- document.frm1.subtotalcomp.value=c.toFixed(4);
+  if(isNaN(e)){
+   e=0;
+  }
+  
+   f=-((e/100)*c) + c;
+   if(isNaN(f)){
+   f=0;
+  }
+ document.frm1.subtotalcomp.value=f.toFixed(2);
 }
 
  $(document).ready(function(){
+$('#aux').on('change','#idcodproduc',function (){
+  
+  var producto=$("#idcodproduc").val();
+     var ruta="/llenadoProducto/"+producto;
+
+ $.get(ruta, function(res){
+  $(res).each(function(key,value){
+       $("#nomproducto").val(value.nomProd);
+       $("#idProve").val(value.idProve);
+      });
+  
+ });
+});
   $('#bt_add').click(function(){
    var a=parseFloat(document.frm1.subtotalcomp.value);
    var b=parseFloat(document.frm1.totalpagar.value);
@@ -313,26 +333,31 @@ if(isNaN(a)){
   if(isNaN(b)){
    b=0;
   }
-  b= a+b;
+  b= (a+b);
  document.frm1.total.value=b.toFixed(4);
  
 document.frm1.totalpagar.value=b.toFixed(4);
+
    agregar();
+
   });
  });
  var cont=0;
  var id_fila_selected=[];
  function agregar(){
   cont++;
-  var fila='<tr class="selected" id="fila'+cont+'" onclick="seleccionar(this.id);"><td></td><td>'+ document.frm1.nomproducto.value +'</td><td>' + document.frm1.cantcomp.value + '</td><td>'+ document.frm1.preciocomp.value+'</td><td>' +  document.frm1.subtotalcomp.value +'</td><td><a  onclick="eliminar(id_fila_selected);" id="bt_del" href="#"  class="btn btn-danger active">eliminar</a></td></tr>';
+  var fila='<tr class="selected" id="fila'+cont+'" onclick="seleccionar(this.id);"><td>'+cont+'</td><td>'+document.frm1.idcodproduc.value+'</td><td>'+ document.frm1.nomproducto.value +'</td><td>' + document.frm1.cantcomp.value + '</td><td>'+ document.frm1.preciocomp.value+'</td><td>' +  document.frm1.subtotalcomp.value +'</td><td><a  onclick="eliminar(id_fila_selected);" id="bt_del" href="#"  class="btn btn-danger active">eliminar</a></td></tr>';
   $('#tabla').append(fila);
- 
+     
+
+   document.frm1.idcodproduc.value="";
    document.frm1.cantcomp.value="";
   document.frm1.subtotalcomp.value="";
   document.frm1.nomproducto.value="";
   document.frm1.preciocomp.value="";
-  reordenar();
-  
+    
+    reordenar();
+
  }
  function calculardatos(){
   
@@ -352,7 +377,7 @@ document.frm1.totalpagar.value=b.toFixed(4);
   /*$('#'+id_fila).remove();
   reordenar();*/
   for(var i=0; i<id_fila.length; i++){
-   alert($(this).parent().children("td:eq(2)").text());
+  
    $('#'+id_fila[i]).remove();
   }
   reordenar();
@@ -362,6 +387,7 @@ document.frm1.totalpagar.value=b.toFixed(4);
   var num=1;
   $('#tabla tbody tr').each(function(){
    $(this).find('td').eq(0).text(num);
+    
    num++;
   });
  }
@@ -401,6 +427,25 @@ function cargarProduct(){
                 });
                 }
 */
+function enter(){
+      //var char= event.which || event.keyCode;
+      var producto=$("#idcodproduc").val();
+      
+      //var producto=$("");/escuela/"+btn.value+"/edit"
+     var ruta="/llenadoProducto/"+producto;
+alert(ruta);
 
+     $.get(ruta,function(res){
+           //producto.empty();
+      $(res).each(function(key,value){
+       //producto.append("<input type='text'  id='"+value.id+"' value="+value.nombre+">");
+      $("#nomproducto").val(value.nomProd);
+     //$("#nomdirec").val(res.nomdirec);
+     // $("#telesc").val(res.telesc);
+    //$("#diresc").val(res.diresc);
+      });
+     });
+      
+    }
 </script>
  @endsection
