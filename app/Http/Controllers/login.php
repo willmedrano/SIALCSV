@@ -37,10 +37,12 @@ public function getempleado(Request $request, $id){
     public function index()
     { 
         //referencia al modelo para llenar la tabla
-       //$emple=\App\empleados::All();
-       //return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
+       $emple=\App\empleado::All();
+      $emp=\App\empleado::sEmp();
+       return view('seguridad.modEmpleado',compact('emple'),compact('emp'));  //para llenar la tabla de modEmpleado
        // return view('seguridad.permitir');       //par llenar la tabla de permitir
-         return view('seguridad.rEmpleado');
+         //return view('seguridad.rEmpleado');
+        //return view('seguridad.pago',compact('emple'));//llenar la tabla pago
     }
 
     /**
@@ -60,7 +62,7 @@ public function getempleado(Request $request, $id){
       // return view('seguridad.permitir');//permitir ingreso al sistema
        //return view('compra.modificarcompra');
        // return view('seguridad.denegar');//denegar acceso al sistema
-       //return view('seguridad.rEmpleado');
+       return view('seguridad.rEmpleado');
         //return view('prove.create');
         
     }
@@ -113,10 +115,10 @@ public function getempleado(Request $request, $id){
      */
     public function edit($id)
     {
-        //$emple=\App\empleados::find($id);
-        return response()->json($this->emplead->toArray());
+        $emple=\App\empleados::find($id);
+        //return response()->json($this->emplead->toArray());
        // return view('seguridad.permitir',['emple'=>$emple]);
-
+          return view('seguridad.modEmpleado',['emple'=>$emple]);
        // return response()->json($empleados->toArray());
     }
 

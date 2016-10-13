@@ -12,9 +12,18 @@ class empleado extends Model
    protected $fillable = ['nomEmp','fotoEmp','apeEmp','NacEmp','DUIEmp','NITEmp','dirEmp','telEmp','sueldoEmp','cargoEmp','estadoEmp','sexEmp','contraEmp'];
 
 
-   //public static function cargarEmpleado($id){
-    	//return  empleado::where('idEmp','=',$id)
-    	//->get();
+   public static function cargarEmpleado($id)
+   {
+    	return  empleado::where('idEmp','=',$id)
+    	->get();
     }
+
+    public static function sEmp(){
+   		 //return DB::table('empleados')
+            
+return empleado::select('empleados.sexEmp')
+            ->get();
+}
+}
 
 

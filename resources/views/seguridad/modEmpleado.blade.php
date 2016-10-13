@@ -47,7 +47,7 @@ h2,h1,span
           
 
 
-           {!! Form::open()!!}
+              {!! Form::open(['route'=>'log.store','method'=>'POST'])!!}
                                                 
                                                
               
@@ -92,10 +92,10 @@ h2,h1,span
               <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Nombre: </label></span></td>
                     <td colspan="2.5" align="center" >
-                    <input id="nomP" name="nomEmp" type="text" placeholder="Nombre" value=productId   class="form-control">
+                    <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" class="form-control">
                     <br></td>
                       <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
-                    <td colspan="2.5" align="center" ><input id="nomP" name="apeEmp" type="text" placeholder="Apellido" class="form-control"><br></td>
+                    <td colspan="2.5" align="center" ><input id="apeEmp" name="apeEmp" type="text" placeholder="Apellido" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -104,7 +104,7 @@ h2,h1,span
                
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >DUI: </label></span></td>
-                    <td colspan="2" align="center"><input id="tipo" name="DUI" type="text" placeholder="DUI" class="form-control"><br></td>
+                    <td colspan="2" align="center"><input id="DUIEmp" name="DUI" type="text" placeholder="DUI" class="form-control"><br></td>
 
                     <td colspan="2" rowspan="3" align="center"><span align="center">
                         <i style="font-size: 130px;" class="fa fa-pencil-square-o fa-3x fa-fw bigicon" align="center"></i>
@@ -115,7 +115,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >NIT: </label></span></td>
-                    <td colspan="2" align="center" > <input id="marca" name="NIT" type="text" placeholder="NIT " class="form-control"><br></td>
+                    <td colspan="2" align="center" > <input id="NITEmp" name="NIT" type="text" placeholder="NIT " class="form-control"><br></td>
                     <td></td>
                     <td></td>
                   
@@ -123,7 +123,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >F. nacimiento: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="Fnac" type="date" placeholder="Fecha" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="nacEmp" name="Fnac" type="date" placeholder="Fecha" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -132,7 +132,7 @@ h2,h1,span
 
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Telefono: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="tel" type="text" placeholder="telefono" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" placeholder="telefono" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -140,7 +140,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Correo: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="correo" type="text" placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -149,10 +149,20 @@ h2,h1,span
 
                <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Sexo: </label></span></td>
-                    <td colspan="3" align="center" ><select name="sexo" class="form-control">
-                            <option>Selecione</option>
-                            <option>Masculino</option>
-                            <option>Femenino</option>
+                    <td colspan="3" align="center" >
+                    <select  name="sexo" class="form-control">
+
+                    
+                             @foreach($emp as $emp)
+                                
+                                
+                                <option  
+
+                                value="{{ $emp->id }}" >{{ $emp->sexEmp }}
+
+                                </option>
+                                
+                            @endforeach
                            
                         </select>
                         <br>
@@ -208,7 +218,9 @@ h2,h1,span
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+       <!-- <button type="button" class="btn btn-primary">Guardar</button> -->
+       {!!link_to_route('log.edit', $title = 'modificar', $parameters =$emp->id, $attributes =['class'=>'btn btn-primary'])!!}
+
       </div>
     </div>
   </div>
@@ -261,27 +273,28 @@ h2,h1,span
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="hola">
                                                   @foreach($emple as $emple)
                                                   
 
 
                                                     <tr>
                                                       
-                                                        <td>{{ $emple->nom }}</td>
-                                                        <td>{{ $emple->ape }}</td>
-                                                        <td>{{ $emple->DUI }}</td>
-                                                        <td>{{ $emple->NIT }}</td>
-                                                        <td>{{ $emple->fechaNac }}</td>
-                                                        <td>{{ $emple->tel }}</td>
-                                                        <td>{{ $emple->sex }}</td>
-                                                        <td>{{ $emple->cargo }}</td>
-                                                        <td>{{ $emple->sueldo }}</td>
+                                                        <td>{{ $emple->nomEmp }}</td>
+                                                        <td>{{ $emple->apeEmp }}</td>
+                                                        <td>{{ $emple->DUIEmp }}</td>
+                                                        <td>{{ $emple->NITEmp }}</td>
+                                                        <td>{{ $emple->NacEmp }}</td>
+                                                        <td>{{ $emple->telEmp }}</td>
+                                                        <td>{{ $emple->sexEmp }}</td>
+                                                        <td>{{ $emple->cargoEmp }}</td>
+                                                        <td>{{ $emple->sueldoEmp }}</td>
 
-                                                        <td>
-<button value="+{{ $emple->id }}+" OnClick='Mostrar(this);' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal'>Modificar</button>
+                                                        <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emple->id }}">Modificar</a></td>
+
+                
                                                            </td>
-                                                        <td> <button type="button" id="hola" data-empleid="{{ $emple->id }}" class="btn btn-xs btn-default btn-flat" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></button></td>
+                                                        <td> <button type="button" id="hola" data-empleid="{{ $emple->id }}" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal"><i>Activo</i></button></td>
                                                     </tr>
 
                                                     
@@ -299,8 +312,46 @@ h2,h1,span
                           
                            
 
-@stop()
+@section('scripts')
+   
+<script>
+  
+  $(function(){
+    $('body').on('click','#hola a',function(event){
+      event.preventDefault();
+      //var id= $(this).attr('data-id');
+      //var route = "/inve/"+id+"/edit";
+      var id= $(this).attr('data-id');
+         //alert(id);
+      nombre =$(this).parent().parent().children("td:eq(0)").text();
+      marca =$(this).parent().parent().children("td:eq(1)").text();
+      ganan =$(this).parent().parent().children("td:eq(2)").text();
+      Unidades =$(this).parent().parent().children("td:eq(3)").text();
+      ganan2 =$(this).parent().parent().children("td:eq(4)").text();
+      Unidades =$(this).parent().parent().children("td:eq(5)").text();
+      sexo =$(this).parent().parent().children("td:eq(6)").text();
+      descr =$(this).parent().parent().children("td:eq(7)").text();
+
+   
+        $("#nomEmp").val(nombre);
+        $("#apeEmp").val(marca);
+        $("#dPagos").val(ganan);
+        $("#sueldoEmp").val(Unidades);
+        $("#bonoEmp").val(ganan2);
+         $("#sexoEmp").val(sexo);
+       // $("#totalPagar").val(provee);
+
+       // $("#desc").val(descr);
+        
+  $('#myModal').modal('show');
+    });
+    });
+  
+</script>
+  @endsection         
  @section('scripts')
     {!!Html::script('js/scripMemp.js')!!}
 
   @endsection
+
+  @stop()

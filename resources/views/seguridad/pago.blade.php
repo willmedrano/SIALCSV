@@ -61,10 +61,10 @@ h2,h1,span
            <tbody>
                <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Nombre: </label></span></td>
-                    <td colspan="2.5" align="center" ><input id="nomP" name="nomP" type="text" placeholder="Nombre" class="form-control" >
+                    <td colspan="2.5" align="center" ><input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" class="form-control" >
                     <br></td>
                       <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
-                    <td colspan="2.5" align="center" ><input id="nomP" name="nomP" type="text" placeholder="Apellido" class="form-control"><br></td>
+                    <td colspan="2.5" align="center" ><input id="apeEmp" name="apeEmp" type="text" placeholder="Apellido" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -73,7 +73,7 @@ h2,h1,span
                
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Dias a pagar </label></span></td>
-                    <td colspan="2" align="center"><input id="tipo" name="tipo" type="text" placeholder="$" class="form-control"><br></td>
+                    <td colspan="2" align="center"><input id="dPagos" name="dPagos" type="text" placeholder="$" class="form-control"><br></td>
 
                     <td colspan="2" rowspan="3" align="center"><span align="center">
                         <i style="font-size: 130px;" class="fa fa-money fa-3x fa-fw bigicon" align="center"></i>
@@ -84,7 +84,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Sueldo: </label></span></td>
-                    <td colspan="2" align="center" > <input id="marca" name="marca" type="text" placeholder="$ " class="form-control"><br></td>
+                    <td colspan="2" align="center" > <input id="sueldoEmp" name="sueldoEmp" type="text" placeholder="$ " class="form-control"><br></td>
                     <td></td>
                     <td></td>
                   
@@ -93,7 +93,7 @@ h2,h1,span
 
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Bonos: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="tipo" type="text" placeholder="$" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="bonoEmp" name="bonoEmp" type="text" placeholder="$" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -101,7 +101,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Total: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="tipo" type="text" placeholder="$" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="totalPagar" name="totalPagar" type="text" placeholder="$" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -171,36 +171,35 @@ h2,h1,span
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="hola">
 
+                                                 @foreach($emple as $emple)
+                                                    <tr>
+                                                        
+                                                        <td>{{ $emple->nomEmp }}</td>
+                                                        <td>{{ $emple->apeEmp }}</td>
+                                                        <td>{{ $emple->DUIEmp }}</td>
+                                                        <td>{{ $emple->NITEmp }}</td>
+                                                         <td>{{ $emple->contraEmp }}</td>
+                                                         <td>{{ $emple->telEmp }}</td>
+                                                        <td>{{ $emple->cargoEmp }}</td>
+                                                         <td>{{ $emple->sueldoEmp }}</td>
+
+                                                        
+                                                        
+                                                        <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emple->id }}">pagar</a></td>
+
+                                                         </tr>
                                                 
 
-                                                    <tr>
-                                                        <th scope="row" >-</th>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                         
-                                                        <td>-</td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">Pagar</button></td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row" >-</th>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm">Pagar</button></td>
-                                                        
-                                                    </tr>
+
+
+
+
                                                     
+                                                      @endforeach  
+
+                                                   
                                                     
 
                                                     
@@ -214,6 +213,43 @@ h2,h1,span
                            </div>
                            </section>
                            </article>
+
+
+                           @section('scripts')
+   
+<script>
+  
+  $(function(){
+    $('body').on('click','#hola a',function(event){
+      event.preventDefault();
+      //var id= $(this).attr('data-id');
+      //var route = "/inve/"+id+"/edit";
+      var id= $(this).attr('data-id');
+         //alert(id);
+      nombre =$(this).parent().parent().children("td:eq(0)").text();
+      marca =$(this).parent().parent().children("td:eq(1)").text();
+      ganan =$(this).parent().parent().children("td:eq(2)").text();
+      Unidades =$(this).parent().parent().children("td:eq(3)").text();
+      ganan2 =$(this).parent().parent().children("td:eq(4)").text();
+      Unidades =$(this).parent().parent().children("td:eq(5)").text();
+      provee =$(this).parent().parent().children("td:eq(6)").text();
+      descr =$(this).parent().parent().children("td:eq(7)").text();
+
+   
+        $("#nomEmp").val(nombre);
+        $("#apeEmp").val(marca);
+        $("#dPagos").val(ganan);
+        $("#sueldoEmp").val(Unidades);
+        $("#bonoEmp").val(ganan2);
+        $("#totalPagar").val(provee);
+       // $("#desc").val(descr);
+        
+  $('#gridSystemModal').modal('show');
+    });
+    });
+  
+</script>
+  @endsection         
 
                           
                            
