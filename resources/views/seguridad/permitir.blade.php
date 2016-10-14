@@ -18,7 +18,181 @@ legend{
    
                
 
-                <article class="content forms-page" >
+               <article class="content static-tables-page">
+               @foreach ($emple as $cat)
+                <div class="modal fade" id="Edit{{$cat->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: white;" >&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel">Modificar Empleado</h4>
+      </div>
+      <div class="modal-body">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+        <input type="hidden" id="id">
+             
+          
+
+
+             {!!Form::model($cat,['method'=>'PATCH','route'=>['log.update',$cat->id]])!!}
+                                                
+                                               
+              
+                    <fieldset>
+                     <input type="hidden" name="hi2" value="1">
+                           <table class="quitarborder" style="width:100%" >
+      
+          
+           <thead>
+               <tr>
+                   <th></th>
+                   <th ></th>
+                    <th ></th>
+                    <th ></th>
+                    <th ></th>
+                   <th colspan="2"></th>
+
+                   
+               </tr>
+           </thead>
+           <body onload="function hola()">
+
+
+           <script>
+    //alert("Page is loaded");
+
+     
+            $('#myModal').on('show.bs.modal', function hola(e) {
+               
+    //get data-id attribute of the clicked element
+          var productId = $(e.relatedTarget).data('empleid');
+
+         alert(productid);
+
+        //var productName = $(e.relatedTarget).data('product_name');
+    //$("#confirmDelete #pName").val( productName );
+    //$("#delForm").attr('action', 'put your action here with productId');//e.g. 'domainname/products/' + productId
+});
+    
+
+</script>
+
+                   <tr>
+                 
+                    <td colspan="6" align="center" ><IMG src="assets/faces/3.jpg"  WIDTH=120 HEIGHT=130 ALT="Foto"><br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                   
+                    
+               </tr>
+
+                       
+              <tr>
+                    
+                  
+                   <td align="right" nowrap="nowrap"> 
+                  
+
+                  <span class="text-center" ><label >Nombre: </label></span></td>
+                    <td colspan="2.5" align="center" >
+                     <br> 
+                    <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" value="{{ $cat->nomEmp }}" class="form-control">
+                    <br></td>
+                      <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
+                    <td colspan="2.5" align="center" > <br><input id="apeEmp" name="apeEmp" type="text" value="{{ $cat->apeEmp }}"  placeholder="Apellido" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                
+               </tr>
+
+               
+                
+                
+                
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Telefono: </label></span></td>
+                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Correo: </label></span></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->correoEmp }}" placeholder="Correo" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+
+               </tr>
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Usuario: </label></span></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->correoEmp }}" placeholder="Correo" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+
+               </tr>
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Contraseña: </label></span></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->correoEmp }}" placeholder="Correo" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+
+               
+                
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Cargo: </label></span></td>
+                    <td colspan="3" align="center" ><select name="cargo" class=" form-control">
+                            @foreach($emple as $emplec)
+                                
+                                <option  value="{{ $emplec->cargoEmp }}" >{{ $emplec->cargoEmp }}</option>
+                                
+                                
+                                
+
+                            @endforeach
+                           
+                        </select>
+                        <br>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+               </tr>
+               
+           </body>
+       </table>
+                        
+                    </fieldset>
+                    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+       <!-- <button type="button" class="btn btn-primary">Guardar</button> -->
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+              
+                                     {!! Form::close() !!}
+        </div>
+      
+
+      
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
                   
                    
                     <div class="title-block">
@@ -91,14 +265,14 @@ legend{
 
                                     @foreach($emple as $emple)
                                                     <tr>
-                                                        <td>{{ $emple->id }}</td>
-                                                        <td>{{ $emple->nom }}</td>
-                                                        <td>{{ $emple->ape }}</td>
-                                                        <td>{{ $emple->tel }}</td>
-                                                        <td>{{ $emple->sex }}</td>
-                                                        <td>{{ $emple->cargo }}</td>
+                                                        <td>{{ $emple->idEmp }}</td>
+                                                        <td>{{ $emple->nomEmp }}</td>
+                                                        <td>{{ $emple->apeEmp }}</td>
+                                                        <td>{{ $emple->telEmp }}</td>
+                                                        <td>{{ $emple->sexEmp }}</td>
+                                                        <td>{{ $emple->cargoEmp }}</td>
                                                         
-                                                <td>{!! link_to_route('log.edit',$title='Permitir',$parameters=$emple->id, $attributes=['class'=>'btn btn-success active']) !!}</td>
+                                               <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emple->id }}" data-toggle="modal" data-target="#Edit{{ $emple->id }}"></a>
                                                     
 
                                                     </tr>
@@ -129,6 +303,7 @@ legend{
                   {!! Form::model($emple,['route'=>['log.store',$emple->id],'method'=>'PUT', 'class'=>'form-horizontal'])!!}
                                             <div  align="center">
 
+                                                
                                                 <div>
                                                     <IMG src="assets/faces/3.jpg"  WIDTH=120 HEIGHT=130 ALT="Foto" >
                                                 </div>

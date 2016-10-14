@@ -18,12 +18,12 @@ class empleado extends Model
     	->get();
     }
 
-    public static function sEmp(){
+    //public static function sEmp(){
    		 //return DB::table('empleados')
             
-return empleado::select('empleados.sexEmp')
-            ->get();
-}
+//return empleado::select('empleados.sexEmp')
+          //  ->get();
+//}
 }
 
 

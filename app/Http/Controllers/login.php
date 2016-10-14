@@ -14,33 +14,16 @@ class login extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct(){// espara realizar un filtro antes 
-        $this->beforeFilter('@find',['only' => ['edit','update','destroy']]);
-    }
-
-    public function find(Route $route){
-        $this->emplead = empleados::find($route->getParameter('log'));// recibe lo que tenemos ya definido en routas 
-    }
-    /*public function  listaempleados(){
-      $emple=\App\empleados::All();
-        return response()->json($emple->toArray());
-     }*/
-
-public function getempleado(Request $request, $id){
-        if($request->ajax()){
-            $empleado = empleados::cargarEmpleadoss($id);
-            return response()->json($empleado);
-        }
-    }
+    
 
 
     public function index()
     { 
         //referencia al modelo para llenar la tabla
        $emple=\App\empleado::All();
-      $emp=\App\empleado::sEmp();
-       return view('seguridad.modEmpleado',compact('emple'),compact('emp'));  //para llenar la tabla de modEmpleado
-       // return view('seguridad.permitir');       //par llenar la tabla de permitir
+      //$emp=\App\empleado::sEmp();
+       //return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
+        return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
          //return view('seguridad.rEmpleado');
         //return view('seguridad.pago',compact('emple'));//llenar la tabla pago
     }
@@ -87,7 +70,7 @@ public function getempleado(Request $request, $id){
             'telEmp'=>$request['tel1'],
             'sueldoEmp'=>$request['salario'],
             'cargoEmp'=>$request['puesto'],
-            'estadoEmp'=>$request['puesto'],
+            //'estadoEmp'=>$request['puesto'],
             'sexEmp'=>$request['sexo'],
             'contraEmp'=>$request['Fnac'],
 
@@ -131,7 +114,42 @@ public function getempleado(Request $request, $id){
      */
     public function update(Request $request, $id)
     {
-        //
+        $trab = empleado::find($id);
+        $aux=$request['hi2'];
+
+        if($aux=='1')
+        {
+        $trab->nomEmp = $request['nomEmp'];
+        $trab->apeEmp = $request['apeEmp'];
+       $trab->DUIEmp = $request['DUI'];
+       $trab->NITEmp = $request['NIT'];
+        $trab->NacEmp = $request['Fnac'];
+        $trab->dirEmp = $request['dir'];
+        $trab->telEmp = $request['telEmp'];
+        $trab->sueldoEmp = $request['salario'];
+        $trab->cargoEmp = $request['cargo'];
+        $trab->sexEmp = $request['sexo'];
+        //$trab->contraEmp = $request['desc'];
+        }
+
+
+         
+
+
+        if($aux=='2')
+        {
+            $trab->estadoEmp =true;
+        }
+        if($aux=='3')
+        {
+            $trab->estadoEmp =false;
+        }
+
+
+        $trab->save();
+
+        //Session::flash('mensaje','¡Registro Actualizado!');
+       // return redirect::to('/log/create');
     }
 
     /**
