@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\compras;
+use App\detalle_compra;
+use App\producto;
 class contoladorCompra extends Controller
 {
     /**
@@ -16,7 +18,10 @@ class contoladorCompra extends Controller
      */
     public function index()
     {
-      return view('compra.modificarcompra');   
+      //return view('compra.modificarcompra'); 
+      $aux =\App\auxiliar::auxComp();
+       // return view('layouts.inicio');
+       return view('compra.create',compact('aux'));  
     }
 
     /**
@@ -26,9 +31,10 @@ class contoladorCompra extends Controller
      */
     public function create(Request $request)
     {   
+        $aux =\App\auxiliar::auxComp();
        // $pro =\App\compra::mostrarcompra($request);
         $prov =\App\proveedor::All();
-        return view('compra.createcompra',compact('prov'));
+        return view('compra.createcompra',compact('prov','aux'));
       
        
     }
@@ -39,13 +45,45 @@ class contoladorCompra extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function llenadoProducto($codigopro){
+    $producto=producto::where('cod',$codigopro)->get();
+    /*foreach ($producto as $p) {
+      $codigopro=$p->id;
+    }*/
+
+    //echo $producto->toArray();
+    
+   // $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
+    //return Response::json($producto);
+    return response()->json($producto->toArray());
+  }
     public function store(Request $request)
     {
+        
+       //echo "hola";
         compras::create([
             'tipopago' => $request['formap'],
             'montocompra' => $request['total'],
             'fechacompra' => $request['fechacompra'], 
         ]);
+        $ids;
+        $gAux =\App\compras::All();
+        foreach ($gAux as $valor2) {
+            $ids=$valor2->id;
+        }
+
+        $gAux =\App\auxiliar::All();
+        foreach ($gAux as $valor) {
+            detalle_compra::create([
+                'preciocomp' => $valor->preciocomp2,
+                'descompra' => $valor->descompra2,
+                'cancompra' => $valor->cancompra2,
+                'idprods' => $valor->idprods2,
+                'idcomps' => $ids,
+
+            ]);
+        }
+        
         return redirect('compra/create');
         //return redirect('compra/create');
     }

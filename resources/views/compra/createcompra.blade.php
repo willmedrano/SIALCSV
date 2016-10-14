@@ -78,15 +78,17 @@ h2,h1,span
             <section class="section"> 
                 <div>
                 <div class="card card-block sameheight-item" >
-                     {!! Form::open(['route'=>'compra.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm1','name'=>'frm1']) !!}
+                
+                {!! Form::open(['route'=>'aux2.store','method'=>'POST','class'=>'form-horizontal' ,'id'=>'frm1','name'=>'frm1']) !!}
+                     
                         <br><br>
-                        <div class="form-group">
+                        <div class="form-group" id="aux">
 
                             <span class="col-md-1 col-md-offset-2 text-center">
                             <i class="fa fa-barcode bigicon"></i>
                             </span>
                             <div class="col-xs-3"> 
-                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control"> 
+                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" > 
                             </div>
                         </div>
                         <br> 
@@ -95,7 +97,7 @@ h2,h1,span
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input id="nomproducto" name="nomproducto" type="text" placeholder="Nombre del Producto" class="form-control">
+                            <input id="nomproducto" name="nomproducto1" type="text" placeholder="Nombre del Producto" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
                             <i class="fa fa-credit-card bigicon"></i>
@@ -111,17 +113,12 @@ h2,h1,span
                         </select> 
                             </div>
                         </div>
+                              <input type="hidden"  name="hprod" id="hprod" value="">
                                             <br>
                                               
                                                    
-                    <div class="form-group">
-
-                        <span class="col-md-1 col-md-offset-2 text-center">
-                            <i class="fa fa-calendar bigicon"></i></span>
-                            <div class="col-xs-3">
-                            <input id="fechacompra" name="fechacompra" type="date" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>"></div>
-                    </div>
-                    <br> 
+                    
+                   
                    
                      
                    
@@ -149,16 +146,16 @@ h2,h1,span
                      <div class="col-xs-3">
                      <input id="subtotalcomp" name="subtotalcomp" type="text" placeholder="subtotal" class="form-control" disabled="true">
                      </div>
-                     <span class="col-md-1  text-center"><i class="fa fa-dollar bigicon"></i></span>
+                     <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
                       <div class="col-xs-3">
-                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control">
+                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
                       </div>
                      </div>
                      <br>
                      <div class="form-group" align="center">
-                      <a id="bt_add" href="#" class="btn btn-info" >Agregar al carrito</a>
-                     
+                     <input type="submit" id="bt_add" href="#" class="btn btn-info" value="Agregar al carrito">
                      </div>
+                     {!! Form::close() !!}
                      <div class="form-group">                       
                       <div class="col-md-12" >
                       <div class="panel-body"> 
@@ -166,10 +163,11 @@ h2,h1,span
                             <div class="table-responsive" align="center" >
                              <br>
                                 
-                                <table id="tabla" class="table table-bordered">
+                                <table id="tabla" name="tabla" class="table table-bordered">
                                     <thead valign="bottom" align="right" >
                                         <tr  class="warning">
                                             <th align="center" >#</th>
+                                            <th align="center" >codigo</th>
                                             <th align="center" >producto</th>
                                             <th align="center">cantidad</th>
                                             <th align="center" >precio</th>
@@ -178,8 +176,42 @@ h2,h1,span
                                             
                                         </tr>
                                     </thead>
+                                    <tbody id="hola">
+                                                    <?php $cont=0; $p=0?>
+                                                    @foreach($aux as $aux2)
+                                                    
+
+                                                    <tr>
+                                                        <td><?php $cont++;  echo $cont; ?></td>
+                                                        <td>{{ $aux2->cod }}</td>
+                                                        <td>{{ $aux2->nomProd }}</td>
+                                                        <td>{{ $aux2->cancompra2 }}</td>
+                                                        <td>{{ $aux2->preciocomp2 }}</td>
+                                                        <td>
+                                                           <?php
+                                                            $a=($aux2->cancompra2*$aux2->preciocomp2);
+                                                            $p=$p+$a;
+                                                            echo $a;
+                                                            ?>
+                                                        </td>
+                                                                                                                
+                                                        <td><a href="#"   class="btn btn-danger active " data-id="{{ $aux2->id }}" data-toggle="modal" data-target="#Edit{{ $aux2->id }}">Eliminar</a>
+
+
+
+                                                        </td>
+                                                         
+                                                       
+                                                    </tr>
+                                                  
+                                                  
+                                                      @endforeach
+
+                                                </tbody>
+ 
                                    
                                                      </table>
+                                                     
                                                              <nav align="right">
                                                                  <ul class="pagination" align="right">
                                                                     <li class="disabled">
@@ -207,6 +239,7 @@ h2,h1,span
                                                 </div>
                                                 </div>
                                             </div>
+                                            {!! Form::open(['route'=>'compra.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
                                             <div class="form-group">
 
                                                 <span class="col-md-1 col-md-offset-2 text-center">
@@ -216,12 +249,18 @@ h2,h1,span
                                                     
                                                  
                                                     <select class="form-control" name="formap" id="formap">
-                                                        <option >Seleccione tipo de pago</option>
                                                         <option value="Contado">Contado</option>
                                                         <option value="Credito">Credito </option>   
                                                     </select>
                                             
                                                 </div>
+                                                <div class="form-group">
+
+                        <span class="col-md-1 text-center">
+                            <i class="fa fa-calendar bigicon"></i></span>
+                            <div class="col-xs-3">
+                            <input id="fechacompra" name="fechacompra" type="date" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>"></div>
+                    </div>
                                                </div> 
                                             <br>
                                             <div class="form-group">
@@ -231,8 +270,8 @@ h2,h1,span
                                                 </span>
                                                 <div class="col-xs-3">
                                                     
-                                                  <input id="totalpagar" name="totalpagar" type="text" placeholder="Total apagar" disabled="true"class="form-control">
-                                                  <input id="total" name="total" type="hidden" placeholder="Total apagar" class="form-control">
+                                                  <input id="totalpagar" name="totalpagar" type="text" placeholder="Total apagar" disabled="true" class="form-control" value="<?php echo $p;?>">
+                                                  <input id="total" name="total" type="hidden" placeholder="Total apagar" class="form-control" value="<?php echo $p;?>">
 
                                             
                                                  
@@ -270,11 +309,7 @@ $time=time();
         return date('Y-m-d',mktime(0,0,0,$mon,$day+$dia,$year));    
     }
    $total=0; 
-function calculartotal(){
-     
-   
-     return $total;
-     }
+
 
   
 ?>
@@ -289,118 +324,75 @@ function sumar()
 var a=document.frm1.cantcomp.value;
 var b=document.frm1.preciocomp.value;
 var c=(parseFloat(a)*parseFloat(b)).toFixed(4);
+var d=document.frm1.descompra.value;
+var e=parseFloat(d);
+var f=0;
 if(isNaN(a)){
    a=1;
   }
   if(isNaN(b)){
    b=1;
   }
-  var c= a*b;
+    c= a*b;
   if(isNaN(c)){
-   c=0;
+   c=1;
   }
- document.frm1.subtotalcomp.value=c.toFixed(4);
+  if(isNaN(e)){
+   e=0;
+  }
+  
+   f=-((e/100)*c) + c;
+   if(isNaN(f)){
+   f=0;
+  }
+ document.frm1.subtotalcomp.value=f.toFixed(2);
 }
 
  $(document).ready(function(){
-  $('#bt_add').click(function(){
-   var a=parseFloat(document.frm1.subtotalcomp.value);
-   var b=parseFloat(document.frm1.totalpagar.value);
+$('#aux').on('change','#idcodproduc',function (){
+  
+  var producto=$("#idcodproduc").val();
+     var ruta="/llenadoProducto/"+producto;
 
-if(isNaN(a)){
-   a=0;
-  }
-  if(isNaN(b)){
-   b=0;
-  }
-  b= a+b;
- document.frm1.total.value=b.toFixed(4);
- 
-document.frm1.totalpagar.value=b.toFixed(4);
-   agregar();
-  });
+ $.get(ruta, function(res){
+  $(res).each(function(key,value){
+       $("#hprod").val(value.id);
+       $("#nomproducto").val(value.nomProd);
+       $("#idProve").val(value.idProve);
+       
+
+      });
+  
  });
- var cont=0;
- var id_fila_selected=[];
- function agregar(){
-  cont++;
-  var fila='<tr class="selected" id="fila'+cont+'" onclick="seleccionar(this.id);"><td></td><td>'+ document.frm1.nomproducto.value +'</td><td>' + document.frm1.cantcomp.value + '</td><td>'+ document.frm1.preciocomp.value+'</td><td>' +  document.frm1.subtotalcomp.value +'</td><td><a  onclick="eliminar(id_fila_selected);" id="bt_del" href="#"  class="btn btn-danger active">eliminar</a></td></tr>';
-  $('#tabla').append(fila);
- 
-   document.frm1.cantcomp.value="";
-  document.frm1.subtotalcomp.value="";
-  document.frm1.nomproducto.value="";
-  document.frm1.preciocomp.value="";
-  reordenar();
+});
   
- }
- function calculardatos(){
-  
- }
- function seleccionar(id_fila){
-  if($('#'+id_fila).hasClass('seleccionada')){
-   $('#'+id_fila).removeClass('seleccionada');
-  }
-  else{
-   $('#'+id_fila).addClass('seleccionada');
-  }
-  //2702id_fila_selected=id_fila;
-  id_fila_selected.push(id_fila);
- }
-
- function eliminar(id_fila){
-  /*$('#'+id_fila).remove();
-  reordenar();*/
-  for(var i=0; i<id_fila.length; i++){
-   alert($(this).parent().children("td:eq(2)").text());
-   $('#'+id_fila[i]).remove();
-  }
-  reordenar();
- }
-
- function reordenar(){
-  var num=1;
-  $('#tabla tbody tr').each(function(){
-   $(this).find('td').eq(0).text(num);
-   num++;
-  });
- }
- function eliminarTodasFilas(){
-$('#tabla tbody tr').each(function(){
-   $(this).remove();
-  });
-
- }
-function cargarProduct(){
-
-
-}
-/* $(function () {
+ });
  
-                $('#buscarpro').submit(function(e) {
-                 e.preventDefault();
-                });
-                var route = "/escuela/"+value+"";
-                var token = $("#token").val();//aqui recupero de mi variable toque para decirle a laravel no es intencionada
-                $().keyup(function(){
-                  var envio=$('#buscarpro').val();
-                  $.ajax({
-                           url: route,
-                           headers: {'X-CSRF-TOKEN': token},
-                           type: 'PUT',
-                           data: 'id='+envio,
-                         
-                           success: function(res){
-                                   if(res!=""){
-                                    $('#resultado').html(res);
-                                   }
-                               }
+ 
+ 
 
-                             }
-                         });
-                });
-                }
-*/
 
+
+ 
+function enter(){
+      //var char= event.which || event.keyCode;
+      var producto=$("#idcodproduc").val();
+      
+      //var producto=$("");/escuela/"+btn.value+"/edit"
+     var ruta="/llenadoProducto/"+producto;
+alert(ruta);
+
+     $.get(ruta,function(res){
+           //producto.empty();
+      $(res).each(function(key,value){
+       //producto.append("<input type='text'  id='"+value.id+"' value="+value.nombre+">");
+      $("#nomproducto").val(value.nomProd);
+     //$("#nomdirec").val(res.nomdirec);
+     // $("#telesc").val(res.telesc);
+    //$("#diresc").val(res.diresc);
+      });
+     });
+      
+    }
 </script>
  @endsection

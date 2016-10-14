@@ -47,6 +47,7 @@ Route::get('/form44','ControladorMultiformularios@formulario4Muestra4');
 Route::resource('prove',"controladorproveedor2");
 
 Route::resource('compra',"contoladorCompra");
+Route::match(['get','post'],'/llenadoProducto/{codigopro}','contoladorCompra@llenadoProducto');
 
 Route::resource('escuelas',"ControladorEscuelas@listaescuela");
 Route::resource('escuela',"ControladorEscuelas");
@@ -56,6 +57,7 @@ Route::resource('contrato',"ControladorContrato");
 Route::resource('contrato',"ControladorContrato");
 Route::resource('inve',"inventario");
 Route::resource('log',"login");
+Route::resource('aux2',"auxiliarControl");
 
 
 Route::get('/pru2', function () {
