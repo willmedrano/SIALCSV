@@ -216,18 +216,55 @@ h2,h1,span
                <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Sexo: </label></span></td>
                     <td colspan="3" align="center" >
+                    <?php $c=0; 
+                          $d=0;
+                    ?>
                     <select  name="sexo" class="form-control">
 
                           @foreach($emple as $emples)
                                 
-                                <option  value="{{ $emples->id }}" >{{ $emples->sexEmp }}</option>
-                                
-                                
-                                
+                        @if (($emples->sexEmp  != "Masculino") && 2> $c)
 
+                                
+                                  @if (( $cat->sexEmp  != "Masculino") && $d<1)
+                                      <option  value="Femenino" selected="true"  >Femenino</option>
+                                      <option  value="Masculino"   >Masculino</option>
+
+                                      <?php $d++; ?>
+                                  @endif
+                                   @if ( $cat->sexEmp  == "Masculino" && $d<1)
+                                      <option  value="Masculino"  >Masculino</option>
+                                       <option  value="Femenino"  >Femenino</option>
+
+                                      <?php $d++; ?>
+                                    @endif
+                                  <?php $c++; ?>
+                          @endif
+                           @if (($emples->sexEmp  == "Masculino") && 2> $c)
+
+                                
+                                  @if (( $cat->sexEmp  == "Masculino") && $d<1)
+                                      <option  value="Masculino" selected="true"  >Masculino</option>
+                                      <option  value="Femenino"   >Femenino</option>
+
+                                      <?php $d++; ?>
+                                  @endif
+                                   @if ( $cat->sexEmp  != "Masculino" && $d<1)
+                                      <option  value="Femenino"  >Femenino</option>
+                                       <option  value="Masculino"  >Masculino</option>
+
+                                      <?php $d++; ?>
+                                    @endif
+                                  <?php $c++; ?>
+                          @endif
+                                
                             @endforeach
                             
                         </select>
+
+                                
+                      
+                    
                         <br>
                     </td>
                     <td></td>
@@ -248,14 +285,49 @@ h2,h1,span
                    
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Cargo: </label></span></td>
-                    <td colspan="3" align="center" ><select name="cargo" class=" form-control">
-                            @foreach($emple as $emplec)
-                                
-                                <option  value="{{ $emplec->cargoEmp }}" >{{ $emplec->cargoEmp }}</option>
-                                
-                                
-                                
+                    <td colspan="3" align="center" >
+                     <?php $c=0; 
+                          $d=0;
+                    ?>
+                    <select name="cargo" class=" form-control">
 
+                             @foreach($emple as $emplec)
+                                
+                        @if (($emplec->cargoEmp  != "Administrador") && 2> $c)
+
+                                
+                                  @if (( $cat->cargoEmp  != "Administrador") && $d<1)
+                                      <option  value="Vendedor" selected="true"  >Vendedor</option>
+                                      <option  value="Administrador"   >Administrador</option>
+
+                                      <?php $d++; ?>
+                                  @endif
+                                   @if ( $cat->cargoEmp  == "Administrador" && $d<1)
+                                      <option  value="Administrador"  >Aministrador</option>
+                                       <option  value="Vendedor"  >Vendedor</option>
+
+                                      <?php $d++; ?>
+                                    @endif
+                                  <?php $c++; ?>
+                          @endif
+                           @if (($emplec->cargoEmp  == "Administrador") && 2> $c)
+
+                                
+                                  @if (( $cat->cargoEmp  == "Administrador") && $d<1)
+                                      <option  value="Administrador" selected="true"  >Administrador</option>
+                                      <option  value="Vendedor"   >Vendedor</option>
+
+                                      <?php $d++; ?>
+                                  @endif
+                                   @if ( $cat->cargoEmp  != "Administrador" && $d<1)
+                                      <option  value="Vendedor"  >Vendedor</option>
+                                       <option  value="Administrador"  >Administrador</option>
+
+                                      <?php $d++; ?>
+                                    @endif
+                                  <?php $c++; ?>
+                          @endif
+                                
                             @endforeach
                            
                         </select>

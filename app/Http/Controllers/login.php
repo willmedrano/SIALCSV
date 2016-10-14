@@ -22,8 +22,8 @@ class login extends Controller
         //referencia al modelo para llenar la tabla
        $emple=\App\empleado::All();
       //$emp=\App\empleado::sEmp();
-       //return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
-        return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
+       return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
+       //return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
          //return view('seguridad.rEmpleado');
         //return view('seguridad.pago',compact('emple'));//llenar la tabla pago
     }
@@ -147,7 +147,7 @@ class login extends Controller
 
 
         $trab->save();
-
+    return redirect('/log/');
         //Session::flash('mensaje','¡Registro Actualizado!');
        // return redirect::to('/log/create');
     }

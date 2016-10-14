@@ -57,6 +57,8 @@ Route::resource('contrato',"ControladorContrato");
 Route::resource('contrato',"ControladorContrato");
 Route::resource('inve',"inventario");
 Route::resource('log',"login");
+Route::resource('empleado',"Controladorempleado");
+Route::resource('permitir',"Controladorpermitir");
 Route::resource('aux2',"auxiliarControl");
 
 

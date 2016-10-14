@@ -133,7 +133,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Usuario: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->correoEmp }}" placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->nomEmp }}{{ $cat->id }}"placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -143,7 +143,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Contraseña: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->correoEmp }}" placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="password" value="{{ $cat->nomEmp }}{{ $cat->id }}" placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -221,11 +221,8 @@ legend{
 
                                          <form class="form-horizontal" method="post">
 
-
-                                         <div class="col-md-12" align="center">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="card-title-block">
+                                            
+                                      
                                             <h2>
                             Empleados
                         </h3> 
@@ -234,13 +231,13 @@ legend{
                                                   <span class="col-md-1 col-md-offset-8 text-center"><i class="fa fa-search bigicon icon_nav"></i>Buscar</span>
                                                <div class="col-xs-3">
 
-                                                <input id="fname" name="name" type="text"  class="form-control">
+                                                <input id="filtrar" name="name1" type="text"  class="form-control">
                                                 </div>
                                                    </div>
                           
 
-                        </div>
-                                        <section class="example">
+                       
+                                        
                                              <div class="form-group">
                                                
                                             
@@ -260,19 +257,19 @@ legend{
                                             <th> Acceso </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="buscar">
 
 
                                     @foreach($emple as $emple)
                                                     <tr>
-                                                        <td>{{ $emple->idEmp }}</td>
+                                                        <td>{{ $emple->id }}</td>
                                                         <td>{{ $emple->nomEmp }}</td>
                                                         <td>{{ $emple->apeEmp }}</td>
                                                         <td>{{ $emple->telEmp }}</td>
                                                         <td>{{ $emple->sexEmp }}</td>
                                                         <td>{{ $emple->cargoEmp }}</td>
                                                         
-                                               <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emple->id }}" data-toggle="modal" data-target="#Edit{{ $emple->id }}"></a>
+                                               <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emple->id }}" data-toggle="modal" data-target="#Edit{{ $emple->id }}">Permitir</a>
                                                     
 
                                                     </tr>
@@ -286,10 +283,11 @@ legend{
                                                             
                                                         
                                                 </div>
-                                                </div>
-                                                </div>
-                                            </div>
+                                                
                                         </section>
+
+</form>
+                               
                                     </div>
                                 </div>
                             </div>
@@ -300,108 +298,7 @@ legend{
                     <br>
                     
                     
-                  {!! Form::model($emple,['route'=>['log.store',$emple->id],'method'=>'PUT', 'class'=>'form-horizontal'])!!}
-                                            <div  align="center">
-
-                                                
-                                                <div>
-                                                    <IMG src="assets/faces/3.jpg"  WIDTH=120 HEIGHT=130 ALT="Foto" >
-                                                </div>
-
-                                                <div class="col-xs-12" align="center">
-                                                    <br>
-                                                   
-
-                                                 </div
-
-                                                 >
-                                            </div> 
-    
-                                             
-                                            <div class="form-group">
-
-                                                
-
-
-
-                                                 
-
-                                                 <span class="col-md-1 col-md-offset-2 text-center"><i>Codigo</i></span>
-                            <div class="col-xs-2">
-
-                                <input id="fname" name="name" type="text"  value={{ $emple->id }} class="form-control">
-                            </div>
-
-                            
-                                                
-                                                   </div>
-                                                         
-                                                      <div class="form-group">
-                                                    
-                                                    <span class="col-md-1 col-md-offset-2 text-center"><i>Nombre</i></span>
-                                                <div class="col-xs-3">
-
-                                                <input id="fname" name="lognom" type="text"  value= {{ $emple->nom }} class="form-control">
-                                                </div>
-                                                 <div class="col-xs-3">
-
-                                                <input id="fname" name="logape" type="text"  class="form-control">
-                                                </div>
-                            
-                                                
-                                                   </div>
-                                                      
-                                                      <div class="form-group">
-                                                     
-                                                     <span class="col-md-1 col-md-offset-2 text-center"><i>Telefono</i></span>
-                                                <div class="col-xs-3">
-
-                                                <input id="fname" name="logtel" type="text"  class="form-control">
-                                                </div>
-                                                
-                                                      </div>
-                                                
-
-                                                 <div class="form-group">
-                                                     
-                                                     <span class="col-md-1 col-md-offset-2 text-center"><i>Correo</i></span>
-                                                <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
-                                                 
-                                                      </div>
-
-                                                    
-                                                   
-                                           
-                                              <div class="form-group">
-                                                  <span class="col-md-1 col-md-offset-2 text-center"><i>Usuario</i></span>
-                                               <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
-                                                   </div>
-                                                         
-                                                           
-                                                           
-                                                           <div class="form-group">
-                                                  <span class="col-md-1 col-md-offset-2 text-center"><i>Contraseña</i></span>
-                            <div class="col-xs-3">
-
-                                <input id="fname" name="name" type="text"  class="form-control">
-                            </div>
-                                                    </div>
-
-                                                     <div class="form-group">
-                                                <div class="col-md-12 text-center" align="center">
-                                                    <button type="submit"  class="btn btn-primary btn-lg">Guardar</button>
-                                                </div>                  
-                                            </div>
-
-                                                      
-                                              {!! Form::close() !!} 
-                  
+                   
                                      
                                     
                                 </div>
@@ -410,4 +307,8 @@ legend{
                         </div>
                     </section>
   
-@stop
+@endsection
+  @section('scripts')
+  
+    {!!Html::script('js/buscaresc.js')!!}
+  @endsection
