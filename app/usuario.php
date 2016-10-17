@@ -9,7 +9,7 @@ class usuario extends Model
     //public $timestamps=false;
     protected $table="usuarios";
 
-   protected $fillable = ['login','pass','FkEmp','hola'];
+   protected $fillable = ['login','pass','correoEmp','idEmp'];
 
 
    public static function cargarUsuario($id){

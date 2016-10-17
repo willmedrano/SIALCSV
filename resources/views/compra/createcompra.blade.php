@@ -88,7 +88,7 @@ h2,h1,span
                             <i class="fa fa-barcode bigicon"></i>
                             </span>
                             <div class="col-xs-3"> 
-                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" > 
+                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" autofocus> 
                             </div>
                         </div>
                         <br> 
@@ -100,7 +100,7 @@ h2,h1,span
                             <input id="nomproducto" name="nomproducto1" type="text" placeholder="Nombre del Producto" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
-                            <i class="fa fa-credit-card bigicon"></i>
+                           <i class="fa fa-truck bigicon"></i>
                             </span>
                             <div class="col-md-3">
                                <select class=" form-control" name="idProve" id="idProve">
@@ -171,7 +171,8 @@ h2,h1,span
                                             <th align="center" >producto</th>
                                             <th align="center">cantidad</th>
                                             <th align="center" >precio</th>
-                                            <th align="center" >Subtotal</th>
+                                            <th align="center" >descuento</th>
+                                            <th align="center" >subtotal</th>
                                             <th align="center" >accion</th>
                                             
                                         </tr>
@@ -187,17 +188,21 @@ h2,h1,span
                                                         <td>{{ $aux2->nomProd }}</td>
                                                         <td>{{ $aux2->cancompra2 }}</td>
                                                         <td>{{ $aux2->preciocomp2 }}</td>
+                                                        <td>{{ $aux2->descompra2}}</td>
                                                         <td>
                                                            <?php
-                                                            $a=($aux2->cancompra2*$aux2->preciocomp2);
+                                                           $d=$aux2->descompra2 / 100;
+                                                            $b=$d * ($aux2->cancompra2*$aux2->preciocomp2);
+                                                            $a=($aux2->cancompra2*$aux2->preciocomp2) - $b;
                                                             $p=$p+$a;
                                                             echo $a;
                                                             ?>
                                                         </td>
                                                                                                                 
-                                                        <td><a href="#"   class="btn btn-danger active " data-id="{{ $aux2->id }}" data-toggle="modal" data-target="#Edit{{ $aux2->id }}">Eliminar</a>
-
-
+                                                        <td>
+                                    {!!Form::open(['route'=>['aux2.destroy',$aux2->id],'method'=>'DELETE'])!!}
+                                                        <input type="submit" name="elimina" value="Eliminar"   class="btn btn-danger active " >
+                                                        {!!Form::close()!!}   
 
                                                         </td>
                                                          
@@ -248,8 +253,8 @@ h2,h1,span
                                                 <div class="col-xs-3">
                                                     
                                                  
-                                                    <select class="form-control" name="formap" id="formap">
-                                                        <option value="Contado">Contado</option>
+                                                    <select class="form-control" name="formap" id="formap" onclick ="seleccionTipopago();">
+                                                        <option value="Contado" selected="true">Contado</option>
                                                         <option value="Credito">Credito </option>   
                                                     </select>
                                             
@@ -259,7 +264,7 @@ h2,h1,span
                         <span class="col-md-1 text-center">
                             <i class="fa fa-calendar bigicon"></i></span>
                             <div class="col-xs-3">
-                            <input id="fechacompra" name="fechacompra" type="date" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>"></div>
+                            <input id="fechacompra" name="fechacompra" type="date" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>" ></div>
                     </div>
                                                </div> 
                                             <br>
@@ -279,13 +284,26 @@ h2,h1,span
                                                    <span class="col-md-1  text-center"><i class="bigicon"style=" font-weight: bold;">#</i></span>
                                                   <div class="col-xs-3">
                                                  
-                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control">
-                                                
-                                                </div>
+                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" value="1" disabled = 'true' onkeyup="cuotasapagar();">
+                                               <input type="hidden" name="ncuotas" id="ncuotas" >
+                                               </div>
                                                 </div>
 
                                             <br>
+                                            <div class="form-group">
+                                            <span class="col-md-1 col-md-offset-2 text-center">
+                                                    <i> moto por cuota:</i>
+                                                </span>
+                                                <div class="col-xs-3">
+                                                    
+                                                  
+                                                  <input id="montocouta" name="montocouta" type="text" placeholder="cuotas monto" class="form-control" >
 
+                                            
+                                                 
+                                                </div>
+                                            </div>
+                                            <br>
 
                                             <div class="form-group">
                                                 <div class="col-md-12 text-center" align="center">
@@ -347,6 +365,30 @@ if(isNaN(a)){
   }
  document.frm1.subtotalcomp.value=f.toFixed(2);
 }
+function cuotasapagar()
+{
+var a=document.frm2.totalpagar.value;
+
+var b=document.frm2.cuotas.value;
+
+
+var c=(parseFloat(a) / parseFloat(b)).toFixed(2);
+
+if(isNaN(c)){
+   c=1;
+  }
+if(isNaN(a)){
+   a=1;
+  }
+  if(isNaN(b)){
+   b=1;
+  }
+  
+  
+ document.frm2.montocouta.value=c;
+ //alert(document.frm2.cantotal.value);
+ alert(c.toFixed(2));
+}
 
  $(document).ready(function(){
 $('#aux').on('change','#idcodproduc',function (){
@@ -368,7 +410,28 @@ $('#aux').on('change','#idcodproduc',function (){
   
  });
  
- 
+  function seleccionTipopago() {
+           
+          var posicion=document.getElementById('formap').options.selectedIndex; //posicion
+          var j=document.getElementById('formap').options[posicion].text; //valor
+           if(j=="Contado"){
+            document.frm2.cuotas.disabled = true;// esto es para que no se pueda editar
+            $("#cuotas").val(""+1);
+            document.frm2.ncuotas.value=document.frm2.cuotas.value;
+           // $('#cuotas').removeAttr("required");// quitarle de que es requerido
+           }if(j=="Credito"){
+            v="";
+            document.frm2.cuotas.disabled = false;//Aqui es para que si lo pueda editar
+             //$('#cuotas').prop("required", true);//aqui le asigna que este campo es requerido
+             //input_form.setAttribute("type", "password");
+            $("#cuotas").val("");
+            document.frm2.ncuotas.value=document.frm2.cuotas.value;
+            }
+           
+
+            
+                                                      
+        }
  
 
 

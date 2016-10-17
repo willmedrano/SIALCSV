@@ -24,11 +24,12 @@ class EscuelaRequest extends Request
     public function rules()
     {
         return [
-        'nomesc'=>'required|max:255',
-        'nomdirec'=>'required|max:255',
-        'telesc'=>'required|unique:posts|max:9',
-        'diresc'=>'required|unique:posts|max:255',
+        'nomesc'=>'required:escuelas',
+        'nomdirec'=>'required:escuelas',
+        'telesc'=>'unique:escuelas',
+        'diresc'=>'required:escuelas',
         
         ];
     }
+    
 }

@@ -170,13 +170,11 @@ h2,h1,span
                                                     <tr>
                                                         <th># de lote</th>
                                                         <th>Compras Realizadas</th>
-                                                      
                                                         <th>cantidad</th>
-                                                        
                                                         <th>Precio</th>
                                                         <th>Proveedor</th>
                                                         <th>Descripcion</th>
-                                                     
+                                                         <th colspan="2" rowspan="">Accion</th>
                                                        
                                                     </tr>
                                                 </thead>
@@ -193,31 +191,43 @@ h2,h1,span
                                                         <td>Libreria la paz</td>
                                                         <td>lapiz amarrillo vitrina #2</td>
                                                        
-                                                    </tr>
+                                                    </tr> 
                                                     <tr>
                                                         <th scope="row" >1</th>
-                                                        <td>Cuaderno #2</td>
-                                                       
-                                                        <td>150</td>
-                                                        <td>1.75</td>
+                                                        <td>Lapiz #2</td>
+            
+                                                        <td>100</td>
+                                                         <td>0.75</td>
                                                         <td>Libreria la paz</td>
-                                                        <td>Cuaderno #2 rayado vitrina #2</td>
+                                                        <td>lapiz amarrillo vitrina #2</td>
                                                        
                                                     </tr>
+                                                    <?php $cont=0;?>
+                                                       @foreach($comptotal as $comps)
+                                                
+
+                                                    <tr>
+                                                        <td> <?php $cont++;
+                                                              echo $cont;
+                                                        ?></td>
+                                                        <td>compra {{ $comps->id }}</td>
+                                                        <td>{{ $comps->tipopago  }}</td>
+                                                        <td>{{ $comps->montocompra}}</td>
+                                                        <td>{{ $comps->fechacompra}}</td>
+                                                        <td></td>
+                                                        <td><button    class="btn btn-info btn-sm" data-id="" data-toggle="modal" data-target="" style="width:100px;height:37px;" align="center">V e r</button>
                                                     
-                                                     <tr>
-                                                        <th scope="row" >2</th>
-                                                        <td>Cuaderno #2</td>
-                                                       
-                                                        <td>75</td>
-                                                        <td> 1.50</td>
-                                                        <td>Libreria la paz</td>
-                                                        <td>Cuaderno #2 rayado vitrina #2</td>
+                                                           </td>
+                                                      
+
                                                        
                                                     </tr>
+                                                  
+                                                    
+                                                    
 
                                                     
-                                                      
+                                                      @endforeach
                                                 </tbody>
                                             </table>
                                         </section>

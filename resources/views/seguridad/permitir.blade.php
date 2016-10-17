@@ -100,6 +100,7 @@ legend{
                     <td colspan="2.5" align="center" >
                      <br> 
                     <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" value="{{ $cat->nomEmp }}" class="form-control">
+                    <<input type="hidden" name="permitir" id="permitir" value="">
                     <br></td>
                       <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
                     <td colspan="2.5" align="center" > <br><input id="apeEmp" name="apeEmp" type="text" value="{{ $cat->apeEmp }}"  placeholder="Apellido" class="form-control"><br></td>
@@ -123,7 +124,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Correo: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->correoEmp }}" placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correoEmp" type="text" placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -133,7 +134,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Usuario: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->nomEmp }}{{ $cat->id }}"placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="login" name="login" type="text" value="{{ $cat->nomEmp }}{{ $cat->id }}"placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -143,7 +144,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Contraseña: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="password" value="{{ $cat->nomEmp }}{{ $cat->id }}" placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="pass" name="pass" type="password" value="{{ $cat->nomEmp }}{{ $cat->id }}" placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    

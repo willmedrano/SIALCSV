@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\empleado;
+use App\usuario;//esto agregado chepe jonathan
+
 class login extends Controller
 {
     /**
@@ -22,8 +24,8 @@ class login extends Controller
         //referencia al modelo para llenar la tabla
        $emple=\App\empleado::All();
       //$emp=\App\empleado::sEmp();
-       return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
-       //return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
+       //return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
+       return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
          //return view('seguridad.rEmpleado');
         //return view('seguridad.pago',compact('emple'));//llenar la tabla pago
     }
@@ -42,7 +44,7 @@ class login extends Controller
        // return view('inicio.inicios');//para entrar al sistema
         //return view('seguridad.modEmpleado');
      // return view('seguridad.grupos');//grupos de acceso
-      // return view('seguridad.permitir');//permitir ingreso al sistema
+       //return view('seguridad.permitir');//permitir ingreso al sistema
        //return view('compra.modificarcompra');
        // return view('seguridad.denegar');//denegar acceso al sistema
        return view('seguridad.rEmpleado');
@@ -116,7 +118,7 @@ class login extends Controller
     {
         $trab = empleado::find($id);
         $aux=$request['hi2'];
-
+       
         if($aux=='1')
         {
         $trab->nomEmp = $request['nomEmp'];
@@ -129,6 +131,7 @@ class login extends Controller
         $trab->sueldoEmp = $request['salario'];
         $trab->cargoEmp = $request['cargo'];
         $trab->sexEmp = $request['sexo'];
+        //$trab->sexEmp = $request['sexo'];correoEmp
         //$trab->contraEmp = $request['desc'];
         }
 
@@ -147,7 +150,17 @@ class login extends Controller
 
 
         $trab->save();
+        //esto agregado chepe jonathan
+/*usuario::create([
+            'login'=>$request['login'],
+            'pass'=>$request['pass'],
+            'correoEmp'=>$request['correoEmp'],
+            'idEmp'=>$id,
+            ]);
+*/
+
     return redirect('/log/');
+
         //Session::flash('mensaje','¡Registro Actualizado!');
        // return redirect::to('/log/create');
     }

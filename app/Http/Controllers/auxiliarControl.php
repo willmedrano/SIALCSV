@@ -90,6 +90,9 @@ class auxiliarControl extends Controller
      */
     public function destroy($id)
     {
-        //
+     
+    $auxeliminar= auxiliar::find($id);
+    $auxeliminar->delete();
+        return redirect('compra/create');   
     }
 }

@@ -24,7 +24,7 @@ class CreateEmpleadosTable extends Migration
              $table->string('telEmp');
              $table->float('sueldoEmp');
              $table->string('cargoEmp');
-              $table->boolean('estadoEmp')->default(true);
+             $table->boolean('estadoEmp')->default(true);
              $table->string('sexEmp');
              $table->date('contraEmp');
              $table->timestamps();

@@ -29,6 +29,7 @@ h2,h1,span
     color: #36A0FF;
     font-size: 15px; 
 }
+
 </style>
 {!!Html::script('js/jquery-1.9.0.min.js')!!}
   {!!Html::script('js/jquery.maskedinput.js')!!}
@@ -59,11 +60,19 @@ jQuery(function($) {
 <strong>Escuela sea Agregado Correctamente.</strong> 
 </div>
 @endif
-<div id="msj-error" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
+@if(count($errors)>0)
+<div  class="alert alert-danger alert-dismissible" role="alert" style="display:none">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+         @endforeach 
+          
+        </ul>
 <strong id="msj"></strong> 
     </div>
-    <div id="msj-error1" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
+   @endif 
+<!--    <div id="msj-error1" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <strong id="msj1"></strong> 
     </div>
@@ -74,7 +83,7 @@ jQuery(function($) {
     <div id="msj-error3" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <strong id="msj3"></strong> 
-    </div>
+    </div>-->
                    
                     <div class="title-block">
                     <span class="col-md-1  text-center">
@@ -135,7 +144,7 @@ jQuery(function($) {
                                                 </span>
                                                 <div class="col-xs-4"> 
                                                
-                                                 <input id="telesc" name="telesc" type="text" placeholder="Ingrese el Telefono de la escuela" class="form-control"> 
+                                                 <input id="telesc" name="telesc" type="tel" name="telefono" placeholder="Ingrese el Telefono de la escuela" class="form-control"> 
                                                 
                                                 </div> 
                                         </div>
@@ -153,6 +162,7 @@ jQuery(function($) {
                                         <div class="form-group">
                             <div class="col-md-12 text-center" align="center">
                                <button type="submit"  class="btn btn-primary btn-lg">Guardar</button>
+
                             </div>
 
                             

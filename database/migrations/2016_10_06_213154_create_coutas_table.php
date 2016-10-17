@@ -14,8 +14,8 @@ class CreateCoutasTable extends Migration
     {
         Schema::create('coutas', function (Blueprint $table) {
             $table->increments('id');
-             $table->datetime('fechcouta');
-             $table->boolean('estadcuota');
+             $table->date('fechcouta');
+             $table->integer('estadcuota');
              $table->double('morac', 7, 2);  //   Equivalente a numeros reales con precisión, 7 digitos en total y 2 despues de el punto decimal
              $table->integer('ncuotas');        //Equivalente a numeros enteros
              $table->double('cuotas', 7, 2);   //   Equivalente a numeros reales con precisión, 7 digitos en total y 2 despues de el punto decimal

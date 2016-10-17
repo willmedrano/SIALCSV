@@ -1,49 +1,19 @@
 
 @extends('probandos')
 
-@section('content')
-@include('paquetesescolares.escuela..modal')
- {!! Html::script('js/scriptpersanalizado.js') !!}
-<script language="javascript">
-  function verificar(){
-    if(document.getElementById('carnet').value=="" || 
-    document.getElementById('nombre').value=="" || 
-    document.getElementById('apellido').value=="" 
-    ){
-      
-      alertaError("Uy...","Campos sin llenar","warning");
-      }
-    else{
-        document.getElementById('bandera').value="add";
-        document.frmexpediente.submit();
-      }
-      
-    }
-    
-function alertaExito(titulo,texto,tipo){
-  swal(titulo,texto,tipo);
-}
-function alertaError(titulo,texto,tipo){
-  sweetAlert(titulo, texto, tipo);
-}
+<?php $message=Session::get('message')?>
 
-</script>
-   <!-- esto es para el uso de los alertas -->
-  <script src="../alertas/dist/sweetalert-dev.js"></script>
-  <link rel="stylesheet" href="../alertas/dist/sweetalert.css">           
-  
-
-@if(Session::has('message'))
- <!--  <div class="alert alert-success alert-dismissible" role="alert">
+@if($message=='update')
+<div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Exito!!</strong> Proveedor Creado
-</div>-->
-<?php 
-          echo "<script language='javascript'>";
-          echo "alertaExito('Registro modificado', 'Guardado', 'success');";
-          echo "</script>";
-      ?>
+<strong> Sea Actualizado con exito el registro</strong>
+</div>
 @endif
+
+@section('content')
+
+
+
 
 <style>
 .bigicon {
@@ -88,6 +58,95 @@ h2,h1,span
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
                 <article class="content static-tables-page">
+
+
+@foreach ($escuelas as $escuelam)
+<div  id="Edit{{$escuelam->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">> 
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel">Modificar Producto</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid bd-example-row">
+      {!!Form::model($escuelam,['method'=>'PATCH','route'=>['escuela.update',$escuelam->id]])!!}
+      <fieldset>
+      <input type="hidden" name="hi2" value="1">
+                                      
+                            <table class="quitarborder" style="width:100%" >
+      
+          
+           <thead>
+               <tr>
+                   <th></th>
+                   <th ></th>
+                    <th ></th>
+                    <th ></th>
+                    <th ></th>
+                   <th colspan="2"></th>
+                   
+               </tr>
+           </thead>
+           <tbody>
+               
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Escuela: </label></span></td>
+                    <td colspan="2" align="center" >  <input id="nomesc" name="nomesc" type="text"  class="form-control" value="{{$escuelam->nomesc}}">  
+                                                    <br></td>
+                    <td colspan="2" rowspan="3" align="center"><span align="center">
+                        <i style="font-size: 150px;" class="fa fa-pencil-square-o fa-3x fa-fw bigicon" align="center"></i>
+                    </span></td>
+                    <td></td>
+                    <td></td>
+               </tr>
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Director: </label></span></td>
+                    <td colspan="2" align="center"><input id="nomdirec" name="nomdirec" type="text"  class="form-control" value="{{$escuelam->nomdirec}}"> <br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                     </tr>
+             
+                <tr>
+                   <td align="right" nowrap="nowrap"> <span class="text-center" ><label >Telefono: </label></span></td>
+                    <td colspan="2">  <input id="telesc" name="telesc" type="text"  class="form-control" value="{{$escuelam->telesc}}"> <br>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    
+                    
+               </tr>
+                <tr>
+                   <td align="right" nowrap="nowrap"> <span class="text-center" ><label >Dirección: </label></span></td>
+                    <td colspan="3"><textarea class="form-control" id="diresc" name="diresc"  rows="2" >{{$escuelam->diresc}}</textarea></td>
+                    <td></td>
+                    <td></td>
+                    
+                    
+               </tr>
+           </tbody>
+       </table>
+                        
+                    </fieldset>
+                    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+     
+      {!!Form::close()!!}     
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+@endforeach
+
+
 
  <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -149,8 +208,25 @@ h2,h1,span
                                                 </thead>
                                                 
                                                 <tbody id="datos" class="buscar"> 
-                                          
-                                                            
+                                                <?php $con=0; ?>
+                                                @foreach($escuelas as $escuela)
+                                                
+                                                    <?php $con++;?>
+                                                    <tr>
+                                                       <td>  <?php echo $con;?></td>
+                                                        <td>{{ $escuela->nomesc }}</td>
+                                                        <td>{{ $escuela->nomdirec }}</td>
+                                                        <td>{{ $escuela->telesc }}</td>
+                                                        <td>{{ $escuela->diresc}}</td>
+                                                       
+                                                       <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $escuela->id }}" data-toggle="modal" data-target="#Edit{{ $escuela->id }}">Modificar</a>
+                                                        </td>
+                                                         
+                                                       
+                                                    
+                                                   </tr>    
+                                                        
+                                                @endforeach       
                                                 </tbody>
                                                 
                                             </table>
@@ -165,7 +241,7 @@ h2,h1,span
 
 @endsection
   @section('scripts')
-    {!!Html::script('js/scriptpersanalizado.js')!!}
+    <!--{!!Html::script('js/scriptpersanalizado.js')!!}-->
     {!!Html::script('js/buscaresc.js')!!}
   @endsection
 

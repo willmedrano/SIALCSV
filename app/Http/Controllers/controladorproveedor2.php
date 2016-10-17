@@ -16,9 +16,9 @@ class controladorproveedor2 extends Controller
      */
     public function index()
     {
-        $prove =proveedor::All();
+        $provee =proveedor::All();
 
-        return view('prove.index',compact('prove'));
+        return view('prove.index',compact('provee'));
     }
 
     /**
@@ -72,9 +72,9 @@ class controladorproveedor2 extends Controller
      */
     public function edit($id)
     {
-        $escuelas= Escuelas::find($id);
-        
-        return response()->json($prove->toArray());
+        //
+        $prove2=proveedor::find($id);
+        return view('prove.index',compact('$prove2'));
     }
 
     /**
@@ -86,7 +86,23 @@ class controladorproveedor2 extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $proves = \App\proveedor::find($id);
+        $aux=$request['hi2'];
+
+        if($aux=='1')
+        {
+        $proves->nom = $request['nompm'];
+        $proves->tel = $request['telpm'];
+        $proves->NIT = $request['nitpm'];
+        $proves->dir = $request['dirpm'];
+       
+        }
+        
+
+
+        $proves->save();
+
+        return redirect('/prove')->with('message','update');
     }
 
     /**

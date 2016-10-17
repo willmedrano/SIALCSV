@@ -23,4 +23,13 @@ class compras extends Model //Aqui escribimos campos de modelo
             ->select('productos.cod','productos.nomProd','productos.marca','productos.uniCaja','productos.desc','productos.estado',  'proveedores.nom')
             ->get();
    }
+   public static function Mostrarcompras(){
+       return DB::table('compras')
+            ->join('detalle_compras', 'detalle_compras.idcomps', '=', 'compras.id')
+            ->join('productos', 'detalle_compras.idprods', '=', 'productos.id')
+            ->join('coutas', 'coutas.idcompsc', '=', 'compras.id')
+            ->select('compras.*',  'detalle_compras.*','productos.*','coutas.*')
+            ->orderBy('compras.id')
+            ->get();
+   }
 }

@@ -16,6 +16,7 @@ class CreateUsuariosTable extends Migration
             $table->increments('id');
              $table->string('login');
              $table->string('pass');
+             $table->string('correoEmp');
              $table->integer('idEmp')->unsigned();
              $table->foreign('idEmp')->references('id')->on('empleados');
              $table->timestamps();

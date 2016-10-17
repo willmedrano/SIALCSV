@@ -34,9 +34,10 @@ class ControladorEscuelas extends Controller
     public function index()
     {
         
-
-        return view('paquetesescolares.escuela.index');
+          $escuelas= Escuelas::all();
+            return view('paquetesescolares.escuela.index',compact('escuelas'));
            //return view('); 
+
     }
 
     /**
@@ -56,7 +57,7 @@ class ControladorEscuelas extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EscuelaRequest $request)
     {
         
       
@@ -85,7 +86,10 @@ class ControladorEscuelas extends Controller
      */
     public function show($id)
     {
-        //
+        
+         $escuela2=Escuelas::mostrarEscuela();
+        //$pro2 =\App\producto::mostrar($id);
+        return view('escuela.index',compact('$escuela2'));
     }
 
     /**
@@ -101,8 +105,11 @@ class ControladorEscuelas extends Controller
       Session::flash('message', 'Edit');
       return view('paquetesescolares.escuela.edit', ['escuelaM'=>$escuelaM]);*/
       //$escuelas = Escuelas::find($id);
-        return response()->json($this->escuela->toArray());
+       // return response()->json($this->escuela->toArray());
         // return view('paquetesescolares.escuela.index', ['escuelaM'=>$escuelaM]);
+
+       $escuela2=Escuelas::find($id);
+        return view('escuela.index',compact('$escuela2'));
     }
    
     /**
@@ -121,9 +128,28 @@ class ControladorEscuelas extends Controller
         return redirect('/escuela');*/
 
         //$escuelas = Escuelas::find($id);
-       $this->escuela->fill($request->all());
+      /* $this->escuela->fill($request->all());
        $this->escuela->save();
-        return response()->json(["mensaje" => "listo"]);
+        return response()->json(["mensaje" => "listo"]);*/
+         $escuelaM = Escuelas::find($id);
+        $aux=$request['hi2'];
+
+        if($aux=='1')
+        {
+        $escuelaM->nomesc = $request['nomesc'];
+        $escuelaM->nomdirec = $request['nomdirec'];
+        $escuelaM->telesc = $request['telesc'];
+        $escuelaM->diresc = $request['diresc'];
+       
+        }
+        
+
+
+        $escuelaM->save();
+
+
+    
+        return redirect::to('/escuela')->with('message','update');;
     }
 
     /**

@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\compras;
 use App\detalle_compra;
 use App\producto;
+use App\coutas;
+use App\auxiliar;
 class contoladorCompra extends Controller
 {
     /**
@@ -18,10 +20,14 @@ class contoladorCompra extends Controller
      */
     public function index()
     {
-      //return view('compra.modificarcompra'); 
-      $aux =\App\auxiliar::auxComp();
+        $comp=compras::Mostrarcompras();
+        $prov =\App\proveedor::All();
+         $comptotal=compras::all();
+        return view('compra.detalledecompra',compact('comp','prov','comptotal')); 
+     // return view('compra.modificarcompra',compact('comp')); 
+     // $aux =\App\auxiliar::auxComp();
        // return view('layouts.inicio');
-       return view('compra.create',compact('aux'));  
+     //  return view('compra.create',compact('aux'));  
     }
 
     /**
@@ -83,6 +89,30 @@ class contoladorCompra extends Controller
 
             ]);
         }
+        $ts=0;
+        $ban=1;
+        coutas::create([
+            'fechcouta' => $request['fechacompra'],
+            'estadcuota' => $ban,
+            'morac' => $ts, 
+            'ncuotas' => $request['cuotas'],
+            'cuotas' => $request['total'],
+            'idcompsc' => $ids,
+        ]);
+  $eAux =\App\auxiliar::All();
+        foreach ($eAux as $v) {
+                 
+                   
+                  $auxeliminar= auxiliar::find( $v->id );
+                  $auxeliminar->delete();               
+        }
+        
+        /*
+SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc, 
+       created_at, updated_at
+  FROM coutas;
+
+        */
         
         return redirect('compra/create');
         //return redirect('compra/create');

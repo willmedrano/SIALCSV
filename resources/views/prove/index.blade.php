@@ -1,5 +1,12 @@
 @extends('probandos')
+<?php $message=Session::get('message')?>
 
+@if($message=='update')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong> Sea Actualizado con exito el registro</strong>
+</div>
+@endif
 @section('content')
 <style>
 .bigicon {
@@ -42,21 +49,20 @@ h2,h1,span
 
 
 <!--Inicio de modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               @foreach ($provee as $provm)
+<div  id="Edit{{$provm->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">> 
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: white;" >&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel">Modificar datos del proveedor</h4>
+<h4 class="modal-title" id="gridModalLabel">Modificar Producto</h4>
       </div>
       <div class="modal-body">
-      <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-        <input type="hidden" id="id">
         <div class="container-fluid bd-example-row">
- 
-          <form class="form-horizontal" method="post">
-                    <fieldset>
+      {!!Form::model($provm,['method'=>'PATCH','route'=>['prove.update',$provm->id]])!!}
+      <fieldset>
+      <input type="hidden" name="hi2" value="1">
                            <table class="quitarborder" style="width:100%" >
       
           
@@ -74,7 +80,7 @@ h2,h1,span
            <tbody>
                <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Nombre: </label></span></td>
-                    <td colspan="3" align="center" ><input id="nomP" name="nomP" type="text" placeholder="Nombre del Proveedor" class="form-control" >
+                    <td colspan="3" align="center" ><input id="nompm" name="nompm" type="text" placeholder="Nombre del Proveedor" class="form-control" value="{{ $provm->nom }}">
                     <br></td>
 
                     <td></td>
@@ -84,7 +90,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Telefono: </label></span></td>
-                    <td colspan="2" align="center" ><input id="nomP" name="nomP" type="text" placeholder="Telefono del proveedor" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="telpm" name="telpm" type="text" placeholder="Telefono del proveedor" class="form-control" value="{{ $provm->tel }}"><br></td>
                     <td colspan="2" rowspan="2" align="center"><span align="center">
                         <i style="font-size: 150px;" class="fa fa-pencil-square-o fa-3x fa-fw bigicon" align="center"></i>
                     </span></td>
@@ -93,7 +99,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >NIT: </label></span></td>
-                    <td colspan="2" align="center"><input id="tipo" name="tipo" type="text" placeholder="Ingrese el nit" class="form-control"><br></td>
+                    <td colspan="2" align="center"><input id="nitpm" name="nitpm" type="text" placeholder="Ingrese el nit" class="form-control" value="{{ $provm->NIT}}"><br></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -101,7 +107,7 @@ h2,h1,span
              
                 <tr>
                    <td align="right" nowrap="nowrap"> <span class="text-center" ><label >Direccion: </label></span></td>
-                    <td colspan="4"><textarea rows="2" class="form-control" id="message" name="message" placeholder="Ingrese la direccion " rows="7"></textarea><br></td>
+                    <td colspan="4"><textarea rows="2" class="form-control" id="dirpm" name="dirpm" placeholder="Ingrese la direccion " rows="7">{{ $provm->dir }}</textarea><br></td>
                     <td></td>
                     <td></td>
                     
@@ -113,17 +119,19 @@ h2,h1,span
        </table>
                         
                     </fieldset>
-                </form>
+                 
         </div>
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div> 
+      {!!Form::close()!!}  
     </div>
   </div>
 </div>
+@endforeach
 <!--fin de modal -->
 
 
@@ -161,7 +169,7 @@ h2,h1,span
                                                   <span class="col-md-1 col-md-offset-7 text-center"><i class="fa fa-search bigicon icon_nav"></i>Buscar</span>
                                                <div class="col-xs-4">
 
-                                                <input id="fname" name="name" type="text" class="form-control">
+                                                <input  id="filtrar" name="name" type="text" class="form-control">
                                                 </div>
                                                    </div> 
 
@@ -180,8 +188,27 @@ h2,h1,span
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody id="datosprove">
+                                                <tbody id="datosprove" class="buscar">
 
+                                                <?php $con=0; ?>
+                                                @foreach($provee as $prov)
+                                                
+                                                    <?php $con++;?>
+                                                    <tr>
+                                                       <td>  <?php echo $con;?></td>
+                                                        <td>{{ $prov->nom }}</td>
+                                                        <td>{{ $prov->tel }}</td>
+                                                        <td>{{ $prov->NIT }}</td>
+                                                        <td>{{ $prov->dir }}</td>
+                                                       
+                                                       <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $prov->id }}" data-toggle="modal" data-target="#Edit{{ $prov->id }}">Modificar</a>
+                                                        </td>
+                                                         
+                                                       
+                                                    
+                                                   </tr>    
+                                                        
+                                                @endforeach  
                                               
                                                       
                                                 </tbody>
@@ -193,70 +220,8 @@ h2,h1,span
                            </div>
                            </section>
                            </article>
-
-                          
-                           
-
 @endsection
   @section('scripts')
-<script  type="text/javascript" >
- $(document).ready(function(){
-  Carga();
-});
-
-function Carga(){//esta funcion es para llenar la tabla
-  var tablaDatos = $("#datosprove");
-  var route = "/prove";
-
-  $("#datosprove").empty();
-  var con=1;
-  $.get(route, function(res){
-    $(res).each(function(key,value){
-      tablaDatos.append("<tr><td>"+con+"</td>"+"<td>"+value.nom+"</td><td>"+value.tel+"</td><td>"+value.nit+"</td><td>"+value.dir+"</td><td><button value="+value.id+" OnClick='Mostrar(this);' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal'>Modificar</button></td><td><button class='btn btn-primary btn-sm' value="+value.id+" OnClick='Estados(this);'>Activo</button></td></tr>");
-    con++;
-    });
-  });
-}
-
-function Mostrar(btn){//aqui es para que los cargu en la ventana modal los datos a modificar
-  var route = "/escuela/"+btn.value+"/edit";
-
-  $.get(route, function(res){
-    $("#idescuela").val(res.idescuela);
-    $("#nomesc").val(res.nomesc);
-    $("#nomdirec").val(res.nomdirec);
-    $("#telesc").val(res.telesc);
-    $("#diresc").val(res.diresc);
-
-    
-  });
-}
-
-$("#actualizar").click(function(){
-  var value = $("#idescuela").val();//recupera los datos del html
-  var dnomesc= $("#nomesc").val();
-  var dnomdirec= $("#nomdirec").val();
-  var dtelesc= $("#telesc").val();
-  var ddiresc= $("#diresc").val();
-  var route = "/escuela/"+value+"";
-  var token = $("#token").val();//aqui recupero de mi variable toque para decirle a laravel no es intencionada
-  var data ='nomesc='+dnomesc+'&nomdirec='+dnomdirec+'&telesc='+dtelesc+'&diresc='+ddiresc;//cuidadito esto espara poder guardar en la base de datos
-  $.ajax({
-    url: route,
-    headers: {'X-CSRF-TOKEN': token},
-    type: 'PUT',
-    dataType: 'json',
-    data: data,
-    success: function(){
-      Carga();
-
-      $("#myModal").modal('toggle');// se oculte la ventana modal despues de haber actualizado
-      $("#msj-success").fadeIn();//me muestra un msj que se actualizado para que lo note el usuario
-    }
-  });
-});
-
-
-
-</script>
-@endsection
+    {!!Html::script('js/buscaresc.js')!!}
+  @endsection
+ 
