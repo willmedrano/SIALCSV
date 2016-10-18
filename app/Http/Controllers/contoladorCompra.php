@@ -11,6 +11,7 @@ use App\detalle_compra;
 use App\producto;
 use App\coutas;
 use App\auxiliar;
+use App\lotes;
 class contoladorCompra extends Controller
 {
     /**
@@ -79,7 +80,8 @@ class contoladorCompra extends Controller
         }
 
         $gAux =\App\auxiliar::All();
-        foreach ($gAux as $valor) {
+        foreach ($gAux as $valor) 
+        {
             detalle_compra::create([
                 'preciocomp' => $valor->preciocomp2,
                 'descompra' => $valor->descompra2,
@@ -88,14 +90,38 @@ class contoladorCompra extends Controller
                 'idcomps' => $ids,
 
             ]);
-        }
+            $id=$valor->idprods2;
+
+            $lotes=lotes::Llenarlotes($id);
+            
+                if(empty($lotes)){
+                lotes::create([
+                'preciolote' => $valor->preciocomp2,
+                'deslote' => $valor->descompra2,
+                'canlote' => $valor->cancompra2,
+                'idprodsl' => $valor->idprods2,
+                'idcompsl' => $ids,
+                 ]);
+                }else{
+                    //dd($lotes[0]->canlote);
+                    $i=$lotes[0]->id;
+                    $lot = lotes::find($i);
+                    $precioAcumulado = $lotes[0]->preciolote + $valor->preciocomp2;
+                    $descuentoAcumulado =  $lotes[0]->deslote + $valor->descompra2;
+                    $canAcumulado = $lotes[0]->canlote +  $valor->cancompra2;
+                    $lot->preciolote = $precioAcumulado;
+                    $lot->deslote = $descuentoAcumulado;
+                    $lot->canlote = $canAcumulado;
+                    $lot->save();   
+                    }
+    }
         $ts=0;
         $ban=1;
         coutas::create([
             'fechcouta' => $request['fechacompra'],
             'estadcuota' => $ban,
             'morac' => $ts, 
-            'ncuotas' => $request['cuotas'],
+            'ncuotas' => $request['ncuotas'],
             'cuotas' => $request['total'],
             'idcompsc' => $ids,
         ]);

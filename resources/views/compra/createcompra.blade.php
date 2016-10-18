@@ -194,7 +194,8 @@ h2,h1,span
                                                            $d=$aux2->descompra2 / 100;
                                                             $b=$d * ($aux2->cancompra2*$aux2->preciocomp2);
                                                             $a=($aux2->cancompra2*$aux2->preciocomp2) - $b;
-                                                            $p=$p+$a;
+                                                            $iva=($p+$a)*0.13;
+                                                            $p=$p+$a+$iva;
                                                             echo $a;
                                                             ?>
                                                         </td>
@@ -285,7 +286,7 @@ h2,h1,span
                                                   <div class="col-xs-3">
                                                  
                                              <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" value="1" disabled = 'true' onkeyup="cuotasapagar();">
-                                               <input type="hidden" name="ncuotas" id="ncuotas" >
+                                               <input type="hidden" name="ncuotas" id="ncuotas" value="1">
                                                </div>
                                                 </div>
 
@@ -297,8 +298,8 @@ h2,h1,span
                                                 <div class="col-xs-3">
                                                     
                                                   
-                                                  <input id="montocouta" name="montocouta" type="text" placeholder="cuotas monto" class="form-control" >
-
+                                                  <input id="montocouta" name="montocouta" type="text" placeholder="cuotas monto" class="form-control" disabled = 'true' value="<?php echo $p;?>">
+                                                   <input type="hidden" name="ppcuotas" id="ppcuotas" >
                                             
                                                  
                                                 </div>
@@ -387,7 +388,7 @@ if(isNaN(a)){
   
  document.frm2.montocouta.value=c;
  //alert(document.frm2.cantotal.value);
- alert(c.toFixed(2));
+ //alert(c.toFixed(2));
 }
 
  $(document).ready(function(){
@@ -414,18 +415,30 @@ $('#aux').on('change','#idcodproduc',function (){
            
           var posicion=document.getElementById('formap').options.selectedIndex; //posicion
           var j=document.getElementById('formap').options[posicion].text; //valor
-           if(j=="Contado"){
-            document.frm2.cuotas.disabled = true;// esto es para que no se pueda editar
-            $("#cuotas").val(""+1);
-            document.frm2.ncuotas.value=document.frm2.cuotas.value;
+          
+
+
+           if(j=="Contado")
+           {
+                   document.frm2.cuotas.disabled = true;// esto es para que no se pueda editar
+                  $("#cuotas").val(""+1);
+                  document.frm2.montocouta.value=document.frm2.total.value;
+                
+                  document.frm2.ppcuotas.value= document.frm2.montocouta.value;
+
+                  var a=document.frm2.total.value;
+                  document.frm2.ncuotas.value=1;
            // $('#cuotas').removeAttr("required");// quitarle de que es requerido
            }if(j=="Credito"){
             v="";
-            document.frm2.cuotas.disabled = false;//Aqui es para que si lo pueda editar
+              document.frm2.cuotas.disabled = false;//Aqui es para que si lo pueda editar
+              document.frm2.ppcuotas.value=document.frm2.montocouta.value;
              //$('#cuotas').prop("required", true);//aqui le asigna que este campo es requerido
              //input_form.setAttribute("type", "password");
             $("#cuotas").val("");
             document.frm2.ncuotas.value=document.frm2.cuotas.value;
+          
+            document.frm2.ppcuotas.value=document.frm2.montocouta.value;
             }
            
 
@@ -443,7 +456,7 @@ function enter(){
       
       //var producto=$("");/escuela/"+btn.value+"/edit"
      var ruta="/llenadoProducto/"+producto;
-alert(ruta);
+
 
      $.get(ruta,function(res){
            //producto.empty();

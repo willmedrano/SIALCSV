@@ -32,4 +32,5 @@ class compras extends Model //Aqui escribimos campos de modelo
             ->orderBy('compras.id')
             ->get();
    }
+
 }

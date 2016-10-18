@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class lotes extends Model
 {
      // aqui se definen en nuestro modelo el nombre de la tabla que podremos utilizar para insertar en la base de datos.
@@ -17,4 +17,13 @@ class lotes extends Model
     //idprodsl;       es para saber la informacion de ese producto que sea adquirido
     //idcompsl;       es para saber que compra que de que se adquirido.
     protected $fillable = ['preciolote', 'deslote', 'canlote', 'idprodsl', 'idcompsl'];//Aqui creamos los campos de la tabla 
+   public static function Llenarlotes( $id){
+   	       return DB::table('lotes')
+            ->select('lotes.*')
+            ->where('idprodsl','=',$id)
+            ->get();
+
+   }
+
+
 }
