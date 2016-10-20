@@ -97,7 +97,7 @@ h2,h1,span
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input id="nomproducto" name="nomproducto1" type="text" placeholder="Nombre del Producto" class="form-control">
+                            <input id="nomproducto" name="nomproducto1" required type="text" placeholder="Nombre del Producto" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
                            <i class="fa fa-truck bigicon"></i>
@@ -128,7 +128,7 @@ h2,h1,span
                             <i class="fa fa-shopping-cart bigicon"></i></span>
 
                       <div class="col-xs-3">
-                      <input id="cantcomp" name="cantcomp" type="text" placeholder="cantidad a comprar" class="form-control" onkeyup="sumar();">
+                      <input id="cantcomp" name="cantcomp" type="text" required placeholder="cantidad a comprar" class="form-control" onkeyup="sumar();">
                       </div>
                       <span class="col-md-1  text-center"><i class="fa fa-dollar bigicon"></i></span>
                       <div class="col-xs-3">

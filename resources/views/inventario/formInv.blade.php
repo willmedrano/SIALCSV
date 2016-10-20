@@ -95,7 +95,7 @@ h2
 
                             <span class="col-md-1  text-center"><i class="fa fa-dropbox bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="uniCaja" name="uniCaja" type="text" placeholder="Unidades de una Caja" class="form-control">
+                                <input id="uniCaja" name="uniCaja" type="text" requiered placeholder="Unidades de una Caja" class="form-control">
                                 
                             </div>
                         </div>
@@ -105,7 +105,7 @@ h2
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-tags bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="marca" name="marca" type="text" placeholder="Marca " class="form-control">
+                                <input id="marca" name="marca" type="text" required placeholder="Marca " class="form-control">
                             </div>
                         </div>
                         <br>

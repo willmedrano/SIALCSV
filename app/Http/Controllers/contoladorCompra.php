@@ -90,8 +90,13 @@ class contoladorCompra extends Controller
                 'idcomps' => $ids,
 
             ]);
-            $id=$valor->idprods2;
+            
 
+
+
+
+            $id=$valor->idprods2;
+            $costo =\App\producto::find($id);
             $lotes=lotes::Llenarlotes($id);
             
                 if(empty($lotes)){
@@ -102,7 +107,11 @@ class contoladorCompra extends Controller
                 'idprodsl' => $valor->idprods2,
                 'idcompsl' => $ids,
                  ]);
-                }else{
+
+                $costo->cPromedio=($valor->preciocomp2/$valor->cancompra2);
+                //$costo->save();
+                }
+                else{
                     //dd($lotes[0]->canlote);
                     $i=$lotes[0]->id;
                     $lot = lotes::find($i);
@@ -112,8 +121,14 @@ class contoladorCompra extends Controller
                     $lot->preciolote = $precioAcumulado;
                     $lot->deslote = $descuentoAcumulado;
                     $lot->canlote = $canAcumulado;
-                    $lot->save();   
+                    $lot->save(); 
+
+                    $costo->cPromedio=((($lotes[0]->canlote*$costo->cPromedio)+$valor->preciocomp2)/($valor->cancompra2+$lotes[0]->canlote));
+                  
                     }
+  $costo->save();
+            
+            
     }
         $ts=0;
         $ban=1;
@@ -125,6 +140,11 @@ class contoladorCompra extends Controller
             'cuotas' => $request['total'],
             'idcompsc' => $ids,
         ]);
+        
+        
+
+
+
   $eAux =\App\auxiliar::All();
         foreach ($eAux as $v) {
                  
