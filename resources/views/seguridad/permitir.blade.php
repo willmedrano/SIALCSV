@@ -33,14 +33,14 @@ legend{
         <input type="hidden" id="id">
              
           
+ <!--{!! Form::open(['route'=>'log.store','method'=>'POST'])!!}-->
 
-
-             {!!Form::model($cat,['method'=>'PATCH','route'=>['log.update',$cat->id]])!!}
+             {!!Form::model(['method'=>'PATCH','route'=>'permitir.store'])!!}
                                                 
                                                
               
                     <fieldset>
-                     <input type="hidden" name="hi2" value="1">
+                     <input type="hidden" name="hi2" value="{{$cat->id}}">
                            <table class="quitarborder" style="width:100%" >
       
           
@@ -100,7 +100,7 @@ legend{
                     <td colspan="2.5" align="center" >
                      <br> 
                     <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" value="{{ $cat->nomEmp }}" class="form-control">
-                    <<input type="hidden" name="permitir" id="permitir" value="">
+                    <input type="hidden" name="permitir" id="permitir" value="">
                     <br></td>
                       <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
                     <td colspan="2.5" align="center" > <br><input id="apeEmp" name="apeEmp" type="text" value="{{ $cat->apeEmp }}"  placeholder="Apellido" class="form-control"><br></td>
@@ -134,7 +134,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Usuario: </label></span></td>
-                    <td colspan="2" align="center" ><input id="login" name="login" type="text" value="{{ $cat->nomEmp }}{{ $cat->id }}"placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="login" name="login" type="text" value="admin{{ $cat->id }}"placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -144,7 +144,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Contraseña: </label></span></td>
-                    <td colspan="2" align="center" ><input id="pass" name="pass" type="password" value="{{ $cat->nomEmp }}{{ $cat->id }}" placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="pass" name="pass" type="password" value="admin{{ $cat->id }}" placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -157,7 +157,8 @@ legend{
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Cargo: </label></span></td>
                     <td colspan="3" align="center" ><select name="cargo" class=" form-control">
                             @foreach($emple as $emplec)
-                                
+                              
+
                                 <option  value="{{ $emplec->cargoEmp }}" >{{ $emplec->cargoEmp }}</option>
                                 
                                 
@@ -260,22 +261,29 @@ legend{
                                     </thead>
                                     <tbody class="buscar">
 
-
-                                    @foreach($emple as $emple)
+                    <?php $cont=0; ?>
+                                    @foreach($emple as $emples)
+                                     <?php
+                                     
+                      $resultado=DB::select('select * from usuarios where idemp = ?', [ $emples->id ]); 
+                                        if($resultado==false){
+                                          $cont++;
+                                      ?>
                                                     <tr>
-                                                        <td>{{ $emple->id }}</td>
-                                                        <td>{{ $emple->nomEmp }}</td>
-                                                        <td>{{ $emple->apeEmp }}</td>
-                                                        <td>{{ $emple->telEmp }}</td>
-                                                        <td>{{ $emple->sexEmp }}</td>
-                                                        <td>{{ $emple->cargoEmp }}</td>
+                                                        <td><?php echo $cont; ?></td>
+                                                        <td>{{ $emples->nomEmp }}</td>
+                                                        <td>{{ $emples->apeEmp }}</td>
+                                                        <td>{{ $emples->telEmp }}</td>
+                                                        <td>{{ $emples->sexEmp }}</td>
+                                                        <td>{{ $emples->cargoEmp }}</td>
                                                         
-                                               <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emple->id }}" data-toggle="modal" data-target="#Edit{{ $emple->id }}">Permitir</a>
+                                               <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emples->id }}" data-toggle="modal" data-target="#Edit{{ $emples->id }}">Permitir</a>
                                                     
 
                                                     </tr>
-
-                                                    
+                                
+                                              <?php } 
+                                                     ?>
                                                       @endforeach  
                                         
                                         

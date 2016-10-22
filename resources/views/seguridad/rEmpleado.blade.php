@@ -115,7 +115,7 @@ legend{
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="nac" name="Fnac" type="date" placeholder="Fecha de Nacimiento " class="form-control">
+                                                    <input id="nac" name="Fnac" type="date" placeholder="Fecha de Nacimiento " class="form-control" data-toggle="tooltip" title="Fecha de nacimiento">
                                                  </div>
 
                                             </div>
@@ -203,4 +203,13 @@ legend{
                     </section>
   
 @stop
+
+@section('scripts')
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+ @endsection
 

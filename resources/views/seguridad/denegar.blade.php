@@ -18,12 +18,170 @@ legend{
    
                
 
-                <article class="content forms-page" >
+               <article class="content static-tables-page">
+               @foreach ($emple as $cat)
+                <div class="modal fade" id="Edit{{$cat->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: white;" >&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel">Negar Acceso</h4>
+      </div>
+      <div class="modal-body">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+        <input type="hidden" id="id">
+             
+          
+ <!--{!! Form::open(['route'=>'log.store','method'=>'POST'])!!}-->
+
+             {!!Form::model(['method'=>'PATCH','route'=>'permitir.store'])!!}
+                                                
+                                               
+              
+                    <fieldset>
+                     <input type="hidden" name="hi2" value="{{$cat->id}}">
+                           <table class="quitarborder" style="width:100%" >
+      
+          
+           <thead>
+               <tr>
+                   <th></th>
+                   <th ></th>
+                    <th ></th>
+                    <th ></th>
+                    <th ></th>
+                   <th colspan="2"></th>
+
+                   
+               </tr>
+           </thead>
+           <body onload="function hola()">
+
+
+           <script>
+    //alert("Page is loaded");
+
+     
+            $('#myModal').on('show.bs.modal', function hola(e) {
+               
+    //get data-id attribute of the clicked element
+          var productId = $(e.relatedTarget).data('empleid');
+
+         alert(productid);
+
+        //var productName = $(e.relatedTarget).data('product_name');
+    //$("#confirmDelete #pName").val( productName );
+    //$("#delForm").attr('action', 'put your action here with productId');//e.g. 'domainname/products/' + productId
+});
+    
+
+</script>
+
+                   <tr>
+                 
+                    <td colspan="6" align="center" ><IMG src="assets/faces/3.jpg"  WIDTH=120 HEIGHT=130 ALT="Foto"><br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                   
+                    
+               </tr>
+
+                       
+              <tr>
+                    
+                  
+                   <td align="right" nowrap="nowrap"> 
+                  
+
+                  <span class="text-center" ><label >Nombre: </label></span></td>
+                    <td colspan="2.5" align="center" >
+                     <br> 
+                    <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" disabled="true" value="{{ $cat->nomEmp }}" class="form-control">
+                    <input type="hidden" name="permitir" id="permitir" value="">
+                    <br></td>
+                      <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
+                    <td colspan="2.5" align="center" > <br><input id="apeEmp" name="apeEmp" type="text" disabled="true" value="{{ $cat->apeEmp }}"  placeholder="Apellido" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                
+               </tr>
+
+               <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Codigo: </label></span></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correoEmp" type="text" disabled="true"  placeholder="Correo" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+
+                
+                
+                
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Telefono: </label></span></td>
+                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" disabled="true" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Correo: </label></span></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correoEmp" type="text" disabled="true"  placeholder="Correo" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+                <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Cargo: </label></span></td>
+                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" disabled="true" value="{{ $cat->cargoEmp }}" placeholder="telefono" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+
+               
+                
+
+               
+               
+
+               
+                
+                
+               
+           </body>
+       </table>
+                        
+                    </fieldset>
+                    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+       <!-- <button type="button" class="btn btn-primary">Guardar</button> -->
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+              
+                                     {!! Form::close() !!}
+        </div>
+      
+
+      
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
                   
                    
                     <div class="title-block">
                         <h1 class="title">Seguridad</h1>
-                        <p class="title-description"> Denegar Acceso </p> 
+                        <p class="title-description"> Negar Acceso </p> 
                          
                            
                     </div>
@@ -36,7 +194,7 @@ legend{
 
                        <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title">Denegar Acceso</h1>
+                                <h1 class="panel-title">Negar Acceso</h1>
                              </div>
 
                             <section class="section">
@@ -44,14 +202,12 @@ legend{
                                     <di>
                                     <div class="card card-block sameheight-item" >
 
+
                                          <form class="form-horizontal" method="post">
 
-
-                                         <div class="col-md-12" align="center">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="card-title-block">
-                                            <h3 class="title">
+                                            
+                                      
+                                            <h2>
                             Empleados
                         </h3> 
                         <br>
@@ -59,13 +215,13 @@ legend{
                                                   <span class="col-md-1 col-md-offset-8 text-center"><i class="fa fa-search bigicon icon_nav"></i>Buscar</span>
                                                <div class="col-xs-3">
 
-                                                <input id="fname" name="name" type="text"  class="form-control">
+                                                <input id="filtrar" name="name1" type="text"  class="form-control">
                                                 </div>
                                                    </div>
+                          
 
-
-                        </div>
-                                        <section class="example">
+                       
+                                        
                                              <div class="form-group">
                                                
                                             
@@ -81,49 +237,47 @@ legend{
                                             <th> Apellido </th>
                                             <th> Telefono </th>
                                             <th> Correo </th>
-                                            <th> Correo </th>
+                                            <th> Cargo </th>
                                             <th> Acceso </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        
-                                        <tr align="center">
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                             <td>-</td>
-                                             <td><button class="btn btn-danger active">Denegar</button></td>
-                                        </tr>
+                                    <tbody class="buscar">
 
-                                          <tr align="center">
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                             <td>-</td>
-                                             <td><button class="btn btn-danger active">Denegar</button></td>
-                                        </tr>
-                                          <tr align="center">
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                             <td>-</td>
-                                             <td><button class="btn btn-danger active">Denegar</button></td>
-                                        </tr>
+                    <?php $cont=0; ?>
+                                    @foreach($emple as $emples)
+                                     <?php
+                                     
+                      
+                                          $cont++;
+                                      ?>
+                                                    <tr>
+                                                        <td><?php echo $cont; ?></td>
+                                                        <td>{{ $emples->nomEmp }}</td>
+                                                        <td>{{ $emples->apeEmp }}</td>
+                                                        <td>{{ $emples->telEmp }}</td>
+                                                        <td> {{$emples->apeEmp }} </td>
+                                                        
+                                                        <td>{{ $emples->cargoEmp }}</td>
+                                                        
+                                               <td><a href="#"   class="btn btn-danger btn-sm active" data-id="{{ $emples->id }}" data-toggle="modal" data-target="#Edit{{ $emples->id }}">Denegar</a>
+                                                    
+                                                      
+                                                    </tr>
+                                
+                                             
+                                                      @endforeach  
+                                        
+                                        
                                     </tbody>
                                                      </table>
                                                             
                                                         
                                                 </div>
-                                                </div>
-                                                </div>
-                                            </div>
+                                                
                                         </section>
+
+</form>
+                               
                                     </div>
                                 </div>
                             </div>
@@ -133,105 +287,9 @@ legend{
                     <br>
                     <br>
                     
-                                            <div  align="center">
-
-                                                <div>
-                                                    <IMG SRC="#" WIDTH=120 HEIGHT=130 ALT="Obra de K. Haring">
-                                                </div>
-
-                                                <div class="col-xs-12" align="center">
-                                                    <br>
-                                                   
-
-                                                 </div>
-                                            </div> 
-    
-                                             
-                                            <div class="form-group">
-
-                                                
-
-
-
-                                                 
-                                                  <span class="col-md-1 col-md-offset-2 text-center"><i>Codigo</i></span>
-                            <div class="col-xs-2">
-
-                                <input id="fname" name="name" type="text"  class="form-control">
-                            </div>
-
-                            
-                                                
-                                                   </div>
-                                                         
-                                                      <div class="form-group">
-                                                    
-                                                    <span class="col-md-1 col-md-offset-2 text-center"><i>Nombre</i></span>
-                                                <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
-                                                 <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
-                            
-                                                
-                                                   </div>
-                                                      
-                                                      <div class="form-group">
-                                                     
-                                                     <span class="col-md-1 col-md-offset-2 text-center"><i>Telefono</i></span>
-                                                <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
-                                                 <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
-                                                      </div>
-                                                
-
-                                                 <div class="form-group">
-                                                     
-                                                     <span class="col-md-1 col-md-offset-2 text-center"><i>Correo</i></span>
-                                                <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
-                                                 
-                                                      </div>
-
-                                                    
-                                                   
-                                           
-                                              <div class="form-group">
-                                                  <span class="col-md-1 col-md-offset-2 text-center"><i>Usuario</i></span>
-                                               <div class="col-xs-3">
-
-                                                <input id="fname" name="name" type="text"  class="form-control">
-                                                </div>
-                                                   </div>
-                                                         
-                                                           
-                                                           
-                                                           <div class="form-group">
-                                                  <span class="col-md-1 col-md-offset-2 text-center"><i>Contraseña</i></span>
-                            <div class="col-xs-3">
-
-                                <input id="fname" name="name" type="text"  class="form-control">
-                            </div>
-                                                    </div>
-
-                                                     <div class="form-group">
-                                                <div class="col-md-12 text-center" align="center">
-                                                    <button type="submit"  class="btn btn-primary btn-lg">Denegar</button>
-                                                </div>                  
-                                            </div>
-                                               
-                  
-                                      </form>
+                    
+                   
+                                     
                                     
                                 </div>
                             </div>
@@ -239,4 +297,8 @@ legend{
                         </div>
                     </section>
   
-@stop
+@endsection
+  @section('scripts')
+  
+    {!!Html::script('js/buscaresc.js')!!}
+  @endsection

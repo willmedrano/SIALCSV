@@ -22,10 +22,10 @@ class login extends Controller
     public function index()
     { 
         //referencia al modelo para llenar la tabla
-       $emple=\App\empleado::All();
+       //$emple=\App\empleado::All();
       //$emp=\App\empleado::sEmp();
        //return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
-       return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
+       //return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
          //return view('seguridad.rEmpleado');
         //return view('seguridad.pago',compact('emple'));//llenar la tabla pago
     }
@@ -135,10 +135,6 @@ class login extends Controller
         //$trab->contraEmp = $request['desc'];
         }
 
-
-         
-
-
         if($aux=='2')
         {
             $trab->estadoEmp =true;
@@ -150,14 +146,8 @@ class login extends Controller
 
 
         $trab->save();
-        //esto agregado chepe jonathan
-/*usuario::create([
-            'login'=>$request['login'],
-            'pass'=>$request['pass'],
-            'correoEmp'=>$request['correoEmp'],
-            'idEmp'=>$id,
-            ]);
-*/
+        
+
 
     return redirect('/log/');
 

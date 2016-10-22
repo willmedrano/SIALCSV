@@ -77,7 +77,7 @@ legend{
                     <div class="auth-content">
                         <p class="text-xs-center">INICIAR SESION PARA CONTINUAR</p>
 
-                      {!! Form::open(['route'=>'logear.store','method'=>'POST'])!!}
+                      {!! Form::open(['route'=>'log.store','method'=>'POST'])!!}
                             <div class="form-group"> 
                             <i class="fa fa-user bigicon"></i>
                                 <label for="username">Usuario</label> 

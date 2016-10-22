@@ -59,6 +59,7 @@ Route::resource('inve',"inventario");
 Route::resource('log',"login");
 Route::resource('empleado',"Controladorempleado");
 Route::resource('permitir',"Controladorpermitir");
+Route::resource('negar',"controladorNegar");
 Route::resource('aux2',"auxiliarControl");
 
 
