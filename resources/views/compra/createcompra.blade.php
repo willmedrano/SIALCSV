@@ -195,7 +195,8 @@ h2,h1,span
                                                             $b=$d * ($aux2->cancompra2*$aux2->preciocomp2);
                                                             $a=($aux2->cancompra2*$aux2->preciocomp2) - $b;
                                                             $iva=($p+$a)*0.13;
-                                                            $p=$p+$a+$iva;
+                                                            $p=$p+$a;
+                                                            
                                                             echo $a;
                                                             ?>
                                                         </td>
@@ -255,8 +256,8 @@ h2,h1,span
                                                     
                                                  
                                                     <select class="form-control" name="formap" id="formap" onclick ="seleccionTipopago();">
-                                                        <option value="Contado" selected="true">Contado</option>
-                                                        <option value="Credito">Credito </option>   
+                                                        <option value="Contado" selected="true">Credito</option>
+                                                        <option value="Credito">Contado</option>   
                                                     </select>
                                             
                                                 </div>
@@ -282,17 +283,24 @@ h2,h1,span
                                             
                                                  
                                                 </div>
-                                                   <span class="col-md-1  text-center"><i class="bigicon"style=" font-weight: bold;">#</i></span>
+                                                   <span class="col-md-1  text-center"><i class="bigicon"style=" font-weight: bold;">IVA</i></span>
                                                   <div class="col-xs-3">
                                                  
-                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" value="1" disabled = 'true' onkeyup="cuotasapagar();">
-                                               <input type="hidden" name="ncuotas" id="ncuotas" value="1">
+                                             <input id="IVA" name="IVA" type="text" placeholder="IVA A Pagar" class="form-control" disabled = 'true' value="<?php echo $p*0.13;?>" >
                                                </div>
                                                 </div>
 
                                             <br>
                                             <div class="form-group">
-                                            <span class="col-md-1 col-md-offset-2 text-center">
+
+                                            <span class="col-md-1 col-md-offset-2 text-center"><i class="bigicon"style=" font-weight: bold;">#</i></span>
+                                                  <div class="col-xs-3">
+                                                 
+                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" value="10" onkeyup="cuotasapagar();">
+                                               <input type="hidden" name="ncuotas" id="ncuotas" value="1">
+                                               </div>
+
+                                            <span class="col-md-1  text-center">
                                                     <i> moto por cuota:</i>
                                                 </span>
                                                 <div class="col-xs-3">
@@ -418,6 +426,18 @@ $('#aux').on('change','#idcodproduc',function (){
           
 
 
+            if(j=="Credito"){
+            v="";
+              document.frm2.cuotas.disabled = false;//Aqui es para que si lo pueda editar
+              document.frm2.ppcuotas.value=document.frm2.montocouta.value;
+             //$('#cuotas').prop("required", true);//aqui le asigna que este campo es requerido
+             //input_form.setAttribute("type", "password");
+            $("#cuotas").val("");
+
+            document.frm2.ncuotas.value=document.frm2.cuotas.value;
+          
+            document.frm2.ppcuotas.value=document.frm2.montocouta.value;
+            }
            if(j=="Contado")
            {
                    document.frm2.cuotas.disabled = true;// esto es para que no se pueda editar
@@ -429,17 +449,7 @@ $('#aux').on('change','#idcodproduc',function (){
                   var a=document.frm2.total.value;
                   document.frm2.ncuotas.value=1;
            // $('#cuotas').removeAttr("required");// quitarle de que es requerido
-           }if(j=="Credito"){
-            v="";
-              document.frm2.cuotas.disabled = false;//Aqui es para que si lo pueda editar
-              document.frm2.ppcuotas.value=document.frm2.montocouta.value;
-             //$('#cuotas').prop("required", true);//aqui le asigna que este campo es requerido
-             //input_form.setAttribute("type", "password");
-            $("#cuotas").val("");
-            document.frm2.ncuotas.value=document.frm2.cuotas.value;
-          
-            document.frm2.ppcuotas.value=document.frm2.montocouta.value;
-            }
+           }
            
 
             

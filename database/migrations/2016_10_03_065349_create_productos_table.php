@@ -23,7 +23,7 @@ class CreateProductosTable extends Migration
             $table->Integer('gUni');
             $table->Integer('gCaja');
             $table->string('desc');
-            $table->Double('cPromedio')->default(0.00);
+            $table->Double('cPromedio', 7, 2)->default(0.00);
             $table->boolean('estado')->default(true);
             
             $table->timestamps();

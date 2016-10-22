@@ -13,5 +13,5 @@ class coutas extends Model
     //morac;         Es por si le toca pagar mora por no haber pagado a la fecha que le tocaba cancelarle al proveedor
     //ncuotas;       Es la cantidad de cuotas que tiene que pagar
     //idcompsc;      Es para tener el conocimiento de que compra es que debo de pagar
-    protected $fillable = ['fechcouta', 'estadcuota', 'morac', 'ncuotas', 'cuotas', 'idcompsc'];//Aqui creamos los campos de la tabla 
+    protected $fillable = ['fechcouta', 'estadcuota', 'morac', 'cuotas', 'idcompsc'];//Aqui creamos los campos de la tabla 
 }

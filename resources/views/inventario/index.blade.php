@@ -249,10 +249,13 @@ h2,h1,span
                                                         <th>Marca</th>
                                                         <th>Costo Promedio</th>
                                                         <th>%Ganacias</th>
-                                                        <th>Precio de venta</th>
+                                                        
+                                                        
+                                                        <th>Precio de Caja</th>
                                                         <th>#Unidades Caja</th>
                                                         <th>%Ganancias</th>
-                                                        <th>Precio de Caja</th>
+                                                        
+                                                        <th>Precio de venta</th>
                                                         <th>Proveedor</th>
                                                         <th>Descripcion</th>
                                                         <th colspan="1" rowspan="">Accion</th>
@@ -268,20 +271,22 @@ h2,h1,span
                                                         <td>{{ $pro->cod }}</td>
                                                         <td>{{ $pro->nomProd }}</td>
                                                         <td>{{ $pro->marca }}</td>
-                                                        <td>{{ $pro->cPromedio}}</td>
-                                                        <td>{{ $pro->gUni}}</td>
-                                                        <td>
+                                                        <td> $ {{ $pro->cPromedio}}</td>
+                                                        <td>% {{ $pro->gCaja }}</td>
+                                                        <td> $ <?php
+                                                            $a=((($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio));
+                                                            echo round($a, 2);
+                                                            ?></td>
+                                                            <td >{{ $pro->uniCaja }}</td>
+                                                            <td> % {{ $pro->gUni}}</td>
+                                                        <td> $ 
                                                            <?php
-                                                            $a=(($pro->cPromedio*($pro->gUni/100))+$pro->cPromedio);
-                                                            echo $a;
+                                                            $a=((($pro->cPromedio/$pro->uniCaja)*($pro->gUni/100)))+($pro->cPromedio/$pro->uniCaja);
+                                                            echo round($a,2);
                                                             ?>
                                                         </td>
-                                                        <td >{{ $pro->uniCaja }}</td>
-                                                        <td>{{ $pro->gCaja }}</td>
-                                                        <td><?php
-                                                            $a=((($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio))*$pro->uniCaja;
-                                                            echo $a;
-                                                            ?></td>
+                                                        
+                                                        
                                                         
                                                                     <td>{{ $pro->nom }}</td>
                                                                 

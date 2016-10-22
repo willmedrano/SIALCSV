@@ -108,7 +108,7 @@ class contoladorCompra extends Controller
                 'idcompsl' => $ids,
                  ]);
 
-                $costo->cPromedio=($valor->preciocomp2/$valor->cancompra2);
+                $costo->cPromedio=($valor->preciocomp2);
                 //$costo->save();
                 }
                 else{
@@ -123,23 +123,40 @@ class contoladorCompra extends Controller
                     $lot->canlote = $canAcumulado;
                     $lot->save(); 
 
-                    $costo->cPromedio=((($lotes[0]->canlote*$costo->cPromedio)+$valor->preciocomp2)/($valor->cancompra2+$lotes[0]->canlote));
+                    $costo->cPromedio=(($lotes[0]->canlote*$costo->cPromedio)+($valor->cancompra2*$valor->preciocomp2))/($lotes[0]->canlote+$valor->cancompra2);
                   
                     }
   $costo->save();
             
             
     }
-        $ts=0;
-        $ban=1;
-        coutas::create([
-            'fechcouta' => $request['fechacompra'],
-            'estadcuota' => $ban,
-            'morac' => $ts, 
-            'ncuotas' => $request['ncuotas'],
-            'cuotas' => $request['total'],
-            'idcompsc' => $ids,
-        ]);
+       
+        $cuot=$request['cuotas'];
+
+        if(empty($cuot))
+        {
+            coutas::create([
+                'fechcouta' => $request['fechacompra'],
+                'cuotas' => $request['total'],
+                'idcompsc' => $ids,
+                ]);
+        }
+        else
+        {
+            $dt=$request['fechacompra'];
+            for ($i=1; $i <=$cuot ; $i++) { 
+            # code...
+                $v="+"+$i+" month";
+                $dt =date("Y/m/d", strtotime("$dt +1 month"));
+                
+
+                coutas::create([
+                'fechcouta' => $dt,
+                'cuotas' => $request['total'],
+                'idcompsc' => $ids,
+                ]);
+            }
+        }
         
         
 
