@@ -11,11 +11,15 @@
     font-size: 35px;
     color: #36A0FF;
 }
-legend{
+.legend{
     color: #36A0FF;
 }
-}
-    
+
+  .thumb{
+     height: 300px;
+     border: 1px solid #000;
+     margin: 10px 5px 0 0;
+}  
 </style>
    
                
@@ -35,7 +39,7 @@ legend{
                     {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
                     {!!Html::style('assets/css/style.css')!!}  
                     {!!Html::style('ssets/css/main-style.css')!!} 
-
+{!!Html::script('js/jquery-1.9.0.min.js')!!}
                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h1 class="panel-title">Registro de empleado</h1>
@@ -46,35 +50,25 @@ legend{
                                 <div>
                                     <div class="card card-block sameheight-item" >
                                     
-                                     {!! Form::open(['route'=>'log.store','method'=>'POST'])!!}
+                                     
 
                                         <div class="form-horizontal">
+                                      
                     
-                                            <div  align="center">
+{!! Form::open(array('route'=>'log.store', 'method' => 'post','files'=>true) )!!}
 
-                                                <div>
-                                                    <IMG SRC="#" WIDTH=120 HEIGHT=130 ALT="Obra de K. Haring">
-                                                </div>
-
-                                                <div class="col-xs-12" align="center">
-                                                    <br>
-                                                    <label>Subir Fotrografia </label> 
-
-                                                 </div>
-                                            </div>               
-
-                                            <div class="form-group">
-
-                                                <span class="col-md-1 col-md-offset-2 text-center">
-                                                    <i class="fa fa-folder-o bigicon"></i>
-                                                </span>
-
-                                                <div class="col-xs-8">
-                                                    <input id="lname" name="name" type="file"  class="form-control">
-                                                </div>
-                                            </div>            
                                             <br>
+                                            <div class="form-group">
+                                            <div class="form-group col-xs-12" align="center" >
+                                            <img src="assets/faces/3.jpg"  alt="Foto"  style="width:160px;height:160px;" id="fotografia_usuario" >
+                                            <output id="list"></output>
+                                            <br>
+                                            <input type="file" id="f" name="f" style="visibility:hidden;" />
 
+                                            <input type="file" id="files" name="files" required/>
+                                            </div>
+                                           </div>
+                                            <br>
                                             <div class="form-group">
 
                                                 <span class="col-md-1 col-md-offset-2 text-center">
@@ -209,7 +203,36 @@ legend{
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+function archivo(evt) {
+
+      var files = evt.target.files; // FileList object
+        
+        //Obtenemos la imagen del campo "file". 
+      for (var i = 0, f; f = files[i]; i++) {         
+           //Solo admitimos imágenes.
+           if (!f.type.match('image.*')) {
+                continue;
+           }
+       
+           var reader = new FileReader();
+           
+           reader.onload = (function(theFile) {
+               return function(e) {
+             document.getElementById("fotografia_usuario").style.display='none';
+               // Creamos la imagen.
+                      document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '" style="width:160px;height:160px;"/>'].join('');
+               };
+           })(f);
+ 
+           reader.readAsDataURL(f);
+       }
+}
+             
+      document.getElementById('files').addEventListener('change', archivo, false);
+
 </script>
+{!! Html::script('js/script3.js') !!}
 
  @endsection
 

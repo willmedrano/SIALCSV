@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\empleado;
-use App\usuario;//esto agregado chepe jonathan
 
-class Controladorpermitir extends Controller
+class LoginControlador extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +16,7 @@ class Controladorpermitir extends Controller
      */
     public function index()
     {
-    $emple=usuario::cargarPermitir();
-     
-      //$emp=\App\empleado::sEmp();
-       //return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
-      return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
-      // return view('seguridad.denegar',compact('emple')); 
-       // return view('inicio.inicios'); 
-
-        //return view('inicio.logiarse'); 
+        //
     }
 
     /**
@@ -36,7 +26,7 @@ class Controladorpermitir extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -47,15 +37,7 @@ class Controladorpermitir extends Controller
      */
     public function store(Request $request)
     {
-        $aux=$request['hi2'];
-          //esto agregado chepe jonathan
-usuario::create([
-            'login'=>$request['login'],
-            'password'=>bcrypt($request['pass']),
-            'correoEmp'=>$request['correoEmp'],
-            'idemp'=>$aux,
-            ]);
-            return redirect('/permitir/');
+        //
     }
 
     /**
@@ -90,7 +72,6 @@ usuario::create([
     public function update(Request $request, $id)
     {
         //
-   
     }
 
     /**

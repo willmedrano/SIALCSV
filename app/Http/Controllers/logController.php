@@ -42,10 +42,13 @@ class logController extends Controller
      */
     public function store(loginRequest $request)
     {
-        if(Auth::attempt(['login'=>$request['username'],'pass'=>$request['password']]))
+        if(Auth::attempt(['login'=>$request['username'],'password'=>$request['pass']]))
         {
-            return Redirect::to('log.create');
+             return view('probandos');
+            //return $request->username;
         }
+        Session::flash('menssage-error',"Los datos son Incorectos");
+        return view('inicio.inicios');
     }
 
     /**

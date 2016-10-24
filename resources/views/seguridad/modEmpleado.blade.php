@@ -25,6 +25,7 @@ h2,h1,span
 
 
 </style>
+{!!Html::script('js/jquery-1.9.0.min.js')!!}
 
 
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -108,14 +109,49 @@ h2,h1,span
       <div class="modal-body">
       <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
         <input type="hidden" id="id">
-             
+                <div id="notificacion_resul_fci"></div>
+
+      <form  id="f_subir_imagen" name="f_subir_imagen" method="post"  action="subir_imagen_usuario" class="formarchivo" enctype="multipart/form-data" >                
+      
+       <input type="hidden" name="id_usuario_foto" value="<?= $cat->id; ?>"> 
+       <input type="hidden" name="_token" id="_token"  value="<?= csrf_token(); ?>"> 
+
+      <div class="box-body">
+
+        <div class="form-group col-xs-12" >
+
+
+          <?php if($cat->fotoEmp==""){ $cat->fotoEmp="imagenes/avatar.jpg"; }
+          ?>
+       
+          <img src="<?= $cat->fotoEmp;?>"  alt="Foto"  style="width:160px;height:160px;" id="fotografia_usuario" >
+                <!-- User image -->
+          
+       </div>
+
+
+      <div class="form-group col-xs-12"  >
+             <label>Agregar Imagen </label>
+              <input name="archivo" id="archivo" type="file"   class="archivo form-control"  required/><br /><br />
+      </div>
+
+     
+      <div class="box-footer">
+                          <button type="submit" class="btn btn-primary">Actualizar Imagen</button>
+      </div>
+
+       
+
+
+      </div>
+
+      </form>  
           
 
 
              {!!Form::model($cat,['method'=>'PATCH','route'=>['log.update',$cat->id]])!!}
                                                 
-                                               
-              
+                                  
                     <fieldset>
                      <input type="hidden" name="hi2" value="1">
                            <table class="quitarborder" style="width:100%" >
@@ -500,9 +536,12 @@ h2,h1,span
   
 </script>-->
         
- @section('scripts')
-    {!!Html::script('js/scripMemp.js')!!}
-
-  @endsection
+ 
 
   @stop()
+@section('scripts')
+   
+  
+{!! Html::script('js/script3.js') !!}
+
+ @endsection

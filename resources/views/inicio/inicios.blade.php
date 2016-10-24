@@ -30,7 +30,14 @@ legend{
       
     {!!Html::style('css/app.css')!!}  
     
- |        
+ |       
+                 @if(Session::has('menssage-error'))
+                  <div class="alert alert-danger alert-dismissible" role="alert">
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>{{ Session::get('menssage-error') }}</strong> 
+</div>
+@endif
          
         <!-- Place favicon.ico in the root directory -->
         
@@ -77,7 +84,7 @@ legend{
                     <div class="auth-content">
                         <p class="text-xs-center">INICIAR SESION PARA CONTINUAR</p>
 
-                      {!! Form::open(['route'=>'log.store','method'=>'POST'])!!}
+                      {!! Form::open(['route'=>'sesion.store','method'=>'POST'])!!}
                             <div class="form-group"> 
                             <i class="fa fa-user bigicon"></i>
                                 <label for="username">Usuario</label> 
@@ -86,7 +93,7 @@ legend{
                             <div class="form-group"> 
                                  <i class="fa fa-unlock-alt bigicon"></i>
                                  <label for="password">Contraseña</label> 
-                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" > 
+                                 <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" required> 
                             </div>
                              
 
