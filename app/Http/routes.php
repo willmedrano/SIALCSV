@@ -62,6 +62,8 @@ Route::resource('permitir',"Controladorpermitir");
 Route::resource('negar',"controladorNegar");
 Route::resource('aux2',"auxiliarControl");
 Route::resource('lotes',"controladorLotes");
+Route::post('subir_imagen_usuario', 'UsuariosController@subir_imagen_usuario');
+Route::resource('sesion',"logController");
 
 
 Route::get('/pru2', function () {
