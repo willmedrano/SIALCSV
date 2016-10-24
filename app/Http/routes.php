@@ -61,6 +61,7 @@ Route::resource('empleado',"Controladorempleado");
 Route::resource('permitir',"Controladorpermitir");
 Route::resource('negar',"controladorNegar");
 Route::resource('aux2',"auxiliarControl");
+Route::resource('lotes',"controladorLotes");
 
 
 Route::get('/pru2', function () {

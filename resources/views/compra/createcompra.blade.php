@@ -296,7 +296,7 @@ h2,h1,span
                                             <span class="col-md-1 col-md-offset-2 text-center"><i class="bigicon"style=" font-weight: bold;">#</i></span>
                                                   <div class="col-xs-3">
                                                  
-                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" value="10" onkeyup="cuotasapagar();">
+                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" onkeyup="cuotasapagar();">
                                                <input type="hidden" name="ncuotas" id="ncuotas" value="1">
                                                </div>
 

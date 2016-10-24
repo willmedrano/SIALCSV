@@ -30,105 +30,6 @@ h2,h1,span
                 <article class="content static-tables-page">
 
 
-<!--Inicio de modal -->
-                <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel">Modificar Producto</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid bd-example-row">
-          <form class="form-horizontal" method="p<os></os>t">
-                    <fieldset>
-                        
-
-                        <br>
-                        <div class="form-group">
-                            <span class="col-md-2  text-center" ><label >Nombre: </label></span>
-                            <div class="col-md-6">
-                                <input id="nomP" name="nomP" type="text" placeholder="Nombre del Producto" class="form-control" >
-                                
-                            </div>
-
-                            
-                            
-                        </div>
-<br>
-                        <div class="form-group">
-                            <span class="col-md-2  text-center"><label >Marca: </label></span>
-                            <div class="col-md-5">
-                                <input id="nomP" name="nomP" type="text" placeholder="Marca del producto" class="form-control">
-                                
-                            </div>
-                        </div>
-<br>
-                        <div class="form-group">
-                            <span class="col-md-2  text-center"><label >Ganancia: </label></span>
-                            <div class="col-xs-5">
-                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje por unidad" class="form-control">
-                            </div>
-                        </div>
-                        
-<br>
-                        <div class="form-group">
-                            <span class="col-md-2  text-center"><label >Unidades: </label></span>
-                            <div class="col-md-3">
-                                <input id="marca" name="marca" type="text" placeholder="por caja " class="form-control">
-
-                            </div>
-                            <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i>
-                        </div>
-                        
-
-                        
-                        <br>
-                        <div class="form-group">
-                            
-
-                            <span class="col-md-2  text-center"><label >Ganancia: </label></span>
-                            <div class="col-xs-5">
-                                <input id="tipo" name="tipo" type="text" placeholder="porcentaje por Caja" class="form-control">
-                            </div>
-
-                        </div>
-                        <br>
-                        
-                         <div class="form-group">
-                            <span class="col-md-2  text-center"><label >Proveedor: </label></span>
-                            <div class="col-xs-7">
-                                <select class=" form-control">
-                            <option>--Selecione un Proveedor--</option>
-                            <option>Vendedor</option>
-                            <option>Otros</option>
-                           
-                        </select>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div class="form-group">
-                            <span class="col-md-2 text-center"><label >Descripción:</label></span>
-                            <div class="col-md-7">
-                                <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
-                            </div>
-                        </div>
-                            <br>
-                        
-                    </fieldset>
-                </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--fin de modal -->
                     <div class="title-block ">
                         <h1 class="title">
     
@@ -164,12 +65,12 @@ h2,h1,span
                                                         <th>Codigo</th>
                                                         <th>Nombre</th>
                                                         <th>Marca</th>
-                                                        <th>Unidades Disponibles</th>
+                                                        
                                                         <th>Costo Promedio</th>
-                                                        <th>Precio de venta</th>
-                                                        <th>#Unidades Caja</th>
+                                                        <th>Cajas Disponibles</th>
                                                         <th>Precio de Caja</th>
-                                                        <th>Proveedor</th>
+                                                        <th>Unidades Disponibles</th>
+                                                        <th>Precio de venta</th>
                                                         <th>Descripcion</th>
                                                         
                                                        
@@ -177,36 +78,40 @@ h2,h1,span
                                                 </thead>
                                                 <tbody>
 
-                                                
-
-                                                    <tr>
-                                                        <th scope="row" >00000000</th>
-                                                        <td>Lapiz #2</td>
-                                                        <td>Facela</td>
-                                                        <td>100</td>   
-                                                        <td>0.10</td>
-                                                        <td>0.11</td>
-                                                        <td>12</td>
-                                                        <td>1.10</td>
-                                                        <td>Libreria la paz</td>
-                                                        <td>lapiz amarrillo vitrina #2</td>
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row" >00000001</th>
-                                                        <td>Cuaderno #2</td>
-                                                        <td>Facela</td>
-                                                        <td>50</td>
-                                                        <td>1.00</td>
-                                                        <td>1.10</td>
-                                                        <td>1</td>
-                                                        <td>1.10</td>
-                                                        <td>Libreria la paz</td>
-                                                        <td>Cuaderno #2 rayado vitrina #2</td>
-                                                        
-                                                    </tr>
                                                     
+                                                    @foreach($lotes as $pro)
+                                                    <tr>
+                                                        <th scope="row" >{{ $pro->cod }}</th>
+                                                        <td>{{ $pro->nomProd }}</td>
+                                                        <td>{{ $pro->marca }}</td>
+                                                        <td> $ {{ $pro->cPromedio}}</td>
+                                                        <td><?php
+                                                            $a=$pro->canlote/$pro->uniCaja;
+                                                            echo round($a,0);
+                                                            ?></td>
+                                                        <td> $ <?php
+                                                            $a=((($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio));
+                                                            echo round($a, 2);
+                                                            ?>
+                                                                
+                                                        </td>
+                                                        
+
+                                                        <td>{{ $pro->canlote }}</td>
+                                                        <td> $ 
+                                                           <?php
+                                                            $a=((($pro->cPromedio/$pro->uniCaja)*($pro->gUni/100)))+($pro->cPromedio/$pro->uniCaja);
+                                                            echo round($a,2);
+                                                            ?>
+                                                        </td>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        <td>{{ $pro->desc }}</td>
+                                                        
+                                                    </tr>
+                                                    @endforeach
                                                     
 
                                                     

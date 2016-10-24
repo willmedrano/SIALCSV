@@ -69,7 +69,7 @@ class contoladorCompra extends Controller
         
        //echo "hola";
         compras::create([
-            'tipopago' => $request['formap'],
+             'tipopago' => $request['formap'],
             'montocompra' => $request['total'],
             'fechacompra' => $request['fechacompra'], 
         ]);
@@ -103,12 +103,12 @@ class contoladorCompra extends Controller
                 lotes::create([
                 'preciolote' => $valor->preciocomp2,
                 'deslote' => $valor->descompra2,
-                'canlote' => $valor->cancompra2,
+                'canlote' => ($valor->cancompra2*$costo->uniCaja),
                 'idprodsl' => $valor->idprods2,
                 'idcompsl' => $ids,
                  ]);
 
-                $costo->cPromedio=($valor->preciocomp2);
+                $costo->cPromedio=$valor->preciocomp2;
                 //$costo->save();
                 }
                 else{
@@ -117,13 +117,13 @@ class contoladorCompra extends Controller
                     $lot = lotes::find($i);
                     $precioAcumulado = $lotes[0]->preciolote + $valor->preciocomp2;
                     $descuentoAcumulado =  $lotes[0]->deslote + $valor->descompra2;
-                    $canAcumulado = $lotes[0]->canlote +  $valor->cancompra2;
+                    $canAcumulado = $lotes[0]->canlote +  ($valor->cancompra2*$costo->uniCaja);
                     $lot->preciolote = $precioAcumulado;
                     $lot->deslote = $descuentoAcumulado;
                     $lot->canlote = $canAcumulado;
                     $lot->save(); 
 
-                    $costo->cPromedio=(($lotes[0]->canlote*$costo->cPromedio)+($valor->cancompra2*$valor->preciocomp2))/($lotes[0]->canlote+$valor->cancompra2);
+                    $costo->cPromedio=((($lotes[0]->canlote/$costo->uniCaja)*$costo->cPromedio)+($valor->cancompra2*$valor->preciocomp2))/(($lotes[0]->canlote/$costo->uniCaja)+$valor->cancompra2);
                   
                     }
   $costo->save();
@@ -152,7 +152,7 @@ class contoladorCompra extends Controller
 
                 coutas::create([
                 'fechcouta' => $dt,
-                'cuotas' => $request['total'],
+                'cuotas' => ($request['total']/$request['cuotas']),
                 'idcompsc' => $ids,
                 ]);
             }
