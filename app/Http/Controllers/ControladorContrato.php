@@ -44,18 +44,18 @@ class ControladorContrato extends Controller
     public function store(Request $request)
     {
     
-            compras::create([
+            \App\contratos::create([
              'idescuelas' => $request['formap'],
             'montocon' => $request['total'],
             'fechafcon' => $request['fechacompra'], 
         ]);
         $ids;
-        $gAux =\App\compras::All();
+        $gAux =\App\contratos::All();
         foreach ($gAux as $valor2) {
             $ids=$valor2->id;
         }
 
-        $gAux =\App\auxiliar::All();
+        $gAux =\App\contratos::All();
         foreach ($gAux as $valor) 
         {
             detalle_compra::create([
@@ -67,9 +67,6 @@ class ControladorContrato extends Controller
 
             ]);
             
-
-
-
 
             $id=$valor->idprods2;
             $costo =\App\producto::find($id);
@@ -134,7 +131,7 @@ class ControladorContrato extends Controller
             }
         }
         
-        
+        */
 
 
 
