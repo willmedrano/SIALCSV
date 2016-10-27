@@ -16,7 +16,7 @@ class LoginControlador extends Controller
      */
     public function index()
     {
-        //
+        return view('inicio.logiarse');
     }
 
     /**

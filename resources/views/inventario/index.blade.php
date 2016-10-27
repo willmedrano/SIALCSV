@@ -113,7 +113,8 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2  text-center" ><label >Nombre: </label></span>
                             <div class="col-md-6">
-                                <input id="nomProd" name="nomProd" type="text" placeholder="Nombre del Producto" class="form-control" value="{{ $cat->nomProd }}">
+                                <input required id="nomProd" name="nomProd" type="text" placeholder="Nombre del Producto" class="form-control" value="{{ $cat->nomProd }}">
+
                                 
                             </div>
 
@@ -124,7 +125,7 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Marca: </label></span>
                             <div class="col-md-6">
-                                <input id="marca" name="marca" type="text" placeholder="Marca del producto" class="form-control" value="{{ $cat->marca }}">
+                                <input required id="marca" name="marca" type="text" placeholder="Marca del producto" class="form-control" value="{{ $cat->marca }}">
                                 
                             </div>
                         </div>
@@ -132,7 +133,7 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Ganancia: </label></span>
                             <div class="col-md-6">
-                                <input id="gUni" name="gUni" type="text" placeholder="porcentaje por unidad" class="form-control" value="{{ $cat->gUni }}">
+                                <input required id="gUni" name="gUni" type="text" placeholder="porcentaje por unidad" class="form-control" value="{{ $cat->gUni }}">
                             </div>
                         </div>
                         
@@ -140,7 +141,7 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Unidades: </label></span>
                             <div class="col-md-6">
-                                <input id="uniCaja" name="uniCaja" type="text" placeholder="por caja " class="form-control" value="{{ $cat->uniCaja}}">
+                                <input required id="uniCaja" name="uniCaja" type="text" placeholder="por caja " class="form-control" value="{{ $cat->uniCaja}}">
 
                             </div>
                             <!--span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i-->
@@ -154,7 +155,7 @@ h2,h1,span
 
                             <span class="col-md-2  text-center"><label >Ganancia Caja : </label></span>
                             <div class="col-md-6">
-                                <input id="gCaja" name="gCaja" type="text" placeholder="porcentaje por Caja" class="form-control" value="{{ $cat->gCaja }}">
+                                <input required id="gCaja" name="gCaja" type="text" placeholder="porcentaje por Caja" class="form-control" value="{{ $cat->gCaja }}">
                             </div>
 
                         </div>
@@ -181,7 +182,7 @@ h2,h1,span
                         <div class="form-group">
                             <span class="col-md-2 text-center"><label >Descripción:</label></span>
                             <div class="col-md-6">
-                                <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7" >{{   $cat->desc }}</textarea>
+                                <textarea required rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7" >{{   $cat->desc }}</textarea>
                             </div>
                         </div>
                             <br>
@@ -271,7 +272,9 @@ h2,h1,span
                                                         <td>{{ $pro->cod }}</td>
                                                         <td>{{ $pro->nomProd }}</td>
                                                         <td>{{ $pro->marca }}</td>
-                                                        <td> $ {{ $pro->cPromedio}}</td>
+                                                        <td> $  <?php echo round($pro->cPromedio, 2);
+                                                            ?>
+                                                        </td>
                                                         <td>% {{ $pro->gCaja }}</td>
                                                         <td> $ <?php
                                                             $a=((($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio));

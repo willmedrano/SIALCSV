@@ -174,7 +174,7 @@ h2,h1,span
                                              <table class="table table-bordered table-hover" style="width:100%" >
                                                 <thead align="center">
                                                     <tr>
-                                                        <th># de lote</th>
+                                                        <th>compra</th>
                                                         <th>Compras Realizadas</th>
                                                         <th>cantidad</th>
                                                         <th>Precio</th>
@@ -190,7 +190,7 @@ h2,h1,span
                                                     @foreach($comp as $comps)
                                                     <tr class="v">
                                                         
-                                                        <th  scope="row" >{{ $comps->id }}</th>
+                                                        <th  scope="row" >compra #{{ $comps->id }}</th>
                                                         <td>{{ $comps->nomProd  }}</td>
                                                         <td>{{ $comps->cancompra}}</td>
                                                         <td>{{ $comps->tipopago}}</td>

@@ -52,7 +52,7 @@
                                         <li>
                                             <a href="" class="notification-item">
                                                 <div class="img-col">
-                                                    <div class="img" style="background-image: url('assets/faces/userimagen-3.jpg')"></div>
+                                                    <div class="img" style="background-image: url('assets/faces/3.jpg')"></div>
                                                 </div>
                                                 <div class="body-col">
                                                     <p> <span class="accent">Paquete Escolar</span> Entrega de paquetes en: <span class="accent">2 dias centro escolar "Sor Henriquez"</span>. </p>
@@ -72,7 +72,7 @@
                                         <li>
                                             <a href="" class="notification-item">
                                                 <div class="img-col">
-                                                    <div class="img" style="background-image: url('storage/fotografias/userimagen-1.jpg')"></div>
+                                                    <div class="img" style="background-image: url('assets/faces/3.jpg')"></div>
                                                 </div>
                                                 <div class="body-col">
                                                     <p> <span class="accent">Poca existencia</span> Cuadernos #2 <span class="accent">Comprar producto</span> </p>
@@ -92,7 +92,7 @@
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     <div class="img" style="background-image: url('assets/faces/3.jpg')"> </div> <span class="name">
-              {!!Auth::user()->login!!} 
+                Willian Medrano
               </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="#"> <i class="fa fa-user icon"></i> Perfil </a>
@@ -116,21 +116,7 @@
                                 <li class="active">
                                     <a href="index.html"> <i class="fa fa-home"></i> Inicio </a>
                                 </li>
-                             <li>
-                                    <a href=""> <i class="fa fa-user"></i> Empleados <i class="fa arrow"></i> </a>
-                                    <ul>
-                                        <li> <a href="/prove/create">
-                    Ingresar Empleado
-                  </a> </li>
-                                        <li> <a href="/prove/create">
-                    Pago de Empleado
-                  </a> </li>
-
-                  <li> <a href="/prove/create">
-                    Modificar Empledado
-                  </a> </li>
-                                    </ul>
-                                </li>
+                             
                                
                               
 
@@ -197,21 +183,7 @@
                   </a> </li>
                   </ul>
                                 </li>
-                                <li>
-                                    <a href=""> <i class="fa fa-money"></i>Ciclo contable <i class="fa arrow"></i> </a>
-                                    <ul>
-                                        <li> <a href="buttons.html">
-                    Ingresar Cuentas
-                  </a> </li>
-                                        <li> <a href="cards.html">
-                    Ver catalogo de cuentas
-                  </a> </li>
-                                        <li> <a href="typography.html">
-                    Ingresar partidas
-                  </a> </li>
-                                        <li> <a href="icons.html">
-                    Realizar libro diario
-                  </a> </li>
+                                
                                        
                                     </ul>
                                 </li>
@@ -260,18 +232,7 @@
                                 </li>
                                 <li>
 
-                                 <li>
-                                <a href=""> <i class="fa fa-github-alt"></i> Seguridad<i class="fa arrow"></i> </a>
-                                    
-                                    <ul>
-                                        <li> <a href="buttons.html">
-                                        Permitir Acceso
-                                            </a> </li>
-                                            <li> <a href="buttons.html">
-                                        Negar Acceso
-                                            </a> </li>
-                                    </ul>
-                                </li>
+                                 
 
                             </ul>
                         </nav>

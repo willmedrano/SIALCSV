@@ -28,6 +28,7 @@ class login extends Controller
       //$emp=\App\empleado::sEmp();
        return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
        //return view('seguridad.permitir',compact('emple'));       //par llenar la tabla de permitir
+         //return view('seguridad.denegar',compact('emple'));
          //return view('seguridad.rEmpleado');
         //return view('seguridad.pago',compact('emple'));//llenar la tabla pago
     }
@@ -39,7 +40,7 @@ class login extends Controller
      */
     public function create()
     {
-      // return view('seguridad.pago');//pagar al empleado
+      //return view('seguridad.pago');//pagar al empleado
         //return view('empleado.FormEmp');
          // return view('inicio.recuperar');//recuperar contraseña
         //return view('inicio.logiarse');//cambio de usuario y contraseña
@@ -100,7 +101,7 @@ class login extends Controller
             'cargoEmp'=>$request['puesto'],
             //'estadoEmp'=>$request['puesto'],
             'sexEmp'=>$request['sexo'],
-            'contraEmp'=>$request['Fnac'],
+            'contraEmp'=>$request['fcontrato'],
 
             
             ]);

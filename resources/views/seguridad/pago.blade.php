@@ -31,7 +31,8 @@ h2,h1,span
 
 
 <!--Inicio de modal -->
-               <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+@foreach ($emple as $cat)
+               <div id="Edit{{$cat->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -42,7 +43,8 @@ h2,h1,span
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
  
-          <form class="form-horizontal" method="post">
+          {!!Form::model($cat,['method'=>'PACH','route'=>['log.update',$cat->id],'id'=>'frm1','name'=>'frm1'])!!}
+
                     <fieldset>
                            <table class="quitarborder" style="width:100%" >
       
@@ -61,10 +63,10 @@ h2,h1,span
            <tbody>
                <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Nombre: </label></span></td>
-                    <td colspan="2.5" align="center" ><input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" class="form-control" >
+                    <td colspan="2.5" align="center" ><input id="nomEmp" name="nomEmp" value="{{ $cat->nomEmp }}"type="text" placeholder="Nombre" class="form-control" >
                     <br></td>
                       <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
-                    <td colspan="2.5" align="center" ><input id="apeEmp" name="apeEmp" type="text" placeholder="Apellido" class="form-control"><br></td>
+                    <td colspan="2.5" align="center" ><input id="apeEmp" name="apeEmp" value="{{ $cat->apeEmp }}" type="text" placeholder="Apellido" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -73,7 +75,7 @@ h2,h1,span
                
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Dias a pagar </label></span></td>
-                    <td colspan="2" align="center"><input id="dPagos" name="dPagos" type="text" placeholder="$" class="form-control"><br></td>
+                    <td colspan="2" align="center"><input id="dPagos" name="dPagos" type="text" placeholder="$" class="form-control"  onkeyup="sumar();"><br></td>
 
                     <td colspan="2" rowspan="3" align="center"><span align="center">
                         <i style="font-size: 130px;" class="fa fa-money fa-3x fa-fw bigicon" align="center"></i>
@@ -84,7 +86,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Sueldo: </label></span></td>
-                    <td colspan="2" align="center" > <input id="sueldoEmp" name="sueldoEmp" type="text" placeholder="$ " class="form-control"><br></td>
+                    <td colspan="2" align="center" > <input id="sueldoEmp" name="sueldoEmp" value="{{ $cat->sueldoEmp }}" type="text" placeholder="$ " class="form-control"><br></td>
                     <td></td>
                     <td></td>
                   
@@ -93,15 +95,16 @@ h2,h1,span
 
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Bonos: </label></span></td>
-                    <td colspan="2" align="center" ><input id="bonoEmp" name="bonoEmp" type="text" placeholder="$" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="bonoEmp" name="bonoEmp" type="text" placeholder="$" class="form-control"  onkeyup="sumar();"><br></td>
                     <td></td>
                     <td></td>
+
                    
                     
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Total: </label></span></td>
-                    <td colspan="2" align="center" ><input id="totalPagar" name="totalPagar" type="text" placeholder="$" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="totalPagar" name="totalPagar" type="text"  placeholder="$" class="form-control"  ><br></td>
                     <td></td>
                     <td></td>
                    
@@ -113,7 +116,7 @@ h2,h1,span
        </table>
                         
                     </fieldset>
-                </form>
+                {!! Form::close() !!}
         </div>
       </div>
 
@@ -124,6 +127,8 @@ h2,h1,span
     </div>
   </div>
 </div>
+
+@endforeach
 <!--fin de modal -->
                     <div class="title-block ">
                         <h1 class="title">
@@ -162,7 +167,7 @@ h2,h1,span
                                                         <th>Apellidos</th>
                                                         <th>DUI</th>
                                                         <th>NIT</th>
-                                                        <th>Fecha ultima de pago</th>
+                                                        <th>Fecha de contrato</th>
                                                         <th>Telefono</th>
                                                         <th>Cargo</th>
                                                         <th>Salario</th>
@@ -171,9 +176,15 @@ h2,h1,span
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody id="hola">
-
-                                                 @foreach($emple as $emple)
+                                                <tbody >
+                                                  <?php $cont=0; ?>
+                                    @foreach($emple as $emple)
+                                     <?php
+                                     
+                      
+                                        if($emple->estadoEmp==true){
+                                          $cont++;
+                                      ?>
                                                     <tr>
                                                         
                                                         <td>{{ $emple->nomEmp }}</td>
@@ -187,7 +198,7 @@ h2,h1,span
 
                                                         
                                                         
-                                                        <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emple->id }}">pagar</a></td>
+                                                        <td><a href="#"   class="btn btn-info btn-sm" data-id="{{ $emple->id }}" data-toggle="modal" data-target="#Edit{{ $emple->id }}">Pagar</a>
 
                                                          </tr>
                                                 
@@ -195,7 +206,8 @@ h2,h1,span
 
 
 
-
+                                      <?php } 
+                                                     ?>
                                                     
                                                       @endforeach  
 
@@ -212,46 +224,44 @@ h2,h1,span
                             </div>
                            </div>
                            </section>
-                           </article>
+                           </article>            
+ @endsection
+@section('scripts')
 
 
-                           @section('scripts')
-   
-<script>
+<script type="text/javascript" charset="utf-8">
+
+
+ function sumar()
+{
+var a=document.getElementById("sueldoEmp").value;
+var b=document.getElementById("dPagos").value;
+var c=parseFloat(a);
+var d=(parseFloat(c)*parseFloat(b));
+var t=document.getElementById("bonoEmp").value;
+var e=(parseFloat(d)+parseFloat(t)).toFixed(2);
+var f=0;
+if(isNaN(a)){
+   a=1;
+  }
+  if(isNaN(b)){
+   b=1;
+  }
+    c= a*b;
+  if(isNaN(c)){
+   c=1;
+  }
+  if(isNaN(t)){
+   t=0;
+  }
+  if(isNaN(e)){
+   e=0;
+   var e=(parseFloat(d)).toFixed(2);
+  }
+
   
-  $(function(){
-    $('body').on('click','#hola a',function(event){
-      event.preventDefault();
-      //var id= $(this).attr('data-id');
-      //var route = "/inve/"+id+"/edit";
-      var id= $(this).attr('data-id');
-         //alert(id);
-      nombre =$(this).parent().parent().children("td:eq(0)").text();
-      marca =$(this).parent().parent().children("td:eq(1)").text();
-      ganan =$(this).parent().parent().children("td:eq(2)").text();
-      Unidades =$(this).parent().parent().children("td:eq(3)").text();
-      ganan2 =$(this).parent().parent().children("td:eq(4)").text();
-      Unidades =$(this).parent().parent().children("td:eq(5)").text();
-      provee =$(this).parent().parent().children("td:eq(6)").text();
-      descr =$(this).parent().parent().children("td:eq(7)").text();
 
-   
-        $("#nomEmp").val(nombre);
-        $("#apeEmp").val(marca);
-        $("#dPagos").val(ganan);
-        $("#sueldoEmp").val(Unidades);
-        $("#bonoEmp").val(ganan2);
-        $("#totalPagar").val(provee);
-       // $("#desc").val(descr);
-        
-  $('#gridSystemModal').modal('show');
-    });
-    });
-  
+document.getElementById("totalPagar").value=e;
+};
 </script>
-  @endsection         
-
-                          
-                           
-
-@stop()
+ @endsection

@@ -26,7 +26,7 @@ legend{
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: white;" >&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel">Modificar Empleado</h4>
+<h4 class="modal-title" id="gridModalLabel">Permitir Empleado</h4>
       </div>
       <div class="modal-body">
       <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
@@ -208,7 +208,7 @@ legend{
                     {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
                     {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
                     {!!Html::style('assets/css/style.css')!!}  
-                    {!!Html::style('ssets/css/main-style.css')!!} 
+                    {!!Html::style('assets/css/main-style.css')!!} 
 
                        <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -254,7 +254,7 @@ legend{
                                             <th> Nombre </th>
                                             <th> Apellido </th>
                                             <th> Telefono </th>
-                                            <th> Correo </th>
+                                            <th> Sexo </th>
                                             <th> Cargo </th>
                                             <th> Acceso </th>
                                         </tr>
@@ -266,9 +266,13 @@ legend{
                                      <?php
                                      
                       $resultado=DB::select('select * from usuarios where idemp = ?', [ $emples->id ]); 
-                                        if($resultado==false){
+                                        if(($resultado==false)&&($emples->estadoEmp==true)){
                                           $cont++;
                                       ?>
+                        
+                                     
+
+
                                                     <tr>
                                                         <td><?php echo $cont; ?></td>
                                                         <td>{{ $emples->nomEmp }}</td>
@@ -284,6 +288,8 @@ legend{
                                 
                                               <?php } 
                                                      ?>
+
+                                                      
                                                       @endforeach  
                                         
                                         

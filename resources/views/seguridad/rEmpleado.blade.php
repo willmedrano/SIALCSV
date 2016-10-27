@@ -38,7 +38,7 @@
                     {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
                     {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
                     {!!Html::style('assets/css/style.css')!!}  
-                    {!!Html::style('ssets/css/main-style.css')!!} 
+                    {!!Html::style('assets/css/main-style.css')!!} 
 {!!Html::script('js/jquery-1.9.0.min.js')!!}
                        <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -110,6 +110,8 @@
 
                                                 <div class="col-xs-4">
                                                     <input id="nac" name="Fnac" type="date" placeholder="Fecha de Nacimiento " class="form-control" data-toggle="tooltip" title="Fecha de nacimiento">
+
+                                                    <input id="fcontrato" name="fcontrato" type="hidden" value="<?php echo dameFecha(date("Y-m-d"),0);?>">
                                                  </div>
 
                                             </div>
@@ -197,7 +199,18 @@
                     </section>
   
 @stop
+<?php 
+$time=time();
+    
+    function dameFecha($fecha,$dia){
+        list($year,$mon,$day)=explode('-',$fecha);
+        return date('Y-m-d',mktime(0,0,0,$mon,$day+$dia,$year));    
+    }
+   $total=0; 
 
+
+  
+?>
 @section('scripts')
 <script>
 $(document).ready(function(){

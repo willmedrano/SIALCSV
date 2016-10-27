@@ -26,7 +26,7 @@ legend{
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: white;" >&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel">Negar Acceso</h4>
+<h4 class="modal-title" id="gridModalLabel">Permitir Empleado</h4>
       </div>
       <div class="modal-body">
       <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
@@ -99,32 +99,24 @@ legend{
                   <span class="text-center" ><label >Nombre: </label></span></td>
                     <td colspan="2.5" align="center" >
                      <br> 
-                    <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" disabled="true" value="{{ $cat->nomEmp }}" class="form-control">
+                    <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" value="{{ $cat->nomEmp }}" class="form-control" disabled="true">
                     <input type="hidden" name="permitir" id="permitir" value="">
                     <br></td>
                       <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
-                    <td colspan="2.5" align="center" > <br><input id="apeEmp" name="apeEmp" type="text" disabled="true" value="{{ $cat->apeEmp }}"  placeholder="Apellido" class="form-control"><br></td>
+                    <td colspan="2.5" align="center" > <br><input id="apeEmp" name="apeEmp" type="text" value="{{ $cat->apeEmp }}"  placeholder="Apellido" class="form-control" disabled="true" ><br></td>
                     <td></td>
                     <td></td>
                     <td></td>
                 
                </tr>
 
-               <tr>
-                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Codigo: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correoEmp" type="text" disabled="true"  placeholder="Correo" class="form-control"><br></td>
-                    <td></td>
-                    <td></td>
-                   
-                    
-               </tr>
-
+               
                 
                 
                 
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Telefono: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" disabled="true" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control" disabled="true" ><br></td>
                     <td></td>
                     <td></td>
                    
@@ -132,26 +124,32 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Correo: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correoEmp" type="text" disabled="true"  placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" name="correoEmp" type="hidden" placeholder="Correo" class="form-control" value="sfs@sfa" ><br></td>
                     <td></td>
                     <td></td>
                    
                     
+               </tr>
+
+               </tr>
+               <tr>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Usuario: </label></span></td>
+                    <td colspan="2" align="center" ><input id="login" name="login" type="hidden" value="asedrutyo"placeholder="Correo" class="form-control"><br></td>
+                    <td></td>
+                    <td></td>
+                   
+                    
+               </tr>
+
                </tr>
                 <tr>
-                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Cargo: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" disabled="true" value="{{ $cat->cargoEmp }}" placeholder="telefono" class="form-control"><br></td>
+                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Contraseña: </label></span></td>
+                    <td colspan="2" align="center" ><input id="pass" name="pass" type="hidden" value="hola" placeholder="Contraseña" class="form-control" disabled="true" ><br></td>
                     <td></td>
                     <td></td>
                    
                     
                </tr>
-
-               
-                
-
-               
-               
 
                
                 
@@ -181,7 +179,7 @@ legend{
                    
                     <div class="title-block">
                         <h1 class="title">Seguridad</h1>
-                        <p class="title-description"> Negar Acceso </p> 
+                        <p class="title-description"> Permitir Acceso </p> 
                          
                            
                     </div>
@@ -190,11 +188,11 @@ legend{
                     {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
                     {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
                     {!!Html::style('assets/css/style.css')!!}  
-                    {!!Html::style('ssets/css/main-style.css')!!} 
+                    {!!Html::style('assets/css/main-style.css')!!} 
 
                        <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title">Negar Acceso</h1>
+                                <h1 class="panel-title">Permitir Acceso</h1>
                              </div>
 
                             <section class="section">
@@ -236,7 +234,7 @@ legend{
                                             <th> Nombre </th>
                                             <th> Apellido </th>
                                             <th> Telefono </th>
-                                            <th> Correo </th>
+                                            <th> Sexo </th>
                                             <th> Cargo </th>
                                             <th> Acceso </th>
                                         </tr>
@@ -247,24 +245,31 @@ legend{
                                     @foreach($emple as $emples)
                                      <?php
                                      
-                      
+                      $resultado=DB::select('select * from usuarios where idemp = ?', [ $emples->id ]); 
+                                        if(($resultado==true)&&($emples->estadoEmp==true)){
                                           $cont++;
                                       ?>
+                        
+                                     
+
+
                                                     <tr>
                                                         <td><?php echo $cont; ?></td>
                                                         <td>{{ $emples->nomEmp }}</td>
                                                         <td>{{ $emples->apeEmp }}</td>
                                                         <td>{{ $emples->telEmp }}</td>
-                                                        <td> {{$emples->apeEmp }} </td>
-                                                        
+                                                        <td>{{ $emples->sexEmp }}</td>
                                                         <td>{{ $emples->cargoEmp }}</td>
                                                         
-                                               <td><a href="#"   class="btn btn-danger btn-sm active" data-id="{{ $emples->id }}" data-toggle="modal" data-target="#Edit{{ $emples->id }}">Denegar</a>
+                                               <td><a href="#"   class="btn btn-danger btn-sm" data-id="{{ $emples->id }}" data-toggle="modal" data-target="#Edit{{ $emples->id }}">Negar</a>
                                                     
-                                                      
+
                                                     </tr>
                                 
-                                             
+                                              <?php } 
+                                                     ?>
+
+                                                      
                                                       @endforeach  
                                         
                                         

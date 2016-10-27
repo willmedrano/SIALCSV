@@ -59,7 +59,7 @@ h2
                     {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
                     {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
                     {!!Html::style('assets/css/style.css')!!}  
-                    {!!Html::style('ssets/css/main-style.css')!!} 
+                    {!!Html::style('assets/css/main-style.css')!!} 
 
 
                 
@@ -82,20 +82,20 @@ h2
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-barcode bigicon icon_nav" ></i></span >
                                                       <div class="col-md-3">
 
-                                <input id="cod" name="cod" type="text" placeholder="Codigo del Barra" required autocomplete="off" class="form-control">
+                                <input id="cod" name="cod" type="text" placeholder="Codigo del Barra" required autocomplete="off" class="form-control" >
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="nom" name="nom" type="text" placeholder="Nombre del Producto" class="form-control">
+                                <input id="nom" name="nom" type="text" placeholder="Nombre del Producto" required class="form-control">
                                 
                             </div>
 
                             <span class="col-md-1  text-center"><i class="fa fa-dropbox bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="uniCaja" name="uniCaja" type="text" requiered placeholder="Unidades de una Caja" class="form-control">
+                                <input id="uniCaja" name="uniCaja" type="text" requiered placeholder="Unidades de una Caja" class="form-control" required pattern="[0-9]{1,3}">
                                 
                             </div>
                         </div>
@@ -105,20 +105,21 @@ h2
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-tags bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="marca" name="marca" type="text" required placeholder="Marca " class="form-control">
+                                <input id="marca" required name="marca" type="text" required placeholder="Marca" class="form-control" >
                             </div>
                         </div>
                         <br>
 
                         <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-percent bigicon"></i></span>
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa  bigicon" style=" font-weight: bold;">%</i></span>
                             <div class="col-xs-3">
-                                <input id="gUni" name="gUni" type="text" placeholder="porcentaje de ganancia por unidad" class="form-control">
+                                <input id="gUni"
+                                 name="gUni" type="text" placeholder="porcentaje de ganancia por unidad" pattern="[0-9]{1,3}"  class="form-control" required="">
                             </div>
 
-                            <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
+                            <span class="col-md-1  text-center"><i class="fa bigicon" style=" font-weight: bold;">%</i></span>
                             <div class="col-xs-3">
-                                <input id="gCaja" name="gCaja" type="text" placeholder="porcentaje de ganancia por Caja" class="form-control">
+                                <input id="gCaja" name="gCaja" type="text" placeholder="porcentaje de ganancia por Caja" class="form-control" pattern="[0-9]{1,3}" required>
                             </div>
 
                         </div>
@@ -128,7 +129,7 @@ h2
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-truck bigicon"></i></span>
                             <div class="col-xs-3">
                                 <select class=" form-control" name="idProve">
-                            <option>--Selecione un Proveedor--</option>
+                            
                              @foreach($prov as $prov)
 
                                 <option  value="{{ $prov->id }}" >{{ $prov->nom }}</option>
@@ -142,7 +143,7 @@ h2
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
                             <div class="col-md-7">
-                                <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
+                                <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7" required=></textarea>
                             </div>
                         </div>
                             <br>

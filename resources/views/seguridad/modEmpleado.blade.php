@@ -38,12 +38,12 @@ h2,h1,span
       <div class="alert-warning">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel3">ACTIVAR PRODUCTO</h4>
+<h4 class="modal-title" id="gridModalLabel3">ACTIVAR EMPLEADO</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
           {!!Form::model($cat3,['method'=>'PATCH','route'=>['log.update',$cat3->id]])!!}
-              <label for="">¿Seguro que desea cambiar el estado del producto?</label>
+              <label for="">¿Seguro que desea cambiar el estado del empleado?</label>
               <input type="hidden" name="hi" value="{{ $cat3->estadoEmp }}">
               <input type="hidden" name="hi2" value="2">
                 <div class="modal-footer">
@@ -73,12 +73,12 @@ h2,h1,span
       <div class="modal-header alert-warning" bgcolor="blue">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel3" >Desactivar PRODUCTO</h4>
+<h4 class="modal-title" id="gridModalLabel3" >DESACTIVAR EMPLEADO</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
            {!!Form::model($cat2,['method'=>'PATCH','route'=>['log.update',$cat2->id]])!!}
-              <label for="">¿Seguro que desea cambiar el estado del producto?</label>
+              <label for="">¿Seguro que desea cambiar el estado del empleado?</label>
               <input type="hidden" name="hi" value="{{ $cat2->estadoEmp }}">
               <input type="hidden" name="hi2" value="3">
                 <div class="modal-footer">

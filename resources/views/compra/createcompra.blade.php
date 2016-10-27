@@ -97,7 +97,7 @@ h2,h1,span
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input  disabled id="nomproducto" name="nomproducto1" required type="text" placeholder="Nombre del Producto" class="form-control">
+                            <input   id="nomproducto" name="nomproducto1" required type="text" placeholder="Nombre del Producto" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
                            <i class="fa fa-truck bigicon"></i>
@@ -128,7 +128,7 @@ h2,h1,span
                             <i class="fa fa-shopping-cart bigicon"></i></span>
 
                       <div class="col-xs-3">
-                      <input id="cantcomp" name="cantcomp" type="text" required placeholder="cantidad a comprar" class="form-control" onkeyup="sumar();">
+                      <input id="cantcomp" name="cantcomp" type="text" required placeholder="cantidad a comprar" required class="form-control" onkeyup="sumar();">
                       </div>
                       <span class="col-md-1  text-center"><i class="fa fa-dollar bigicon"></i></span>
                       <div class="col-xs-3">
@@ -293,11 +293,11 @@ h2,h1,span
                                             <br>
                                             <div class="form-group">
 
-                                            <span class="col-md-1 col-md-offset-2 text-center"><i class="bigicon"style=" font-weight: bold;">#</i></span>
+                                            <span class="col-md-1 col-md-offset-2 text-center"><i class="bigicon" style=" font-weight: bold;">#</i></span>
                                                   <div class="col-xs-3">
                                                  
                                              <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" onkeyup="cuotasapagar();">
-                                               <input type="hidden" name="ncuotas" id="ncuotas" value="1">
+                                               <input required type="hidden" name="ncuotas" id="ncuotas" value="1">
                                                </div>
 
                                             <span class="col-md-1  text-center">
@@ -342,9 +342,7 @@ $time=time();
 ?>
  @section('scripts')
 {!! Html::script('js/bootstrap.js') !!}
-{!! Html::script('js/jquery-3.1.1.js') !!}
-{!! Html::script('js/subtotalauto.js') !!} 
- 
+
 <script type="text/javascript" charset="utf-8">
 function sumar()
 {
@@ -403,14 +401,21 @@ if(isNaN(a)){
 $('#aux').on('change','#idcodproduc',function (){
   
   var producto=$("#idcodproduc").val();
+
      var ruta="/llenadoProducto/"+producto;
 
  $.get(ruta, function(res){
   $(res).each(function(key,value){
+    if (value.estado==true) {
        $("#hprod").val(value.id);
        $("#nomproducto").val(value.nomProd);
        $("#idProve").val(value.idProve);
-       
+       }
+      else{
+        $("#hprod").val("");
+       $("#nomproducto").val("");
+       $("#idProve").val(0);
+      }
 
       });
   

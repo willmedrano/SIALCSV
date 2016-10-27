@@ -63,23 +63,25 @@ legend{
         	<span class="l l4"></span>
         	<span class="l l5"></span>
         </div>        Registro de Usuario
+        
       </h1> </header>
                     <div class="auth-content">
-                        <p class="text-xs-center">Registrarse para acceder al Sistema</p>
-                        <form id="signup-form" action="/index.html" method="GET" novalidate="">
+                        <p class="text-xs-center">Modificacion de Usuario</p>
+                        {!! Form::open(array('route'=>'permitir.store', 'method' => 'post','files'=>true) )!!}
+                       <!-- <form id="signup-form" action="/index.html" method="GET" novalidate="">-->
                             <div class="form-group"> 
                                <i class="fa fa-user bigicon"></i>
                             <label for="firstname">Nuevo usuario</label>
                                 <div class="row">
                                     <div class="col-sm-6"> 
-                                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Nombre" required=""> </div>
+                                    <input type="text" class="form-control" id="login" name="login" placeholder="Nombre" required=""> </div>
                                     
                                 </div>
                             </div>
                             <div class="form-group"> 
                              <i class="fa fa-google-plus bigicon"></i>
 
-                            <label for="email">Email</label> <input type="email" class="form-control" name="email" id="email" placeholder="Correo electronico" required=""> </div>
+                            <label for="email">Email</label> <input type="email" class="form-control" id="correoEmp" name="correoEmp" placeholder="Correo electronico" required=""> </div>
                              <div class="form-group"> 
                              <i class="fa fa-unlock bigicon"></i>
                             <label for="password">Contraseña Actual</label>
@@ -88,22 +90,41 @@ legend{
                                     
                                 </div>
                             </div>
+
+                             <div class="row">
+                                    <div class="col-sm-6"> <input type="hidden" class="form-control" name="pass" id="pass" placeholder="Contraseña" disabled="true"> </div>
+                                    <div class="col-sm-6"> <input type="hidden" class="form-control" name="retype_password" id="retype_password" placeholder="Repita contraseña" disabled="true"> </div>
+                                </div>
+
+
                             <div class="form-group"> 
                              <i class="fa fa-unlock-alt bigicon"></i>
                             <label for="password">Nueva Contraseña</label>
+
+                               
+                                   
+                                     <?php
+                                     $h=0;
+                     
+                                        if($h==0){
+                                          
+                                      ?>
+
+
                                 <div class="row">
-                                    <div class="col-sm-6"> <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required=""> </div>
+                                    <div class="col-sm-6"> <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" required=""> </div>
                                     <div class="col-sm-6"> <input type="password" class="form-control" name="retype_password" id="retype_password" placeholder="Repita contraseña" required=""> </div>
                                 </div>
                             </div>
-                    
+                               <?php } 
+                                                     ?>
                             <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Aceptar</button> </div>
                             
-                        </form>
+                       {!! Form::close() !!}
                     </div>
                 </div>
                 <div class="text-xs-center">
-                    <a href="index.html" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Regresar </a>
+                    <a href="/" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Regresar </a>
                 </div>
             </div>
         </div>
