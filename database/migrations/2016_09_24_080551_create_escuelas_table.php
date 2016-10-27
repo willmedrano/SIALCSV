@@ -20,6 +20,7 @@ class CreateEscuelasTable extends Migration
             $table->string('nomdirec');
             $table->string('telesc');
             $table->string('diresc');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

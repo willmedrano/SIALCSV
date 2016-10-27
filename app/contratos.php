@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class contratos extends Model
 {
     // aqui se definen en nuestro modelo el nombre de la tabla que podremos utilizar para insertar en la base de datos.
@@ -14,5 +14,16 @@ class contratos extends Model
     //cantidadcon;   Es saber la cantidad de poductos adquirir..
     //montocon;      Es para tener un control del monto que pagara la escuela a la libreria
     //idescuelas;    Es para indicar que escuela esta con el contrato. 
-    protected $fillable = ['fechaicon', 'fechafcon', 'estadocon', 'cantidadcon', 'montocon', 'idescuelas'];//Aqui creamos los campos de la tabla 
+    protected $fillable = ['fechafcon', 'estadocon', 'cantidadcon', 'montocon', 'idescuelas'];//Aqui creamos los campos de la tabla 
+
+    public static function Mostrarcompras(){
+       return DB::table('contratos')
+            ->join('detalle_contratos', 'detalle_contratos.idcontratos', '=', 'contratos.id')
+            ->join('productos', 'detalle_contratos.idprodet', '=', 'productos.id')
+            ->select('contratos.*',  'detalle_contratos.*','productos.*')
+            ->orderBy('contratos.id')
+            ->get();
+        }
+
+
 }

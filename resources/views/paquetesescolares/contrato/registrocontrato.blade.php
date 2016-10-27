@@ -79,7 +79,7 @@ h2,h1,span
                 <div>
                 <div class="card card-block sameheight-item" >
                 
-                {!! Form::open(['route'=>'aux2.store','method'=>'POST','class'=>'form-horizontal' ,'id'=>'frm1','name'=>'frm1']) !!}
+                {!! Form::open(['route'=>'aux3.store','method'=>'POST','class'=>'form-horizontal' ,'id'=>'frm1','name'=>'frm1']) !!}
                      
                         <br><br>
                         
@@ -102,12 +102,6 @@ h2,h1,span
                               <input type="hidden"  name="hprod" id="hprod" value="">
                                             <br>
                                               
-                                                   
-                    
-                   
-                   
-                     
-                   
                     <div class="form-group"  >
 
                         <span class="col-md-1 col-md-offset-2 text-center">
@@ -161,20 +155,20 @@ h2,h1,span
                                     </thead>
                                     <tbody id="hola">
                                                     <?php $cont=0; $p=0?>
-                                                    @foreach($aux as $aux2)
+                                                    @foreach($contrato as $aux2)
                                                     
 
                                                     <tr>
                                                         <td><?php $cont++;  echo $cont; ?></td>
                                                         <td>{{ $aux2->cod }}</td>
                                                         <td>{{ $aux2->nomProd }}</td>
-                                                        <td>{{ $aux2->cancompra2 }}</td>
-                                                        <td>{{ $aux2->preciocomp2 }}</td>
+                                                        <td>{{ $aux2->cancont3 }}</td>
+                                                        <td>{{ $aux2->preciocont3 }}</td>
                                                         <td>
-                                                           <?php
-                                                           $d=$aux2->descompra2 / 100;
-                                                            $b=$d * ($aux2->cancompra2*$aux2->preciocomp2);
-                                                            $a=($aux2->cancompra2*$aux2->preciocomp2) - $b;
+                                                          <?php
+                                                           
+                                                        
+                                                        $a=($aux2->cancont3*$aux2->preciocont3);
                                                             $iva=($p+$a)*0.13;
                                                             $p=$p+$a;
                                                             
@@ -183,7 +177,7 @@ h2,h1,span
                                                         </td>
                                                                                                                 
                                                         <td>
-                                    {!!Form::open(['route'=>['aux2.destroy',$aux2->id],'method'=>'DELETE'])!!}
+                                    {!!Form::open(['route'=>['aux3.destroy',$aux2->id],'method'=>'DELETE'])!!}
                                                         <input type="submit" name="elimina" value="Eliminar"   class="btn btn-danger active " >
                                                         {!!Form::close()!!}   
 
@@ -227,11 +221,11 @@ h2,h1,span
                                                 </div>
                                                 </div>
                                             </div>
-                                            {!! Form::open(['route'=>'compra.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
+                                            {!! Form::open(['route'=>'contrato.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
                                             <div class="form-group">
 
                                                 <span class="col-md-1 col-md-offset-2 text-center">
-                                                    <i class="fa fa-money bigicon"></i>
+                                                    <i class="fa fa-home bigicon"></i>
                                                 </span>
                                                 <div class="col-xs-3">
                                                     
@@ -272,6 +266,7 @@ h2,h1,span
                                                </div>
                                                 </div>
                                             <br>
+
 
                                             <div class="form-group">
                                                 <div class="col-md-12 text-center" align="center">

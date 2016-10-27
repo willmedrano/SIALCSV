@@ -19,6 +19,7 @@ class CreateProveedorsTable extends Migration
             $table->string('tel');
             $table->string('NIT');
             $table->string('dir');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }
