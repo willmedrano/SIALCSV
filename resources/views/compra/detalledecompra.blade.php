@@ -6,11 +6,17 @@
     font-size: 35px;
     color: #36A0FF;
 }
-thead{
+thead {
      background: #ffffcc;
      border:1;
 
 }
+thead {
+     background: #ffffcc;
+     border:1;
+
+}
+
 
 h2,h1,span
 {
@@ -172,56 +178,30 @@ h2,h1,span
                                                         <th>Compras Realizadas</th>
                                                         <th>cantidad</th>
                                                         <th>Precio</th>
-                                                        <th>Proveedor</th>
+                                                        <th>Tipo de Pago </th>
                                                         <th>Descripcion</th>
-                                                         <th colspan="2" rowspan="">Accion</th>
+                                                         
                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
 
                                                 
-
-                                                    <tr>
-                                                        <th scope="row" >1</th>
-                                                        <td>Lapiz #2</td>
-            
-                                                        <td>100</td>
-                                                         <td>0.75</td>
-                                                        <td>Libreria la paz</td>
-                                                        <td>lapiz amarrillo vitrina #2</td>
-                                                       
-                                                    </tr> 
-                                                    <tr>
-                                                        <th scope="row" >1</th>
-                                                        <td>Lapiz #2</td>
-            
-                                                        <td>100</td>
-                                                         <td>0.75</td>
-                                                        <td>Libreria la paz</td>
-                                                        <td>lapiz amarrillo vitrina #2</td>
-                                                       
-                                                    </tr>
-                                                    <?php $cont=0;?>
-                                                       @foreach($comptotal as $comps)
-                                                
-
-                                                    <tr>
-                                                        <td> <?php $cont++;
-                                                              echo $cont;
-                                                        ?></td>
-                                                        <td>compra {{ $comps->id }}</td>
-                                                        <td>{{ $comps->tipopago  }}</td>
+                                                    @foreach($comp as $comps)
+                                                    <tr class="v">
+                                                        
+                                                        <th  scope="row" >{{ $comps->id }}</th>
+                                                        <td>{{ $comps->nomProd  }}</td>
+                                                        <td>{{ $comps->cancompra}}</td>
+                                                        <td>{{ $comps->tipopago}}</td>
                                                         <td>{{ $comps->montocompra}}</td>
                                                         <td>{{ $comps->fechacompra}}</td>
-                                                        <td></td>
-                                                        <td><button    class="btn btn-info btn-sm" data-id="" data-toggle="modal" data-target="" style="width:100px;height:37px;" align="center">V e r</button>
-                                                    
-                                                           </td>
-                                                      
-
+                                                        
+            
+                                                                                                                
                                                        
                                                     </tr>
+                                                    
                                                   
                                                     
                                                     

@@ -97,13 +97,13 @@ h2,h1,span
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input id="nomproducto" name="nomproducto1" required type="text" placeholder="Nombre del Producto" class="form-control">
+                            <input  disabled id="nomproducto" name="nomproducto1" required type="text" placeholder="Nombre del Producto" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
                            <i class="fa fa-truck bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                               <select class=" form-control" name="idProve" id="idProve">
+                               <select disabled class=" form-control" name="idProve" id="idProve">
                             <option>--Selecione un Proveedor--</option>
                             @foreach($prov as $prov1)
 
@@ -148,7 +148,7 @@ h2,h1,span
                      </div>
                      <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
                       <div class="col-xs-3">
-                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
+                      <input id="descompra" name="descompra" type="hidden" placeholder="Precio de compra unitario" value="0"  class="form-control" onkeyup="sumar();">
                       </div>
                      </div>
                      <br>
@@ -186,8 +186,8 @@ h2,h1,span
                                                         <td><?php $cont++;  echo $cont; ?></td>
                                                         <td>{{ $aux2->cod }}</td>
                                                         <td>{{ $aux2->nomProd }}</td>
-                                                        <td>{{ $aux2->cancompra2 }}</td>
                                                         <td>{{ $aux2->preciocomp2 }}</td>
+                                                        <td>{{ $aux2->cancompra2 }}</td>
                                                         <td>{{ $aux2->descompra2}}</td>
                                                         <td>
                                                            <?php
@@ -256,8 +256,8 @@ h2,h1,span
                                                     
                                                  
                                                     <select class="form-control" name="formap" id="formap" onclick ="seleccionTipopago();">
-                                                        <option value="Contado" selected="true">Credito</option>
-                                                        <option value="Credito">Contado</option>   
+                                                        <option value="Credito" selected="true">Credito</option>
+                                                        <option value="Contado">Contado</option>   
                                                     </select>
                                             
                                                 </div>

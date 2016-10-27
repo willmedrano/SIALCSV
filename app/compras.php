@@ -17,7 +17,14 @@ class compras extends Model //Aqui escribimos campos de modelo
     protected $fillable = ['tipopago', 'montocompra', 'fechacompra'];//Aqui creamos los campos de la tabla 
 
    public static function mostrarcompra(Request $id){
-   		 return DB::table('productos')
+       return DB::table('productos')
+            ->join('proveedores', 'productos.id', '=', $id)
+            
+            ->select('productos.cod','productos.nomProd','productos.marca','productos.uniCaja','productos.desc','productos.estado',  'proveedores.nom')
+            ->get();
+   }
+   public static function mostrarcompra2(Request $id){
+       return DB::table('productos')
             ->join('proveedores', 'productos.id', '=', $id)
             
             ->select('productos.cod','productos.nomProd','productos.marca','productos.uniCaja','productos.desc','productos.estado',  'proveedores.nom')
@@ -27,8 +34,8 @@ class compras extends Model //Aqui escribimos campos de modelo
        return DB::table('compras')
             ->join('detalle_compras', 'detalle_compras.idcomps', '=', 'compras.id')
             ->join('productos', 'detalle_compras.idprods', '=', 'productos.id')
-            ->join('coutas', 'coutas.idcompsc', '=', 'compras.id')
-            ->select('compras.*',  'detalle_compras.*','productos.*','coutas.*')
+            
+            ->select('compras.*',  'detalle_compras.*','productos.*','compras.id')
             ->orderBy('compras.id')
             ->get();
    }
