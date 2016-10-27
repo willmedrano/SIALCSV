@@ -51,8 +51,14 @@ Route::match(['get','post'],'/llenadoProducto/{codigopro}','contoladorCompra@lle
 
 Route::resource('escuelas',"ControladorEscuelas@listaescuela");
 Route::resource('escuela',"ControladorEscuelas");
+Route::resource('cuotas','ControladorCuotas');
+Route::resource('paquete',"ControladorProductoEsc");
+Route::resource('paqueteregistro',"ControladorPaqueteEscuela");
+Route::match(['get','post'],'/llenadoProductopaquetes/{codigopro}','ControladorContrato@llenadoProductopaquetes');
+Route::match(['get','post'],'/preciodelpaquete/{codigopro}','ControladorContrato@preciodelpaquete');
+Route::resource('comprapaquete',"ControladorCompraEsc");
 
-Route::resource('contrato',"ControladorContrato");
+Route::resource('cuotas',"ControladorCuotas");
 
 Route::resource('contrato',"ControladorContrato");
 Route::resource('inve',"inventario");

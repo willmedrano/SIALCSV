@@ -58,8 +58,8 @@ h2,h1,span
                     <span class="col-md-1  text-center">
                         <i class="fa fa-shopping-cart  bigicon"></i>
                      </span>
-                        <h1 class="title">Contrato</h1>
-                        <p class="title-description">Registro de Contrto </p> 
+                        <h1 class="title">Compras</h1>
+                        <p class="title-description">Registro de Compras </p> 
                          
                            
                     </div>
@@ -72,9 +72,9 @@ h2,h1,span
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h1 class="panel-title">Formulario de Contrato</h1>
+                <h1 class="panel-title">Formulario de Compras</h1>
             </div>
-            <h2 align="center">Contrato</h2>
+            <h2 align="center">Compras</h2>
             <section class="section"> 
                 <div>
                 <div class="card card-block sameheight-item" >
@@ -82,18 +82,32 @@ h2,h1,span
                 {!! Form::open(['route'=>'aux2.store','method'=>'POST','class'=>'form-horizontal' ,'id'=>'frm1','name'=>'frm1']) !!}
                      
                         <br><br>
-                        
-                        <div class="form-group">
-                           
+                        <div class="form-group" id="aux">
+
                             <span class="col-md-1 col-md-offset-2 text-center">
-                           <i >paquete</i>
+                            <i class="fa fa-barcode bigicon"></i>
                             </span>
-                            <div class="col-md-3" id="aux">
-                               <select class=" form-control" name="idpaquete" id="idpaquete">
-                            <option>--Selecione un paquete--</option>
+                            <div class="col-xs-3"> 
+                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" autofocus> 
+                            </div>
+                        </div>
+                        <br> 
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
+                            </span>
+                            <div class="col-md-3">
+                            <input id="nomproducto" name="nomproducto1" required type="text" placeholder="Nombre del Producto" class="form-control">
+                            </div>
+                            <span class="col-md-1  text-center">
+                           <i class="fa fa-truck bigicon"></i>
+                            </span>
+                            <div class="col-md-3">
+                               <select class=" form-control" name="idProve" id="idProve">
+                            <option>--Selecione un Proveedor--</option>
                             @foreach($prov as $prov1)
 
-                                <option  value="{{ $prov1->id }}" >{{ $prov1->nompaquete }}</option>
+                                <option  value="{{ $prov1->id }}" >{{ $prov1->nom }}</option>
                             @endforeach
                            
                         </select> 
@@ -132,7 +146,10 @@ h2,h1,span
                      <div class="col-xs-3">
                      <input id="subtotalcomp" name="subtotalcomp" type="text" placeholder="subtotal" class="form-control" disabled="true">
                      </div>
-                     
+                     <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
+                      <div class="col-xs-3">
+                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
+                      </div>
                      </div>
                      <br>
                      <div class="form-group" align="center">
@@ -151,9 +168,10 @@ h2,h1,span
                                         <tr  class="warning">
                                             <th align="center" >#</th>
                                             <th align="center" >codigo</th>
-                                            <th align="center" >paquete</th>
+                                            <th align="center" >producto</th>
                                             <th align="center">cantidad</th>
                                             <th align="center" >precio</th>
+                                            <th align="center" >descuento</th>
                                             <th align="center" >subtotal</th>
                                             <th align="center" >accion</th>
                                             
@@ -170,6 +188,7 @@ h2,h1,span
                                                         <td>{{ $aux2->nomProd }}</td>
                                                         <td>{{ $aux2->cancompra2 }}</td>
                                                         <td>{{ $aux2->preciocomp2 }}</td>
+                                                        <td>{{ $aux2->descompra2}}</td>
                                                         <td>
                                                            <?php
                                                            $d=$aux2->descompra2 / 100;
@@ -236,10 +255,9 @@ h2,h1,span
                                                 <div class="col-xs-3">
                                                     
                                                  
-                                                    <select class="form-control" name="formap" id="formap">
-                                                     @foreach($esc as $escs)
-                                                         <option  value="{{ $escs->id }}" >{{ $escs->nomesc}}</option>
-                                                     @endforeach 
+                                                    <select class="form-control" name="formap" id="formap" onclick ="seleccionTipopago();">
+                                                        <option value="Contado" selected="true">Credito</option>
+                                                        <option value="Credito">Contado</option>   
                                                     </select>
                                             
                                                 </div>
@@ -271,6 +289,29 @@ h2,h1,span
                                              <input id="IVA" name="IVA" type="text" placeholder="IVA A Pagar" class="form-control" disabled = 'true' value="<?php echo $p*0.13;?>" >
                                                </div>
                                                 </div>
+
+                                            <br>
+                                            <div class="form-group">
+
+                                            <span class="col-md-1 col-md-offset-2 text-center"><i class="bigicon"style=" font-weight: bold;">#</i></span>
+                                                  <div class="col-xs-3">
+                                                 
+                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" onkeyup="cuotasapagar();">
+                                               <input type="hidden" name="ncuotas" id="ncuotas" value="1">
+                                               </div>
+
+                                            <span class="col-md-1  text-center">
+                                                    <i> moto por cuota:</i>
+                                                </span>
+                                                <div class="col-xs-3">
+                                                    
+                                                  
+                                                  <input id="montocouta" name="montocouta" type="text" placeholder="cuotas monto" class="form-control" disabled = 'true' value="<?php echo $p;?>">
+                                                   <input type="hidden" name="ppcuotas" id="ppcuotas" >
+                                            
+                                                 
+                                                </div>
+                                            </div>
                                             <br>
 
                                             <div class="form-group">
@@ -311,7 +352,8 @@ function sumar()
 var a=document.frm1.cantcomp.value;
 var b=document.frm1.preciocomp.value;
 var c=(parseFloat(a)*parseFloat(b)).toFixed(4);
-
+var d=document.frm1.descompra.value;
+var e=parseFloat(d);
 var f=0;
 if(isNaN(a)){
    a=1;
@@ -323,9 +365,11 @@ if(isNaN(a)){
   if(isNaN(c)){
    c=1;
   }
+  if(isNaN(e)){
+   e=0;
+  }
   
-  
-   f= c;
+   f=-((e/100)*c) + c;
    if(isNaN(f)){
    f=0;
   }
@@ -357,34 +401,21 @@ if(isNaN(a)){
 }
 
  $(document).ready(function(){
-$('#aux').on('change','#idpaquete',function (){
+$('#aux').on('change','#idcodproduc',function (){
   
-  var producto=$("#idpaquete").val();
-  var ruta="/llenadoProductopaquetes/"+producto;
- // var ruta2="/preciodelpaquete/"+producto;
-  var cont2=0;
-  var cont1=0;
- 
+  var producto=$("#idcodproduc").val();
+     var ruta="/llenadoProducto/"+producto;
+
  $.get(ruta, function(res){
   $(res).each(function(key,value){
        $("#hprod").val(value.id);
-       $("#preciocomp").val(value.preciop);
-       
+       $("#nomproducto").val(value.nomProd);
+       $("#idProve").val(value.idProve);
        
 
       });
   
  });
- /*
- $.get(ruta2, function(res){
-  $(res).each(function(key,value){
-       $("#preciocomp").val(value.preciop);
-       
-
-      });
-  cont2=cont2+1;
- });
-*/
 });
   
  });

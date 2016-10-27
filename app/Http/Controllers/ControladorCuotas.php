@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use cuotas;
 
-class ControladorContrato extends Controller
+class ControladorCuotas extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,8 @@ class ControladorContrato extends Controller
      */
     public function index()
     {
-        return view('paquetesescolares.contrato.index');
+        $cuota=\App\coutas::all();
+        return view('compra.modificarcompra',compact('cuota'));
     }
 
     /**
@@ -26,11 +28,7 @@ class ControladorContrato extends Controller
      */
     public function create()
     {
-        $aux =\App\auxiliar::auxComp();
-       // $pro =\App\compra::mostrarcompra($request);
-        $prov = \App\paqueteaux::All();
-        $esc = \App\Escuelas::All();
-        return view('paquetesescolares.contrato.registrocontrato', compact('prov','aux','esc'));
+        //
     }
 
     /**
@@ -55,31 +53,6 @@ class ControladorContrato extends Controller
         //
     }
 
-public function llenadoProductopaquetes($codigopro){
-    $producto=\App\paqueteaux::where('id',$codigopro)->get();
-    //$aux3=\App\paqueteaux::all();
-    /*foreach ($producto as $p) {
-      $codigopro=$p->id;
-    }*/
-
-    //echo $producto->toArray();
-    
-   // $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
-    //return Response::json($producto);
-    return response()->json($producto->toArray());
-  }
-  public function preciodelpaquete($codigopro){
-    $pro=\App\paqueteaux::where('idprod',$codigopro)->get();
-    /*foreach ($producto as $p) {
-      $codigopro=$p->id;
-    }*/
-
-    //echo $producto->toArray();
-    
-   // $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
-    //return Response::json($producto);
-    return response()->json($pro->toArray());
-  }
     /**
      * Show the form for editing the specified resource.
      *

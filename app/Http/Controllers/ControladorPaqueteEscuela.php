@@ -16,7 +16,9 @@ class ControladorPaqueteEscuela extends Controller
      */
     public function index()
     {
-        //
+        $paqs= \App\paqueteaux::All();
+        return view('paquetesescolares.compraesc.paquetemostar', compact('paqs'));
+
     }
 
     /**
@@ -26,7 +28,7 @@ class ControladorPaqueteEscuela extends Controller
      */
     public function create()
     {
-        return view('paquetesescolares.create');
+        return view('paquetesescolares.compraesc.paquetep');
     }
 
     /**
@@ -37,7 +39,13 @@ class ControladorPaqueteEscuela extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+     
+        \App\paqueteaux::create([
+            'nompaquete'=>$request['nompaquete'],
+            'preciop'=>$request['preciop'],
+            ]);
+        return redirect('/paqueteregistro/create')->with('message','store');
     }
 
     /**
@@ -71,7 +79,27 @@ class ControladorPaqueteEscuela extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          //
+        $paquetesm = \App\paqueteaux::find($id);
+        $aux=$request['hi2'];
+
+        if($aux=='1')
+        {
+        $paquetesm->nompaquete = $request['nompaquete'];
+        $paquetesm->preciop = $request['preciop'];
+        }
+        if($aux=='2')
+        {
+            
+        }
+        if($aux=='3')
+        {
+            
+        }
+
+
+        $paquetesm->save();
+        return redirect('/paqueteregistro/');
     }
 
     /**

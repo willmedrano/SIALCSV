@@ -168,7 +168,7 @@ h2,h1,span
                                         <tr  class="warning formatoTabla">
                                             <th align="center" class="">compras</th>
                                             <th align="center" width="100px">couta</th>
-                                            <th align="center" >fecha de Inicio credito</th>
+                                            <th align="center" >fecha de pago credito</th>
                                             <th align="center" >precio</th>
                                             <th align="center" >monto</th>
                                             <th align="center" >Estado</th>
@@ -176,7 +176,7 @@ h2,h1,span
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                          
                                         <tr align="center">
                                             <td>Lapiz #2</td>
                                             <td>4</td>
@@ -186,6 +186,22 @@ h2,h1,span
                                             <td><buttontype="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">pagar</button></td>
                                             
                                         </tr>
+                                         <?php $v=0; ?>
+                                          @foreach($cuota as $aux2)
+                                          <?php
+                                           $v++;  
+                                           $date = new DateTime($aux2->fechcouta);
+                                          ?>
+                                        <tr align="center">
+                                            <td>{{ $v }}</td>
+                                            <td>{{ $aux2->id}}</td>
+                                            <td> <?php  echo $date->format('d/m/Y'); ?></td>
+                                            <td>{{ $aux2->cuotas }}</td>
+                                            <td>20</td>
+                                            <td><buttontype="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">pagar</button></td>
+                                            
+                                        </tr>
+                                          @endforeach
                                     </tbody>
                                                      </table>
                                                             
