@@ -30,7 +30,7 @@ legend{
       
     {!!Html::style('css/app.css')!!}  
     
- |       
+        
                  @if(Session::has('menssage-error'))
                   <div class="alert alert-danger alert-dismissible" role="alert">
 
@@ -110,9 +110,7 @@ legend{
                         {!! Form::close() !!}
                     </div>
                 </div>
-                <div class="text-xs-center">
-                    <a href="index.html" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Regresar </a>
-                </div>
+                
             </div>
         </div>
         <!-- Reference block for JS -->

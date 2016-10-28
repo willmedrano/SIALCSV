@@ -17,8 +17,9 @@ class controladorNegar extends Controller
      */
     public function index()
     {     $emple=empleado::cargarUsuario();
+            $ne=usuario::All();
         //
-        return view('seguridad.denegar',compact('emple'));
+        return view('seguridad.denegar',compact('emple','ne'));
     }
 
     /**
@@ -74,7 +75,10 @@ class controladorNegar extends Controller
     public function update(Request $request, $id)
     {
         //
+
+           
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -85,5 +89,9 @@ class controladorNegar extends Controller
     public function destroy($id)
     {
         //
+
+        $auxeliminar= usuario::find($id);
+        $auxeliminar->delete();
+        return redirect('/negar');
     }
 }

@@ -20,6 +20,7 @@ class CreateUsuariosTable extends Migration
              $table->boolean('estadousurio')->default(true);
              $table->integer('idemp')->unsigned();
              $table->foreign('idemp')->references('id')->on('empleados');
+             $table->rememberToken();
              $table->timestamps();
              
         });

@@ -1,4 +1,13 @@
 @extends('probandos')
+<?php $message=Session::get('message')?>
+<div class='notifications top-left'></div>
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Producto Guardado
+</div>
+@endif
+ 
 
 @section('content')
 <style type="text/css" >
@@ -49,7 +58,31 @@ h2,h1,span
  }
 </style>
   
-               
+               <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="alert-warning">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel3">Advertencia PRODUCTO</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid bd-example-row">
+          
+              <label for="">El producto esta desactivo</label>
+              <input type="hidden" name="hi"">
+              <input type="hidden" name="hi2" value="2">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    
+                </div>
+        
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
                 <article class="content forms-page" >
                   
@@ -97,7 +130,7 @@ h2,h1,span
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input   id="nomproducto" name="nomproducto1" required type="text" placeholder="Nombre del Producto" class="form-control">
+                            <input   id="nomproducto" name="nomproducto1" required type="text" disabled="" placeholder="Nombre del Producto" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
                            <i class="fa fa-truck bigicon"></i>
@@ -410,11 +443,14 @@ $('#aux').on('change','#idcodproduc',function (){
        $("#hprod").val(value.id);
        $("#nomproducto").val(value.nomProd);
        $("#idProve").val(value.idProve);
+       
        }
       else{
         $("#hprod").val("");
        $("#nomproducto").val("");
        $("#idProve").val(0);
+       $("#myModal").modal()
+
       }
 
       });

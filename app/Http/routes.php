@@ -53,6 +53,7 @@ Route::resource('cuotas',"ControladorCuotas");
 Route::resource('contrato',"ControladorContrato");
 Route::resource('inve',"inventario");
 Route::resource('log',"login");
+Route::resource('conf',"loginControlador");
 Route::resource('empleado',"Controladorempleado");
 Route::resource('permitir',"Controladorpermitir");
 Route::resource('negar',"controladorNegar");
@@ -62,6 +63,7 @@ Route::resource('aux2',"auxiliarControl");
 Route::resource('lotes',"controladorLotes");
 Route::post('subir_imagen_usuario', 'UsuariosController@subir_imagen_usuario');
 Route::resource('sesion',"logController");
+Route::get('logout',"logController@logout");
 
 
 Route::get('/pru2', function () {

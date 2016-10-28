@@ -66,6 +66,11 @@ class logController extends Controller
         //
     }
 
+    public function logout(){
+        Auth::logout();
+        return view('inicio.inicios');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

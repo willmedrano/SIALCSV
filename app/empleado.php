@@ -23,7 +23,7 @@ class empleado extends Model
    {
       return  DB::table('empleados')
             ->join('usuarios', 'usuarios.idemp', '=', 'empleados.id')
-            ->select('empleados.*','usuarios.*')
+            ->select('usuarios.*','empleados.nomEmp','empleados.apeEmp','empleados.telEmp','empleados.cargoEmp','empleados.estadoEmp')
             ->orderBy('empleados.id')
             ->get();
       
