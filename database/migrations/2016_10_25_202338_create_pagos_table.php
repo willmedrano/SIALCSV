@@ -15,11 +15,11 @@ class CreatePagosTable extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->increments('id');
              $table->date('fechpago');
-             $table->boolean('estpago')->default(false);;
-             $table->double('atraso', 7, 2)->default(0.00);  //   Equivalente a numeros reales con precisión, 7 digitos en total y 2 despues de el punto decimal
+             $table->integer('dias')->default(0);;
+              //   Equivalente a numeros reales con precisión, 7 digitos en total y 2 despues de el punto decimal
              $table->double('pagos', 7, 2);   //   Equivalente a numeros reales con precisión, 7 digitos en total y 2 despues de el punto decimal
              $table->integer('idempleado')->unsigned();
-             $table->foreign('idempleado')->references('id')->on('compras');
+             $table->foreign('idempleado')->references('id')->on('empleados');
              $table->timestamps();
         });
     }

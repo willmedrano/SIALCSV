@@ -1,5 +1,15 @@
 @extends('probandos')
 
+<?php $message=Session::get('message')?>
+
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Empleado Modificado
+</div>
+@endif
+
+
 @section('content')
 <style>
 .bigicon {
@@ -118,27 +128,12 @@ h2,h1,span
 
       <div class="box-body">
 
-        <div class="form-group col-xs-12" >
-
-
-          <?php if($cat->fotoEmp==""){ $cat->fotoEmp="imagenes/avatar.jpg"; }
-          ?>
-       
-          <img src="<?= $cat->fotoEmp;?>"  alt="Foto"  style="width:160px;height:160px;" id="fotografia_usuario" >
-                <!-- User image -->
-          
-       </div>
-
-
-      <div class="form-group col-xs-12"  >
-             <label>Agregar Imagen </label>
-              <input name="archivo" id="archivo" type="file"   class="archivo form-control"  required/><br /><br />
-      </div>
+        
 
      
-      <div class="box-footer">
-                          <button type="submit" class="btn btn-primary">Actualizar Imagen</button>
-      </div>
+
+     
+      
 
        
 
@@ -194,10 +189,10 @@ h2,h1,span
               <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Nombre: </label></span></td>
                     <td colspan="2.5" align="center" >
-                    <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" value="{{ $cat->nomEmp }}" class="form-control">
+                    <input id="nomEmp" name="nomEmp" type="text" placeholder="Nombre" value="{{ $cat->nomEmp }}" class="form-control" required="">
                     <br></td>
                       <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
-                    <td colspan="2.5" align="center" ><input id="apeEmp" name="apeEmp" type="text" value="{{ $cat->apeEmp }}"  placeholder="Apellido" class="form-control"><br></td>
+                    <td colspan="2.5" align="center" ><input id="apeEmp" name="apeEmp" type="text" value="{{ $cat->apeEmp }}"  placeholder="Apellido" class="form-control" required><br></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -206,7 +201,7 @@ h2,h1,span
                
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >DUI: </label></span></td>
-                    <td colspan="2" align="center"><input id="DUIEmp" name="DUI" type="text" value="{{ $cat->DUIEmp}}" placeholder="DUI" class="form-control"><br></td>
+                    <td colspan="2" align="center"><input id="DUIEmp" name="DUI" type="text" value="{{ $cat->DUIEmp}}" placeholder="DUI" class="form-control" required=""><br></td>
 
                     <td colspan="2" rowspan="3" align="center"><span align="center">
                         <i style="font-size: 130px;" class="fa fa-pencil-square-o fa-3x fa-fw bigicon" align="center"></i>
@@ -217,7 +212,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >NIT: </label></span></td>
-                    <td colspan="2" align="center" > <input id="NITEmp" name="NIT" type="text" value="{{ $cat->NITEmp}}" placeholder="NIT " class="form-control"><br></td>
+                    <td colspan="2" align="center" > <input id="NITEmp" name="NIT" type="text" value="{{ $cat->NITEmp}}" placeholder="NIT " class="form-control" required><br></td>
                     <td></td>
                     <td></td>
                   
@@ -225,7 +220,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >F. nacimiento: </label></span></td>
-                    <td colspan="2" align="center" ><input id="nacEmp" name="Fnac" type="date" value="{{ $cat->NacEmp }}" placeholder="Fecha" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="nacEmp" name="Fnac" type="date" value="{{ $cat->NacEmp }}" placeholder="Fecha" class="form-control" required ><br></td>
                     <td></td>
                     <td></td>
                    
@@ -234,20 +229,13 @@ h2,h1,span
 
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Telefono: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control" required><br></td>
                     <td></td>
                     <td></td>
                    
                     
                </tr>
-                <tr>
-                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Correo: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correo" type="text" value="{{ $cat->correoEmp }}" placeholder="Correo" class="form-control"><br></td>
-                    <td></td>
-                    <td></td>
-                   
-                    
-               </tr>
+               
 
                <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Sexo: </label></span></td>
@@ -265,12 +253,15 @@ h2,h1,span
                                   @if (( $cat->sexEmp  != "Masculino") && $d<1)
                                       <option  value="Femenino" selected="true"  >Femenino</option>
                                       <option  value="Masculino"   >Masculino</option>
+                                       <option  value="Otro"   >Otro</option>
 
                                       <?php $d++; ?>
                                   @endif
                                    @if ( $cat->sexEmp  == "Masculino" && $d<1)
                                       <option  value="Masculino"  >Masculino</option>
                                        <option  value="Femenino"  >Femenino</option>
+                                        <option  value="Otro"   >Otro</option>
+
 
                                       <?php $d++; ?>
                                     @endif
@@ -282,12 +273,14 @@ h2,h1,span
                                   @if (( $cat->sexEmp  == "Masculino") && $d<1)
                                       <option  value="Masculino" selected="true"  >Masculino</option>
                                       <option  value="Femenino"   >Femenino</option>
+                                       <option  value="Otro"   >Otro</option>
 
                                       <?php $d++; ?>
                                   @endif
                                    @if ( $cat->sexEmp  != "Masculino" && $d<1)
                                       <option  value="Femenino"  >Femenino</option>
                                        <option  value="Masculino"  >Masculino</option>
+                                        <option  value="Otro"   >Otro</option>
 
                                       <?php $d++; ?>
                                     @endif
@@ -310,7 +303,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"> <span class="text-center" ><label >Direccion: </label></span></td>
-                    <td colspan="4"><textarea rows="1" class="form-control" id="message" name="dir" placeholder="Direccion" >{{ $cat->dirEmp }}</textarea> </td>
+                    <td colspan="4"><textarea rows="1" class="form-control" id="message" name="dir" placeholder="Direccion" required >{{ $cat->dirEmp }}</textarea> </td>
                     <br>
                     <td></td>
                     <td></td>
@@ -335,12 +328,14 @@ h2,h1,span
                                   @if (( $cat->cargoEmp  != "Administrador") && $d<1)
                                       <option  value="Vendedor" selected="true"  >Vendedor</option>
                                       <option  value="Administrador"   >Administrador</option>
+                                       <option  value="Otro"   >Otro</option>
 
                                       <?php $d++; ?>
                                   @endif
                                    @if ( $cat->cargoEmp  == "Administrador" && $d<1)
                                       <option  value="Administrador"  >Aministrador</option>
                                        <option  value="Vendedor"  >Vendedor</option>
+                                        <option  value="Otro"   >Otro</option>
 
                                       <?php $d++; ?>
                                     @endif
@@ -352,15 +347,32 @@ h2,h1,span
                                   @if (( $cat->cargoEmp  == "Administrador") && $d<1)
                                       <option  value="Administrador" selected="true"  >Administrador</option>
                                       <option  value="Vendedor"   >Vendedor</option>
+                                       <option  value="Otro"   >Otro</option>
 
                                       <?php $d++; ?>
                                   @endif
                                    @if ( $cat->cargoEmp  != "Administrador" && $d<1)
                                       <option  value="Vendedor"  >Vendedor</option>
                                        <option  value="Administrador"  >Administrador</option>
+                                        <option  value="Otro"   >Otro</option>
 
                                       <?php $d++; ?>
                                     @endif
+                                  <?php $c++; ?>
+                          @endif
+
+
+                           @if (($emplec->cargoEmp  == "Otro") && 2> $c)
+
+                                
+                                  @if (( $cat->cargoEmp  == "Otro") && $d<1)
+                                      <option  value="Otros" selected="true"  >Otros</option>
+                                      <option  value="Administrador"   >Administrador</option>
+                                       <option  value="Vendedor"   >Vendedor</option>
+
+                                      <?php $d++; ?>
+                                  @endif
+                                   
                                   <?php $c++; ?>
                           @endif
                                 
@@ -376,7 +388,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Salario: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="salario" type="text" value="{{ $cat->sueldoEmp }}" placeholder="Nuevo salario" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="tipo" name="salario" type="text" value="{{ $cat->sueldoEmp }}" placeholder="Nuevo salario" class="form-control" required><br></td>
                     <td></td>
                     <td></td>
                    <td></td>

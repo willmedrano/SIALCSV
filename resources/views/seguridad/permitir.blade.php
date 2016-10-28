@@ -212,7 +212,7 @@ legend{
 
                        <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title">Permitir Acceso</h1>
+                                <h1 class="panel-title">Empleados</h1>
                              </div>
 
                             <section class="section">

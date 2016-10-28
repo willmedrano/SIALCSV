@@ -17,6 +17,7 @@ class auxiliarControl extends Controller
     public function index()
     {
         //
+        return view('layouts.inicio');
         
     }
 

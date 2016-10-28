@@ -45,6 +45,8 @@
             $("#date").mask("99/99/9999");
             $("#movil").mask("9999-9999");
             $("#letras").mask("99999999");
+            $("#DUI").mask("99999999-9");
+
             $("#comodines").mask("?");
         });
     </script>
@@ -57,7 +59,7 @@
  
 <div><span>numero con dos decimales</span><input type="text" id="numero1"> 9,99 (generamos un evento al rellenarlo)</div>
 <div><span>fecha</span><input type="text" id="date" > 99/99/9999</div>
-<div><span>movil</span><input type="text" id="movil"> 999 99 99 99</div>
+<div><span>movil</span><input type="text" id="DUI"> 999 99 99 99</div>
 <div><span>Solo tres letras</span><input type="text"  id="letras"> aaa</div>
 <input type="submit" name="" value="hola">
 </form>

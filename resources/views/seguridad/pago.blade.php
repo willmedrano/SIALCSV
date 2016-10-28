@@ -1,4 +1,12 @@
 @extends('probandos')
+<?php $message=Session::get('message')?>
+
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Pago Realizado
+</div>
+@endif
 
 @section('content')
 <style>
@@ -43,7 +51,9 @@ h2,h1,span
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
  
-          {!!Form::model($cat,['method'=>'PACH','route'=>['log.update',$cat->id],'id'=>'frm1','name'=>'frm1'])!!}
+          
+          {!! Form::open(['route'=>'pagar.store','method'=>'POST','class'=>'form-horizontal']) !!}
+                
 
                     <fieldset>
                            <table class="quitarborder" style="width:100%" >
@@ -62,6 +72,7 @@ h2,h1,span
            </thead>
            <tbody>
                <tr>
+               <input type="hidden" value="{{ $cat->id }}" id="cod" name="cod">
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Nombre: </label></span></td>
                     <td colspan="2.5" align="center" ><input id="nomEmp" name="nomEmp" value="{{ $cat->nomEmp }}"type="text" placeholder="Nombre" class="form-control" >
                     <br></td>
@@ -116,14 +127,15 @@ h2,h1,span
        </table>
                         
                     </fieldset>
+                    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Pagar</button>
+      </div>
                 {!! Form::close() !!}
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Pagar</button>
-      </div>
+      
     </div>
   </div>
 </div>

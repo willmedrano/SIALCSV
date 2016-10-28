@@ -47,7 +47,7 @@ class logController extends Controller
         {
               view('probandos',compact('$emple'));
               
-              return view('prove.create');
+              return view('layouts.inicio');
 
             //return $request->username;
         }

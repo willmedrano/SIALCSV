@@ -1,5 +1,13 @@
 @extends('probandos')
 
+<?php $message=Session::get('message')?>
+
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Empleado Guardado
+</div>
+@endif
 
 @section('content')
 
@@ -76,11 +84,11 @@
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="fname" name="nombreE" type="text"  placeholder="Ingrese nombres" class="form-control">
+                                                    <input id="fname" name="nombreE" type="text"  placeholder="Ingrese nombres" class="form-control" required pattern="[A-Za-z]{3,20}">
                                                 </div>
 
                                                 <div class="col-xs-4" align="left">
-                                                    <input id="fname" name="apeEmp" type="text" placeholder="Ingrese apellidos" class="form-control">
+                                                    <input id="fname" name="apeEmp" type="text" placeholder="Ingrese apellidos" class="form-control" required pattern="[A-Za-z]{3,20}">
                                                 </div>
                                             </div>
                                             <br>
@@ -92,11 +100,11 @@
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="lname" name="dui" type="text" placeholder="Dui" class="form-control">
+                                                    <input id="lname" name="dui" type="text" placeholder="Dui" class="form-control" required>
                                                 </div>
 
                                                 <div class="col-xs-4" align="left">
-                                                    <input id="fname" name="nit" type="text" placeholder="NIT" class="form-control">
+                                                    <input id="fname" name="nit" type="text" placeholder="NIT" class="form-control" required>
                                                 </div>
 
                                             </div>
@@ -109,7 +117,7 @@
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="nac" name="Fnac" type="date" placeholder="Fecha de Nacimiento " class="form-control" data-toggle="tooltip" title="Fecha de nacimiento">
+                                                    <input id="nac" name="Fnac" type="date" placeholder="Fecha de Nacimiento " class="form-control"  required data-toggle="tooltip" title="Fecha de nacimiento">
 
                                                     <input id="fcontrato" name="fcontrato" type="hidden" value="<?php echo dameFecha(date("Y-m-d"),0);?>">
                                                  </div>
@@ -124,12 +132,10 @@
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="phone" name="tel1" type="text" placeholder="Telefono 1" class="form-control">
+                                                    <input id="phone" name="tel1" type="text" placeholder="Telefono " class="form-control">
                                                 </div>
 
-                                                 <div class="col-xs-4" align="left">
-                                                    <input id="phone" name="tel2" type="text" placeholder="Telefono 2" class="form-control">
-                                                </div>
+                                                 
 
                                             </div>
                                             <br>
@@ -140,7 +146,7 @@
                                                 </span>
                                                 <div class="col-xs-4"> 
                                                     <select class="form-control" name="sexo">
-                                                        <option>Seleccione una opcion</option>
+                                                        
                                                         <option>Masculino</option>
                                                         <option>Femenino</option>   
                                                     </select>
@@ -166,7 +172,7 @@
                                                     <select class=" form-control" name="puesto">
                                                         <option>Administrador</option>
                                                         <option>Vendedor</option>
-                                                        <option>Otros</option>   
+                                                        <option>Otro</option>   
                                                     </select>
                                                 </div>
                                             </div>

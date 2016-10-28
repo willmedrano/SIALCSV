@@ -16,8 +16,9 @@ class controladorPagar extends Controller
      */
     public function index()
     {
-        $emple=\App\empleado::All();
-        return view('seguridad.pago',compact('emple'));
+
+        $pa=\App\pagos::pag();
+        return view('seguridad.verPago',compact('pa'));
     }
 
     /**
@@ -28,6 +29,8 @@ class controladorPagar extends Controller
     public function create()
     {
         //
+        $emple=\App\empleado::All();
+        return view('seguridad.pago',compact('emple'));
     }
 
     /**
@@ -38,7 +41,17 @@ class controladorPagar extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        \App\pagos::create([
+            
+            'fechpago' => date("Y/m/d"),
+            'idempleado' => $request['cod'],
+            'dias' => $request['dPagos'],
+            
+            'pagos' => $request['totalPagar'],
+        ]);
+        
+        return redirect('/pagar/create')->with('message','store');
     }
 
     /**

@@ -136,7 +136,7 @@ class inventario extends Controller
         $productos->save();
 
         Session::flash('mensaje','¡Registro Actualizado!');
-        return redirect::to('/inve');
+        return redirect::to('/inve')->with('message','update');;
     }
      
 

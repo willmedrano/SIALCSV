@@ -51,7 +51,7 @@ legend{
                    
                     <div class="title-block">
                         <h1 class="title">Seguridad</h1>
-                        <p class="title-description"> Permitir Acceso </p> 
+                        <p class="title-description"> Negar Acceso </p> 
                          
                            
                     </div>
@@ -64,7 +64,7 @@ legend{
 
                        <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title">Permitir Acceso</h1>
+                                <h1 class="panel-title">Usuarios</h1>
                              </div>
 
                             <section class="section">
