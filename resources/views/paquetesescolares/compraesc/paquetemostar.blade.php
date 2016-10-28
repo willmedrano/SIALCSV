@@ -136,7 +136,7 @@ h2,h1,span
                                                         <th>Nombre</th>
                                                         <th>Precio del apaquete</th> 
                                                         <th colspan="1" rowspan="">Accion</th>
-                                                        <th colspan="1" rowspan="">Estado</th>
+                                                     
                                                        
                                                     </tr>
                                                 </thead>

@@ -85,7 +85,7 @@ h2,h1,span
 @endforeach ()
 
 @foreach ($pro as $cat)
-<div  id="Edit{{$cat->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">> 
+<div  id="Edit{{$cat->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -170,12 +170,13 @@ h2,h1,span
                             <div class="col-md-6">
                                 <select class=" form-control" name="idProve">
                              @foreach($prov as $prove)
-                                
+                                @if($cat->idProve==$prove->id)
+                                <option  value="{{ $prove->id }}" selected="true">{{ $prove->nom }}</option>
+                                @endif
+                                @if($cat->idProve==$prove->id)
                                 <option  value="{{ $prove->id }}" >{{ $prove->nom }}</option>
-                                
-                                
-                                
-
+                                @endif
+                              
                             @endforeach
                            
                         </select>

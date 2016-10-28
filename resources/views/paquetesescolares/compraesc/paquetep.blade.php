@@ -4,7 +4,7 @@
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Exito!!</strong> Producto Guardado
+<strong>Exito!!</strong> Tipo de Paquete Guardado
 </div>
 @endif
 
@@ -43,7 +43,7 @@ h2
                         <h2 >
         
     </h2>
-                        <p class="title-description"> Registro de Paquete</p>
+                        <p class="title-description"> Registro de Tipo de Paquete</p>
                     </div>
             <!--<div class="subtitle-block">
                         <h3 class="subtitle">
@@ -65,11 +65,11 @@ h2
                 
 <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title">Formulario de paquete</h1>
+                                <h1 class="panel-title">Formulario de Tipo de Paquete</h1>
 
                              </div>
                              <div align="center">
-                             <h2 align="center"> Paquete </h2> 
+                             <h2 align="center"> Tipo de Paquete </h2> 
                              <br>
 </div>
                  {!! Form::open(['route'=>'paqueteregistro.store','method'=>'POST','class'=>'form-horizontal']) !!}

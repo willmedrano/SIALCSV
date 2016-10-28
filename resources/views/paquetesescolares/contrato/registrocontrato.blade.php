@@ -1,6 +1,14 @@
 @extends('probandos')
 
 @section('content')
+<?php $message=Session::get('message')?>
+
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Contrato Creado
+</div>
+@endif
 <style type="text/css" >
     
 .bigicon {
@@ -57,7 +65,7 @@ h2,h1,span
                         <i class="fa fa-shopping-cart  bigicon"></i>
                      </span>
                         <h1 class="title">Contrato</h1>
-                        <p class="title-description">Registro de Contrto </p> 
+                        <p class="title-description">Registro de Contrato </p> 
                          
                            
                     </div>

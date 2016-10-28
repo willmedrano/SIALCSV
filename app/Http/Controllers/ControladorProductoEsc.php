@@ -22,7 +22,7 @@ class ControladorProductoEsc extends Controller
      */
     public function index()
     {
-      $pro= \App\paqueteaux::all();
+      $pro= \App\paqueteaux::mostrarpaquetes();
       $prov= \App\proveedor::All();
       $paq= \App\paqueteaux::All(); 
        return view('paquetesescolares.compraesc.mproductosesc', compact('pro','prov','paq'));

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use App\contratos;
 class ControladorContrato extends Controller
 {
     /**
@@ -16,7 +17,8 @@ class ControladorContrato extends Controller
      */
     public function index()
     {
-        return view('paquetesescolares.contrato.index');
+        $contr=contratos::Mostrarcontrato();
+        return view('paquetesescolares.contrato.index', compact('contr'));
     }
 
     /**
@@ -102,7 +104,7 @@ class ControladorContrato extends Controller
         
  
         
-        return redirect('contrato/create');
+        return redirect('contrato/create')->with('message','store');;
     }
 
     /**

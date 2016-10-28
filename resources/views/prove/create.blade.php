@@ -51,7 +51,23 @@
 {
     color: #36A0FF;
 }
-</style>                   
+</style>  
+{!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+ <script type="text/javascript">
+jQuery(function($) {
+      $.mask.definitions['~']='[+-]';
+      $('#date').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
+      $('#tel').mask('9999-9999');
+      $('#nit').mask("9999-999999-999-9");
+      $("#tin").mask("99-9999999");
+      $("#ssn").mask("999-99-9999");
+      $("#product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+      $("#eyescript").mask("~9.99 ~9.99 999");
+      $('textarea,form').attr('autocomplete','off');
+      $('input,form').attr('autocomplete','off');
+   });
+</script>                 
 
                     <div class="title-block">
                     <span class="col-md-1  text-center">
@@ -106,9 +122,8 @@
         <span class="col-md-1 col-md-offset-2 text-center">
          <i class="fa fa-phone-square bigicon"></i>
           </span>
-                <div class="col-xs-4"> 
-               {!!Form::tel('tel',null,['class'=>'form-control','placeholder'=>'Ingrese el Telefono del Proveedor']) !!}
-                  
+                <div class="col-xs-4">
+                <input type="text" name="tel" id="tel" value="" placeholder="Ingrese el Telefono del Proveedor" class="form-control" required >    
                 </div>
                                                    
 
@@ -122,7 +137,7 @@
          <i class="fa fa-credit-card  bigicon"></i>
           </span>
                 <div class="col-xs-4"> 
-               <input type="text" name="nit" value="" placeholder="Ingrese el NIT" class="form-control" >
+               <input type="text" name="nit" id="nit" value="" placeholder="Ingrese el NIT" class="form-control" required >
                   
                 </div>
                                                    
@@ -135,7 +150,7 @@
                     <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
                             <div class="col-md-8">
-                                <textarea class="form-control" id="dir" name="dir" placeholder="Ingrese la Dirrecion del Proveedor" rows="2"></textarea>
+                                <textarea class="form-control" id="dir" name="dir" placeholder="Ingrese la Dirrecion del Proveedor" rows="2" required></textarea>
                             </div>
                         </div>
 

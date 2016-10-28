@@ -6,7 +6,7 @@
 @if($message=='update')
 <div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong> Sea Actualizado con exito el registro</strong>
+<strong>Exito!!</strong>  Actualizado el registro
 </div>
 @endif
 
@@ -53,7 +53,22 @@ h2,h1,span
     
 </style>
 
-
+{!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+ <script type="text/javascript">
+jQuery(function($) {
+      $.mask.definitions['~']='[+-]';
+      $('#date').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
+      $('#telesc').mask('9999-9999');
+      $('#phoneext').mask("(999) 999-9999? x99999");
+      $("#tin").mask("99-9999999");
+      $("#ssn").mask("999-99-9999");
+      $("#product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+      $("#eyescript").mask("~9.99 ~9.99 999");
+      $('textarea,form').attr('autocomplete','off');
+      $('input,form').attr('autocomplete','off');
+   });
+</script>
 
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
@@ -61,7 +76,7 @@ h2,h1,span
 
 
 @foreach ($escuelas as $escuelam)
-<div  id="Edit{{$escuelam->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">> 
+<div  id="Edit{{$escuelam->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

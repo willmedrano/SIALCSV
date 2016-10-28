@@ -163,7 +163,7 @@ h2,h1,span
                                                   <span class="col-md-1 col-md-offset-7 text-center"><i class="fa fa-search bigicon icon_nav"></i>Buscar</span>
                                                <div class="col-xs-4">
 
-                                                <input id="fname" name="name" type="text" class="form-control">
+                                                <input id="filtrar" name="name" type="text" class="form-control">
                                                 </div>
                                                    </div> 
 
@@ -179,12 +179,13 @@ h2,h1,span
                                                         <th>cantidad</th>
                                                         <th>Precio</th>
                                                         <th>Tipo de Pago </th>
+                                                        <th>Total</th>
                                                         <th>Descripcion</th>
                                                          
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="buscar">
 
                                                 
                                                     @foreach($comp as $comps)
@@ -193,9 +194,11 @@ h2,h1,span
                                                         <th  scope="row" >compra #{{ $comps->id }}</th>
                                                         <td>{{ $comps->nomProd  }}</td>
                                                         <td>{{ $comps->cancompra}}</td>
+                                                        <td>{{ $comps->preciocomp}}</td>
                                                         <td>{{ $comps->tipopago}}</td>
                                                         <td>{{ $comps->montocompra}}</td>
-                                                        <td>{{ $comps->fechacompra}}</td>
+                                                        <?php $date = new DateTime($comps->fechacompra); ?>
+                                                        <td><?php  echo $date->format('d/m/Y'); ?></td>
                                                         
             
                                                                                                                 
@@ -219,7 +222,9 @@ h2,h1,span
                            </section>
                            </article>
 
-                          
-                           
+@endsection
+  @section('scripts')
+    <!--{!!Html::script('js/scriptpersanalizado.js')!!}-->
+    {!!Html::script('js/buscaresc.js')!!}
+  @endsection
 
-@stop

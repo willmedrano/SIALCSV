@@ -174,7 +174,7 @@ h2,h1,span
                                                   <span class="col-md-1 col-md-offset-7 text-center"><i class="fa fa-user bigicon icon_nav"></i>Buscar</span>
                                                <div class="col-xs-4">
 
-                                                <input id="fname" name="name" type="text" class="form-control">
+                                                <input id="filtrar" name="name" type="text" class="form-control">
                                                 </div>
                                                    </div>
                                           </div>
@@ -182,39 +182,32 @@ h2,h1,span
                                             <table class="table table-bordered table-hover" style="width:100%" >
                                                 <thead align="center">
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>contrato</th>
                                                         <th>Escuela</th>
                                                         <th>Productos</th>
                                                         <th>Fecha de entrega</th>
                                                         <th>Pago</th>
-                                                        <th colspan="2" class="formatoTabla">Acciones</th>
+                                                      
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="buscar">
 
+                                                    <?php $c=0; ?>
+                                                @foreach($contr as $cons)
                                                 
-
+                                                    <?php $c++;?>
                                                     <tr>
-                                                        <th scope="row" ></th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-sm gris" >Desactivo</button></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"></th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td><button type="submit"  class="btn btn-info btn-sm">Modificar</button></td>
-                                                        <td><button type="submit"  class="btn btn-primary btn-sm">  A c t i v o  </button></td>
-                                                    </tr>
-                                                    
-
+                                                       <td>contrato #<?php echo $c;?></td>
+                                                        <td>{{ $cons->nomesc }}</td>
+                                                        <td>{{ $cons->nomProd }}</td>
+                                        <?php $date = new DateTime($cons->fechafcon); ?>
+                                        <td><?php  echo $date->format('d/m/Y'); ?></td>
+                                                        
+                                                    <td>{{ $cons->montocon}}</td>  
+                                                   </tr>    
+                                                        
+                                                @endforeach    
                                                       
                                                 </tbody>
                                             </table>
@@ -229,4 +222,9 @@ h2,h1,span
                           
                            
 
-@stop
+@endsection
+  @section('scripts')
+    <!--{!!Html::script('js/scriptpersanalizado.js')!!}-->
+    {!!Html::script('js/buscaresc.js')!!}
+  @endsection
+

@@ -24,6 +24,15 @@ class contratos extends Model
             ->orderBy('contratos.id')
             ->get();
         }
+public static function Mostrarcontrato(){
+       return DB::table('contratos')
+            ->join('detalle_contratos', 'detalle_contratos.idcontratos', '=', 'contratos.id')
+            ->join('productos', 'detalle_contratos.idprodet', '=', 'productos.id')
+            ->join('escuelas', 'escuelas.id', '=', 'contratos.idescuelas')
+            ->select('contratos.*',  'detalle_contratos.*','productos.*',"escuelas.*")
+            ->orderBy('contratos.id')
+            ->get();
+        }
 
 
 }
