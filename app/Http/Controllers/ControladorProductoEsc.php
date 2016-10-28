@@ -51,16 +51,19 @@ class ControladorProductoEsc extends Controller
     {
         $aux=$request['idpaquete'];
         $costo=0;
+        $nombrep="";
         $paq=\App\paqueteaux::all();
         foreach ($paq as $v) {
              if($v->id == $aux){
               $costo=$v->preciop;
+              $nombrep=$v->nompaquete;
              }
+             
         }
         \App\producto::create([
             'cod' => $request['cod'],
             'nomProd' => $request['nom'],
-            'marca' => $request['idpaquete'],
+            'marca' => $nombrep,
             'uniCaja' => $request['uniCaja'],
             'idProve' => $request['idProve'],
             'gUni' => $request['gUni'],

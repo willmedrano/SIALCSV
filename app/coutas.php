@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
-use producto;
-use compras;
+use App\producto;
+use App\compras;
 class coutas extends Model
 {
     // aqui se definen en nuestro modelo el nombre de la tabla que podremos utilizar para insertar en la base de datos.

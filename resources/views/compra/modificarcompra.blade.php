@@ -41,88 +41,77 @@ h2,h1,span
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <article class="content static-tables-page">
 
-
-<!--Inicio de modal -->
-                <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+@foreach ($cuota as $cat2)
+<div id="gridSystemModal2{{$cat2->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: white;" >&times;</span></button>
+      <div class="modal-header alert-warning" bgcolor="blue">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel">Registrar pago de credito</h4>
+<h4 class="modal-title" id="gridModalLabel3" >Registar pago</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
- 
-          <form class="form-horizontal" method="post">
-                    <fieldset>
-                           <table class="quitarborder" style="width:100%" >
-      
-          
-           <thead>
-               <tr>
-                   <th></th>
-                   <th ></th>
-                    <th ></th>
-                    <th ></th>
-                    <th ></th>
-                   <th colspan="2"></th>
-                   
-               </tr>
-           </thead>
-           <tbody>
-               <tr>
-                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Compra: </label></span></td>
-                    <td colspan="3" align="center" ><input id="nomP" name="nomP" type="text" placeholder="Ingrese la compra" class="form-control" >
-                    <br></td>
+           {!!Form::model($cat2,['method'=>'PATCH','route'=>['cuotas.update',$cat2->id]])!!}
+              
+              <input type="hidden" name="hi" value="{{ $cat2->estadcuota }}">
+              <input type="hidden" name="hi2" value="3">
+              <br>
+              <div class="form-group">
 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                
-               </tr>
-                <tr>
-                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >couta: </label></span></td>
-                    <td colspan="2" align="center" ><input id="nomP" name="nomP" type="text" placeholder="Nombre del director" class="form-control"><br></td>
-                    <td colspan="2" rowspan="2" align="center"><span align="center">
-                        <i style="font-size: 150px;" class=" fa fa-money bigicon" align="center"></i>
-                    </span></td>
-                    <td></td>
-                    <td></td>
-               </tr>
-                <tr>
-                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Fecha: </label></span></td>
-                    <td colspan="2" align="center"><input id="tipo" name="tipo" type="date" placeholder="" class="form-control"><span class="has-success">Fecha del siguiente cuota.</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                     </tr>
-             
-                <tr>
-                   <td align="right" nowrap="nowrap"> <span class="text-center" ><label >monto: </label></span></td>
-                    <td colspan="2" align="center" ><input id="nomP" name="nomP" type="text" placeholder="INgrese el monto a pagar" class="form-control"><br></td>
-                    <td></td>
-                    <td></td>
-                    
-                    
-               </tr>
-           </tbody>
-       </table>
-                        
-                    </fieldset>
-                </form>
+                            <span class="col-md-2  text-center" ><label >Compra: </label></span>
+                            <div class="col-md-6">
+                                <input disabled id="id" name="id" type="text" placeholder="" class="form-control" value="compra#{{ $cat2->idcompsc }}">
+                                
+                            </div>  
+                        </div> 
+                        <br>
+              <div class="form-group">
+
+                            <span class="col-md-2  text-center" ><label >Cuota: </label></span>
+                            <div class="col-md-6">
+                                <input disabled id="id" name="id" type="text" placeholder="" class="form-control" value="cuota#{{ $cat2->id}}">
+                                
+                            </div>
+                        </div>
+                        <br>
+              <div class="form-group">
+
+                            <span class="col-md-2  text-center" ><label >Fecha: </label></span>
+                            <div class="col-md-6">
+                            <?php $date = new DateTime($cat2->fechcouta);  ?>
+                                <input disabled id="id" name="id" type="text" placeholder="" class="form-control" value="<?php  echo $date->format('d/m/Y'); ?>">
+                               
+                                          
+                            </div>
+                        </div>
+<br>
+
+<div class="form-group">
+
+                            <span class="col-md-2  text-center" ><label >monto: </label></span>
+                            <div class="col-md-6">
+                            
+                                <input disabled id="id" name="id" type="text" placeholder="" class="form-control" value="{{ $cat2->cuotas}}">
+                               
+                                          
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+          {!!Form::close()!!}
         </div>
       </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
+      
     </div>
   </div>
 </div>
-<!--fin de modal -->
-
+@endforeach ()
 
                     <div class="title-block">
                      <span class="col-md-1  text-center">
@@ -166,26 +155,17 @@ h2,h1,span
 
                                     <thead valign="bottom" align="right" >
                                         <tr  class="warning formatoTabla">
-                                            <th align="center" class="">compras</th>
-                                            <th align="center" width="100px">couta</th>
-                                            <th align="center" >fecha de pago credito</th>
-                                            <th align="center" >precio</th>
+                                            <th align="center" class="">cuota</th>
+                                            <th align="center">fecha de pago</th>
+                                  
                                             <th align="center" >monto</th>
+                                            <th align="center" >mora</th>
                                             <th align="center" >Estado</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
                                           
-                                        <tr align="center">
-                                            <td>Lapiz #2</td>
-                                            <td>4</td>
-                                            <td>25/09/2016</td>
-                                            <td>0.75</td>
-                                            <td>20</td>
-                                            <td><buttontype="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">pagar</button></td>
-                                            
-                                        </tr>
                                          <?php $v=0; ?>
                                           @foreach($cuota as $aux2)
                                           <?php
@@ -193,12 +173,19 @@ h2,h1,span
                                            $date = new DateTime($aux2->fechcouta);
                                           ?>
                                         <tr align="center">
-                                            <td>{{ $v }}</td>
-                                            <td>{{ $aux2->id}}</td>
+                                            <td>cuota #{{ $aux2->id }}</td>
+                                            
                                             <td> <?php  echo $date->format('d/m/Y'); ?></td>
                                             <td>{{ $aux2->cuotas }}</td>
-                                            <td>20</td>
-                                            <td><buttontype="submit"  class="btn btn-info btn-sm" data-toggle="modal" data-target="#gridSystemModal">pagar</button></td>
+                                            <td>{{ $aux2->morac }}</td>
+                                            </td>
+                                                        @if($aux2->estadcuota==false)
+                                                            <td><button type="submit"  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gridSystemModal2{{$aux2->id}}">P a g o</button></td>
+                                                        @endif
+
+                                                        @if($aux2->estadcuota==true)
+                                                            <td>cancelado</td>
+                                                        @endif    
                                             
                                         </tr>
                                           @endforeach

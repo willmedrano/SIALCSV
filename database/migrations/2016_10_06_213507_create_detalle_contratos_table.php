@@ -19,6 +19,7 @@ class CreateDetalleContratosTable extends Migration
             $table->integer('idcontratos')->unsigned();
             $table->foreign('idcontratos')->references('id')->on('contratos');
             $table->integer('cantidadcon'); 
+            $table->double('preciocon', 7, 2); 
             $table->timestamps();
         });
     }

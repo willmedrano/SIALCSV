@@ -48,8 +48,6 @@ h2,h1,span
   color: white;
  }
 </style>
-  
-               
 
                 <article class="content forms-page" >
                   
@@ -63,18 +61,19 @@ h2,h1,span
                          
                            
                     </div>
-                      
+                    {!!Html::script('js/jquery-1.9.0.min.js')!!} 
                     {!!Html::style('assets/plugins/bootstrap/bootstrap.css')!!}  
                     {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
                     {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
                     {!!Html::style('assets/css/style.css')!!}  
-
+                    {!!Html::script('../jquery.js')!!} 
 
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h1 class="panel-title">Formulario de Contrato</h1>
             </div>
             <h2 align="center">Contrato</h2>
+
             <section class="section"> 
                 <div>
                 <div class="card card-block sameheight-item" >
@@ -109,6 +108,8 @@ h2,h1,span
 
                       <div class="col-xs-3">
                       <input id="cantcomp" name="cantcomp" type="text" required placeholder="cantidad a comprar" class="form-control" onkeyup="sumar();">
+                      
+                      <input type="hidden" name="canaux" id="canaux" value="">
                       </div>
                       <span class="col-md-1  text-center"><i class="fa fa-dollar bigicon"></i></span>
                       <div class="col-xs-3">
@@ -305,26 +306,35 @@ function sumar()
 {
 var a=document.frm1.cantcomp.value;
 var b=document.frm1.preciocomp.value;
-var c=(parseFloat(a)*parseFloat(b)).toFixed(4);
 
-var f=0;
+
 if(isNaN(a)){
    a=1;
   }
   if(isNaN(b)){
    b=1;
   }
-    c= a*b;
-  if(isNaN(c)){
-   c=1;
-  }
-  
-  
-   f= c;
-   if(isNaN(f)){
-   f=0;
-  }
- document.frm1.subtotalcomp.value=f.toFixed(2);
+  var g=document.frm1.canaux.value;//tamaño maximo de productos en existencia
+  var t=parseFloat(g);
+  var j=parseFloat(a);
+ if(j<=t && j>0)
+ {
+        var c=(parseFloat(a)*parseFloat(b)).toFixed(4);
+        var f=0;
+         c= a*b;
+        if(isNaN(c)){
+         c=1;
+            }
+            f= c;
+            if(isNaN(f)){
+             f=0;
+                }
+        document.frm1.subtotalcomp.value=f.toFixed(2);
+ }else{
+    document.frm1.cantcomp.value="";
+    document.frm1.subtotalcomp.value="";
+    // jQuery
+ }
 }
 function cuotasapagar()
 {
@@ -356,7 +366,7 @@ $('#aux').on('change','#idpaquete',function (){
   
   var producto=$("#idpaquete").val();
   var ruta="/llenadoProductopaquetes/"+producto;
- // var ruta2="/preciodelpaquete/"+producto;
+  var ruta2="/preciodelpaquete/"+producto;
   var cont2=0;
   var cont1=0;
  
@@ -364,22 +374,18 @@ $('#aux').on('change','#idpaquete',function (){
   $(res).each(function(key,value){
        $("#hprod").val(value.id);
        $("#preciocomp").val(value.preciop);
-       
-       
-
+      
       });
   
  });
- /*
+ 
  $.get(ruta2, function(res){
   $(res).each(function(key,value){
-       $("#preciocomp").val(value.preciop);
-       
-
+       $("#canaux").val(value.canlote);
       });
   cont2=cont2+1;
  });
-*/
+
 });
   
  });
