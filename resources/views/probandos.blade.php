@@ -156,21 +156,38 @@
                                 </li>
                                 <li>
                                     <a href=""> <i class="fa fa-dropbox"></i> paquetes <i class="fa arrow"></i> </a>
-                                    <ul>
-                                        <li> <a href=/escuela/create>
+                                   <ul>
+                                        <li> <a href="/escuela/create">
                     Ingresar escuela
                   </a> </li>
-                  <li> <a href="/escuela/">
+                  <li> <a href="/contrato/create">
                     Ingresar contrato
                   </a> </li>
-                                        <li> <a href="charts-morris.html">
+                  <li> <a href="/paqueteregistro/create">
+                    Ingresar tipo de paquete
+                  </a> </li>
+                  <li> <a href="/paquete/create">
+                    Ingreso de paquete
+                  </a> </li>
+                  
+                  <li> <a href="/escuela/">
                     Ver escuelas
                   </a> </li>
                   
-                  <li> <a href="charts-morris.html">
+                  <li> <a href="/contrato/">
                     Ver contratos
                   </a> </li>
+                  <li>
+                   <a href="/paqueteregistro/">
+                    Ver tipo de paquete
+                  </a> </li>
+                  <li>
+                   <a href="/paquete/">
+                    Ver productos paquete
+                  </a> </li>
+                 
                                     </ul>
+
                                 </li>
                                 <li>
 
@@ -179,7 +196,7 @@
                                         <li> <a href="/compra/create">
                     Ingresar compras
                   </a> </li>
-                                        <li> <a href="responsive-tables.html">
+                                        <li> <a href="/cuotas/">
                    Pago de cuotas
                   </a></li>
                                         <li> <a href="/compra/">
@@ -189,14 +206,15 @@
                                 </li>
                                 <li>
                                     <a href="forms.html"> <i class="fa fa-truck"></i>Proveedores<i class="fa arrow"></i> </a> </a>
-                                    <ul>
-                                        <li> <a href="buttons.html">
+                                   <ul>
+                                        <li> <a href="/prove/create">
                         Ingresar proveedor
                   </a> </li>
-                    <li> <a href="buttons.html">
+                    <li> <a href="/prove/">
                         Ver proveedor
                   </a> </li>
                   </ul>
+
                                 </li>
                                 <li>
                                     <a href=""> <i class="fa fa-money"></i>Ciclo contable <i class="fa arrow"></i> </a>
