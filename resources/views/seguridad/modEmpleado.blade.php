@@ -35,6 +35,24 @@ h2,h1,span
 
 
 </style>
+
+   {!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+ <script type="text/javascript">
+jQuery(function($) {
+      $.mask.definitions['~']='[+-]';
+      $('#date').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
+      $('#tel').mask('9999-9999');
+      $('#nit').mask("9999-999999-999-9");
+      $("#tin").mask("99-9999999");
+      $("#dui").mask("99999999-9");
+      $("#ssn").mask("999-99-9999");
+      $("#product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+      $("#eyescript").mask("~9.99 ~9.99 999");
+      $('textarea,form').attr('autocomplete','off');
+      $('input,form').attr('autocomplete','off');
+   });
+</script> 
 {!!Html::script('js/jquery-1.9.0.min.js')!!}
 
 
@@ -201,7 +219,7 @@ h2,h1,span
                
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >DUI: </label></span></td>
-                    <td colspan="2" align="center"><input id="DUIEmp" name="DUI" type="text" value="{{ $cat->DUIEmp}}" placeholder="DUI" class="form-control" required=""><br></td>
+                    <td colspan="2" align="center"><input id="dui" name="DUI" type="text" value="{{ $cat->DUIEmp}}" placeholder="DUI" class="form-control" required=""><br></td>
 
                     <td colspan="2" rowspan="3" align="center"><span align="center">
                         <i style="font-size: 130px;" class="fa fa-pencil-square-o fa-3x fa-fw bigicon" align="center"></i>
@@ -212,7 +230,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >NIT: </label></span></td>
-                    <td colspan="2" align="center" > <input id="NITEmp" name="NIT" type="text" value="{{ $cat->NITEmp}}" placeholder="NIT " class="form-control" required><br></td>
+                    <td colspan="2" align="center" > <input id="nit" name="NIT" type="text" value="{{ $cat->NITEmp}}" placeholder="NIT " class="form-control" required><br></td>
                     <td></td>
                     <td></td>
                   
@@ -229,7 +247,7 @@ h2,h1,span
 
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Telefono: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control" required><br></td>
+                    <td colspan="2" align="center" ><input id="tel" name="telEmp" type="text" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control" required><br></td>
                     <td></td>
                     <td></td>
                    

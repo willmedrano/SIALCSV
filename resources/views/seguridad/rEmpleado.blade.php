@@ -9,6 +9,8 @@
 </div>
 @endif
 
+
+
 @section('content')
 
 <style type="text/css" >
@@ -29,7 +31,23 @@
      margin: 10px 5px 0 0;
 }  
 </style>
-   
+   {!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+ <script type="text/javascript">
+jQuery(function($) {
+      $.mask.definitions['~']='[+-]';
+      $('#date').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
+      $('#tel').mask('9999-9999');
+      $('#nit').mask("9999-999999-999-9");
+      $("#tin").mask("99-9999999");
+      $("#dui").mask("99999999-9");
+      $("#ssn").mask("999-99-9999");
+      $("#product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+      $("#eyescript").mask("~9.99 ~9.99 999");
+      $('textarea,form').attr('autocomplete','off');
+      $('input,form').attr('autocomplete','off');
+   });
+</script> 
                
 
                 <article class="content forms-page" >
@@ -47,7 +65,7 @@
                     {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
                     {!!Html::style('assets/css/style.css')!!}  
                     {!!Html::style('assets/css/main-style.css')!!} 
-{!!Html::script('js/jquery-1.9.0.min.js')!!}
+                    {!!Html::script('js/jquery-1.9.0.min.js')!!}
                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h1 class="panel-title">Registro de empleado</h1>
@@ -100,11 +118,11 @@
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="lname" name="dui" type="text" placeholder="Dui" class="form-control" required>
+                                                    <input id="dui" name="dui" type="text" placeholder="Dui" class="form-control" required>
                                                 </div>
 
                                                 <div class="col-xs-4" align="left">
-                                                    <input id="fname" name="nit" type="text" placeholder="NIT" class="form-control" required>
+                                                    <input name="nit" id="nit"  type="text" placeholder="NIT" class="form-control" required>
                                                 </div>
 
                                             </div>
@@ -132,7 +150,7 @@
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="phone" name="tel1" type="text" placeholder="Telefono " class="form-control">
+                                                    <input id="tel" name="tel1" type="text" placeholder="Telefono " class="form-control">
                                                 </div>
 
                                                  
