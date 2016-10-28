@@ -92,14 +92,14 @@
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     <div class="img" style="background-image: url('assets/faces/3.jpg')"> </div> <span class="name">
-              {!!Auth::user()->login!!} 
+              
               </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="#"> <i class="fa fa-user icon"></i> Perfil </a>
                                     <a class="dropdown-item" href="#"> <i class="fa fa-bell icon"></i> Notificaciones </a>
                                     <a class="dropdown-item" href="/confiUsuario"> <i class="fa fa-gear icon"></i> Configuraciones </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/sesion"> <i class="fa fa-power-off icon"></i> Salir </a>
+                                    <a class="dropdown-item" href="/logout"> <i class="fa fa-power-off icon"></i> Salir </a>
                                 </div>
                             </li>
                         </ul>
@@ -119,14 +119,14 @@
                              <li>
                                     <a href=""> <i class="fa fa-user"></i> Empleados <i class="fa arrow"></i> </a>
                                     <ul>
-                                        <li> <a href="/prove/create">
+                                        <li> <a href="/log/create">
                     Ingresar Empleado
                   </a> </li>
-                                        <li> <a href="/prove/create">
+                                        <li> <a href="/pagar">
                     Pago de Empleado
                   </a> </li>
 
-                  <li> <a href="/prove/create">
+                  <li> <a href="/log/">
                     Modificar Empledado
                   </a> </li>
                                     </ul>
@@ -141,14 +141,14 @@
                                 <li>
                                     <a href=""> <i class="fa fa-th-large"></i> Inventario <i class="fa arrow"></i> </a>
                                     <ul>
-                                        <li> <a href="/prove/create">
+                                        <li> <a href="/inve/create">
                     Ingresar Producto
                   </a> </li>
-                                        <li> <a href="/prove/create">
+                                        <li> <a href="/inve/">
                     Ver Productos
                   </a> </li>
 
-                  <li> <a href="/prove/create">
+                  <li> <a href="/lotes/">
                     Inventario Disponible
                   </a> </li>
                                     </ul>
@@ -175,13 +175,13 @@
 
                                     <a href=""> <i class="fa fa-shopping-cart "></i> Compras <i class="fa arrow"></i> </a>
                                     <ul>
-                                        <li> <a href="/prove">
+                                        <li> <a href="/compra/create">
                     Ingresar compras
                   </a> </li>
                                         <li> <a href="responsive-tables.html">
-                   Pago de compras
+                   Pago de cuotas
                   </a></li>
-                                        <li> <a href="responsive-tables.html">
+                                        <li> <a href="/compra/">
                      Ver detalle de compras
                   </a> </li>
                                     </ul>
