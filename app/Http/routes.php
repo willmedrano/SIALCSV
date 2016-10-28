@@ -48,7 +48,6 @@ Route::match(['get','post'],'/llenadoProductopaquetes/{codigopro}','ControladorC
 Route::match(['get','post'],'/preciodelpaquete/{codigopro}','ControladorContrato@preciodelpaquete');
 Route::resource('comprapaquete',"ControladorCompraEsc");
 Route::resource('aux3',"ControladorauxCont");
-Route::resource('cuotas',"ControladorCuotas");
 
 Route::resource('contrato',"ControladorContrato");
 Route::resource('inve',"inventario");
