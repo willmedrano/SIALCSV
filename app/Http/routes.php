@@ -65,6 +65,11 @@ Route::post('subir_imagen_usuario', 'UsuariosController@subir_imagen_usuario');
 Route::resource('sesion',"logController");
 Route::get('logout',"logController@logout");
 
+Route::get('pdf', function() {
+$empleados= \App\empleado::All();
+	$pdf= PDF::loadView('vistareporte',['empleados'=> $empleados]);
+	return $pdf->download('archivo.pdf');
+});
 
 Route::get('/pru2', function () {
     return view('empleado.FormEmp');
