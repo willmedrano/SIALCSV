@@ -102,7 +102,7 @@ legend{
                                 <table class="table  table-bordered table-hover" id="dataTables-example">
                                     <thead >
                                         <tr align="center" class="warning">
-                                            <th> Codigo </th>
+                                            <th> # </th>
                                             <th> Nombre </th>
                                             <th> Apellido </th>
                                             <th> Usuario </th>

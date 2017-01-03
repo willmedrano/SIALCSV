@@ -115,7 +115,7 @@
                         <nav class="menu">
                             <ul class="nav metismenu" id="sidebar-menu">
                                 <li class="active">
-                                    <a href="index.html"> <i class="fa fa-home"></i> Inicio </a>
+                                    <a href="/aux2"> <i class="fa fa-home"></i> Inicio </a>
                                 </li>
                              <li>
                                     <a href=""> <i class="fa fa-user"></i> Empleados <i class="fa arrow"></i> </a>
@@ -123,13 +123,17 @@
                                         <li> <a href="/log/create">
                     Ingresar Empleado
                   </a> </li>
-                                        <li> <a href="/pagar">
-                    Pago de Empleado
-                  </a> </li>
-
                   <li> <a href="/log/">
                     Modificar Empledado
                   </a> </li>
+                                        <li> <a href="/pagar/create">
+                    Pago de Empleado
+                  </a> </li>
+
+                  <li> <a href="/pagar">
+                    Ver Pagos
+                  </a> </li>
+                  
                                     </ul>
                                 </li>
                                

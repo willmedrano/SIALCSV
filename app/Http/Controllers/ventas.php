@@ -17,6 +17,7 @@ class ventas extends Controller
     public function index()
     {
         //
+        return view('ventas.venta');
     }
 
     /**
@@ -26,7 +27,8 @@ class ventas extends Controller
      */
     public function create()
     {
-        //
+        return view('ventas.facturar');
+       
     }
 
     /**

@@ -102,11 +102,11 @@ jQuery(function($) {
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="fname" name="nombreE" type="text"  placeholder="Ingrese nombres" class="form-control" required pattern="[A-Za-z]{3,20}">
+                                                    <input id="fname" name="nombreE" type="text"  placeholder="Ingrese nombres" class="form-control" required>
                                                 </div>
 
                                                 <div class="col-xs-4" align="left">
-                                                    <input id="fname" name="apeEmp" type="text" placeholder="Ingrese apellidos" class="form-control" required pattern="[A-Za-z]{3,20}">
+                                                    <input id="fname" name="apeEmp" type="text" placeholder="Ingrese apellidos" class="form-control" required >
                                                 </div>
                                             </div>
                                             <br>
@@ -137,7 +137,7 @@ jQuery(function($) {
                                                 <div class="col-xs-4">
                                                     <input id="nac" name="Fnac" type="date" placeholder="Fecha de Nacimiento " class="form-control"  required data-toggle="tooltip" title="Fecha de nacimiento">
 
-                                                    <input id="fcontrato" name="fcontrato" type="hidden" value="<?php echo dameFecha(date("Y-m-d"),0);?>">
+                                                    <input id="fcontrato" required name="fcontrato" type="hidden" value="<?php echo dameFecha(date("Y-m-d"),0);?>">
                                                  </div>
 
                                             </div>
@@ -150,7 +150,7 @@ jQuery(function($) {
                                                 </span>
 
                                                 <div class="col-xs-4">
-                                                    <input id="tel" name="tel1" type="text" placeholder="Telefono " class="form-control">
+                                                    <input id="tel" name="tel1" type="text" placeholder="Telefono " class="form-control" required="">
                                                 </div>
 
                                                  
@@ -177,7 +177,7 @@ jQuery(function($) {
                                                     <i class="fa fa-pencil-square-o bigicon"></i>
                                                 </span>
                                                 <div class="col-md-8">
-                                                     <textarea class="form-control" id="message" name="dir" placeholder="Direccion" rows="2"></textarea>
+                                                     <textarea class="form-control" id="message" name="dir" placeholder="Direccion" rows="2" required></textarea>
                                                 </div>
                                             </div>
                                             <br>
@@ -201,7 +201,7 @@ jQuery(function($) {
                                                     <i class="fa fa-dollar bigicon icon_nav" ></i>
                                                 </span>
                                                 <div class="col-xs-4">
-                                                    <input id="fname" name="salario" type="text" placeholder="Salario" class="form-control">
+                                                    <input id="fname" name="salario" type="text" placeholder="Salario" class="form-control" required=>
                                                 </div>
                                             </div>
                                             <br>

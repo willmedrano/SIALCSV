@@ -78,17 +78,7 @@ legend{
 
 </script>
 
-                   <tr>
-                 
-                    <td colspan="6" align="center" ><IMG src="assets/faces/3.jpg"  WIDTH=120 HEIGHT=130 ALT="Foto"><br></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
                    
-                    
-               </tr>
-
                        
               <tr>
                     
@@ -113,18 +103,10 @@ legend{
                
                 
                 
-                
-                <tr>
-                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Telefono: </label></span></td>
-                    <td colspan="2" align="center" ><input id="tipo" name="telEmp" type="text" value="{{ $cat->telEmp }}" placeholder="telefono" class="form-control"><br></td>
-                    <td></td>
-                    <td></td>
-                   
-                    
-               </tr>
+              
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Correo: </label></span></td>
-                    <td colspan="2" align="center" ><input id="correoEmp" name="correoEmp" type="text" placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="correoEmp" required="" name="correoEmp"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="email" placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -134,7 +116,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Usuario: </label></span></td>
-                    <td colspan="2" align="center" ><input id="login" name="login" type="text" value="admin{{ $cat->id }}"placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="login" name="login" type="text" value="admin{{ $cat->id }}" placeholder="nombre de usuario" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -144,7 +126,7 @@ legend{
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Contraseña: </label></span></td>
-                    <td colspan="2" align="center" ><input id="pass" name="pass" type="password" value="admin{{ $cat->id }}" placeholder="Correo" class="form-control"><br></td>
+                    <td colspan="2" align="center" ><input id="pass" name="pass" type="text" value="admin{{ $cat->id }}" placeholder="Correo" class="form-control"><br></td>
                     <td></td>
                     <td></td>
                    
@@ -152,28 +134,7 @@ legend{
                </tr>
 
                
-                
-                <tr>
-                   <td align="right" nowrap="nowrap"><span class="text-center" ><label >Cargo: </label></span></td>
-                    <td colspan="3" align="center" ><select name="cargo" class=" form-control">
-                            @foreach($emple as $emplec)
-                              
-
-                                <option  value="{{ $emplec->cargoEmp }}" >{{ $emplec->cargoEmp }}</option>
-                                
-                                
-                                
-
-                            @endforeach
-                           
-                        </select>
-                        <br>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    
-               </tr>
+               
                
            </body>
        </table>
@@ -182,7 +143,7 @@ legend{
                     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
        <!-- <button type="button" class="btn btn-primary">Guardar</button> -->
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">Permitir</button>
 
               
                                      {!! Form::close() !!}
@@ -250,7 +211,7 @@ legend{
                                 <table class="table  table-bordered table-hover" id="dataTables-example">
                                     <thead >
                                         <tr align="center" class="warning">
-                                            <th> Codigo </th>
+                                            <th> # </th>
                                             <th> Nombre </th>
                                             <th> Apellido </th>
                                             <th> Telefono </th>

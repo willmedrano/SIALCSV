@@ -74,10 +74,10 @@ h2,h1,span
                <tr>
                <input type="hidden" value="{{ $cat->id }}" id="cod" name="cod">
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Nombre: </label></span></td>
-                    <td colspan="2.5" align="center" ><input id="nomEmp" name="nomEmp" value="{{ $cat->nomEmp }}"type="text" placeholder="Nombre" class="form-control" >
+                    <td colspan="2.5" align="center" ><input id="nomEmp" name="nomEmp" value="{{ $cat->nomEmp }}"type="text" placeholder="Nombre" disabled class="form-control" >
                     <br></td>
                       <td align="right" nowrap="nowrap"><span class="text-center" ><label ></label></span></td>
-                    <td colspan="2.5" align="center" ><input id="apeEmp" name="apeEmp" value="{{ $cat->apeEmp }}" type="text" placeholder="Apellido" class="form-control"><br></td>
+                    <td colspan="2.5" align="center" ><input id="apeEmp" name="apeEmp" value="{{ $cat->apeEmp }}" type="text" placeholder="Apellido"  disabled= class="form-control"><br></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -86,7 +86,7 @@ h2,h1,span
                
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Dias a pagar </label></span></td>
-                    <td colspan="2" align="center"><input id="dPagos" name="dPagos" type="text" placeholder="$" class="form-control"  onkeyup="sumar();"><br></td>
+                    <td colspan="2" align="center"><input id="dPagos" name="dPagos" type="text" placeholder="$" pattern="[0-7]{1}" class="form-control"  onkeyup="sumar();"><br></td>
 
                     <td colspan="2" rowspan="3" align="center"><span align="center">
                         <i style="font-size: 130px;" class="fa fa-money fa-3x fa-fw bigicon" align="center"></i>
@@ -97,7 +97,7 @@ h2,h1,span
                </tr>
                 <tr>
                    <td align="right" nowrap="nowrap"><span class="text-center" ><label >Sueldo: </label></span></td>
-                    <td colspan="2" align="center" > <input id="sueldoEmp" name="sueldoEmp" value="{{ $cat->sueldoEmp }}" type="text" placeholder="$ " class="form-control"><br></td>
+                    <td colspan="2" align="center" > <input disabled id="sueldoEmp" name="sueldoEmp" value="{{ $cat->sueldoEmp }}" type="text" placeholder="$ " class="form-control"><br></td>
                     <td></td>
                     <td></td>
                   

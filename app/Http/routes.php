@@ -41,6 +41,7 @@ Route::match(['get','post'],'/llenadoProducto/{codigopro}','contoladorCompra@lle
 
 Route::resource('escuelas',"ControladorEscuelas@listaescuela");
 Route::resource('escuela',"ControladorEscuelas");
+Route::resource('ventas',"ventas");
 Route::resource('cuotas','ControladorCuotas');
 Route::resource('paquete',"ControladorProductoEsc");
 Route::resource('paqueteregistro',"ControladorPaqueteEscuela");

@@ -139,6 +139,8 @@ class contoladorCompra extends Controller
                 'fechcouta' => $request['fechacompra'],
                 'cuotas' => $request['total'],
                 'idcompsc' => $ids,
+                'estadcuota' => true,
+
                 ]);
         }
         else
@@ -177,7 +179,7 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
 
         */
         
-        return redirect('compra/create');
+        return redirect('compra/create')->with('message','store');
         //return redirect('compra/create');
     }
 
