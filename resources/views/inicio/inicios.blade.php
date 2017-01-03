@@ -84,7 +84,7 @@ legend{
                     <div class="auth-content">
                         <p class="text-xs-center">INICIAR SESION PARA CONTINUAR</p>
 
-                      {!! Form::open(['route'=>'sesion.store','method'=>'POST'])!!}
+                         {!! Form::open(['route' => 'sesion', 'class' => 'form']) !!}
                             <div class="form-group"> 
                             <i class="fa fa-user bigicon"></i>
                                 <label for="username">Usuario</label> 
@@ -107,7 +107,7 @@ legend{
                             <button type="submit" class="btn btn-block btn-primary">Entrar</button> 
                             </div>
                             
-                        {!! Form::close() !!}
+                       {!! Form::close() !!}
                     </div>
                 </div>
                 

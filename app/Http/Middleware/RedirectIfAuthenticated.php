@@ -35,7 +35,8 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            return redirect('/');
+           //si el usurio ya esta autentificado es decir que ya habia iniciado sesion
+            return redirect()->guest('inicio');//Carga la vista
         }
 
         return $next($request);

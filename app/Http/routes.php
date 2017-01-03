@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 
@@ -62,7 +60,7 @@ Route::resource('pagar',"controladorPagar");
 Route::resource('aux2',"auxiliarControl");
 Route::resource('lotes',"controladorLotes");
 Route::post('subir_imagen_usuario', 'UsuariosController@subir_imagen_usuario');
-Route::resource('sesion',"logController");
+Route::get('/',"logController@index");
 Route::get('logout',"logController@logout");
 
 Route::get('pdf', function() {
@@ -74,3 +72,22 @@ $empleados= \App\empleado::All();
 Route::get('/pru2', function () {
     return view('empleado.FormEmp');
 });
+//rutas accessibles slo si el usuario no se ha logueado
+Route::group(['middleware' => 'guest'], function () {
+Route::get('sesion',  'Auth\AuthController@getLogin');
+Route::post('sesion', ['as' =>'sesion', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('admin', 'logController@admin');
+});
+
+Route::get('inicio',"logController@MostrarInicio");
+Route::get('error', function(){ 
+    abort(404);
+});
+
+Route::get('500', function(){ 
+    abort(500);
+});
+Route::get('503', function(){ 
+    abort(503);
+});
+

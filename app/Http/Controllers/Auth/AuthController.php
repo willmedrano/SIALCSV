@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace App\Http\Controllers\Auth;
 
 use App\User;
@@ -7,7 +9,11 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use App\Http\Requests\loginRequest;
+use App\usuario;
+use DB;
+use Auth;
+use Session;
 class AuthController extends Controller
 {
     /*
@@ -39,27 +45,30 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+      //login
+
+       protected function getLogin()
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        
+   
+         return view('inicio.inicios');
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
+      public function postLogin(loginRequest $request)
+   {
+     
+
+
+    if (Auth::attempt(['login'=>$request['username'],'password'=>$request['pass']]))
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+
+          // $users = DB::table('usuarios')->where('login', '=', $request['username'])->get();
+           //$emp=DB::table('empleados')->where('empleados.id', '=', $users[0]->idemp)->get();
+
+      // return view('layouts.inicio',compact('emp'));
+        return view('layouts.inicio');
+    }
+    Session::flash('menssage-error',"Los datos son Incorectos");
+    return view('inicio.inicios');
     }
 }

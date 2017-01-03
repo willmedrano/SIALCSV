@@ -15,6 +15,10 @@ class controladorNegar extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {     $emple=empleado::cargarUsuario();
             $ne=usuario::All();

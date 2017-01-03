@@ -43,7 +43,7 @@ h2
                         <h2 >
         
     </h2>
-                        <p class="title-description"> Registro de Tipo de Paquete</p>
+                        <p class="title-description"> Registro del Nombre del Paquete</p>
                     </div>
             <!--<div class="subtitle-block">
                         <h3 class="subtitle">
@@ -65,11 +65,11 @@ h2
                 
 <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title">Formulario de Tipo de Paquete</h1>
+                                <h1 class="panel-title">Formulario del Nombre del Paquete</h1>
 
                              </div>
                              <div align="center">
-                             <h2 align="center"> Tipo de Paquete </h2> 
+                             <h2 align="center">  Paquetes</h2> 
                              <br>
 </div>
                  {!! Form::open(['route'=>'paqueteregistro.store','method'=>'POST','class'=>'form-horizontal']) !!}
@@ -79,7 +79,7 @@ h2
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="nompaquete" name="nompaquete" type="text" placeholder="Tipo de Paquete" class="form-control">
+                                <input id="nompaquete" name="nompaquete" type="text" placeholder="Nombre de Paquete" class="form-control">
                                 
                             </div>
 

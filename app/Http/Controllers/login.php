@@ -19,7 +19,10 @@ class login extends Controller
      */
     
 
-
+ public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     { 
         //referencia al modelo para llenar la tabla
@@ -61,7 +64,7 @@ class login extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+ public function store(Request $request)
     {
         //$id=$request->input('id_usuario_foto');
         $archivo = $request->file('files');//Aqui me obtiene el archivo seleccionado en el formulario foto
@@ -83,13 +86,13 @@ class login extends Controller
             $nombre_original=$archivo->getClientOriginalName();// Espara obtener el nombre original de esa imagen que fue selecionada
             $extension=$archivo->getClientOriginalExtension();//Me extrae la extencion de ese archivo que a sido seleccionado
             $nuevo_nombre="userimagen-".$idempleado.".".$extension;//A se le asigna un nuevo nombre ase archivo que se llamara userimagen-id del empleado y le concateno la ruta de esa imagen
-            $r1=Storage::disk('fotografias')->put($nuevo_nombre,  \File::get($archivo) );// espara que guarde en el disco coloque el nombre del nuevo archivo que biene por el metodo request
-            $rutadelaimagen="../storage/fotografias/".$nuevo_nombre;//Creamos una ruta la cual se guarda en la base de datos
+            $r1=Storage::disk('local')->put($nuevo_nombre,  \File::get($archivo) );// espara que guarde en el disco coloque el nombre del nuevo archivo que biene por el metodo request
+            //$rutadelaimagen="../storage/fotografias/".$nuevo_nombre;//Creamos una ruta la cual se guarda en la base de datos
         
             if ($r1){//Si todo salio bien cree el nuevo usuario. con su respectiva imagen.
 
         \App\empleado::create([
-             'fotoEmp'=>$rutadelaimagen,
+             'fotoEmp'=>$nuevo_nombre,
             'nomEmp'=>$request['nombreE'],
             'apeEmp'=>$request['apeEmp'],
             'NacEmp'=>$request['Fnac'],

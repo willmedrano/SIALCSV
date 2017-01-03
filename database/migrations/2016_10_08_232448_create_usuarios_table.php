@@ -24,6 +24,9 @@ class CreateUsuariosTable extends Migration
              $table->timestamps();
              
         });
+         // Insert some stuff
+    DB::table('usuarios')->insert(array('login'=>'admin1', 'password'=>bcrypt('admin1'), 'correoEmp' => 'sol212@hotmail.com', 'idemp' => 1, 'created_at' => ' 2015-09-03 ' ,
+            'updated_at' => ' 2015-09-03 '));
     }
 
     /**

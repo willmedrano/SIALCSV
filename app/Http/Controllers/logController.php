@@ -19,6 +19,10 @@ class logController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => 'admin']);
+    }
     public function index()
     {
        return view('inicio.inicios');
@@ -29,6 +33,9 @@ class logController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function admin(){
+      return view('layouts.inicio');  
+    }
     public function create()
     {
         //
@@ -54,7 +61,9 @@ class logController extends Controller
         Session::flash('menssage-error',"Los datos son Incorectos");
         return view('inicio.inicios');
     }
-
+public function MostrarInicio(){
+        return view('layouts.inicio');
+    }
     /**
      * Display the specified resource.
      *

@@ -78,7 +78,17 @@ legend{
 
 </script>
 
+              <tr>
+             
+                    <td colspan="6" align="center" ><IMG src='../imagenes/{!! $cat->fotoEmp !!}'  WIDTH=120 HEIGHT=130 ALT="Foto"><br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
                    
+                    
+               </tr>
+      
                        
               <tr>
                     

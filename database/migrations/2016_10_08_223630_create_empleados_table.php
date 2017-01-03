@@ -29,6 +29,22 @@ class CreateEmpleadosTable extends Migration
              $table->date('contraEmp');
              $table->timestamps();
         });
+         DB::table('empleados')->insert([
+             'fotoEmp' => 'userimagen-1' ,
+             'nomEmp' => 'admin' , 
+             'apeEmp' => 'admins' ,
+             'NacEmp' => ' 1993-09-03 ' ,
+             'DUIEmp' => '100' ,
+             'NITEmp' => '1000' ,
+             'dirEmp' => 'a' ,
+             'telEmp' => '10000' ,
+             'sueldoEmp' => 26 ,
+             'cargoEmp' => 'Administrador' ,
+             'sexEmp' => 'Masculino' ,
+             'contraEmp' => ' 2015-09-03 ' , 
+              'created_at' => ' 2015-09-03 ' ,
+               'updated_at' => ' 2015-09-03 '
+         ]);
     }
 
     /**

@@ -19,9 +19,12 @@ class ControladorEscuelas extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct(){// espara realizar un filtro antes 
-        $this->beforeFilter('@find',['only' => ['edit','update','destroy']]);
+     public function __construct()
+    {
+        $this->middleware('auth');
+         $this->beforeFilter('@find',['only' => ['edit','update','destroy']]);
     }
+     
 
     public function find(Route $route){
         $this->escuela = Escuelas::find($route->getParameter('escuela'));// recibe lo que tenemos ya definido en routas 
