@@ -38,6 +38,7 @@ class ControladorauxCont extends Controller
      */
     public function store(Request $request)
     {
+        
          auxcontrato::create([
             'preciocont3' => $request['preciocomp'],
             'cancont3' => $request['cantcomp'],

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\coutas;
 
 
 class ControladorCuotas extends Controller
@@ -18,7 +18,8 @@ class ControladorCuotas extends Controller
      */
     public function index()
     {
-        $cuota=\App\coutas::all();
+        $cuota=coutas::mostar();
+
         return view('compra.modificarcompra',compact('cuota'));
     }
 
@@ -51,7 +52,7 @@ class ControladorCuotas extends Controller
      */
     public function show($id)
     {
-        //
+         return view('cuotas.index');
     }
 
     /**
@@ -62,8 +63,8 @@ class ControladorCuotas extends Controller
      */
     public function edit($id)
     {
-        $cuota=\App\cuotas::find($id);
-        return view('cuotas.index',compact('cuota'));
+       
+       return view('cuotas.index');
     }
 
     /**
@@ -75,16 +76,17 @@ class ControladorCuotas extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cuota = App\cuotas::find($id);
+        $cuota=coutas::find($id);
         $aux=$request['hi2'];
         
         if($aux=='3')
         {   
-            $cuota->estado =true;
+            $cuota->estadcuota =true; 
+            $cuota->save();
         }
 
 
-        $cuota->save();
+     
 
        // Session::flash('mensaje','¡Registro Actualizado!');
         return redirect('/cuotas/');

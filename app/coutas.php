@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
-use App\producto;
-use App\compras;
+
 class coutas extends Model
 {
     // aqui se definen en nuestro modelo el nombre de la tabla que podremos utilizar para insertar en la base de datos.
@@ -17,11 +16,17 @@ class coutas extends Model
     //idcompsc;      Es para tener el conocimiento de que compra es que debo de pagar
     protected $fillable = ['fechcouta', 'estadcuota', 'morac', 'cuotas', 'idcompsc'];//Aqui creamos los campos de la tabla 
 
-    public static function mostarcutosa()
+    
+   public static function mostar()
     {
-         return DB::table('coutas')
+
+     
+           return DB::table('coutas')
             ->join('compras', 'compras.id', '=', 'coutas.idcompsc')
-            ->select('cuotas.*')
+            ->select('coutas.*')
+            ->orderBy('coutas.id')
             ->get();
+
+          
    }
 }

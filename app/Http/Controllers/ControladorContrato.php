@@ -82,7 +82,7 @@ class ControladorContrato extends Controller
                     $lot = \App\lotes::find($i);
                     $precioAcumulado = $lotes[0]->preciolote;
                     $descuentoAcumulado =  $lotes[0]->deslote - 0;
-                    $canAcumulado = $lotes[0]->canlote -  ($valor->cancont3*$costo->uniCaja);
+                    $canAcumulado = $lotes[0]->canlote -  ($valor->cancont3);
                     $lot->preciolote = $precioAcumulado;
                     $lot->deslote = $descuentoAcumulado;
                     $lot->canlote = $canAcumulado;

@@ -38,6 +38,7 @@ h2,h1,span
     
 
 </style>
+ {!! Html::script('js/vendor.js') !!}
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <article class="content static-tables-page">
 
@@ -52,7 +53,9 @@ h2,h1,span
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
-           {!!Form::model($cat2,['method'=>'PATCH','route'=>['cuotas.update',$cat2->id]])!!}
+
+          {!!Form::model($cat2,['method'=>'PATCH','route'=>['cuotas.update',$cat2->id]])!!}
+          
               
               <input type="hidden" name="hi" value="{{ $cat2->estadcuota }}">
               <input type="hidden" name="hi2" value="3">

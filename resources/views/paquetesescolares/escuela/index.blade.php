@@ -82,7 +82,7 @@ jQuery(function($) {
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel">Modificar Producto</h4>
+<h4 class="modal-title" id="gridModalLabel">Modificar Escuela</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">

@@ -57,7 +57,7 @@ class ControladorEscuelas extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EscuelaRequest $request)
+    public function store(Request $request)
     {
         
       
@@ -70,12 +70,7 @@ class ControladorEscuelas extends Controller
             ]);
         
         return redirect('/escuela/create')->with('message','store');
-        /* if($request->ajax()){
-           Escuelas::create($request->all());
-            return response()->json([
-                "mensaje" => "creado"
-            ]);
-        }*/
+        
     }
 
     /**
