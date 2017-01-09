@@ -1,8 +1,8 @@
-@extends('probandos')
+@extends('probandos')<!-- Importa la plantilla que vamos a utilizar  -->
 
 @section('content')
 
-       <!-- Core CSS - Include with every page -->
+       <!-- Es para darle estilo -->
     
 <style>
 .bigicon {

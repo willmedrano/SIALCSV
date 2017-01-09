@@ -30,7 +30,7 @@ class CreateEmpleadosTable extends Migration
              $table->timestamps();
         });
          DB::table('empleados')->insert([
-             'fotoEmp' => 'userimagen-1' ,
+             'fotoEmp' => 'userimagen-1.jpg' ,
              'nomEmp' => 'admin' , 
              'apeEmp' => 'admins' ,
              'NacEmp' => ' 1993-09-03 ' ,
@@ -38,7 +38,7 @@ class CreateEmpleadosTable extends Migration
              'NITEmp' => '1000' ,
              'dirEmp' => 'a' ,
              'telEmp' => '10000' ,
-             'sueldoEmp' => 26 ,
+             'sueldoEmp' => 0 ,
              'cargoEmp' => 'Administrador' ,
              'sexEmp' => 'Masculino' ,
              'contraEmp' => ' 2015-09-03 ' , 

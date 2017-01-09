@@ -80,7 +80,9 @@ legend{
 
               <tr>
              
-                    <td colspan="6" align="center" ><IMG src='../imagenes/{!! $cat->fotoEmp !!}'  WIDTH=120 HEIGHT=130 ALT="Foto"><br></td>
+                    <td colspan="6" align="center" ><IMG src='../imagenes/{!! $cat->fotoEmp !!}'  WIDTH=120 HEIGHT=130 ALT="Foto"><br>
+                    <<input type="hidden" name="imagen" id="imagen" value="{!! $cat->fotoEmp !!}">
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>

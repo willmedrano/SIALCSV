@@ -36,6 +36,7 @@ Route::resource('prove',"controladorproveedor2");
 
 Route::resource('compra',"contoladorCompra");
 Route::match(['get','post'],'/llenadoProducto/{codigopro}','contoladorCompra@llenadoProducto');
+Route::match(['get','post'],'/llenadoProducto2/{codigopro}','ventas@llenadoProducto2');
 
 Route::resource('escuelas',"ControladorEscuelas@listaescuela");
 Route::resource('escuela',"ControladorEscuelas");
@@ -58,6 +59,7 @@ Route::resource('negar',"controladorNegar");
 Route::resource('pagar',"controladorPagar");
 
 Route::resource('aux2',"auxiliarControl");
+Route::resource('aux4',"auxiliarControl2");
 Route::resource('lotes',"controladorLotes");
 Route::post('subir_imagen_usuario', 'UsuariosController@subir_imagen_usuario');
 Route::get('/',"logController@index");
@@ -91,3 +93,6 @@ Route::get('503', function(){
     abort(503);
 });
 
+//Lo que le agregue estas rutas 
+Route::match(['get','post'],'/VerificarEPCaja/{codigopro}','ventas@VerificarEPCaja');
+Route::match(['get','post'],'/VerificarEPUnidades/{codigopro}','ventas@VerificarEPUnidades');

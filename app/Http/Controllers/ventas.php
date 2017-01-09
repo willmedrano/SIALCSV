@@ -20,9 +20,34 @@ class ventas extends Controller
     }
     public function index()
     {
-        //
-        return view('ventas.venta');
+        return view('ventas.facturar');
+        
     }
+    public function llenadoProducto2($idprods)//retorno el nombre del producto y el proveedor.
+    {
+        
+    
+       $productor=\App\producto::where('id',$idprods)->get();
+ 
+    return response()->json($productor->toArray());
+
+  }
+      public function VerificarEPCaja($codigopro)//verica la cantidad que se tiene en caja de los productos.
+      {
+        
+    $productor=\App\producto::where('cod',$codigopro)->get();
+    $producto=\App\lotes::find($productor[0]->id);
+
+    
+    return response()->json($producto->toArray());
+  }
+    public function VerificarEPUnidades($codigopro)//verica la cantidad que se tiene en caja de los productos en unidades.
+      {
+        
+        $producto1=\App\lotes::where('idprodsl',$codigopro)->get();
+ 
+    return response()->json($producto1->toArray());
+  }
 
     /**
      * Show the form for creating a new resource.
@@ -31,8 +56,69 @@ class ventas extends Controller
      */
     public function create()
     {
-        return view('ventas.facturar');
+        
+       $aux =\App\auxiliar2ventas::auxComp3();
+       // $pro =\App\compra::mostrarcompra($request);
+        $prov =\App\proveedor::All();
+        
+        return view('ventas.venta',compact('prov','aux'));
+        /*
+ \App\contratos::create([
+             'idescuelas' => $request['formap'],
+            'montocon' => $request['total'],
+            'fechafcon' => $request['fechacompra'], 
+        ]);
+        $ids="";
+        $gAux =\App\contratos::All();
+        foreach ($gAux as $valor2) {
+            $ids=$valor2->id;
+        }
+
+        $gAux2 =\App\auxcontrato::All();
+        foreach ($gAux2 as $valor) 
+        {
+            \App\detalle_contrato::create([
+                
+                'idprodet' => $valor->idprods3,
+                'idcontratos' => $ids,
+                'cantidadcon' => $valor->cancont3,
+                'preciocon' => $valor->preciocont3,
+            ]);
+            
+
+            $id=$valor->idprods3;
+            $costo =\App\producto::find($id);
+            $lotes=\App\lotes::Llenarlotes($id);
+            
+                if(empty($lotes)){
+                
+                }
+                else{
+                    //dd($lotes[0]->canlote);
+                    $i=$lotes[0]->id;
+                    $lot = \App\lotes::find($i);
+                    $precioAcumulado = $lotes[0]->preciolote;
+                    $descuentoAcumulado =  $lotes[0]->deslote - 0;
+                    $canAcumulado = $lotes[0]->canlote -  ($valor->cancont3);
+                    $lot->preciolote = $precioAcumulado;
+                    $lot->deslote = $descuentoAcumulado;
+                    $lot->canlote = $canAcumulado;
+                    $lot->save(); 
+
+                    $costo->cPromedio=((($lotes[0]->canlote/$costo->uniCaja)*$costo->cPromedio)-($valor->cancont3*$valor->preciocont3))/(($lotes[0]->canlote/$costo->uniCaja)-$valor->cancont3);
+                  
+                    }
+  $costo->save();
+            
+            
+    }
        
+  $eAux =\App\auxcontrato::All();
+        foreach ($eAux as $v) { 
+                  $auxeliminar=\App\auxcontrato::find( $v->id );
+                  $auxeliminar->delete();               
+        }
+        */
     }
 
     /**

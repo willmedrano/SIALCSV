@@ -70,7 +70,7 @@ h2,h1,span
         <div class="container-fluid bd-example-row">
           
               <label for="">El producto esta desactivo</label>
-              <input type="hidden" name="hi"">
+              <input type="hidden" name="hi">
               <input type="hidden" name="hi2" value="2">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
