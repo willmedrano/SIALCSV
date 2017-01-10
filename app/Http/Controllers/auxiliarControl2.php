@@ -50,7 +50,22 @@ class auxiliarControl2 extends Controller
             'cancompra3' => $request['cajavender'],
             'idprods3' => $request['hprod'],  
         ]);
+
+         $id=$request['hprod'];
+
+            $costo =\App\producto::find($id);
+            //$lot=\App\lotes::find($id);
+          $lot=\App\lotes::where('idprodsl',$id)->get();
+          $lot2=\App\lotes::find($lot[0]->id);
+
+           
+                    $caj=$request['cajavender'] * $costo->uniCaja;
+                    $uni=$request['unidadesvender'];
+
+                   $lot2->canlote = $lot2->canlote-($uni+$caj);
+                    $lot2->save();
         return redirect('ventas/create');
+                    
     }
 
 
@@ -98,6 +113,24 @@ class auxiliarControl2 extends Controller
     {
      
     $auxeliminar= auxiliar2ventas::find($id);
+
+    $id2=$auxeliminar->idprods3;
+
+            $costo =\App\producto::find($id2);
+            //$lot=\App\lotes::find($id);
+          $lot=\App\lotes::where('idprodsl',$id2)->get();
+          $lot2=\App\lotes::find($lot[0]->id);
+
+           
+                    $caj=$auxeliminar->cancompra3 * $costo->uniCaja;
+                    $uni=$auxeliminar->preciocomp3;
+
+                   $lot2->canlote = $lot2->canlote+($uni+$caj);
+                    $lot2->save();
+
+
+
+
     $auxeliminar->delete();
         return redirect('ventas/create');   
     }

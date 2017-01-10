@@ -70,7 +70,7 @@
       {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
       {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
       {!!Html::style('assets/css/style.css')!!}  
-      {!!Html::style('ssets/css/main-style.css')!!} 
+      {!!Html::style('assets/css/main-style.css')!!} 
                    
       <div class="panel panel-primary"><!-- Aqui inicia el div de panel panel-primary para darle color al formulario -->
         <div class="panel-heading">

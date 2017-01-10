@@ -84,10 +84,15 @@ h2,h1,span
                                                         <th scope="row" >{{ $pro->cod }}</th>
                                                         <td>{{ $pro->nomProd }}</td>
                                                         <td>{{ $pro->marca }}</td>
-                                                        <td> $ {{ $pro->cPromedio}}</td>
+                                                        <td> $
+                                                            <?php
+                                                            $a=$pro->cPromedio;
+                                                            echo round($a,2);
+                                                            ?>
+                                                        </td>
                                                         <td><?php
-                                                            $a=$pro->canlote/$pro->uniCaja;
-                                                            echo round($a,0);
+                                                            $a=($pro->canlote/$pro->uniCaja);
+                                                            echo round($a,0, PHP_ROUND_HALF_DOWN);
                                                             ?></td>
                                                         <td> $ <?php
                                                             $a=((($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio));

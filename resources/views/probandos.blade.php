@@ -307,7 +307,10 @@
                                         <i class="fa arrow"></i>
                                     </a>
                                     <ul>
-                                        
+                                        <li>
+                                        <a href="/comprapaquete/create">
+                                            Compra de Pauetes
+                                        </a>
                                         <li>
                                             <a href="/contrato/create">
                                                 Ingresar contrato
@@ -315,7 +318,7 @@
                                         </li>
                                         <li>
                                             <a href="/paqueteregistro/create">
-                                                Ingresar tipo de paquete
+                                                Ingresar el nombre de paquete
                                             </a>
                                         </li>
                                         <li>
@@ -524,10 +527,10 @@
                                         <div class="customize-item">
                                             <div class="row customize-header">
                                             
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-4" align="center">
                                                     <label class="title">Estatico</label> 
                                                 </div>
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-4" align="center">
                                                     <label class="title">Normal</label> 
                                                 </div>
                                             </div>
@@ -539,7 +542,7 @@
                                                 </div>
                                                 <div class="col-xs-4">
                                                     <label>
-                                                        <input class="radio" type="radio" name="sidebarPosition" value="sidebar-fixed" >
+                                                        <input class="radio" type="radio" name="sidebarPosition" value="sidebar-fixed">
                                                         <span></span>
                                                     </label>
                                                 </div>

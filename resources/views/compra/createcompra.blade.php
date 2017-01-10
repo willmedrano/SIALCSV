@@ -219,8 +219,9 @@ h2,h1,span
                                                         <td><?php $cont++;  echo $cont; ?></td>
                                                         <td>{{ $aux2->cod }}</td>
                                                         <td>{{ $aux2->nomProd }}</td>
-                                                        <td>{{ $aux2->preciocomp2 }}</td>
                                                         <td>{{ $aux2->cancompra2 }}</td>
+                                                        <td>{{ $aux2->preciocomp2 }}</td>
+                                                        
                                                         <td>{{ $aux2->descompra2}}</td>
                                                         <td>
                                                            <?php

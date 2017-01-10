@@ -62,7 +62,8 @@ Route::resource('aux2',"auxiliarControl");
 Route::resource('aux4',"auxiliarControl2");
 Route::resource('lotes',"controladorLotes");
 Route::post('subir_imagen_usuario', 'UsuariosController@subir_imagen_usuario');
-Route::get('/',"logController@index");
+Route::resource('/',"logController");
+
 Route::get('logout',"logController@logout");
 
 Route::get('pdf', function() {

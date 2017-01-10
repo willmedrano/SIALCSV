@@ -40,8 +40,10 @@ class ventas extends Controller
       {
 
          $productor=\App\producto::where('id',$codigopro)->get();
+         $producto=\App\lotes::where('idprodsl',$productor[0]->id)->get();
+    
  
-    return response()->json($productor->toArray());
+    return response()->json($producto->toArray());
 
   }
     public function VerificarEPUnidades($codigopro)//verica la cantidad que se tiene en caja de los productos en unidades.
@@ -53,43 +55,9 @@ class ventas extends Controller
   }
 
     /**
-     * Show the form for creating a new
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      resource.
-     *
+      * Show the form for creating a new resource.   
      * @return \Illuminate\Http\Response
-     */
+     **/
     public function create()
     {
         

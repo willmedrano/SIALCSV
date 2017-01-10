@@ -38,7 +38,7 @@ class logController extends Controller
     }
     public function create()
     {
-        //
+       return view('notificaciones.notificaion');  
     }
 
     /**
