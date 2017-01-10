@@ -296,7 +296,7 @@ h2,h1,span
 
                                     <div class="col-xs-3"> 
 
-                                        <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" > 
+                                        <input id="idcodproduc" name="idcodproduc" type="text" required placeholder="Codigo de barra" class="form-control" > 
                                                                            
                                          </div>
                                     
@@ -323,7 +323,7 @@ h2,h1,span
                                         
                                         <select disabled class=" form-control" name="idProve" id="idProve">
                                             
-                                            <option>--Seleccione un Proveedor--</option>
+                                            <option value="0">--Seleccione un Proveedor--</option>
                                                 
                                             @foreach($prov as $prov1)
 
@@ -380,9 +380,9 @@ h2,h1,span
 
                                     <div class="col-xs-3">
                                         
-                                        <input id="subtotalventa" name="subtotalventa" type="text" placeholder="subtotal" class="form-control" disabled="true">
+                                        <input id="subtotalventa" name="subtotalventa" type="text" placeholder="subtotal" class="form-control" disabled="true" required>
                                         <input type="hidden" name="subtotal" id="subtotal" value="0">
-                                    
+                                        
                                     </div>
                                                 
                                 </div>
@@ -414,8 +414,8 @@ h2,h1,span
                                                     <tr  class="warning" align="center">
                                                         <th align="center" >#</th>
                                                         <th align="center" >producto</th>
-                                                        <th align="center">cantidad</th>
-                                                        <th align="center" >precio</th>
+                                                        <th align="center">cantidad de Cajas</th>
+                                                        <th align="center">cantidad de Unidades</th>
                                                         <th align="center" >Subtotal</th>
                                                         <th align="center" colspan="2" >accion</th>
 
@@ -444,8 +444,9 @@ h2,h1,span
                                                     <tr>
                                                         <td><?php $cont++;  echo $cont; ?></td>
                                                         <td>{{ $aux2->nomProd }}</td>
-                                                        <td>{{ $aux2->preciocomp3 }}</td>
                                                         <td>{{ $aux2->cancompra3 }}</td>
+                                                        <td>{{ $aux2->preciocomp3 }}</td>
+                                                        
                                                         <td>
                                                            <?php
                                                            $d=$aux2->descompra3;
@@ -545,6 +546,7 @@ h2,h1,span
 var cantidadunitariap=0;//es para tener unidades que tiene la tienda para vender
 
 var cantidadcajap=0;//es para tener las cajas disponibles
+var cajasvender2=0;//es para tener las cajas disponibles
 
 var canttotalventasub=0;//es para ir acumulando la cantidad a vender en caja
 
@@ -589,12 +591,33 @@ $('#aux').on('change','#idcodproduc',function (){
 
 
 
+        $("#hprod").val("");
+       $("#nomproducto").val("");
+       $("#idProve").val(0); 
+        $("#idcodproduc").val("");
+        $("#cajavender").val("");
+       $("#unidadesvender").val("");
+       $("#cajavendertexto").val("");
+        valido = document.getElementById('cajavendertexto');
+        valido.innerText = "";
+        $("#subtotalventa").val(0.0); 
+                    $("#subtotal").val(0.0); 
+                    valido1 = document.getElementById('unidadesvendertexto');
 
+            
+       
+         cantformacaja=0;
+       ganancia_unidad=0;
+       ganacia_caja=0;
+       costoPromedio=0;
 
 
  $.get(ruta, function(res){
   $(res).each(function(key,value){
+
+        
     if (value.estado==true) {
+        $("#idcodproduc").val(producto);
        $("#hprod").val(value.id);
        $("#nomproducto").val(value.nomProd);
        $("#idProve").val(value.idProve);
@@ -625,7 +648,7 @@ $.get(ruta1, function(res1){
         $(res1).each(function(key,value){
     
            
-            $("#ids").val(value.idprodsl);
+            
             //cantidadcajap= value.cancompra;
             cantidadunitariap = value.canlote;
 
@@ -641,51 +664,52 @@ $.get(ruta1, function(res1){
 
 document.getElementById('cajavender').addEventListener('input', function()//aqui se ejecuta cuando el usuario digita le muestra la cantidad.. de producto disponible..
  {
-    var producto1=$("#idcodproduc").val();
 
-     var ruta="/VerificarEPCaja/"+producto1;
+    //var producto1=$("#idcodproduc").val();
+
+     //var ruta="/VerificarEPCaja/"+producto1;
     
-     //cantidadcajap=(parseFloat(cantidadunitariap)) / (parseFloat(cantformacaja));
+     cantidadcajap= ((parseInt(cantidadunitariap)) / (parseInt(cantformacaja)));
 
     cajasvender = event.target;
      
-    valido = document.getElementById('cajavendertexto');
-
-     $.get(ruta, function(res){
-  $(res).each(function(key,value){
+    cajasvender2= ((parseInt(cajasvender)) * (parseInt(cantformacaja)));
+     /*$.get(ruta, function(res){
+  $(res).each(function(key,value){*/
       
-      if(value.cancompra==0){//verifica que si el numero es igual a cero
+     if(cantidadcajap.value==0){//verifica que si el numero es igual a cero
 
         valido.innerText = "No hay cajas disponibles ";
          valido.style.color = 'red';
+      }else if(cajasvender.value==0){///Es para saber si el digito que se digito es diferente de cero
 
-      }else if(value.cancompra!=0){///Es para saber si el digito que se digito es diferente de cero
-
-         valido.innerText = "Cantidad de cajas disponibles: "+value.cancompra;
+         valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
          valido.style.color = 'green';
 
-         if(cajasvender.value>cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
+
+
+         }
+         else if(cajasvender.value>cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
 
             valido.innerText = "Cantidad de cajas exede el # disponibles ";
-            valido.style.color = 'red';
+            valido.style.color = 'red';     
 
          } else if(cajasvender.value<0){//es para validar que solo se escriban numeros positivo
 
             valido.innerText = "Error es solo números positivos";
             valido.style.color = 'red';
 
-         }else{//Si son numero validos pasa parte donde se calculara el precio de ese producto a vender
+         }else if(cajasvender.value<=cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
+
             
 
             precioporcaja=(parseFloat(costoPromedio) * (parseFloat(ganacia_caja) / 100));
-
             precioporcaja=parseFloat(precioporcaja) + parseFloat(costoPromedio);
-
             subcaja= parseFloat(cajasvender.value) * parseFloat(precioporcaja);
 
             subcajaredondeada=subcaja.toFixed(2);
 
-            if(isNaN(subcajaredondeada)){//es una validacion por si esta vacio el campo de texto cajas a vender
+             if(isNaN(subcajaredondeada)){//es una validacion por si esta vacio el campo de texto cajas a vender
 
             valido.innerText = "Ingrese las Cantidades a Vender ";
             valido.style.color = 'blue';
@@ -699,12 +723,7 @@ document.getElementById('cajavender').addEventListener('input', function()//aqui
             $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
             }
            }else{
-              if(subcajaredondeada==0){
-
-                    valido.innerText = "No hay cajas disponibles cero";
-                    valido.style.color = 'red';
-
-              }else{
+              
                      valido.innerText = "Cantidad de cajas el monto es: "+subcajaredondeada;
                      valido.style.color = 'black';
                      if(isNaN(subunidadredondeada)){
@@ -719,36 +738,36 @@ document.getElementById('cajavender').addEventListener('input', function()//aqui
                      subtotalvender=parseFloat(subcajaredondeada)+parseFloat(subunidadredondeada);
                     $("#subtotalventa").val(subtotalvender);
                     $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
-
+                    var h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
+                    valido1.innerText = "Cantidad en unidades disponibles: "+ h;
                     }
                 }
 
-            }
-         }
+         } 
          
-      }
+      
 
       }); 
-  });
+  //});
      
-});
+//});
 
 document.getElementById('unidadesvender').addEventListener('input', function()//aqui se ejecuta cuando el usuario digita le muestra la cantidad.. de producto disponible..
  {
-    var producto2=$("#idcodproduc").val();
+  //  var producto2=$("#idcodproduc").val();
 
-    var ruta1="/VerificarEPUnidades/"+producto2;
+   // var ruta1="/VerificarEPUnidades/"+producto2;
     
     unidadesvender = event.target;
-
-    valido = document.getElementById('unidadesvendertexto');
-
     var cajacalculo=document.getElementById('cajavender');
+    
 
-     $.get(ruta1, function(res){
-  $(res).each(function(key,value){
+   
+    // $.get(ruta1, function(res){
+  //$(res).each(function(key,value){
       
-         valido.innerText = "Cantidad en unidades disponibles: "+value.canlote;
+
+         valido1.innerText = "Cantidad en unidades disponibles: "+value.canlote;
 
         if(unidadesvender.value > cantidadunitariap)
         {
@@ -811,8 +830,7 @@ document.getElementById('unidadesvender').addEventListener('input', function()//
              }
          
         }
-      }); 
-  });
+ 
      
 });
 
