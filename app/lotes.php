@@ -32,14 +32,8 @@ class lotes extends Model
             ->get();
    }
 
-    public static function proLot2($id){
-         return DB::table('lotes')
-            ->join('productos')
-            ->where('lotes.idprodsl','=',$id)
-            ->select('lotes.*',  'productos.cod','productos.cPromedio','productos.nomProd', 'productos.marca','productos.uniCaja','productos.gUni','productos.gCaja','productos.desc')
-            ->orderBy('productos.id')
-            ->get();
-   }
+    
+  
 
 
 }

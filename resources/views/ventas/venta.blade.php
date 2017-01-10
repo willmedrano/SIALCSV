@@ -297,7 +297,7 @@ h2,h1,span
                                     <div class="col-xs-3"> 
 
                                         <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" > 
-                                        <input type="hidden" name="ids" id="ids" value="0">                                   
+                                                                           
                                          </div>
                                     
                                 </div>
@@ -581,26 +581,15 @@ $('#aux').on('change','#idcodproduc',function (){
   
     var producto=$("#idcodproduc").val();//aqui se extrae los datos digitados por el usuario es decir el codigo del producto
 
-   // var ruta="/llenadoProducto2/"+producto;//Aqui busca de los productos registrados si se tiene ese codigo y lo busca para venderlo
+    var ruta="/llenadoProducto2/"+producto;//Aqui busca de los productos registrados si se tiene ese codigo y lo busca para venderlo
 
     var ruta1="/VerificarEPCaja/"+producto;//este es para buscar las excistencias de productos en caja
     
     //var ruta2="/VerificarEPUnidades/"+producto;//este es para buscar las excistencias de productos en unidades
 
 
-$.get(ruta1, function(res1){
-        
-        $(res1).each(function(key,value){
-    
-           
-            $("#ids").val(value.idprodsl);
-            //cantidadcajap= value.cancompra;
-            cantidadunitariap = value.canlote;
 
-         }); 
-    });
-idprods=$("#ids").val();
-var ruta="/llenadoProducto2/"+idprods;//Aqui busca de los productos registrados si se tiene ese codigo y lo busca para venderlo
+
 
 
  $.get(ruta, function(res){
@@ -631,7 +620,17 @@ var ruta="/llenadoProducto2/"+idprods;//Aqui busca de los productos registrados 
       }); 
  });
 //incorpora la otra funcion
+$.get(ruta1, function(res1){
+        
+        $(res1).each(function(key,value){
+    
+           
+            $("#ids").val(value.idprodsl);
+            //cantidadcajap= value.cancompra;
+            cantidadunitariap = value.canlote;
 
+         }); 
+    });
      
      //incorpora la otra funcion
 

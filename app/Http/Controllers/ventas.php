@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -23,34 +23,70 @@ class ventas extends Controller
         return view('ventas.facturar');
         
     }
-    public function llenadoProducto2($idprods)//retorno el nombre del producto y el proveedor.
+    public function llenadoProducto2($codigopro)//retorno el nombre del producto y el proveedor.
     {
-        
+        $productor=\App\producto::where('cod',$codigopro)->get();
+    $producto=\App\lotes::where('idprodsl',$productor[0]->id)->get();
     
-       $productor=\App\producto::where('id',$idprods)->get();
- 
-    return response()->json($productor->toArray());
+    $productor2=\App\producto::find($producto[0]->idprodsl);
+
+    
+    return response()->json($productor2->toArray());
+    
+      
 
   }
       public function VerificarEPCaja($codigopro)//verica la cantidad que se tiene en caja de los productos.
       {
-        
-    $productor=\App\producto::where('cod',$codigopro)->get();
-    $producto=\App\lotes::find($productor[0]->id);
 
-    
-    return response()->json($producto->toArray());
+         $productor=\App\producto::where('id',$codigopro)->get();
+ 
+    return response()->json($productor->toArray());
+
   }
     public function VerificarEPUnidades($codigopro)//verica la cantidad que se tiene en caja de los productos en unidades.
       {
         
-        $producto1=\App\lotes::where('idprodsl',$codigopro)->get();
+      //  $producto1=\App\producto::proLot2($codigopro);
  
-    return response()->json($producto1->toArray());
+    //return response()->json($producto1->toArray());
   }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      resource.
      *
      * @return \Illuminate\Http\Response
      */
