@@ -92,7 +92,7 @@ h2,h1,span
                                                         </td>
                                                         <td><?php
                                                             $a=($pro->canlote/$pro->uniCaja);
-                                                            echo round($a,0, PHP_ROUND_HALF_DOWN);
+                                                            echo floor($a);
                                                             ?></td>
                                                         <td> $ <?php
                                                             $a=((($pro->cPromedio*($pro->gCaja/100))+$pro->cPromedio));

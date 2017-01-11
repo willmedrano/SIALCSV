@@ -351,7 +351,7 @@ h2,h1,span
                                           
                                         <p>
  
-                                        <input id="cajavender" name="cajavender" type="text" required placeholder="Cajas a Vender"  class="form-control" >
+                                        <input id="cajavender" name="cajavender" type="text" required placeholder="Cajas a Vender"  class="form-control" autocomplete="off">
                                         <input type="hidden" name="cajadisp" id="cajadisp" value="">
                                         <span id="cajavendertexto"></span>
                                         </p>  
@@ -363,7 +363,7 @@ h2,h1,span
                                     
                                     <div class="col-xs-3">
                                         <p>
-                                        <input id="unidadesvender" name="unidadesvender" required type="text" placeholder="Unidades a Vender" class="form-control"  >
+                                        <input id="unidadesvender" name="unidadesvender" required type="text" placeholder="Unidades a Vender" class="form-control"  autocomplete="off">
                                         <span id="unidadesvendertexto"></span>
                                         </p>        
                                     </div>
@@ -577,7 +577,7 @@ var subunidadredondeada=0;//es para que en esta variable se guarde el precio de 
 var division_d_caja=0;//Es para poder hacer una division entre las unidades y las cajas
 
 var subtotalvender=0;//es para que los muestre el total avender
-
+var h=0
  $(document).ready(function(){
 $('#aux').on('change','#idcodproduc',function (){
   
@@ -601,12 +601,12 @@ $('#aux').on('change','#idcodproduc',function (){
         valido = document.getElementById('cajavendertexto');
         valido.innerText = "";
         $("#subtotalventa").val(0.0); 
-                    $("#subtotal").val(0.0); 
-                    valido1 = document.getElementById('unidadesvendertexto');
+        $("#subtotal").val(0.0); 
+        valido1 = document.getElementById('unidadesvendertexto');
 
             
        
-         cantformacaja=0;
+       cantformacaja=0;
        ganancia_unidad=0;
        ganacia_caja=0;
        costoPromedio=0;
@@ -672,19 +672,137 @@ document.getElementById('cajavender').addEventListener('input', function()//aqui
      cantidadcajap= ((parseInt(cantidadunitariap)) / (parseInt(cantformacaja)));
 
     cajasvender = event.target;
-     
-    cajasvender2= ((parseInt(cajasvender)) * (parseInt(cantformacaja)));
+    cantidadcajap=Math.floor(cantidadcajap);
+     cajasvender2=cajasvender.value;
+    cajasvender2= ((parseFloat(cajasvender2)) * (parseFloat(cantformacaja)));
      /*$.get(ruta, function(res){
   $(res).each(function(key,value){*/
-      
-     if(cantidadcajap.value==0){//verifica que si el numero es igual a cero
+    if(cajasvender.value>cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
+            $("#cajavender").val(cantidadcajap);
+            valido.innerText = "Cantidad de cajas exede el # disponibles ";
+            valido.style.color = 'red';     
 
-        valido.innerText = "No hay cajas disponibles ";
-         valido.style.color = 'red';
-      }else if(cajasvender.value==0){///Es para saber si el digito que se digito es diferente de cero
+         }
+      
+     else if(cantidadcajap==0){//verifica que si el numero es igual a cero
+        $("#cajavender").val(0);
+        valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
+         valido.style.color = 'green';
+      } 
+         else if(cajasvender.value==0){///Es para saber si el digito que se digito es diferente de cero
 
          valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
-         valido.style.color = 'green';
+         valido.style.color = 'blue';
+         h= (parseInt( cantidadunitariap) )
+                    valido1.innerText = "Cantidad en unidades disponibles: "+ h;
+
+
+
+         } else if(cajasvender.value<0){//es para validar que solo se escriban numeros positivo
+
+            valido.innerText = "Error es solo números positivos";
+            valido.style.color = 'red';
+
+         }else if(cajasvender.value<=cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
+
+            
+
+            precioporcaja=(parseFloat(costoPromedio) * (parseFloat(ganacia_caja) / 100));
+            precioporcaja=parseFloat(precioporcaja) + parseFloat(costoPromedio);
+            subcaja= parseFloat(cajasvender.value) * parseFloat(precioporcaja);
+
+            subcajaredondeada=subcaja.toFixed(2);
+
+             if(isNaN(subcajaredondeada)){//es una validacion por si esta vacio el campo de texto cajas a vender
+
+            valido.innerText = "Ingrese las Cantidades a Vender ";
+            valido.style.color = 'blue';
+            if(isNaN(subunidadredondeada)){
+                    $("#subtotalventa").val(0.0); 
+                    $("#subtotal").val(0.0); //es una variable oculta que nos sirve para enviar datos ocultos
+                    
+            }else{ 
+            subtotalvender=parseFloat(subunidadredondeada);
+            $("#subtotalventa").val(subtotalvender);
+            $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
+            }
+           }else{
+              
+                     valido.innerText = "Cantidad de cajas el monto es: "+subcajaredondeada;
+                     valido.style.color = 'green';
+                     if(isNaN(subunidadredondeada)){
+
+                        subtotalvender=parseFloat(subcajaredondeada);
+
+                    $("#subtotalventa").val(subtotalvender);
+                    $("#subtotal").val(0.0); //es una variable oculta que nos sirve para enviar datos ocultos
+
+                     }else{
+
+                     subtotalvender=parseFloat(subcajaredondeada)+parseFloat(subunidadredondeada);
+                    $("#subtotalventa").val(subtotalvender);
+                    $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
+                    if(isNaN(cajasvender2))
+                    {
+                        cajasvender2=0;// numero de unidades que vamos a vender en forma de caja
+                    }
+                    h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
+                    valido1.innerText = "Cantidad en unidades disponibles: "+ h;
+                    }
+                }
+
+         } 
+         
+      
+
+      }); 
+  //});
+     
+//});
+
+document.getElementById('unidadesvender').addEventListener('input', function()//aqui se ejecuta cuando el usuario digita le muestra la cantidad.. de producto disponible..
+ {
+  //  var producto2=$("#idcodproduc").val();
+
+   // var ruta1="/VerificarEPUnidades/"+producto2;
+   cantidadcajap= ((parseInt(cantidadunitariap)) / (parseInt(cantformacaja)));
+    var cajacalculo=document.getElementById('cajavender');
+   if(isNaN(cajacalculo.value))
+   {
+    $("#cajavender").val(0);
+   // valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
+         valido.style.color = 'blue';
+}
+    unidadesvender = event.target;
+    //cajasvender = event.target;
+   cajasvender2=cajacalculo.value;
+   cajasvender2= ((parseFloat(cajasvender2)) * (parseFloat(cantformacaja)));
+   if(isNaN(cajasvender2))
+   {
+    cajasvender2=0;// numero de unidades que vamos a vender en forma de caja
+   }
+   h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
+   //  cajacalculo=document.getElementById('cajavender');
+
+    valido.innerText = "Cantidad de cajas disponibles: "+h;
+   
+    // $.get(ruta1, function(res){
+  //$(res).each(function(key,value){
+      
+
+         //valido1.innerText = "Cantidad en unidades disponibles: "+value.canlote;
+
+         if(unidadesvender.value==0){//verifica que si el numero es igual a cero
+
+        valido1.innerText = "No hay unidades disponibles ";
+         valido1.style.color = 'red';
+         //$("#unidadesvender").val(0);
+      }/*else if(cajasvender.value==0){///Es para saber si el digito que se digito es diferente de cero
+
+         valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
+         valido.style.color = 'blue';
+         h= (parseInt( cantidadunitariap) )
+                    valido1.innerText = "Cantidad en unidades disponibles: "+ h;
 
 
 
@@ -725,7 +843,7 @@ document.getElementById('cajavender').addEventListener('input', function()//aqui
            }else{
               
                      valido.innerText = "Cantidad de cajas el monto es: "+subcajaredondeada;
-                     valido.style.color = 'black';
+                     valido.style.color = 'green';
                      if(isNaN(subunidadredondeada)){
 
                         subtotalvender=parseFloat(subcajaredondeada);
@@ -738,38 +856,14 @@ document.getElementById('cajavender').addEventListener('input', function()//aqui
                      subtotalvender=parseFloat(subcajaredondeada)+parseFloat(subunidadredondeada);
                     $("#subtotalventa").val(subtotalvender);
                     $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
-                    var h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
+                    h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
                     valido1.innerText = "Cantidad en unidades disponibles: "+ h;
                     }
                 }
 
-         } 
-         
-      
+         }
 
-      }); 
-  //});
-     
-//});
-
-document.getElementById('unidadesvender').addEventListener('input', function()//aqui se ejecuta cuando el usuario digita le muestra la cantidad.. de producto disponible..
- {
-  //  var producto2=$("#idcodproduc").val();
-
-   // var ruta1="/VerificarEPUnidades/"+producto2;
-    
-    unidadesvender = event.target;
-    var cajacalculo=document.getElementById('cajavender');
-    
-
-   
-    // $.get(ruta1, function(res){
-  //$(res).each(function(key,value){
-      
-
-         valido1.innerText = "Cantidad en unidades disponibles: "+value.canlote;
-
-        if(unidadesvender.value > cantidadunitariap)
+        /*if(unidadesvender.value > cantidadunitariap)
         {
           valido.innerText = "Cantidad de unidades exede el # disponibles ";
             valido.style.color = 'red';          
@@ -829,7 +923,9 @@ document.getElementById('unidadesvender').addEventListener('input', function()//
                     }
              }
          
-        }
+        }*/
+
+
  
      
 });
