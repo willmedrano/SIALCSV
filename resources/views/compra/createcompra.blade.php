@@ -137,7 +137,7 @@ h2,h1,span
                             </span>
                             <div class="col-md-3">
                                <select disabled class=" form-control" name="idProve" id="idProve">
-                            <option>--Selecione un Proveedor--</option>
+                            <option value="0">--Selecione un Proveedor--</option>
                             @foreach($prov as $prov1)
 
                                 <option  value="{{ $prov1->id }}" >{{ $prov1->nom }}</option>

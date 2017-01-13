@@ -404,7 +404,7 @@ if(isNaN(a)){
 $('#aux').on('change','#idcodproduc',function (){
   
   var producto=$("#idcodproduc").val();
-     var ruta="/llenadoProducto/"+producto;
+     var ruta="/llenadoProducto3/"+producto;
 
  $.get(ruta, function(res){
   $(res).each(function(key,value){

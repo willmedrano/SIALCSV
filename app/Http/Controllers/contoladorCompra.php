@@ -57,7 +57,46 @@ class contoladorCompra extends Controller
      * @return \Illuminate\Http\Response
      */
     public function llenadoProducto($codigopro){
-    $producto=producto::where('cod',$codigopro)->get();
+   // $producto1=\App\paqueteaux::All();
+    $producto3=producto::All();
+    $cont=1;
+    foreach ($producto3 as $key) {
+        # code...
+        $cont++;
+    }
+
+    if($codigopro>0 && $codigopro<($cont))
+    {
+        $producto2=producto::where('cod',$codigopro)->get();
+        //foreach ($producto3 as $p) {
+        # code...
+            if($codigopro==$producto2[0]->marca )
+            {
+                $producto=producto::find(1);
+                $producto->id=0;
+            
+                $producto->nomProd="";
+                $producto->idProve=0;
+            
+        
+            }
+            else
+            {
+                $producto=producto::where('cod',$codigopro)->get();
+            }
+       // }
+    }
+    else{
+
+        $producto=producto::find(1);
+                $producto->id=0;
+            
+                $producto->nomProd="";
+                $producto->idProve=0;
+    }
+    
+        
+    
     /*foreach ($producto as $p) {
       $codigopro=$p->id;
     }*/

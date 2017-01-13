@@ -37,7 +37,7 @@ Route::resource('prove',"controladorproveedor2");
 Route::resource('compra',"contoladorCompra");
 Route::match(['get','post'],'/llenadoProducto/{codigopro}','contoladorCompra@llenadoProducto');
 Route::match(['get','post'],'/llenadoProducto2/{codigopro}','ventas@llenadoProducto2');
-
+Route::match(['get','post'],'/llenadoProducto3/{codigopro}','ControladorCompraEsc@llenadoProducto3');
 Route::resource('escuelas',"ControladorEscuelas@listaescuela");
 Route::resource('escuela',"ControladorEscuelas");
 Route::resource('ventas',"ventas");
