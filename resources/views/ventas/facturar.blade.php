@@ -28,6 +28,12 @@ h2,h1,span
 
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <article class="content static-tables-page">
+                <?php $total=0;?>
+                            @foreach($pendiente as $aux3)
+                                <?php 
+                                $total=$total+($aux3->descompra3);
+                            ?>
+                            @endforeach
 
 
 <!--Inicio de modal -->
@@ -41,39 +47,121 @@ h2,h1,span
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
-          <form class="form-horizontal" method="p<os></os>t">
+         {!! Form::open(['route'=>'aux5.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
                     <fieldset>
                         
 
                         <br>
                         <div class="form-group">
-                            <span class="col-md-2  text-center" ><label >#factura: </label></span>
-                            <div class="col-md-6">
-                                <input id="nomP" name="nomP" type="text" placeholder="correlativo de la factura" class="form-control" >
+                            <span class="col-md-2  text-center" ><label >codigo: </label></span>
+                                                        
+                                  <div class="col-md-6">
+                                                            
+                                  <input id="codE" name="codE" type="text" placeholder="Correlativo de la factura" class="form-control" value="{!!Auth::user()->idemp!!}">
                                 
-                            </div>
-
+                                    </div>
                             
                             
                         </div>
-<br>
-                        
+                        <br>
+                        <div class="form-group">
+                                                        
+                                                        <span class="col-md-2  text-center" ><label >Nombre vendedor: </label></span>
+                                                        
+                                                        <div class="col-md-6">
+                                                            @foreach($emp as $emp1)
+                                                            @if($emp1->id== 1 )
+                                                                <input id="" name="nomP" type="text" placeholder="Nombre del Cliente" class="form-control" value="{{ $emp1->nomEmp }}">
+                                
+                                                            @endif
+                                                            @endforeach
+                                                            
+                                                        </div>
+
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group">
+                            
+                                                        <span class="col-md-2  text-center">
+                                                        <label >Nombre Cliente: </label></span>
+                            
+                                                        <div class="col-md-5">
+
+                                                            <input id="cli" name="cli" type="text" placeholder="Nombre del cliente" class="form-control">  
+                                                        
+                                                        </div>
+
+                                                    </div><br>
+                                                    <div class="form-group">
+                                                    
+                                                        <span class="col-md-2  text-center"><label >Sub-Total: </label></span>
+                                                    
+                                                        <div class="col-xs-5">
+                                                            
+                                                             <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control" value="<?php echo round(($total-($total*0.13)),2);
+                                                            ?>">
+                                                        
+                                                        </div>
+                                                    
+                                                    </div>
+
+                                                    <div class="form-group">
+                            
+                                                        <span class="col-md-2  text-center"><label >Iva: </label></span>
+                            
+                                                        <div class="col-md-3">
+                                                            
+                                                            <input id="iva" name="iva" type="text" placeholder="IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            ?>">
+
+                                                        </div>
+                           
+                                                        <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i></span>
+                                                    
+                                                    </div>
+
+                                                    <div class="form-group">
+                            
+                                                        <span class="col-md-2  text-center"><label >Total: </label></span>
+                                                        
+                                                        <div class="col-xs-5">
+
+                                                            <input id="total" name="total" type="text" placeholder="Total a pagar" class="form-control" value="<?php echo $total;
+                                                            ?>">
+                                                        
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group">
+                            
+                                                        <span class="col-md-2  text-center">
+                                                        <label >Fecha: </label></span>
+                            
+                                                        <div class="col-md-5">
+
+                                                            <input id="fecha" name="fecha" type="date" placeholder="% de descuento" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
+                                                        
+                                                        </div>
+
+                                                    </div>
+
                         <div class="form-group">
                             <span class="col-md-2 text-center"><label >Descripción:</label></span>
                             <div class="col-md-7">
-                                <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
+                                <textarea rows="2" class="form-control" id="des" name="des" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
                             </div>
                         </div>
                             <br>
                         
                     </fieldset>
-                </form>
+                
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">Vender</button>
       </div>
+      {!! Form::close() !!}
     </div>
   </div>
 </div>
@@ -115,33 +203,51 @@ h2,h1,span
                                             <th align="center" >producto</th>
                                             <th align="center">cantidad</th>
                                             <th align="center" >precio</th>
-                                            <th align="center" >Subtotal</th>
+                                            <th align="center" >Fecha</th>
                                             
                                             
                                         </tr>
                                     </thead>
-                                    <tfoot>
-  <tr align="center">
-  <td colspan="3">Total</td>
+                                    
+                                    <tbody class="buscar">
 
-  <td colspan="1" >$ 200</td>
-  <td colspan="1" align="left"></td>
-  
+                                                
+                                                    @foreach($pendiente as $comps)
+                                                    <tr class="v">
+                                                        
+                                                        <th  scope="row" >compra #{{ $comps->id }}</th>
+                                                        <td>{{ $comps->nomProd}}</td>
+                                                        <td>{{ $comps->preciocomp3}}</td>
+                                                        <td>{{ $comps->descompra3}}</td>
 
+                                                        <td>{{ $comps->cancompra3}}</td>
+                                                       
+                                                        
+                                                        
+                                                       
+                                                        
+            
+                                                                                                                
+                                                       
+                                                    </tr>
+                                                    
+                                                  
+                                                    
+                                                    
 
-  </tr>
-  </tfoot>
-                                    <tbody>
-                                        
-                                        <tr align="center">
-                                        <td>1</td>
-                                            <td>producto 2</td>
-                                            <td>40</td>
-                                            <td>5</td>
-                                            <td>$ 200</td>
-                                            
-                                        </tr>
-                                    </tbody>
+                                                    
+                                                      @endforeach
+                                                </tbody>
+                                                
+                                                <tfoot>
+                                           <tr align="center">
+                                                       
+                                                        <td colspan="4"><p style="font-weight: bold;">Total</p></td>
+                                                        <td colspan="1" ><p style="font-weight: bold;">$ <?php echo $total ?></p></td>
+                                                        <td colspan="1" align="left"></td>
+
+                                                    </tr>
+                                  </tfoot>
                                                      </table>
                                             <div align="center"> <button type="submit"  class="btn btn-primary btn-lg" data-toggle="modal" data-target="#gridSystemModal">Facturar</button> </div>
                                         </section>
@@ -156,3 +262,15 @@ h2,h1,span
                            
 
 @stop()
+<?php 
+$time=time();
+    
+    function dameFecha($fecha,$dia){
+        list($year,$mon,$day)=explode('-',$fecha);
+        return date('Y-m-d',mktime(0,0,0,$mon,$day+$dia,$year));    
+    }
+   $total=0; 
+
+
+  
+?>

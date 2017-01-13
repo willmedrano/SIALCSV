@@ -107,6 +107,11 @@ h2
                             <div class="col-md-3">
                                 <input id="marca" required name="marca" type="text" required placeholder="Marca" class="form-control" >
                             </div>
+
+                            <span class="col-md-1  text-center"><i class="fa bigicon" style=" font-weight: bold;">M</i></span>
+                            <div class="col-xs-3">
+                                <input id="minimo" name="minimo" type="text" placeholder="unidades minimas requeridas" class="form-control" pattern="[0-9]{1,3}" required>
+                            </div>
                         </div>
                         <br>
 

@@ -137,6 +137,14 @@ h2,h1,span
                             </div>
                         </div>
 <br>
+                          <div class="form-group">
+                            <span class="col-md-2  text-center"><label >Minimo: </label></span>
+                            <div class="col-md-6">
+                                <input required id="minimo" name="minimo" type="text" placeholder="Unidades minimas requeridas" class="form-control" value="{{ $cat->minimo }}">
+                                
+                            </div>
+                        </div>
+<br>
                         <div class="form-group">
                             <span class="col-md-2  text-center"><label >Ganancia: </label></span>
                             <div class="col-md-6">

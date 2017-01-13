@@ -14,7 +14,7 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cod');
+            $table->string('cod')->uniqid();
             $table->string('nomProd');
             $table->string('marca');
             $table->Integer('uniCaja');
@@ -23,6 +23,7 @@ class CreateProductosTable extends Migration
             $table->Integer('gUni');
             $table->Integer('gCaja');
             $table->string('desc');
+            $table->Integer('minimo')->default(0);
             $table->Double('cPromedio', 7, 2)->default(0.00);
             $table->boolean('estado')->default(true);
             

@@ -60,6 +60,7 @@ Route::resource('pagar',"controladorPagar");
 
 Route::resource('aux2',"auxiliarControl");
 Route::resource('aux4',"auxiliarControl2");
+Route::resource('aux5',"auxiliarControl3");
 Route::resource('lotes',"controladorLotes");
 Route::post('subir_imagen_usuario', 'UsuariosController@subir_imagen_usuario');
 Route::resource('/',"logController");

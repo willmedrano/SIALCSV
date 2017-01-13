@@ -1,5 +1,12 @@
 @extends('probandos')
-
+<?php $message=Session::get('message')?>
+<div class='notifications top-left'></div>
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Compra Realizada.
+</div>
+@endif
 @section('content')
 <style type="text/css" >
     
@@ -53,7 +60,13 @@ h2,h1,span
                 <div>
                     <div class="card card-block sameheight-item">
                             
-                            
+                            <?php $total=0;?>
+                            @foreach($aux as $aux3)
+                                <?php 
+                                $total=$total+($aux3->descompra3);
+                            ?>
+                            @endforeach
+                                                            
                             <!--Inicio de modal -->
                             
                             <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
@@ -74,17 +87,18 @@ h2,h1,span
                                             
                                             <div class="container-fluid bd-example-row">
                                             
-                                            <form class="form-horizontal" method="post">
+                                            {!! Form::open(['route'=>'ventas.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
                                                 
                                                 <fieldset>
 
                                                     <div class="form-group">
                             
-                                                        <span class="col-md-2  text-center" ><label ># Factura: </label></span>
+                                                        <span class="col-md-2  text-center" ><label >codigo: </label></span>
                                                         
                                                         <div class="col-md-6">
                                                             
-                                                            <input id="nomP" name="nomP" type="text" placeholder="Correlativo de la factura" class="form-control" >
+                                                            <input id="codE" name="codE" type="text" placeholder="Correlativo de la factura" class="form-control" value="{!!Auth::user()->idemp!!}
+">
                                 
                                                         </div>
 
@@ -93,11 +107,28 @@ h2,h1,span
 
                                                     <div class="form-group">
                                                         
-                                                        <span class="col-md-2  text-center" ><label >Nombre: </label></span>
+                                                        <span class="col-md-2  text-center" ><label >Nombre vendedor: </label></span>
                                                         
                                                         <div class="col-md-6">
-                                                            <input id="nomP" name="nomP" type="text" placeholder="Nombre del Cliente" class="form-control" >
+                                                            @foreach($emp as $emp1)
+                                                            @if($emp1->id== 1 )
+                                                                <input id="" name="nomP" type="text" placeholder="Nombre del Cliente" class="form-control" value="{{ $emp1->nomEmp }}">
                                 
+                                                            @endif
+                                                            @endforeach
+                                                            
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group">
+                            
+                                                        <span class="col-md-2  text-center">
+                                                        <label >Nombre Cliente: </label></span>
+                            
+                                                        <div class="col-md-5">
+
+                                                            <input id="cli" name="cli" type="text" placeholder="Nombre del cliente" class="form-control">  
+                                                        
                                                         </div>
 
                                                     </div>
@@ -105,11 +136,11 @@ h2,h1,span
                                                     <div class="form-group">
                             
                                                         <span class="col-md-2  text-center">
-                                                        <label >Descuento: </label></span>
+                                                        <label >Fecha: </label></span>
                             
                                                         <div class="col-md-5">
 
-                                                            <input id="nomP" name="nomP" type="text" placeholder="% de descuento" class="form-control">  
+                                                            <input id="fecha" name="fecha" type="date" placeholder="% de descuento" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
                                                         
                                                         </div>
 
@@ -121,7 +152,8 @@ h2,h1,span
                                                     
                                                         <div class="col-xs-5">
                                                             
-                                                             <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control">
+                                                             <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control" value="<?php echo round(($total-($total*0.13)),2);
+                                                            ?>">
                                                         
                                                         </div>
                                                     
@@ -133,7 +165,8 @@ h2,h1,span
                             
                                                         <div class="col-md-3">
                                                             
-                                                            <input id="marca" name="marca" type="text" placeholder="IVA agregado " class="form-control">
+                                                            <input id="iva" name="iva" type="text" placeholder="IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            ?>">
 
                                                         </div>
                            
@@ -147,7 +180,8 @@ h2,h1,span
                                                         
                                                         <div class="col-xs-5">
 
-                                                            <input id="tipo" name="tipo" type="text" placeholder="Total a pagar" class="form-control">
+                                                            <input id="total" name="total" type="text" placeholder="Total a pagar" class="form-control" value="<?php echo $total;
+                                                            ?>">
                                                         
                                                         </div>
 
@@ -159,14 +193,14 @@ h2,h1,span
                             
                                                         <div class="col-md-7">
                                                             
-                                                            <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion de la venta" rows="7"></textarea>
+                                                            <textarea rows="2" class="form-control" id="des" name="des" placeholder="Agregue la descripcion de la venta" rows="7"></textarea>
                                                         
                                                          </div>
 
                                                     </div>    
                                                 
                                                 </fieldset>
-                                            </form>
+                                             
                                             </div>
                                         </div>
                                         
@@ -174,9 +208,10 @@ h2,h1,span
                                             
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                             
-                                            <button type="button" class="btn btn-primary">Vender</button>
+                                            <button type="submit" class="btn btn-primary">Vender</button>
                                         
                                         </div>
+                                        {!! Form::close() !!}
                                     </div>
                                 </div>
                             </div>
@@ -201,19 +236,11 @@ h2,h1,span
         
                                             <div class="container-fluid bd-example-row">
                                             
-                                            <form class="form-horizontal" method="post">
+                                            {!! Form::open(['route'=>'aux5.update','method'=>'PATCH','class'=>'form-horizontal' ,'id'=>'frm5','name'=>'frm5']) !!}
                                                 
                                                 <fieldset>
                         
-                                                    <div class="form-group">
-                                                        <span class="col-md-2  text-center"><label >Descuento: </label></span>
-                                                        
-                                                        <div class="col-md-5">
-                                
-                                                            <input id="nomP" name="nomP" type="text" placeholder="% de descuento" class="form-control">  
-                                                        
-                                                        </div>
-                                                    </div>
+                                                    
                                                     
                                                     <div class="form-group">
                                                         
@@ -221,7 +248,8 @@ h2,h1,span
                                                         
                                                         <div class="col-xs-5">
                                 
-                                                            <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control">
+                                                            <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control" value="<?php echo round(($total-($total*0.13)),2);
+                                                            ?>">
                                                          
                                                          </div>
                                                     </div>
@@ -232,7 +260,8 @@ h2,h1,span
                                                         
                                                         <div class="col-md-3">
                                                             
-                                                            <input id="marca" name="marca" type="text" placeholder="IVA agregado " class="form-control">
+                                                            <input id="marca" name="marca" type="text" placeholder="IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            ?>">
 
                                                         </div>
                                                         
@@ -246,7 +275,8 @@ h2,h1,span
                                                         
                                                         <div class="col-xs-5">
                                 
-                                                            <input id="tipo" name="tipo" type="text" placeholder="Total a pagar" class="form-control">
+                                                            <input id="tipo" name="tipo" type="text" placeholder="Total a pagar" class="form-control" value="<?php echo $total;
+                                                            ?>">
                                                         </div>
 
                                                     </div>
@@ -264,7 +294,7 @@ h2,h1,span
                                                 
                                                 </fieldset>
 
-                                            </form>
+                                            
                                             </div>
 
                                         </div>
@@ -272,10 +302,10 @@ h2,h1,span
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                             
-                                            <button type="button" class="btn btn-primary">Vender</button>
+                                            <button type="submit" class="btn btn-primary">Vender</button>
                                         
                                         </div>
-                                    
+                                    {!! Form::close() !!}
                                     </div>
                                 </div> 
                             </div>
@@ -363,7 +393,7 @@ h2,h1,span
                                     
                                     <div class="col-xs-3">
                                         <p>
-                                        <input id="unidadesvender" name="unidadesvender" required type="text" placeholder="Unidades a Vender" class="form-control"  autocomplete="off">
+                                        <input id="unidadesvender" name="unidadesvender" required type="text" placeholder="Unidades a Vender" class="form-control"  autocomplete="off" pattern="[0-9]{1,3}">
                                         <span id="unidadesvendertexto"></span>
                                         </p>        
                                     </div>
@@ -423,17 +453,7 @@ h2,h1,span
                                                 
                                                 </thead>
                                                 
-                                                <tfoot>
-                                                    
-                                                    <tr align="center">
-                                                       
-                                                        <td colspan="4"><p style="font-weight: bold;">Total</p></td>
-                                                        <td colspan="1" ><p style="font-weight: bold;">$ 200</p></td>
-                                                        <td colspan="1" align="left"></td>
-
-                                                    </tr>
                                                 
-                                                </tfoot>
                                                 
                                                 <tbody>
                                         
@@ -448,7 +468,7 @@ h2,h1,span
                                                         <td>{{ $aux2->preciocomp3 }}</td>
                                                         
                                                         <td>
-                                                           <?php
+                                                           <?php 
                                                            $d=$aux2->descompra3;
                                                            echo $d;
                                                             ?>
@@ -468,6 +488,17 @@ h2,h1,span
                                                       @endforeach
                                                 
                                                 </tbody>
+                                                <tfoot>
+                                                    
+                                                    <tr align="center">
+                                                       
+                                                        <td colspan="4"><p style="font-weight: bold;">Total</p></td>
+                                                        <td colspan="1" ><p style="font-weight: bold;">$ <?php echo $total ?></p></td>
+                                                        <td colspan="1" align="left"></td>
+
+                                                    </tr>
+                                                
+                                                </tfoot>
                                             
                                             </table>
                                             
@@ -507,10 +538,13 @@ h2,h1,span
                             
                              </div>
                                 <div>
+
+                                <br>
+                                <br>    <br>
                                   @foreach($aux as $aux2)
-                                   <?php echo '<br>'; echo '<br>';echo '<br>';echo '<br>';echo '<br>';?>
-                                   @endforeach
-                                  
+                                   <?php echo '<br>';echo '<br>'; echo '<br>'; ?>
+                                
+                                  @endforeach
                                    
                                    <br>
                                    <br>  
@@ -525,18 +559,57 @@ h2,h1,span
 
         </div>
    
-
+        
         <div class="form-group">
             <div class="col-md-12 text-center" align="center">
-                <button   class="btn btn-lg btn-primary active" data-toggle="modal" data-target="#gridSystemModal">Facturar</button>
 
-                <button   class="btn gris btn-lg" data-toggle="modal" data-target="#gridSystemModal2">Sin Facturar</button>
+
+<?php if ( $total==0 ) { 
+ 
+/*aquí picamos el código HTML*/
+ 
+
+                echo '<button   class="btn btn-lg btn-primary active" disabled data-toggle="modal" data-target="#gridSystemModal">Facturar</button>';
+
+        
+                echo '<button   class="btn gris btn-lg" data-toggle="modal"   disabled
+                    data-target="#gridSystemModal2">Sin Facturar</button>';
+                
+        } 
+    else{
+         echo '<button   class="btn btn-lg btn-primary active"  data-toggle="modal" data-target="#gridSystemModal">Facturar</button>';
+
+        
+                echo '<button   class="btn gris btn-lg" data-toggle="modal"   
+                    data-target="#gridSystemModal2" >Sin Facturar</button>';
+    }
+        ?>
             </div>                  
         </div>
+
+    
+
+        
+
+
+        
                                              
 
   
 @endsection
+
+<?php 
+$time=time();
+    
+    function dameFecha($fecha,$dia){
+        list($year,$mon,$day)=explode('-',$fecha);
+        return date('Y-m-d',mktime(0,0,0,$mon,$day+$dia,$year));    
+    }
+   $total=0; 
+
+
+  
+?>
   @section('scripts')
     
             
@@ -577,7 +650,9 @@ var subunidadredondeada=0;//es para que en esta variable se guarde el precio de 
 var division_d_caja=0;//Es para poder hacer una division entre las unidades y las cajas
 
 var subtotalvender=0;//es para que los muestre el total avender
-var h=0
+var h=0;
+var w=0;
+var z=0;
  $(document).ready(function(){
 $('#aux').on('change','#idcodproduc',function (){
   
@@ -598,6 +673,9 @@ $('#aux').on('change','#idcodproduc',function (){
         $("#cajavender").val("");
        $("#unidadesvender").val("");
        $("#cajavendertexto").val("");
+       $("#unidadesvendertexto").val("");
+       
+
         valido = document.getElementById('cajavendertexto');
         valido.innerText = "";
         $("#subtotalventa").val(0.0); 
@@ -655,8 +733,7 @@ $.get(ruta1, function(res1){
          }); 
     });
      
-     //incorpora la otra funcion
-
+     
     
 });
   
@@ -668,92 +745,95 @@ document.getElementById('cajavender').addEventListener('input', function()//aqui
     //var producto1=$("#idcodproduc").val();
 
      //var ruta="/VerificarEPCaja/"+producto1;
-    
+    $("#unidadesvender").val(0);
+
      cantidadcajap= ((parseInt(cantidadunitariap)) / (parseInt(cantformacaja)));
 
     cajasvender = event.target;
     cantidadcajap=Math.floor(cantidadcajap);
      cajasvender2=cajasvender.value;
     cajasvender2= ((parseFloat(cajasvender2)) * (parseFloat(cantformacaja)));
-     /*$.get(ruta, function(res){
-  $(res).each(function(key,value){*/
-    if(cajasvender.value>cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
+     if(cajasvender.value>cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
             $("#cajavender").val(cantidadcajap);
-            valido.innerText = "Cantidad de cajas exede el # disponibles ";
-            valido.style.color = 'red';     
+           /* valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
+         valido.style.color = 'green';   */ 
+          precioporcaja=(parseFloat(costoPromedio) * (parseFloat(ganacia_caja) / 100));
+            precioporcaja=parseFloat(precioporcaja) + parseFloat(costoPromedio);
+            subcaja= parseFloat(cajasvender.value) * parseFloat(precioporcaja);
+ //es una variable oculta que nos sirve para enviar datos ocultos
+ subcajaredondeada=subcaja.toFixed(2);
+                    if(isNaN(subcajaredondeada))
+                    {
+                        subcajaredondeada=0.0;// numero de unidades que vamos a vender en forma de caja
+                        $("#cajavender").val(0);
+                    }
+
+                    
+                    subtotalvender=parseFloat(subcajaredondeada);
+                    $("#subtotalventa").val(subtotalvender);
+                    $("#subtotal").val(subtotalvender);
+                    valido.innerText = "Cantidad maximo de cajas: "+ cantidadcajap +" el monto es: "+subcajaredondeada;
+                    valido.style.color = 'green';
+                    h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
+                    valido1.innerText = "Cantidad en unidades disponibles: "+ 0;
 
          }
       
-     else if(cantidadcajap==0){//verifica que si el numero es igual a cero
-        $("#cajavender").val(0);
-        valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
-         valido.style.color = 'green';
-      } 
-         else if(cajasvender.value==0){///Es para saber si el digito que se digito es diferente de cero
+     else if(cajasvender.value<0){//es para validar que solo se escriban numeros positivo
+            $("#cajavender").val(0);
+            precioporcaja=(parseFloat(costoPromedio) * (parseFloat(ganacia_caja) / 100));
+            precioporcaja=parseFloat(precioporcaja) + parseFloat(costoPromedio);
+            subcaja= parseFloat(cajasvender.value) * parseFloat(precioporcaja);
+ //es una variable oculta que nos sirve para enviar datos ocultos
+                    subcajaredondeada=subcaja.toFixed(2);
+                    if(isNaN(subcajaredondeada))
+                    {
+                        subcajaredondeada=0.0;// numero de unidades que vamos a vender en forma de caja
+                        $("#cajavender").val(0);
+                    }
 
-         valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
-         valido.style.color = 'blue';
-         h= (parseInt( cantidadunitariap) )
-                    valido1.innerText = "Cantidad en unidades disponibles: "+ h;
-
-
-
-         } else if(cajasvender.value<0){//es para validar que solo se escriban numeros positivo
-
-            valido.innerText = "Error es solo números positivos";
-            valido.style.color = 'red';
+                    
+                    subtotalvender=parseFloat(subcajaredondeada);
+                    $("#subtotalventa").val(subtotalvender);
+                    $("#subtotal").val(subtotalvender);
+                    valido.innerText = "No ingrese negativos.. el monto es: "+subcajaredondeada;
+                    valido.style.color = 'green';
+                    h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
+                    valido1.innerText = "Cantidad en unidades disponibles: "+ cantidadunitariap;
 
          }else if(cajasvender.value<=cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
 
-            
+
 
             precioporcaja=(parseFloat(costoPromedio) * (parseFloat(ganacia_caja) / 100));
             precioporcaja=parseFloat(precioporcaja) + parseFloat(costoPromedio);
             subcaja= parseFloat(cajasvender.value) * parseFloat(precioporcaja);
+ //es una variable oculta que nos sirve para enviar datos ocultos
+ subcajaredondeada=subcaja.toFixed(2);
+                    if(isNaN(subcajaredondeada))
+                    {
+                        subcajaredondeada=0.0;// numero de unidades que vamos a vender en forma de caja
+                       // $("#cajavender").val(0);
+                    }
 
-            subcajaredondeada=subcaja.toFixed(2);
+            
 
-             if(isNaN(subcajaredondeada)){//es una validacion por si esta vacio el campo de texto cajas a vender
-
-            valido.innerText = "Ingrese las Cantidades a Vender ";
-            valido.style.color = 'blue';
-            if(isNaN(subunidadredondeada)){
-                    $("#subtotalventa").val(0.0); 
-                    $("#subtotal").val(0.0); //es una variable oculta que nos sirve para enviar datos ocultos
-                    
-            }else{ 
-            subtotalvender=parseFloat(subunidadredondeada);
-            $("#subtotalventa").val(subtotalvender);
-            $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
-            }
-           }else{
-              
-                     valido.innerText = "Cantidad de cajas el monto es: "+subcajaredondeada;
-                     valido.style.color = 'green';
-                     if(isNaN(subunidadredondeada)){
-
-                        subtotalvender=parseFloat(subcajaredondeada);
-
+             subtotalvender=parseFloat(subcajaredondeada);
                     $("#subtotalventa").val(subtotalvender);
-                    $("#subtotal").val(0.0); //es una variable oculta que nos sirve para enviar datos ocultos
+                    $("#subtotal").val(subtotalvender);
 
-                     }else{
-
-                     subtotalvender=parseFloat(subcajaredondeada)+parseFloat(subunidadredondeada);
-                    $("#subtotalventa").val(subtotalvender);
-                    $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
+                    valido.innerText = "Cantidad de cajas el monto es: "+subcajaredondeada;
+                    valido.style.color = 'blue';
                     if(isNaN(cajasvender2))
                     {
                         cajasvender2=0;// numero de unidades que vamos a vender en forma de caja
                     }
                     h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
                     valido1.innerText = "Cantidad en unidades disponibles: "+ h;
-                    }
-                }
 
          } 
          
-      
+     w=subcajaredondeada;
 
       }); 
   //});
@@ -766,168 +846,123 @@ document.getElementById('unidadesvender').addEventListener('input', function()//
 
    // var ruta1="/VerificarEPUnidades/"+producto2;
    cantidadcajap= ((parseInt(cantidadunitariap)) / (parseInt(cantformacaja)));
+   cantidadcajap=Math.floor(cantidadcajap);
     var cajacalculo=document.getElementById('cajavender');
-   if(isNaN(cajacalculo.value))
+   if(isNaN(cajacalculo.value) ||cajacalculo.value=="")
    {
     $("#cajavender").val(0);
-   // valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
-         valido.style.color = 'blue';
+    precioporcaja=(parseFloat(costoPromedio) * (parseFloat(ganacia_caja) / 100));
+            precioporcaja=parseFloat(precioporcaja) + parseFloat(costoPromedio);
+            subcaja= parseFloat(0) * parseFloat(precioporcaja);
+ //es una variable oculta que nos sirve para enviar datos ocultos
+                    subcajaredondeada=subcaja.toFixed(2);
+                    if(isNaN(subcajaredondeada))
+                    {
+                        subcajaredondeada=0.0;// numero de unidades que vamos a vender en forma de caja
+                        $("#cajavender").val(0);
+                    }
+
+                    
+                    subtotalvender=parseFloat(subcajaredondeada);
+                    $("#subtotalventa").val(subtotalvender);
+                    $("#subtotal").val(subtotalvender);
+                    valido.innerText = " el monto es: "+subcajaredondeada;
+                    valido.style.color = 'green';
+                    w=0;
 }
-    unidadesvender = event.target;
-    //cajasvender = event.target;
+else{
    cajasvender2=cajacalculo.value;
    cajasvender2= ((parseFloat(cajasvender2)) * (parseFloat(cantformacaja)));
-   if(isNaN(cajasvender2))
-   {
-    cajasvender2=0;// numero de unidades que vamos a vender en forma de caja
-   }
-   h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
-   //  cajacalculo=document.getElementById('cajavender');
-
-    valido.innerText = "Cantidad de cajas disponibles: "+h;
+     h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
+}
+h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
+    unidadesvender = event.target;
    
-    // $.get(ruta1, function(res){
-  //$(res).each(function(key,value){
-      
+    var x= h-parseInt(unidadesvender.value);
+   
 
-         //valido1.innerText = "Cantidad en unidades disponibles: "+value.canlote;
+   if(unidadesvender.value>h){//es para validar que solo las cajas que estan disponibles o estan existencia
+            $("#unidadesvender").val(h);
+           /* valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
+         valido.style.color = 'green';   */ 
+         var c=(parseFloat(costoPromedio) / (parseFloat(cantformacaja)))
+          precioporcaja=(parseFloat(c) * (parseFloat(ganancia_unidad) / 100));
+            precioporcaja=parseFloat(precioporcaja) + parseFloat(c);
+            subcaja= parseFloat(unidadesvender.value) * parseFloat(precioporcaja);
+            z=parseFloat(subcaja) + parseFloat(w);
+            subcaja=subcaja.toFixed(2);
+ //es una variable oculta que nos sirve para enviar datos ocultos
+ subcajaredondeada=z.toFixed(2);
+                    if(isNaN(subcajaredondeada))
+                    {
+                        subcajaredondeada=0.0;// numero de unidades que vamos a vender en forma de caja
+                        $("#unidadesvender").val(0);
+                    }
 
-         if(unidadesvender.value==0){//verifica que si el numero es igual a cero
-
-        valido1.innerText = "No hay unidades disponibles ";
-         valido1.style.color = 'red';
-         //$("#unidadesvender").val(0);
-      }/*else if(cajasvender.value==0){///Es para saber si el digito que se digito es diferente de cero
-
-         valido.innerText = "Cantidad de cajas disponibles: "+cantidadcajap;
-         valido.style.color = 'blue';
-         h= (parseInt( cantidadunitariap) )
-                    valido1.innerText = "Cantidad en unidades disponibles: "+ h;
-
-
-
+                    //var w= $("#subtotalventa");
+                    subtotalvender=parseFloat(subcajaredondeada);
+                    $("#subtotalventa").val(subtotalvender);
+                    $("#subtotal").val(subtotalvender);
+                    valido1.innerText = "Cantidad maximo de unidades: "+ h +" el monto es: "+subcaja;
+                    valido1.style.color = 'green';
+                    
          }
-         else if(cajasvender.value>cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
+      
+     else if(unidadesvender.value<0){//es para validar que solo se escriban numeros positivo
+            $("#unidadesvender").val(0);
+            var c=(parseFloat(costoPromedio) / (parseFloat(cantformacaja)))
+          precioporcaja=(parseFloat(c) * (parseFloat(ganancia_unidad) / 100));
+            precioporcaja=parseFloat(precioporcaja) + parseFloat(c);
+            subcaja= parseFloat(unidadesvender.value) * parseFloat(precioporcaja);
+ z=parseFloat(subcaja) + parseFloat(w);
+ subcaja=subcaja.toFixed(2);
+ //es una variable oculta que nos sirve para enviar datos ocultos
+ subcajaredondeada=z.toFixed(2);
+                    if(isNaN(subcajaredondeada))
+                    {
+                        subcajaredondeada=0.0;// numero de unidades que vamos a vender en forma de caja
+                        $("#unidadesvender").val(0);
+                    }
 
-            valido.innerText = "Cantidad de cajas exede el # disponibles ";
-            valido.style.color = 'red';     
+                    //var w= $("#subtotal");
+                    subtotalvender=parseFloat(subcajaredondeada);
+                    $("#subtotalventa").val(subtotalvender);
+                    $("#subtotal").val(subtotalvender);
+                    valido1.innerText = "No ingrese negativos.. el monto es: "+subcaja;
+                    valido1.style.color = 'green';
+                    
+         }else if(unidadesvender.value<=h){//es para validar que solo las cajas que estan disponibles o estan existencia
 
-         } else if(cajasvender.value<0){//es para validar que solo se escriban numeros positivo
 
-            valido.innerText = "Error es solo números positivos";
-            valido.style.color = 'red';
-
-         }else if(cajasvender.value<=cantidadcajap){//es para validar que solo las cajas que estan disponibles o estan existencia
+var c=(parseFloat(costoPromedio) / (parseFloat(cantformacaja)))
+          precioporcaja=(parseFloat(c) * (parseFloat(ganancia_unidad) / 100));
+            precioporcaja=parseFloat(precioporcaja) + parseFloat(c);
+            subcaja= parseFloat(unidadesvender.value) * parseFloat(precioporcaja);
+ z=parseFloat(subcaja) + parseFloat(w);
+ subcaja=subcaja.toFixed(2);
+ //es una variable oculta que nos sirve para enviar datos ocultos
+ subcajaredondeada=z.toFixed(2);
+                    if(isNaN(subcajaredondeada))
+                    {
+                        subcajaredondeada=w// numero de unidades que vamos a vender en forma de caja
+                        //$("#unidadesvender").val(0);
+                    }
 
             
-
-            precioporcaja=(parseFloat(costoPromedio) * (parseFloat(ganacia_caja) / 100));
-            precioporcaja=parseFloat(precioporcaja) + parseFloat(costoPromedio);
-            subcaja= parseFloat(cajasvender.value) * parseFloat(precioporcaja);
-
-            subcajaredondeada=subcaja.toFixed(2);
-
-             if(isNaN(subcajaredondeada)){//es una validacion por si esta vacio el campo de texto cajas a vender
-
-            valido.innerText = "Ingrese las Cantidades a Vender ";
-            valido.style.color = 'blue';
-            if(isNaN(subunidadredondeada)){
-                    $("#subtotalventa").val(0.0); 
-                    $("#subtotal").val(0.0); //es una variable oculta que nos sirve para enviar datos ocultos
-                    
-            }else{ 
-            subtotalvender=parseFloat(subunidadredondeada);
-            $("#subtotalventa").val(subtotalvender);
-            $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
-            }
-           }else{
-              
-                     valido.innerText = "Cantidad de cajas el monto es: "+subcajaredondeada;
-                     valido.style.color = 'green';
-                     if(isNaN(subunidadredondeada)){
-
-                        subtotalvender=parseFloat(subcajaredondeada);
-
+            
+             subtotalvender=parseFloat(subcajaredondeada);
                     $("#subtotalventa").val(subtotalvender);
-                    $("#subtotal").val(0.0); //es una variable oculta que nos sirve para enviar datos ocultos
-
-                     }else{
-
-                     subtotalvender=parseFloat(subcajaredondeada)+parseFloat(subunidadredondeada);
-                    $("#subtotalventa").val(subtotalvender);
-                    $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
-                    h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
-                    valido1.innerText = "Cantidad en unidades disponibles: "+ h;
+                    $("#subtotal").val(subtotalvender);
+                    valido1.innerText = "Cantidad de cajas el monto es: "+subcaja;
+                    valido1.style.color = 'blue';
+                    if(isNaN(cajasvender2))
+                    {
+                        cajasvender2=0;// numero de unidades que vamos a vender en forma de caja
                     }
-                }
-
+                   
          }
-
-        /*if(unidadesvender.value > cantidadunitariap)
-        {
-          valido.innerText = "Cantidad de unidades exede el # disponibles ";
-            valido.style.color = 'red';          
-        }else if(unidadesvender.value < 0)
-        {
-            valido.innerText = "Error es solo números positivos";
-            valido.style.color = 'red';  
-
-        }else{
-
-             division_d_caja=parseFloat(unidadesvender.value) % parseFloat(cantformacaja);//es para determinar si es caja unidad
-             
-                contadorunidades=0;
-           
-                precioporunidad=((parseFloat(costoPromedio) / parseFloat(cantformacaja)) * (parseFloat(ganancia_unidad) / 100));
-
-                precioporunidad=parseFloat(precioporunidad) + (parseFloat(costoPromedio) / parseFloat(cantformacaja));
-
-                subunidad= parseFloat(unidadesvender.value) * parseFloat(precioporunidad);
-
-                subunidadredondeada=subunidad.toFixed(2);
-
-           if(isNaN(subunidadredondeada)){
-
-            valido.innerText = "Ingrese las Cantidades a Vender ";
-            valido.style.color = 'blue';
-            if(isNaN(subcajaredondeada)){
-                    $("#subtotalventa").val(0.0); 
-                    $("#subtotal").val(0.0); //es una variable oculta que nos sirve para enviar datos ocultos
-            }else{
-            subtotalvender=parseFloat(subcajaredondeada);
-            $("#subtotalventa").val(subtotalvender);
-            $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos 
-            }
-           }else{
-               if(subunidadredondeada==0){
-
-                    valido.innerText = "No hay unidades disponibles ";
-                    valido.style.color = 'red';
-
-               }else{
-                        valido.innerText = "Cantidad de unidads el monto es: "+subunidadredondeada;
-                        valido.style.color = 'black';
-                        
-                        if(isNaN(subcajaredondeada)){
-
-                            subtotalvender=parseFloat(subunidadredondeada);
-                            $("#subtotalventa").val(subtotalvender);
-                            $("#subtotal").val(0.0); //es una variable oculta que nos sirve para enviar datos ocultos
-                        
-                        }else{
-
-                        subtotalvender=parseFloat(subcajaredondeada)+parseFloat(subunidadredondeada);
-                        $("#subtotalventa").val(subtotalvender);
-                        $("#subtotal").val(subtotalvender); //es una variable oculta que nos sirve para enviar datos ocultos
-                        }
-                    }
-             }
-         
-        }*/
-
-
- 
-     
+   
+   
 });
 
 function stopRKey(evt) {

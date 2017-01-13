@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-class ventas extends Controller
+use App\auxiliar2ventas;
+use App\auxiliar3ventas;
+class auxiliarControl3 extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,58 +21,21 @@ class ventas extends Controller
     }
     public function index()
     {
-        $pendiente= \App\auxiliar3ventas::auxComp3();
-        
-       $emp =\App\empleado::All();
-        return view('ventas.facturar',compact('pendiente','emp'));
-
+        //
+        $pendiente= \App\ventasp::All();
+        return view('ventas.detalledeventa',compact('pendiente'));
         
     }
-    public function llenadoProducto2($codigopro)//retorno el nombre del producto y el proveedor.
-    {
-        $productor=\App\producto::where('cod',$codigopro)->get();
-    $producto=\App\lotes::where('idprodsl',$productor[0]->id)->get();
-    
-    $productor2=\App\producto::find($producto[0]->idprodsl);
-
-    
-    return response()->json($productor2->toArray());
-    
-      
-
-  }
-      public function VerificarEPCaja($codigopro)//verica la cantidad que se tiene en caja de los productos.
-      {
-
-         $productor=\App\producto::where('id',$codigopro)->get();
-         $producto=\App\lotes::where('idprodsl',$productor[0]->id)->get();
-    
- 
-    return response()->json($producto->toArray());
-
-  }
-    public function VerificarEPUnidades($codigopro)//verica la cantidad que se tiene en caja de los productos en unidades.
-      {
-        
-      //  $producto1=\App\producto::proLot2($codigopro);
- 
-    //return response()->json($producto1->toArray());
-  }
 
     /**
-      * Show the form for creating a new resource.   
+     * Show the form for creating a new resource.
+     *
      * @return \Illuminate\Http\Response
-     **/
+     */
     public function create()
     {
-        
-       $aux =\App\auxiliar2ventas::auxComp3();
-       $emp =\App\empleado::All();
-       // $pro =\App\compra::mostrarcompra($request);
-        $prov =\App\proveedor::All();
-        
-        return view('ventas.venta',compact('prov','aux','emp'));
- 
+        //
+
     }
 
     /**
@@ -82,10 +46,7 @@ class ventas extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-
-        \App\facturacion::create([
+       \App\facturacion::create([
              
             'fechaf' => $request['fecha'],
             'total' => $request['total'],
@@ -100,7 +61,7 @@ class ventas extends Controller
             $ids=$valor2->id;
         }
 
-        $gAux =\App\auxiliar2ventas::All();
+        $gAux =\App\auxiliar3ventas::All();
 
         foreach ($gAux as $valor) 
         {
@@ -122,28 +83,22 @@ class ventas extends Controller
 
 
 
-  $eAux =\App\auxiliar2ventas::All();
+  $eAux =\App\auxiliar3ventas::All();
         foreach ($eAux as $v) {
                  
                    
-                  $auxeliminar= \App\auxiliar2ventas::find( $v->id );
+                  $auxeliminar= \App\auxiliar3ventas::find( $v->id );
                   $auxeliminar->delete();               
         }
 
 
-        $limpiar=\App\lotes::All();
-        foreach ($limpiar as $limpiar2) {
-                 
-                   if($limpiar2->canlote==0)
-                   {
-                        $borrar= \App\lotes::find( $limpiar2->id );
-                        $borrar->delete();  
-                   }
-                                 
-        }
+       
+       
+        return redirect('ventas/create');
 
-        return redirect('ventas/create')->with('message','store');
+                               
     }
+
 
     /**
      * Display the specified resource.
@@ -177,6 +132,50 @@ class ventas extends Controller
     public function update(Request $request, $id)
     {
         //
+
+       $gAux =\App\auxiliar2ventas::All();
+
+        foreach ($gAux as $valor) 
+        {
+            //$cal = \App\producto::find($valor->idprods3);
+            \App\auxiliar3ventas::create([
+                //'' => $valor->preciocomp3,
+
+                'preciocomp3' => $valor->preciocomp3,
+                'descompra3' => $valor->descompra3,
+                'cancompra3' => $valor->cancompra3,
+                'idprods3' => $valor->idprods3,  
+                
+
+            ]);
+                        
+            
+    }
+       
+        
+        
+
+
+
+  $eAux =\App\auxiliar2ventas::All();
+        foreach ($eAux as $v) {
+                 
+                   
+                  $auxeliminar= \App\auxiliar2ventas::find( $v->id );
+                  $auxeliminar->delete();               
+        }
+        //return redirect('ventas/create')->with('message')
+        $limpiar=\App\lotes::All();
+        foreach ($limpiar as $limpiar2) {
+                 
+                   if($limpiar2->canlote==0)
+                   {
+                        $borrar= \App\lotes::find( $limpiar2->id );
+                        $borrar->delete();  
+                   }
+                                 
+        }
+          return redirect('ventas/create');
     }
 
     /**
@@ -187,6 +186,27 @@ class ventas extends Controller
      */
     public function destroy($id)
     {
-        //
+     
+    $auxeliminar= auxiliar2ventas::find($id);
+
+    $id2=$auxeliminar->idprods3;
+
+            $costo =\App\producto::find($id2);
+            //$lot=\App\lotes::find($id);
+          $lot=\App\lotes::where('idprodsl',$id2)->get();
+          $lot2=\App\lotes::find($lot[0]->id);
+
+           
+                    $caj=$auxeliminar->cancompra3 * $costo->uniCaja;
+                    $uni=$auxeliminar->preciocomp3;
+
+                   $lot2->canlote = $lot2->canlote+($uni+$caj);
+                    $lot2->save();
+
+
+
+
+    $auxeliminar->delete();
+        return redirect('ventas/create');   
     }
 }

@@ -66,6 +66,7 @@ class inventario extends Controller
             'idProve' => $request['idProve'],
             'gUni' => $request['gUni'],
             'gCaja' => $request['gCaja'],
+            'minimo'=> $request['minimo'],
             'desc' => $request['desc'],
         ]);
         
@@ -121,6 +122,7 @@ class inventario extends Controller
         $productos->gUni = $request['gUni'];
         $productos->gCaja = $request['gCaja'];
         $productos->uniCaja = $request['uniCaja'];
+        $productos->minimo = $request['minimo'];
         $productos->idProve = $request['idProve'];
         
 
