@@ -41,8 +41,8 @@ class ControladorProductoEsc extends Controller
     {
         //
         $proveedor =\App\proveedor::All();
-        $paq=\App\paqueteaux::all();
-        return view('paquetesescolares.compraesc.productosesc', compact('proveedor','paq'));
+      
+        return view('paquetesescolares.compraesc.productosesc', compact('proveedor'));
     }
 
     /**
@@ -53,27 +53,19 @@ class ControladorProductoEsc extends Controller
      */
     public function store(Request $request)
     {
-        $aux=$request['idpaquete'];
-        $costo=0;
-        $nombrep="";
-        $paq=\App\paqueteaux::all();
-        foreach ($paq as $v) {
-             if($v->id == $aux){
-              $costo=$v->preciop;
-              $nombrep=$v->nompaquete;
-             }
-             
-        }
+       
+        $marca=$request['cod'];
+        
         \App\producto::create([
             'cod' => $request['cod'],
             'nomProd' => $request['nom'],
-            'marca' => $nombrep,
+            'marca' =>  $marca,
             'uniCaja' => $request['uniCaja'],
             'idProve' => $request['idProve'],
             'gUni' => $request['gUni'],
             'gCaja' => $request['gCaja'],
             'desc' => $request['desc'],
-            'cPromedio' => $costo,
+            'cPromedio' => $request['cPromedio'],
         ]);
         
         return redirect('paquete/create')->with('message','store');

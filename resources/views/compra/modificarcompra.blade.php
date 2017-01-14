@@ -189,7 +189,7 @@ h2,h1,span
                               <th align="center">fecha de pago</th>
                               <th align="center" >monto</th>
                               <th align="center" >mora</th>
-                              <th align="center" >proveedor</th>
+                             
                               <th align="center" >Estado</th>
                                             
                           </tr>
@@ -210,11 +210,11 @@ h2,h1,span
                                             
                                 <td> <?php  echo $date->format('d/m/Y'); ?></td>
                                 
-                                <td>{{ $aux2->cuotas }}</td>
+                                <td><?php echo round($aux2->cuotas,2); ?></td>
                                 
                                 <td>{{ $aux2->morac }}</td>
                                 
-                                <td>{{ $aux2->nom }}</td>
+                                
                                             
                                 @if($aux2->estadcuota==false)
                                     

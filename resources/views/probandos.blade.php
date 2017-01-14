@@ -164,7 +164,7 @@
                                          Perfil
                                     </a>
 
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="/notificaciones">
 
                                         <i class="fa fa-bell icon"></i>
                                          Notificaciones

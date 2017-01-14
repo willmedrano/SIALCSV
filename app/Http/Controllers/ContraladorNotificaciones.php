@@ -5,27 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Auth;
-use Session;
-use Redirect;
-use App\usuario;
-use App\Http\Requests\loginRequest;
 use App\Http\Controllers\Controller;
+use App\lotes;
 
-class logController extends Controller
+class ContraladorNotificaciones extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
+     public function __construct()
     {
         $this->middleware('auth', ['only' => 'admin']);
     }
     public function index()
     {
-       return view('inicio.inicios');
+        
+            $lotes = lotes::proLot();
+
+        return view('notificaciones.notificaion',compact('lotes'));
     }
 
     /**
@@ -33,12 +32,9 @@ class logController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function admin(){
-      return view('layouts.inicio');  
-    }
     public function create()
     {
-       // 
+        //
     }
 
     /**
@@ -47,23 +43,11 @@ class logController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(loginRequest $request)
+    public function store(Request $request)
     {
-        $emple=usuario::cargarPermitir();
-        if(Auth::attempt(['login'=>$request['username'],'password'=>$request['pass']]))
-        {
-              view('probandos',compact('$emple'));
-              
-              return view('layouts.inicio');
+        //
+    }
 
-            //return $request->username;
-        }
-        Session::flash('menssage-error',"Los datos son Incorectos");
-        return view('inicio.inicios');
-    }
-public function MostrarInicio(){
-        return view('layouts.inicio');
-    }
     /**
      * Display the specified resource.
      *
@@ -73,11 +57,6 @@ public function MostrarInicio(){
     public function show($id)
     {
         //
-    }
-
-    public function logout(){
-        Auth::logout();
-        return view('inicio.inicios');
     }
 
     /**

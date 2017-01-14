@@ -38,121 +38,258 @@ h2,h1,span
         </div>                 
                
               
- {!!Html::style('assets/plugins/bootstrap/bootstrap.css')!!}  
- {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
- {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
- {!!Html::style('assets/css/style.css')!!}  
- {!!Html::style('assets/css/main-style.css')!!}
+        {!!Html::style('assets/plugins/bootstrap/bootstrap.css')!!}  
+        {!!Html::style('assets/font-awesome/css/font-awesome.css')!!}  
+        {!!Html::style('assets/plugins/pace/pace-theme-big-counter.css')!!}  
+        {!!Html::style('assets/css/style.css')!!}  
+        {!!Html::style('assets/css/main-style.css')!!}
 
-<div class="panel panel-primary">
- <div class="panel-heading">
+        <div class="panel panel-primary">
+            
+            <div class="panel-heading">
                 <h1 class="panel-title">Formulario de Notificaciones</h1>
             </div>
+
                 <h2 align="center">Notificaciones</h2>
-            <section class="section"> 
-                <div>
-                    <div class="card card-block sameheight-item">
+                    
+                    <section class="section"> 
+                        
+                        <div>
+                            
+                            <div class="card card-block sameheight-item">
           
-            <div class="row">
-                 <!--page header-->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Paneles de Notificaciones</h1>
-                </div>
-                 <!--end page header-->
-            </div>
-            <br>
-            <br>
-            <div class="row">
+                                <div class="row">
+                                    <!--page header-->
+                                    
+                                    <div class="col-lg-12">
+                                        
+                                        <h3 class="page-header">Notificaciones por fecha Fechas</h3>
+
+                                    </div>
+                                    <!--end page header-->
+                                </div>
+                                <br>
+                                <br>
+                                
+                                <div class="row">
                  
-                <div class="col-lg-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Primary Panel
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                Control de Pagos  a 15 días
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>Pago de cuotas al proveedor</p>
+                                            </div>
+                                            <div class="panel-footer">
+                                                Control de pagos 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-4">
+                                        
+                                        <div class="panel panel-success active">
+                                            <div class="panel-heading">
+                                                Control de Pagos  a 5 días
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <p>Pago de cuotas al proveedor</p>
+                                            </div>
+                                            
+                                            <div class="panel-footer">
+                                                Control de Pagos 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--End Default Pannel, Primary Panel And Success Panel   -->
+                                    
+                                    <div class="col-lg-4">
+                                        
+                                        <div class="panel panel-danger">
+                                            <div class="panel-heading">
+                                                Control de Pagos con días de retrazo
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>Pago de cuotas al proveedor tardias.</p>
+                                            </div>
+                                            <div class="panel-footer">
+                                                Control de Pagos
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                              
+                                <div class="row">
+                                    <!--page header-->
+                                    
+                                    <div class="col-lg-12">
+                                        
+                                        <h3 class="page-header">Notificaciones de stock minimo de productos</h3>
+
+                                    </div>
+                                    <!--end page header-->
+                                </div>
+                                <div class="row">
+
+                                   <div class="col-lg-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                 Control de stock mínimo
+                                            </div>
+                                            <div class="panel-body">
+                                                 <!-- Calculo de stock minimo -->
+                                                    <?php $contap=1; ?>
+                                                @foreach($lotes as $pro)
+      
+                                                <?php
+
+                                                     $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
+                                                    $b= $a;//es para decir cuales son las unidades disponibles
+                                                          
+                                                    $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
+
+                                                    if($b>$c){
+                                                        ?>
+                                                    <table class="table table-hover">
+                                                        
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Notificaciones <?php echo $contap++;?></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><p>Cuando  productos disponibles son mayores al mínimo establecido: {{ $pro->cod }}
+                                                                {{ $pro->nomProd }}
+                                                                </p></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                    <?php
+                                                    }
+                                                 ?>
+                                            
+ 
+                                @endforeach
+                               <!-- Finaliza el calculo stock minimo -->
+                                                
+                                            </div>
+                                            <div class="panel-footer">
+                                                 Control de stock  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Info Pannel, Warning Panel And Danger Panel   -->
+                                    <div class="col-lg-4">
+                                         <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                Control de stock mínimo
+                                            </div>
+                                            <div class="panel-body">
+                                             <!-- Calculo de stock minimo -->
+                                                    <?php $contap=1; ?>
+                                                @foreach($lotes as $pro)
+      
+                                                <?php
+
+                                                     $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
+                                                    $b= $a;//es para decir cuales son las unidades disponibles
+                                                          
+                                                    $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
+
+                                                    if($b==$c){
+                                                        ?>
+                                                    <table class="table table-hover">
+                                                        
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Notificaciones <?php echo $contap++;?></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><p>Cuando  productos disponibles son iguales al mínimo establecido: {{ $pro->cod }}
+                                                                {{ $pro->nomProd }}
+                                                                </p></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                    <?php
+                                                    }
+                                                 ?>
+                                            
+ 
+                                @endforeach
+                               <!-- Finaliza el calculo stock minimo -->
+                                                
+                                            </div>
+                                            <div class="panel-footer">
+                                                Control de stock 
+                                            </div>
+                                        </div>
+                                    </div>
+               
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-danger">
+                                            <div class="panel-heading">
+                                                Control de stock mínimo 
+                                            </div>
+                                            <div class="panel-body">
+                                            <!-- Calculo de stock minimo -->
+                                                    <?php $contap=1; ?>
+                                                @foreach($lotes as $pro)
+      
+                                                <?php
+                                                $a=0;
+                                                     $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
+                                                    $b= $a;//es para decir cuales son las unidades disponibles
+                                                          
+                                                    $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
+
+                                                    if($c>$b){
+                                                        ?>
+                                                    <table class="table table-hover">
+                                                        
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Notificaciones <?php echo $contap++;?></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><p>Cuando se terminaron los productos disponibles: {{ $pro->cod }}
+                                                                {{ $pro->nomProd }}
+                                                                </p></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                    <?php
+                                                    }
+                                                 ?>
+                                            
+ 
+                                @endforeach
+                               <!-- Finaliza el calculo stock minimo -->
+                                               
+                                            </div>
+                                            <div class="panel-footer">
+                                                 Control de stock
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End Info Pannel, Warning Panel And Danger Panel   -->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            Success Panel
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
-                        </div>
-                    </div>
-                </div>
-                  <!--End Default Pannel, Primary Panel And Success Panel   -->
-                 <div class="col-lg-4">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            Danger Panel
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
-                        </div>
-                    </div>
-                </div> 
-            </div>
-            <div class="row">
-                <!--Info Pannel, Warning Panel And Danger Panel   -->
-                <div class="col-lg-4">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Info Panel
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-warning">
-                        <div class="panel-heading">
-                            Warning Panel
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            Danger Panel
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Panel Footer
-                        </div>
-                    </div>
-                </div>
-                <!--End Info Pannel, Warning Panel And Danger Panel   -->
-            </div>
-            </div>
-</div>
-</div>
-</section>
-</article>
+                </section>
+            </article>
 
 
 @endsection
