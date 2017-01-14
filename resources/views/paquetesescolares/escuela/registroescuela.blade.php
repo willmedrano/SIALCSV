@@ -1,15 +1,8 @@
 
-
-  <?php $message=Session::get('message')?><!-- Espara mostar un mensaje de insersion de escuelas-->
-
-  @if($message=='store')<!-- comprueba si es nueva escuela -->
-      <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <strong>Exito!!</strong> Registrado Correctmente
-    </div>
-  @endif   
-  @extends('probandos') <!-- Importa la plantilla que vamos a utilizar  -->
-  @section('content')   
+ @extends('probandos') <!-- Importa la plantilla que vamos a utilizar  -->
+  
+  @section('content')
+  
   <style type="text/css"> 
   .bigicon {
     font-size: 35px;
@@ -56,7 +49,17 @@
    });
   </script>
     <article class="content forms-page"><!-- Aqui inicial el article -->
-                   
+          
+          <?php $message=Session::get('message')?><!-- Espara mostar un mensaje de insersion de escuelas-->
+
+  @if($message=='store')<!-- comprueba si es nueva escuela -->
+      <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Exito!!</strong> Registrado Correctmente
+    </div>
+  @endif
+         @include('errors.validaciones')   
+
       <div class="title-block"><!-- Aqui inicia el div de title-block -->
         <span class="col-md-1  text-center">
           <i class="fa fa-home bigicon"></i>
@@ -96,7 +99,7 @@
                       <i class="fa fa-home bigicon"></i>
                     </span>
                     <div class="col-xs-4"> 
-                      <input id="nomesc" name="nomesc" type="text" placeholder="Ingrese el nombre del centro escolar" class="form-control" required> 
+                      <input id="nomesc" name="nomesc" type="text" placeholder="Ingrese el nombre del centro escolar" class="form-control"> 
                     </div>
                   </div>
                   
@@ -106,7 +109,7 @@
                       <i class="fa fa-user bigicon"></i>
                     </span>
                     <div class="col-xs-4"> 
-                      <input id="nomdirec" name="nomdirec" type="text" placeholder="Ingrese el nombre del director" class="form-control" required> 
+                      <input id="nomdirec" name="nomdirec" type="text" placeholder="Ingrese el nombre del director" class="form-control" > 
                     </div>  
                   </div>
                   <br>
@@ -116,7 +119,7 @@
                       <i class="fa fa-phone-square bigicon"></i>
                     </span>
                     <div class="col-xs-4">                           
-                      <input id="telesc" name="telesc" type="tel" name="telefono" placeholder="Ingrese el Telefono de la escuela" class="form-control" required>                          
+                      <input id="telesc" name="telesc" type="tel" name="telefono" placeholder="Ingrese el Telefono de la escuela" class="form-control" >                          
                       </div> 
                   </div>
 
@@ -124,7 +127,7 @@
                   <div class="form-group">
                     <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
                     <div class="col-md-8">
-                      <textarea class="form-control" id="diresc" name="diresc" placeholder="Direccion de la escuela" rows="2" required></textarea>
+                      <textarea class="form-control" id="diresc" name="diresc" placeholder="Direccion de la escuela" rows="2" ></textarea>
                     </div>
                   </div>
                                        

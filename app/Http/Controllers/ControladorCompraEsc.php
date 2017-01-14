@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\producto;
+use App\compras;
+use App\detalle_compra;
+use App\coutas;
+use App\auxiliarp;
+use App\lotes;
 class ControladorCompraEsc extends Controller
 {
     /**
@@ -31,7 +36,8 @@ class ControladorCompraEsc extends Controller
     public function create()
     {
         //compraesc
-         $aux =\App\auxiliar::auxComp();
+
+         $aux =\App\auxiliarp::auxComp();
        // $pro =\App\compra::mostrarcompra($request);
         $prov =\App\proveedor::All();
         return view('paquetesescolares.compraesc.registrocompraesc', compact('prov','aux'));
@@ -142,11 +148,11 @@ class ControladorCompraEsc extends Controller
 
 
 
-  $eAux =\App\auxiliar::All();
+  $eAux =\App\auxiliarp::All();
         foreach ($eAux as $v) {
                  
                    
-                  $auxeliminar= auxiliar::find( $v->id );
+                  $auxeliminar= auxiliarp::find( $v->id );
                   $auxeliminar->delete();               
         }
         

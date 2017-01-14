@@ -13,6 +13,7 @@ use App\producto;
 use App\coutas;
 use App\auxiliar;
 use App\lotes;
+use App\Http\Requests\RequestProducto;
 class ControladorProductoEsc extends Controller
 {
     /**
@@ -51,14 +52,14 @@ class ControladorProductoEsc extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestProducto $request)
     {
        
         $marca=$request['cod'];
         
         \App\producto::create([
             'cod' => $request['cod'],
-            'nomProd' => $request['nom'],
+            'nomProd' => $request['nomProd'],
             'marca' =>  $marca,
             'uniCaja' => $request['uniCaja'],
             'idProve' => $request['idProve'],

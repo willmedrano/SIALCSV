@@ -50,7 +50,7 @@ class auxiliarControl1 extends Controller
             'cancompra2' => $request['cantcomp'],
             'idprods2' => $request['hprod'],  
         ]);
-        return redirect('compra/create');
+        return redirect('comprapaquete/create');
     }
 
     /**

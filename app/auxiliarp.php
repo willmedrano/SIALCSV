@@ -16,10 +16,12 @@ class auxiliarp extends Model
     //idprods;   es para saber la informacion de ese producto que sea adquirido
     //idcomps;   es para saber que compra que de que se adquirido.
     protected $fillable = ['preciocomp2', 'descompra2', 'cancompra2', 'idprods2'];//Aqui creamos los campos de la tabla 
-    public static function auxComp(){
+    public static function auxComp()
+    {
    		 return DB::table('auxiliarps')
             ->join('productos', 'productos.id', '=', 'auxiliarps.idprods2')
             ->select('auxiliarps.*',  'productos.cod','productos.nomProd')
             ->orderBy('auxiliarps.id')
             ->get();
+    }
 }

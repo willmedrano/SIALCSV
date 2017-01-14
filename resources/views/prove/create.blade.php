@@ -2,20 +2,7 @@
 
 @section('content')
 
-   
-               
-
-              
-<?php $message=Session::get('message')?>
-
-@if($message=='store')
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Exito!!</strong> Proveedor Creado
-</div>
-@endif
-@section('content')
-  <article class="content forms-page" >
+  
                   
  <style type="text/css" >
     
@@ -51,7 +38,7 @@
 {
     color: #36A0FF;
 }
-</style>  
+</style> 
 {!!Html::script('js/jquery-1.9.0.min.js')!!}
   {!!Html::script('js/jquery.maskedinput.js')!!}
  <script type="text/javascript">
@@ -59,7 +46,7 @@ jQuery(function($) {
       $.mask.definitions['~']='[+-]';
       $('#date').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
       $('#tel').mask('9999-9999');
-      $('#nit').mask("9999-999999-999-9");
+      $('#NIT').mask("9999-999999-999-9");
       $("#tin").mask("99-9999999");
       $("#ssn").mask("999-99-9999");
       $("#product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
@@ -67,7 +54,18 @@ jQuery(function($) {
       $('textarea,form').attr('autocomplete','off');
       $('input,form').attr('autocomplete','off');
    });
-</script>                 
+</script>  
+
+ <article class="content forms-page"> 
+ <?php $message=Session::get('message')?>
+
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Registrado Correctmente
+</div>
+@endif
+ @include('errors.validaciones')                 
 
                     <div class="title-block">
                     <span class="col-md-1  text-center">
@@ -137,7 +135,7 @@ jQuery(function($) {
          <i class="fa fa-credit-card  bigicon"></i>
           </span>
                 <div class="col-xs-4"> 
-               <input type="text" name="nit" id="nit" value="" placeholder="Ingrese el NIT" class="form-control" required >
+               <input type="text" name="NIT" id="NIT" value="" placeholder="Ingrese el NIT" class="form-control" required >
                   
                 </div>
                                                    

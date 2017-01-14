@@ -97,13 +97,13 @@ h2,h1,span
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input id="nomproducto" name="nomproducto1" required type="text" placeholder="Nombre del Producto" class="form-control">
+                            <input id="nomproducto" name="nomproducto1" disabled type="text" placeholder="Nombre del Producto" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
                            <i class="fa fa-truck bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                               <select class=" form-control" name="idProve" id="idProve">
+                               <select class=" form-control" name="idProve" id="idProve" disabled>
                             <option value="0">--Selecione un Proveedor--</option>
                             @foreach($prov as $prov1)
 

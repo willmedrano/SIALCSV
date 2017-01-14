@@ -99,3 +99,4 @@ Route::get('503', function(){
 //Lo que le agregue estas rutas 
 Route::match(['get','post'],'/VerificarEPCaja/{codigopro}','ventas@VerificarEPCaja');
 Route::match(['get','post'],'/VerificarEPUnidades/{codigopro}','ventas@VerificarEPUnidades');
+Route::resource('notificaciones',"ContraladorNotificaciones");

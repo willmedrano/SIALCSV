@@ -309,32 +309,17 @@
                                     <ul>
                                         <li>
                                         <a href="/comprapaquete/create">
-                                            Compra de Pauetes
+                                            Compra de Paquetes
                                         </a>
                                         <li>
                                             <a href="/contrato/create">
                                                 Ingresar contrato
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="/paqueteregistro/create">
-                                                Ingresar el nombre de paquete
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/paquete/create">
-                                                Ingreso de paquete
-                                            </a>
-                                        </li>
-                                        
+                                
                                         <li> 
                                             <a href="/contrato/">
                                                 Ver contratos
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/paqueteregistro/">
-                                                Ver tipo de paquete
                                             </a>
                                         </li>
                                         <li>

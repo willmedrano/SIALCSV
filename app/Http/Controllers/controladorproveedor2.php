@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\proveedor;
+use App\Http\Requests\RequestProveedor;
 class controladorproveedor2 extends Controller
 {
     /**
@@ -43,13 +44,13 @@ class controladorproveedor2 extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestProveedor $request)
     {
         //
         \App\proveedor::create([
             'nom'=>$request['nom'],
             'tel'=>$request['tel'],
-            'NIT'=>$request['nit'],
+            'NIT'=>$request['NIT'],
             'dir'=>$request['dir'],
 
             ]);
