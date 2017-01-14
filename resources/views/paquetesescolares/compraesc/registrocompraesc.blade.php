@@ -79,7 +79,7 @@ h2,h1,span
                 <div>
                 <div class="card card-block sameheight-item" >
                 
-                {!! Form::open(['route'=>'aux2.store','method'=>'POST','class'=>'form-horizontal' ,'id'=>'frm1','name'=>'frm1']) !!}
+                {!! Form::open(['route'=>'aux6.store','method'=>'POST','class'=>'form-horizontal' ,'id'=>'frm1','name'=>'frm1']) !!}
                      
                         <br><br>
                         <div class="form-group" id="aux">
@@ -104,7 +104,7 @@ h2,h1,span
                             </span>
                             <div class="col-md-3">
                                <select class=" form-control" name="idProve" id="idProve">
-                            <option>--Selecione un Proveedor--</option>
+                            <option value="0">--Selecione un Proveedor--</option>
                             @foreach($prov as $prov1)
 
                                 <option  value="{{ $prov1->id }}" >{{ $prov1->nom }}</option>
@@ -202,7 +202,7 @@ h2,h1,span
                                                         </td>
                                                                                                                 
                                                         <td>
-                                    {!!Form::open(['route'=>['aux2.destroy',$aux2->id],'method'=>'DELETE'])!!}
+                                    {!!Form::open(['route'=>['aux6.destroy',$aux2->id],'method'=>'DELETE'])!!}
                                                         <input type="submit" name="elimina" value="Eliminar"   class="btn btn-danger active " >
                                                         {!!Form::close()!!}   
 
@@ -246,7 +246,7 @@ h2,h1,span
                                                 </div>
                                                 </div>
                                             </div>
-                                            {!! Form::open(['route'=>'compra.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
+                                            {!! Form::open(['route'=>'comprapaquete.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
                                             <div class="form-group">
 
                                                 <span class="col-md-1 col-md-offset-2 text-center">

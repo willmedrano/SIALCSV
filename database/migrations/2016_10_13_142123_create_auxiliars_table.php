@@ -18,8 +18,7 @@ class CreateAuxiliarsTable extends Migration
             $table->double('descompra2', 3, 2);   //   Equivalente a numeros reales con precisión, 3 digitos en total y 2 despues de el punto decimal
             $table->integer('cancompra2');        //Equivalente a numeros enteros
             $table->integer('idprods2')->unsigned();
-            $table->foreign('idprods2')->references('id')->on('productos');
-            
+            $table->foreign('idprods2')->references('id')->on('productos');  
             $table->timestamps();
         });
     }

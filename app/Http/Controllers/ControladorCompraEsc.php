@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\producto;
 class ControladorCompraEsc extends Controller
 {
     /**
@@ -93,7 +93,7 @@ class ControladorCompraEsc extends Controller
                     //dd($lotes[0]->canlote);
                     $i=$lotes[0]->id;
                     $lot = lotes::find($i);
-                    $precioAcumulado = $lotes[0]->preciolote + $valor->preciocomp2;
+                    $precioAcumulado = $costo->cPromedio;
                     $descuentoAcumulado =  $lotes[0]->deslote + $valor->descompra2;
                     $canAcumulado = $lotes[0]->canlote +  ($valor->cancompra2*$costo->uniCaja);
                     $lot->preciolote = $precioAcumulado;
@@ -101,10 +101,10 @@ class ControladorCompraEsc extends Controller
                     $lot->canlote = $canAcumulado;
                     $lot->save(); 
 
-                    $costo->cPromedio=((($lotes[0]->canlote/$costo->uniCaja)*$costo->cPromedio)+($valor->cancompra2*$valor->preciocomp2))/(($lotes[0]->canlote/$costo->uniCaja)+$valor->cancompra2);
+                   //$costo->cPromedio=((($lotes[0]->canlote/$costo->uniCaja)*$costo->cPromedio)+($valor->cancompra2*$valor->preciocomp2))/(($lotes[0]->canlote/$costo->uniCaja)+$valor->cancompra2);
                   
                     }
-  $costo->save();
+  //$costo->save();
             
             
     }
@@ -157,13 +157,76 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
 
         */
         
-        return redirect('compra/create')->with('message','store');
+        return redirect('comprapaquete/create')->with('message','store');
     }
 
 
     public function llenadoProducto3($codigopro){
+        /*$pro=\App\producto::All();
+        $producto1=\App\producto::find(1);
+        $producto1->id=0;
+        $producto1->nomProd="";
+
+        foreach ($pro as $pro2) {
+            # code...
+            if($pro2->marca==$codigopro)
+            {
+                $producto1=\App\producto::find($codigopro);
+            }
+        }
+        
     $producto=\App\producto::where('marca',$codigopro)->get();
     
+    return response()->json($producto->toArray());*/
+
+
+    $producto3=producto::All();
+    $cont=1;
+    foreach ($producto3 as $key) {
+        # code...
+        $cont++;
+    }
+
+    if($codigopro>0 && $codigopro<($cont))
+    {
+        $producto2=producto::where('cod',$codigopro)->get();
+        //foreach ($producto3 as $p) {
+        # code...
+            if($codigopro==$producto2[0]->marca )
+            {
+                
+            
+                $producto=producto::where('cod',$codigopro)->get();
+            }
+            else
+            {
+                $producto=producto::find(1);
+                $producto->id=0;
+            
+                $producto->nomProd="";
+                $producto->idProve=0;
+            }
+       // }
+    }
+    else{
+
+        $producto=producto::find(1);
+                $producto->id=0;
+            
+                $producto->nomProd="";
+                $producto->idProve=0;
+    }
+    
+        
+    
+    /*foreach ($producto as $p) {
+      $codigopro=$p->id;
+    }*/
+
+    //echo $producto->toArray();
+    
+   // $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
+    //return Response::json($producto);
     return response()->json($producto->toArray());
   }
     /**
