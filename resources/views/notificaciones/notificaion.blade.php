@@ -135,46 +135,55 @@ h2,h1,span
                                 <div class="row">
 
                                    <div class="col-lg-4">
-                                        <div class="panel panel-primary">
+                                        <div class="panel panel-success">
                                             <div class="panel-heading">
-                                                 Control de stock mínimo
+                                                 Control de stock mínimo 
                                             </div>
                                             <div class="panel-body">
+                                                <div class="row table-responsive">
+                            
+                                                    <div class="card table-responsive">
+                                                        <div class="card-block table-responsive">
                                                  <!-- Calculo de stock minimo -->
-                                                    <?php $contap=1; ?>
-                                                @foreach($lotes as $pro)
-      
-                                                <?php
-
-                                                     $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
-                                                    $b= $a;//es para decir cuales son las unidades disponibles
-                                                          
-                                                    $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
-
-                                                    if($b>$c){
-                                                        ?>
-                                                    <table class="table table-hover">
+                                                            <table class="table table-hover">
                                                         
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Notificaciones <?php echo $contap++;?></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td><p>Cuando  productos disponibles son mayores al mínimo establecido: {{ $pro->cod }}
-                                                                {{ $pro->nomProd }}
-                                                                </p></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    
-                                                    <?php
-                                                    }
-                                                 ?>
-                                            
- 
-                                @endforeach
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Notificaciones <strong><?php echo count($lotes);?></strong></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php $contap=1; ?>
+                                                                    @foreach($lotes as $pro)
+                          
+                                                                        <?php
+
+                                                                         $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
+                                                                        $b= $a;//es para decir cuales son las unidades disponibles
+                                                                              
+                                                                        $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
+
+                                                                        if($b>$c){
+                                                                            ?>
+                                                                        
+                                                                                <tr>
+                                                                                    <td><p>Cuando  productos disponibles son mayores al mínimo establecido: {{ $pro->cod }}
+                                                                                    {{ $pro->nomProd }}
+                                                                                    </p></td>
+                                                                                </tr>
+                                                                           
+                                                                        
+                                                                            <?php
+                                                                             }
+                                                                             ?>
+                                                                
+                     
+                                                                    @endforeach
+                                                                 </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                <!-- Finaliza el calculo stock minimo -->
                                                 
                                             </div>
@@ -185,7 +194,7 @@ h2,h1,span
                                     </div>
                                     <!--Info Pannel, Warning Panel And Danger Panel   -->
                                     <div class="col-lg-4">
-                                         <div class="panel panel-success">
+                                         <div class="panel panel-warning">
                                             <div class="panel-heading">
                                                 Control de stock mínimo
                                             </div>

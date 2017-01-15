@@ -146,9 +146,9 @@ h2,h1,span
                      <div class="col-xs-3">
                      <input id="subtotalcomp" name="subtotalcomp" type="text" placeholder="subtotal" class="form-control" disabled="true">
                      </div>
-                     <span class="col-md-1  text-center"><i class="fa fa-percent bigicon"></i></span>
+                     <span class="col-md-1  text-center"><i class="bigicon">%</i></span>
                       <div class="col-xs-3">
-                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
+                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();" value="0">
                       </div>
                      </div>
                      <br>
@@ -256,8 +256,8 @@ h2,h1,span
                                                     
                                                  
                                                     <select class="form-control" name="formap" id="formap" onclick ="seleccionTipopago();">
-                                                        <option value="Contado" selected="true">Credito</option>
-                                                        <option value="Credito">Contado</option>   
+                                                        <option value="Credito" selected="true">Credito</option>
+                                                        <option value="Contado">Contado</option>   
                                                     </select>
                                             
                                                 </div>
@@ -296,7 +296,7 @@ h2,h1,span
                                             <span class="col-md-1 col-md-offset-2 text-center"><i class="bigicon"style=" font-weight: bold;">#</i></span>
                                                   <div class="col-xs-3">
                                                  
-                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" onkeyup="cuotasapagar();">
+                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" onkeyup="cuotasapagar();" required>
                                                <input type="hidden" name="ncuotas" id="ncuotas" value="1">
                                                </div>
 
@@ -306,7 +306,7 @@ h2,h1,span
                                                 <div class="col-xs-3">
                                                     
                                                   
-                                                  <input id="montocouta" name="montocouta" type="text" placeholder="cuotas monto" class="form-control" disabled = 'true' value="<?php echo $p;?>">
+                                                  <input id="montocouta" name="montocouta" type="text" placeholder="cuotas monto" class="form-control" disabled = 'true' value="<?php echo $p;?>" >
                                                    <input type="hidden" name="ppcuotas" id="ppcuotas" >
                                             
                                                  

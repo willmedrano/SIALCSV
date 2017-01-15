@@ -308,6 +308,11 @@
                                     </a>
                                     <ul>
                                         <li>
+                                            <a href="/paquete/create">
+                                               Ingresar paquete
+                                            </a>
+                                        </li>
+                                        <li>
                                         <a href="/comprapaquete/create">
                                             Compra de Paquetes
                                         </a>
@@ -322,11 +327,7 @@
                                                 Ver contratos
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="/paquete/">
-                                                Ver productos paquete
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </li><!-- Aqui finaliza el menu de Paquete i -->
 

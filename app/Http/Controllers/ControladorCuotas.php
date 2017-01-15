@@ -23,8 +23,8 @@ class ControladorCuotas extends Controller
     public function index()
     {
         $cuota=coutas::mostar();
-
-        return view('compra.modificarcompra',compact('cuota'));
+        $cuotabase=coutas::all();
+        return view('compra.modificarcompra',compact('cuota','cuotabase'));
     }
 
     /**

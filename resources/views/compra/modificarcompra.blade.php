@@ -115,7 +115,7 @@ h2,h1,span
 
                   <div class="col-md-6">
                             
-                    <input disabled id="id" name="id" type="text" placeholder="" class="form-control" value="{{ $cat2->cuotas}}">
+                    <input disabled id="id" name="id" type="text" placeholder="" class="form-control" value="<?php echo round($cat2->cuotas,2); ?>">
                                
                   </div>
               </div>
