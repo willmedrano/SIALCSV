@@ -154,6 +154,9 @@ class ventas extends Controller
     public function show($id)
     {
         //
+        
+        $comp=\App\ventasp::pro2($id);
+        return view('ventas.detalle',compact('comp'));
     }
 
     /**

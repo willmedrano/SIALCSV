@@ -182,6 +182,8 @@ h2,h1,span
                                                         
                                                         
                                                         <th>precio</th>
+                                                        <th>total</th>
+                                                        
                                                         
                                                          
                                                        
@@ -189,17 +191,24 @@ h2,h1,span
                                                 </thead>
                                                 <tbody class="buscar">
 
-                                                
+                                                <?php $total=0 ?>
                                                     @foreach($comp as $comps)
                                                     <tr class="v">
                                                         
-                                                        <th  scope="row" >compra #{{ $comps->id }}</th>
-                                                        <td>{{ $comps->idprods  }}</td>
+                                                        <th  scope="row" >#{{ $comps->id }}</th>
+                                                        <td>{{ $comps->nomProd  }}</td>
                                                         
                                                         
                                                         <td>{{ $comps->cancompra}}</td>
                                                        
-                                                        <td> {{ $comps->preciocomp}}</td>
+                                                        <td>$ {{ $comps->preciocomp}}</td>
+                                                          <td> $
+
+                                                          <?php
+                                                            $a=($comps->cancompra*$comps->preciocomp);
+                                                            $total=$total+$a;
+                                                            echo round($a, 2);
+                                                            ?></td>
                                                         
                                                                                                                 
                                                        
@@ -212,6 +221,17 @@ h2,h1,span
                                                     
                                                       @endforeach
                                                 </tbody>
+                                                <tfoot>
+                                                    
+                                                    <tr align="center">
+                                                       
+                                                        <td colspan="4"><p style="font-weight: bold;">Total</p></td>
+                                                        <td colspan="1" ><p style="font-weight: bold;">$ <?php echo $total ?></p></td>
+                                                        <td colspan="1" align="left"></td>
+
+                                                    </tr>
+                                                
+                                                </tfoot>
                                             </table>
                                         </section>
                                     </div>

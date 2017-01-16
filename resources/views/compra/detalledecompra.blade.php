@@ -193,14 +193,14 @@ h2,h1,span
                                                     @foreach($comp as $comps)
                                                     <tr class="v">
                                                         
-                                                        <th  scope="row" >compra #{{ $comps->id }}</th>
+                                                        <th  scope="row" >#{{ $comps->id }}</th>
                                                         <td>{{ $comps->tipopago  }}</td>
                                                         
                                                         
                                                         <?php $date = new DateTime($comps->fechacompra); ?>
                                                         <td><?php  echo $date->format('d/m/Y'); ?></td>
                                                         
-                                                        <td>{{ $comps->montocompra}}</td>
+                                                        <td> $ {{ $comps->montocompra}}</td>
                                                         <td>
                                     {!!Form::open(['route'=>['compra.show',$comps->id],'method'=>'GET'])!!}
                                                         <input type="submit" name="" value="Detalle"   class="btn btn-info btn-sm active " >
@@ -218,6 +218,7 @@ h2,h1,span
                                                     
                                                       @endforeach
                                                 </tbody>
+
                                             </table>
                                         </section>
                                     </div>

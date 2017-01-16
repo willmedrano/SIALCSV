@@ -37,13 +37,12 @@ h2,h1,span
 
 
 
-
  <div class="title-block">
                     <span class="col-md-1  text-center">
                         <i class="fa fa-shopping-cart  bigicon"></i>
                      </span>
-                        <h1 class="title">Facturas</h1>
-                        <p class="title-description">Tabla Facturas </p> 
+                        <h1 class="title">Detalle de Compras</h1>
+                        <p class="title-description">Detalle de Compras </p> 
                          
                            
                     </div>
@@ -75,49 +74,36 @@ h2,h1,span
                                              <table class="table table-bordered table-hover" style="width:100%" >
                                                 <thead align="center">
                                                     <tr>
-                                                        <th>compra</th>
-                                                        <th>Vendedor </th>
+                                                        <th>Detalle</th>
+                                                        <th>Producto </th>
                                                         
-                                                        <th>Cliente</th>
+                                                        <th>Cantidad Vendida</th>
                                                         
                                                         
-                                                        <th>Fecha</th>
-                                                        <th>Total</th>
-                                                        <th>Descripción</th>
-                                                        <th>Accion</th>
+                                                        
                                                          
                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody class="buscar">
 
-                                                
+                                                <?php $total=0 ?>
                                                     @foreach($comp as $comps)
                                                     <tr class="v">
                                                         
                                                         <th  scope="row" >#{{ $comps->id }}</th>
-                                                        <td>{{ $comps->nomEmp}}
+                                                        <td>{{ $comps->nomProd}} </td>
+                                                      <td>{{ $comps->cantidadv  }}
 
                                                       </td>
-                                                      <td>{{ $comps->nomcli  }}
-
-                                                      </td>
 
                                                         
                                                         
                                                         
-                                                        <?php $date = new DateTime($comps->fechaf); ?>
-                                                        <td><?php  echo $date->format('d/m/Y'); ?></td>
+                                                       
                                                         
-                                                        <td> $ {{ $comps->total}}</td>
-                                                        <td> {{ $comps->detalle}}</td>
+                                                       
                                                         
-                                                        <td>
-                                    {!!Form::open(['route'=>['ventas.show',$comps->id],'method'=>'GET'])!!}
-                                                        <input type="submit" name="" value="Detalle"   class="btn btn-info btn-sm active " >
-                                                        {!!Form::close()!!}   
-
-                                                        </td>
                                                                                                                 
                                                        
                                                     </tr>
@@ -129,7 +115,17 @@ h2,h1,span
                                                     
                                                       @endforeach
                                                 </tbody>
+                                                <tfoot>
+                                                    
+                                                    <tr align="center">
+                                                       
+                                                        <td colspan="1"><p style="font-weight: bold;">Total</p></td>
+                                                        <td colspan="1" ><p style="font-weight: bold;"></p></td>
+                                                        <td colspan="1" align="left"></td>
 
+                                                    </tr>
+                                                
+                                                </tfoot>
                                             </table>
                                         </section>
                                     </div>

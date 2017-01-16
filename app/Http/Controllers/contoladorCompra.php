@@ -241,9 +241,8 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
        //  $comp=\App\compras::find(1);
       //return view('compra.detalle');
        // return view('compra.createcompra');
-        $comp=\App\detalle_compra::All();
-       // return view('compra.')->with($comp);
-        return redirect('compra/create');
+        $comp=\App\detalle_compra::pro2($id);
+        return view('compra.detalle',compact('comp'));
       
 
     }

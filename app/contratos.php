@@ -33,5 +33,13 @@ public static function Mostrarcontrato(){
             ->get();
         }*/
 
+         public static function con(){
+         return DB::table('contratos')
+          ->join('escuelas', 'escuelas.id', '=', 'contratos.idescuelas')
+            ->select('contratos.*', 'escuelas.nomesc')
+            ->orderBy('contratos.id')
+            ->get();
+   }
+
 
 }

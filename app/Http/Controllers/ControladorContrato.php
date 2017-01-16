@@ -21,8 +21,8 @@ class ControladorContrato extends Controller
     }
     public function index()
     {
-        $contr=contratos::Mostrarcontrato();
-        return view('paquetesescolares.contrato.index', compact('contr'));
+        $comp=contratos::con();
+        return view('paquetesescolares.contrato.index', compact('comp'));
     }
 
     /**
@@ -128,6 +128,8 @@ class ControladorContrato extends Controller
     public function show($id)
     {
         //
+        $comp=\App\detalle_contrato::pro2($id);
+        return view('paquetesescolares.contrato.detalle',compact('comp'));
     }
 
 

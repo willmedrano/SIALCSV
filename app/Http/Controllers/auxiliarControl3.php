@@ -22,8 +22,8 @@ class auxiliarControl3 extends Controller
     public function index()
     {
         //
-        $pendiente= \App\ventasp::All();
-        return view('ventas.detalledeventa',compact('pendiente'));
+       $comp= \App\facturacion::emp();
+        return view('ventas.detalledeventa',compact('comp'));
         
     }
 
