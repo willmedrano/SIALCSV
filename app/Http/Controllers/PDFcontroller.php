@@ -112,6 +112,28 @@ public function reporteDPagos(Request $request)
 
 
 
+public function reporteDEmpleados(Request $request)
+    {
+      $fch1=$request->fechaInicial;
+      $fch2=$request->fechaFinal;
+      
+
+      $detalle=pagos::pag();
+      
+      $date = date('d-m-Y');
+      $date1 = date('g:i:s a');
+      $vistaurl="pdf.reporte_pagos";
+      $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+
+      return $pdf->stream('reporte');
+    }
+
+
+
+
+
 
 
 

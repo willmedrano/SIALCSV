@@ -14,6 +14,7 @@ use App\usuario;
 use DB;
 use Auth;
 use Session;
+use Carbon\Carbon;
 class AuthController extends Controller
 {
     /*
@@ -62,10 +63,25 @@ class AuthController extends Controller
     if (Auth::attempt(['login'=>$request['username'],'password'=>$request['pass']]))
     {
 
-          // $users = DB::table('usuarios')->where('login', '=', $request['username'])->get();
-           //$emp=DB::table('empleados')->where('empleados.id', '=', $users[0]->idemp)->get();
+           $users = DB::table('usuarios')->where('login', '=', $request['username'])->get();
+           $emp=DB::table('empleados')->where('empleados.id', '=', $users[0]->idemp)->get();
 
       // return view('layouts.inicio',compact('emp'));
+ date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");;
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip="Inicio sesion ".$emp[0]->nomEmp;
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$users[0]->idemp,
+            ]);
+
         return view('layouts.inicio');
     }
     Session::flash('menssage-error',"Los datos son Incorectos");

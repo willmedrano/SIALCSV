@@ -11,7 +11,8 @@ use Redirect;
 use App\usuario;
 use App\Http\Requests\loginRequest;
 use App\Http\Controllers\Controller;
-
+use Carbon\Carbon;
+use DB;
 class logController extends Controller
 {
     /**
@@ -76,6 +77,23 @@ public function MostrarInicio(){
     }
 
     public function logout(){
+       
+
+          /* $emp=DB::table('empleados')->where('empleados.id', '=', Auth::user()->idUsu)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");;
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip="Cerrado sesion el".$emp[0]->nomEmp;
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$users[0]->idemp,
+            ]);*/
         Auth::logout();
         return view('inicio.inicios');
     }
