@@ -1,13 +1,4 @@
 @extends('probandos')
-<?php $message=Session::get('message')?>
-
-@if($message=='store')
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Exito!!</strong> Producto Guardado
-</div>
-@endif
-
 @section('content')
 
          
@@ -27,17 +18,48 @@ h2
 {
     color: #36A0FF;
 }
-
-    
 </style>
 
 
+{!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+    
+ <script type="text/javascript">
+jQuery(function($) {
+      $('input,form').attr('autocomplete','off');
+      $('textarea,form').attr('autocomplete','off');
+   });
+ </script>
+    
 
 
 
 
 
                 <article class="content forms-page">
+                            <?php $message=Session::get('message')?>
+
+                @if($message=='store')
+
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Exito!!</strong> Registrado Correctmente
+                    </div>
+                @endif
+                @if(count($errors)>0)
+          <div class="alert alert-danger active alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <ul>
+         @foreach($errors->all() as  $value)  
+          <li> 
+              {!! $value !!}
+        </li>
+         @endforeach
+      </ul>
+    </div>
+  @endif  
                     <div class="title-block">
                     <span class=""><i class="fa fa-archive bigicon icon_nav" > Inventario</i></span>
                         <h2 >
@@ -89,7 +111,7 @@ h2
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="nom" name="nom" type="text" placeholder="Nombre del Producto" required class="form-control">
+                                <input id="nomProd" name="nomProd" type="text" placeholder="Nombre del Producto" required class="form-control">
                                 
                             </div>
 

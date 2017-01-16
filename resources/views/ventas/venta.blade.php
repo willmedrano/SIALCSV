@@ -35,7 +35,15 @@ h2,h1,span
     color:white;
 }  
 </style>
-   
+   {!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+    
+ <script type="text/javascript">
+jQuery(function($) {
+      $('input,form').attr('autocomplete','off');
+      $('textarea,form').attr('autocomplete','off');
+   });
+ </script>
                
                 
    <article class="content forms-page">         

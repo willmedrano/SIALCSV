@@ -47,7 +47,17 @@ legend{
             {
                 document.write('<link rel="stylesheet" id="theme-style" href="css/app.css">');
             }
+
+
         </script>
+          {!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+ <script type="text/javascript">
+jQuery(function($) {
+      $('input,form').attr('autocomplete','off');
+      $('textarea,form').attr('autocomplete','off');
+   });
+ </script>
     </head>
 
     <body>

@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use App\producto;
 use Session;
 use Redirect;
+
+use App\Http\Requests\RequestProductoInv;
+
 class inventario extends Controller
 {
     /**
@@ -54,13 +57,13 @@ class inventario extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestProductoInv $request)
     {
         //
 
         \App\producto::create([
             'cod' => $request['cod'],
-            'nomProd' => $request['nom'],
+            'nomProd' => $request['nomProd'],
             'marca' => $request['marca'],
             'uniCaja' => $request['uniCaja'],
             'idProve' => $request['idProve'],

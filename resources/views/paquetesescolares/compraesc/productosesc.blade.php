@@ -22,10 +22,14 @@ h2
     
 </style>
 
-
-
-
-
+{!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+ <script type="text/javascript">
+jQuery(function($) {
+      $('input,form').attr('autocomplete','off');
+      $('textarea,form').attr('autocomplete','off');
+   });
+</script>
 
 
         <article class="content forms-page"><!-- Aqui inicia el article de la case content forms-page-->
@@ -82,11 +86,11 @@ h2
                             <div class="panel panel-primary">
 
                                 <div class="panel-heading">
-                                    <h1 class="panel-title">Formulario de producto de Paquetes</h1>
+                                    <h1 class="panel-title">Formulario de Producto de Paquetes</h1>
                                 </div>
                                 
                                 <div align="center">
-                                    <h2 align="center"> producto de Paquetes</h2> 
+                                    <h2 align="center"> Productos de Paquetes</h2> 
                                     <br>
                                 </div>
 
@@ -116,7 +120,7 @@ h2
 
                                             <div class="col-md-3"><!--Abrimos el div de la clase col-md-3  -->
 
-                                                <input id="nomProd" name="nomProd" type="text" placeholder="Nombre del Producto" class="form-control">
+                                                <input id="nomProd" name="nomProd" type="text" placeholder="Ingrese Nombre del Paquete" class="form-control">
 
                                             </div><!--Cerramos el div de la clase col-md-3  -->
                                             
@@ -182,7 +186,7 @@ h2
                                             </span>
                                             <div class="col-md-7">
                                                 
-                                                 <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
+                                                 <textarea rows="2" class="form-control" id="desc" name="desc" placeholder="Agregue la Descripcion del Paquete" rows="7"></textarea>
 
                                             </div>
                                         </div>

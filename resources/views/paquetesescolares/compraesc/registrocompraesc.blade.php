@@ -48,7 +48,14 @@ h2,h1,span
   color: white;
  }
 </style>
-  
+           {!!Html::script('js/jquery-1.9.0.min.js')!!}
+  {!!Html::script('js/jquery.maskedinput.js')!!}
+ <script type="text/javascript">
+jQuery(function($) {
+      $('input,form').attr('autocomplete','off');
+      $('textarea,form').attr('autocomplete','off');
+   });
+ </script>
                
 
                 <article class="content forms-page" >
@@ -58,8 +65,8 @@ h2,h1,span
                     <span class="col-md-1  text-center">
                         <i class="fa fa-shopping-cart  bigicon"></i>
                      </span>
-                        <h1 class="title">Compras</h1>
-                        <p class="title-description">Registro de Compras </p> 
+                        <h1 class="title">Compras de Paquetes</h1>
+                        <p class="title-description">Registro de Compras de Paquetes </p> 
                          
                            
                     </div>
@@ -72,9 +79,9 @@ h2,h1,span
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h1 class="panel-title">Formulario de Compras</h1>
+                <h1 class="panel-title">Formulario de Compras de Paquetes</h1>
             </div>
-            <h2 align="center">Compras</h2>
+            <h2 align="center">Compras de Paquetes</h2>
             <section class="section"> 
                 <div>
                 <div class="card card-block sameheight-item" >
