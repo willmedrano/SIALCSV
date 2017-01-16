@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,6 +12,9 @@ use App\compras;
 use App\proveedor;
 use App\producto; 
 use App\detalle_compra;
+use App\ventasp;
+use App\lotes;
+use App\pagos;
 class PDFcontroller extends Controller
 {
     /**
@@ -57,17 +60,56 @@ public function reporteDCompras(Request $request)
       $fch2=$request->fechaFinal;
       
 
-      $detalle=ventas::proPropdf();
+      $detalle=ventasp::Ventaspdf();
       
       $date = date('d-m-Y');
       $date1 = date('g:i:s a');
-      $vistaurl="pdf.prueba_reporte";
+      $vistaurl="pdf.reporte_ventas";
       $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle'))->render();
       $pdf = \App::make('dompdf.wrapper');
       $pdf->loadHTML($view);
 
       return $pdf->stream('reporte');
     }
+
+    public function reporteDInventarios(Request $request)
+    {
+      $fch1=$request->fechaInicial;
+      $fch2=$request->fechaFinal;
+      
+
+      $detalle=lotes::proLot();
+      
+      $date = date('d-m-Y');
+      $date1 = date('g:i:s a');
+      $vistaurl="pdf.reporte_inventario";
+      $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+
+      return $pdf->stream('reporte');
+    }
+
+
+
+public function reporteDPagos(Request $request)
+    {
+      $fch1=$request->fechaInicial;
+      $fch2=$request->fechaFinal;
+      
+
+      $detalle=pagos::pag();
+      
+      $date = date('d-m-Y');
+      $date1 = date('g:i:s a');
+      $vistaurl="pdf.reporte_pagos";
+      $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+
+      return $pdf->stream('reporte');
+    }
+
 
 
 

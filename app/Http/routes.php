@@ -107,6 +107,10 @@ Route::resource('cambiousuario','controladorCambiousuario');
 
 
 Route::get('reporte2','PDFcontroller@reporteDCompras');
+Route::get('reporte3','PDFcontroller@reporteDVentas');
+Route::get('reporte4','PDFcontroller@reporteDInventarios');
+Route::get('reporte5','PDFcontroller@reporteDPagos');
+
 
 
 ////////////////////////////////////ruta segunda prueba reportes///////////////////////

@@ -119,8 +119,7 @@ legend{
                                       <span id="passok"></span>
                                     </p>
                                      </div>
-                                    <div class="col-sm-6"> <input type="password" class="form-control" name="rpass" id="rpass" placeholder="Repita contraseña" required=""> </div>
-                                </div>
+                                   
                             </div>
                                <?php } 
                                                      ?>

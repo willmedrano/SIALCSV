@@ -19,7 +19,7 @@ class producto extends Model
             ->select('productos.*',  'proveedores.nom')
             ->orderBy('productos.id')
             ->get();
-   }
+   } 
    //fin
    public static function mostrar($id){
    		 return DB::table('productos')
