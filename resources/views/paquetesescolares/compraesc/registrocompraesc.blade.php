@@ -115,13 +115,7 @@ h2,h1,span
                         </div>
                               <input type="hidden"  name="hprod" id="hprod" value="">
                                             <br>
-                                              
-                                                   
-                    
-                   
-                   
-                     
-                   
+
                     <div class="form-group"  >
 
                         <span class="col-md-1 col-md-offset-2 text-center">
@@ -132,7 +126,11 @@ h2,h1,span
                       </div>
                       <span class="col-md-1  text-center"><i class="fa fa-dollar bigicon"></i></span>
                       <div class="col-xs-3">
+                      <p>
                       <input id="preciocomp" name="preciocomp" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
+
+                       <span id="preciocomptext"></span>
+                      </p>
                       </div>
                       
                       </div>
@@ -146,9 +144,9 @@ h2,h1,span
                      <div class="col-xs-3">
                      <input id="subtotalcomp" name="subtotalcomp" type="text" placeholder="subtotal" class="form-control" disabled="true">
                      </div>
-                     <span class="col-md-1  text-center"><i class="bigicon">%</i></span>
+                     
                       <div class="col-xs-3">
-                      <input id="descompra" name="descompra" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();" value="0">
+                      <input id="descompra" name="descompra" type="hidden" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();" value="0" >
                       </div>
                      </div>
                      <br>
@@ -341,12 +339,10 @@ $time=time();
   
 ?>
  @section('scripts')
-
-{!! Html::script('js/bootstrap.js') !!}
-//Aqui esta el problema era un script
-
  
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
+var precioP=0; // Es para tener el precio del paquete
+
 function sumar()
 {
 var a=document.frm1.cantcomp.value;
@@ -405,14 +401,17 @@ $('#aux').on('change','#idcodproduc',function (){
   
   var producto=$("#idcodproduc").val();
      var ruta="/llenadoProducto3/"+producto;
+precioP=0;
+ valido2 = document.getElementById('preciocomptext');
+
 
  $.get(ruta, function(res){
   $(res).each(function(key,value){
        $("#hprod").val(value.id);
        $("#nomproducto").val(value.nomProd);
        $("#idProve").val(value.idProve);
-       
-
+       $("#idProve").val(value.idProve);
+       precioP=value.cPromedio;
       });
   
  });
@@ -459,27 +458,24 @@ $('#aux').on('change','#idcodproduc',function (){
  
 
 
-
- 
-function enter(){
-      //var char= event.which || event.keyCode;
-      var producto=$("#idcodproduc").val();
-      
-      //var producto=$("");/escuela/"+btn.value+"/edit"
-     var ruta="/llenadoProducto/"+producto;
-
-
-     $.get(ruta,function(res){
-           //producto.empty();
-      $(res).each(function(key,value){
-       //producto.append("<input type='text'  id='"+value.id+"' value="+value.nombre+">");
-      $("#nomproducto").val(value.nomProd);
-     //$("#nomdirec").val(res.nomdirec);
-     // $("#telesc").val(res.telesc);
-    //$("#diresc").val(res.diresc);
-      });
-     });
-      
+document.getElementById('preciocomp').addEventListener('input', function()//aqui se ejecuta cuando el usuario digita le muestra la cantidad.. de producto disponible..
+ {
+    var p=event.target;
+    
+    
+   if(parseFloat(document.frm1.preciocomp.value)<=0 || parseFloat(document.frm1.preciocomp.value)>parseFloat(precioP))
+    { 
+           $("#preciocomp").val("");
+            valido2.innerText="No ingrese negativos o mayores al precio: "+precioP;
+             valido2.style.color = 'green';
+             
     }
+    else if(parseFloat(document.frm1.preciocomp.value)==parseFloat(precioP)){
+    
+           valido2.innerText = "El precio es igual al ingresado en el paquete: "+precioP;
+            valido2.style.color = 'blue';
+
+}
+});
 </script>
  @endsection

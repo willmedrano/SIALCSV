@@ -86,7 +86,7 @@ h2
                                 </div>
                                 
                                 <div align="center">
-                                    <h2 align="center"> Producto</h2> 
+                                    <h2 align="center"> producto de Paquetes</h2> 
                                     <br>
                                 </div>
 
