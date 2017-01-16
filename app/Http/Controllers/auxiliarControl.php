@@ -18,10 +18,11 @@ class auxiliarControl extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index($id)
     {
         //
-        return view('layouts.inicio');
+        $comp=\App\detalle_compra::find(1);
+        return view('compra.detalle',compact('comp'));
         
     }
 
@@ -33,6 +34,8 @@ class auxiliarControl extends Controller
     public function create()
     {
         //
+        
+
     }
 
     /**

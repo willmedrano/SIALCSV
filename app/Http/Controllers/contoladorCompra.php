@@ -12,6 +12,7 @@ use App\producto;
 use App\coutas;
 use App\auxiliar;
 use App\lotes;
+//use view;
 class contoladorCompra extends Controller
 {
     /**
@@ -237,8 +238,13 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
     public function show($id)
     {
         
-         //$comps =\App\detalle_compra::where('idcomps',$id)->get();
+       //  $comp=\App\compras::find(1);
       //return view('compra.detalle');
+       // return view('compra.createcompra');
+        $comp=\App\detalle_compra::All();
+       // return view('compra.')->with($comp);
+        return redirect('compra/create');
+      
 
     }
 
