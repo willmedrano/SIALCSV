@@ -44,10 +44,25 @@ class ControladorauxCont extends Controller
     {
         
          auxcontrato::create([
-            'preciocont3' => $request['preciocomp'],
-            'cancont3' => $request['cantcomp'],
+            'preciocomp3' => $request['cajavender'],
+            'descompra3' => $request['subtotal'],
+            'cancompra3' => $request['cajavender'],
             'idprods3' => $request['hprod'],  
         ]);
+
+         $id=$request['hprod'];
+
+            $costo =\App\producto::find($id);
+            //$lot=\App\lotes::find($id);
+          $lot=\App\lotes::where('idprodsl',$id)->get();
+          $lot2=\App\lotes::find($lot[0]->id);
+
+           
+                    $caj=$request['cajavender'];
+                    $uni=$request['cajavender'];
+
+                   $lot2->canlote = $lot2->canlote-($caj);
+                    $lot2->save();
         return redirect('contrato/create');
     }
 

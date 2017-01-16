@@ -14,12 +14,12 @@ class CreateDetalleContratosTable extends Migration
     {
         Schema::create('detalle_contratos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idprodet')->unsigned();
-            $table->foreign('idprodet')->references('id')->on('productos');
+            $table->double('preciov', 7, 2);  //   Equivalente a numeros reales con precisión, 7 digitos en total y 2 despues de el punto decimal
+            $table->integer('cantidadv');        //Equivalente a numeros enteros
             $table->integer('idcontratos')->unsigned();
             $table->foreign('idcontratos')->references('id')->on('contratos');
-            $table->integer('cantidadcon'); 
-            $table->double('preciocon', 7, 2); 
+             $table->integer('idProd')->unsigned();
+            $table->foreign('idProd')->references('id')->on('productos');  
             $table->timestamps();
         });
     }

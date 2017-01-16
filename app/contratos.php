@@ -14,9 +14,8 @@ class contratos extends Model
     //cantidadcon;   Es saber la cantidad de poductos adquirir..
     //montocon;      Es para tener un control del monto que pagara la escuela a la libreria
     //idescuelas;    Es para indicar que escuela esta con el contrato. 
-    protected $fillable = ['fechafcon', 'estadocon', 'cantidadcon', 'montocon', 'idescuelas'];//Aqui creamos los campos de la tabla 
-
-    public static function Mostrarcompras(){
+    protected $fillable = ['fechaf', 'total','fechae', 'detalle', 'estado' ,'idescuelas'];//Aqui creamos los campos de la tabla 
+    /*public static function Mostrarcompras(){
        return DB::table('contratos')
             ->join('detalle_contratos', 'detalle_contratos.idcontratos', '=', 'contratos.id')
             ->join('productos', 'detalle_contratos.idprodet', '=', 'productos.id')
@@ -32,7 +31,7 @@ public static function Mostrarcontrato(){
             ->select('contratos.*',  'detalle_contratos.*','productos.*',"escuelas.*")
             ->orderBy('contratos.id')
             ->get();
-        }
+        }*/
 
 
 }

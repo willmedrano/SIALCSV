@@ -14,9 +14,12 @@ class CreateContratosTable extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->increments('id');  
-            $table->date('fechafcon'); 
-            $table->boolean('estadocon')->default(true);
-            $table->double('montocon', 7, 2);   //   Equivalente a numeros reales con precisión, 3 digitos en total y 2 despues de el punto decimal       
+            $table->date('fechaf'); 
+            $table->double('total', 7, 2);   //   Equivalente a numeros reales con precisión, 3 digitos en total y 2 despues de el punto decimal
+
+            $table->date('fechae');
+            $table->string('detalle');       
+            $table->boolean('estado')->default(true);
             $table->integer('idescuelas')->unsigned();
             $table->foreign('idescuelas')->references('id')->on('escuelas');
             $table->timestamps();

@@ -14,8 +14,9 @@ class CreateAuxcontratosTable extends Migration
     {
         Schema::create('auxcontratos', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('preciocont3', 7, 2);  //   Equivalente a numeros reales con precisión, 7 digitos en total y 2 despues de el punto decimal
-            $table->integer('cancont3');        //Equivalente a numeros enteros
+            $table->double('preciocomp3', 7, 2);  //   Equivalente a numeros reales con precisión, 7 digitos en total y 2 despues de el punto decimal
+            $table->double('descompra3', 3, 2); 
+            $table->integer('cancompra3');        //Equivalente a numeros enteros
             $table->integer('idprods3')->unsigned();
             $table->foreign('idprods3')->references('id')->on('productos');
             $table->timestamps();

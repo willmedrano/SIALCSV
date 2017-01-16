@@ -187,13 +187,13 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
 
 
     $producto3=producto::All();
-    $cont=1;
-    foreach ($producto3 as $key) {
+   // $cont=1;
+   // foreach ($producto3 as $key) {
         # code...
-        $cont++;
-    }
+       // $cont++;
+    //}
 
-    if($codigopro>0 && $codigopro<($cont))
+    if($codigopro>0 /*&& $codigopro<($cont)*/)
     {
         $producto2=producto::where('cod',$codigopro)->get();
         //foreach ($producto3 as $p) {

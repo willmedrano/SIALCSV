@@ -43,7 +43,7 @@ class ventas extends Controller
       public function VerificarEPCaja($codigopro)//verica la cantidad que se tiene en caja de los productos.
       {
 
-         $productor=\App\producto::where('id',$codigopro)->get();
+         $productor=\App\producto::where('cod',$codigopro)->get();
          $producto=\App\lotes::where('idprodsl',$productor[0]->id)->get();
     
  

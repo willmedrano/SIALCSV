@@ -33,12 +33,17 @@ class ControladorContrato extends Controller
     public function create()
     {
        
-        $aux =\App\auxiliar::auxComp();
-        $contrato =\App\auxcontrato::auxcontrato();
-        $prov = \App\paqueteaux::All();
+        
+        $aux =\App\auxcontrato::auxcontrato();
+        
         $esc = \App\Escuelas::All();
 
-        return view('paquetesescolares.contrato.registrocontrato', compact('prov','aux','esc','contrato'));
+      
+        $prov =\App\proveedor::All();
+        
+
+
+        return view('paquetesescolares.contrato.registrocontrato', compact('prov','aux','esc'));
     }
 
     /**
@@ -51,60 +56,63 @@ class ControladorContrato extends Controller
     {
     
             \App\contratos::create([
-             'idescuelas' => $request['formap'],
-            'montocon' => $request['total'],
-            'fechafcon' => $request['fechacompra'], 
+             
+            'fechaf' => $request['fecha'],
+            'total' => $request['total'],
+            'fechae' => $request['cli'],
+            //'estado' => $request['iva'],
+            'detalle' => $request['des'],
+            'idescuelas' => $request['codE'],
         ]);
-        $ids="";
+        $ids;
         $gAux =\App\contratos::All();
         foreach ($gAux as $valor2) {
             $ids=$valor2->id;
         }
 
-        $gAux2 =\App\auxcontrato::All();
-        foreach ($gAux2 as $valor) 
+        $gAux =\App\auxcontrato::All();
+
+        foreach ($gAux as $valor) 
         {
+            $cal = \App\producto::find($valor->idprods3);
             \App\detalle_contrato::create([
-                
-                'idprodet' => $valor->idprods3,
+                //'' => $valor->preciocomp3,
+                'preciov' => $valor->descompra3,
+                'cantidadv' => $valor->cancompra3,
                 'idcontratos' => $ids,
-                'cantidadcon' => $valor->cancont3,
-                'preciocon' => $valor->preciocont3,
+                'idProd' => $valor->idprods3,
+               
+
             ]);
-            
-
-            $id=$valor->idprods3;
-            $costo =\App\producto::find($id);
-            $lotes=\App\lotes::Llenarlotes($id);
-            
-                if(empty($lotes)){
-                
-                }
-                else{
-                    //dd($lotes[0]->canlote);
-                    $i=$lotes[0]->id;
-                    $lot = \App\lotes::find($i);
-                    $precioAcumulado = $lotes[0]->preciolote;
-                    $descuentoAcumulado =  $lotes[0]->deslote - 0;
-                    $canAcumulado = $lotes[0]->canlote -  ($valor->cancont3);
-                    $lot->preciolote = $precioAcumulado;
-                    $lot->deslote = $descuentoAcumulado;
-                    $lot->canlote = $canAcumulado;
-                    $lot->save(); 
-
-                    $costo->cPromedio=((($lotes[0]->canlote/$costo->uniCaja)*$costo->cPromedio)-($valor->cancont3*$valor->preciocont3))/(($lotes[0]->canlote/$costo->uniCaja)-$valor->cancont3);
-                  
-                    }
-  $costo->save();
-            
+                        
             
     }
        
+        
+        
+
+
+
   $eAux =\App\auxcontrato::All();
-        foreach ($eAux as $v) { 
-                  $auxeliminar=\App\auxcontrato::find( $v->id );
+        foreach ($eAux as $v) {
+                 
+                   
+                  $auxeliminar= \App\auxcontrato::find( $v->id );
                   $auxeliminar->delete();               
         }
+
+
+        $limpiar=\App\lotes::All();
+        foreach ($limpiar as $limpiar2) {
+                 
+                   if($limpiar2->canlote==0)
+                   {
+                        $borrar= \App\lotes::find( $limpiar2->id );
+                        $borrar->delete();  
+                   }
+                                 
+        }
+
         
  
         
@@ -122,50 +130,51 @@ class ControladorContrato extends Controller
         //
     }
 
-public function llenadoProductopaquetes($codigopro){
-    $producto=\App\paqueteaux::where('id',$codigopro)->get();
-    //$aux3=\App\paqueteaux::all();
-    /*foreach ($producto as $p) {
-      $codigopro=$p->id;
-    }*/
 
-    //echo $producto->toArray();
-    
-   // $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
-    //return Response::json($producto);
-    return response()->json($producto->toArray());
-  }
+ 
   public function preciodelpaquete($codigopro){
     
  
-     $paq=\App\paqueteaux::all();
-     $nombrep="";
-        foreach ($paq as $v) {
-             if($v->id == $codigopro){
-              
-              $nombrep=$v->nompaquete;
-             }
-             
-        }
-        $s=0;
-    $xu=\App\producto::where('marca',$nombrep)->get();
-     foreach ($xu as $vs) {
-             if($vs->id){
-              
-              $s=$vs->id;
-             }
-             
-        }
-    $lot=\App\lotes::where('idprodsl',$s)->get();
-    /*foreach ($producto as $p) {
-      $codigopro=$p->id;
-    }*/
 
-    //echo $producto->toArray();
+    $productor=\App\producto::where('cod',$codigopro)->get();
+
+    if($productor[0]->cod==$productor[0]->marca)
+    {
+
+        $producto=\App\lotes::where('idprodsl',$productor[0]->id)->get();
+    }
+    else{
+        $producto=\App\lotes::where('idprodsl',1)->get();
+        $producto[0]->canlote=0;
+    }
+ 
+
+
+    return response()->json($producto->toArray());
     
-   // $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
-    //return Response::json($producto);
-    return response()->json($lot->toArray());
+  }
+
+  public function llenadoProductopaquetes($codigopro)//verica la cantidad que se tiene en caja de los productos en unidades.
+      {
+        $pro=\App\Escuelas::All();
+        $producto1=\App\Escuelas::find(1);
+        $producto1->id=0;
+        $producto1->nomesc="";
+
+        foreach ($pro as $pro2) {
+            # code...
+            if($pro2->id==$codigopro)
+            {
+                $producto1=\App\Escuelas::find($codigopro);
+            }
+        }
+        
+        
+        /*if (empty($producto1)) {
+            $producto1->nomEmp=0;
+        }*/
+ 
+    return response()->json($producto1->toArray());
   }
     /**
      * Show the form for editing the specified resource.

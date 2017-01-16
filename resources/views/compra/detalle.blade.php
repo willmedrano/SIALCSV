@@ -174,15 +174,15 @@ h2,h1,span
                                              <table class="table table-bordered table-hover" style="width:100%" >
                                                 <thead align="center">
                                                     <tr>
-                                                        <th>compra</th>
-                                                        <th>Tipo de Pago </th>
+                                                        <th>Detalle</th>
+                                                        <th>Producto </th>
                                                         
-                                                        <th>Fecha de Compra</th>
+                                                        <th>Cantidad</th>
                                                         
                                                         
                                                         
-                                                        <th>Total</th>
-                                                        <th>Accion</th>
+                                                        <th>precio</th>
+                                                        
                                                          
                                                        
                                                     </tr>
@@ -194,19 +194,13 @@ h2,h1,span
                                                     <tr class="v">
                                                         
                                                         <th  scope="row" >compra #{{ $comps->id }}</th>
-                                                        <td>{{ $comps->tipopago  }}</td>
+                                                        <td>{{ $comps->idprods  }}</td>
                                                         
                                                         
-                                                        <?php $date = new DateTime($comps->fechacompra); ?>
-                                                        <td><?php  echo $date->format('d/m/Y'); ?></td>
+                                                        <td>{{ $comps->cancompra}}</td>
+                                                       
+                                                        <td> {{ $comps->preciocomp}}</td>
                                                         
-                                                        <td>{{ $comps->montocompra}}</td>
-                                                        <td>
-                                    {!!Form::open(['route'=>['compra.show',$comps->id],'method'=>'GET'])!!}
-                                                        <input type="submit" name="" value="Detalle"   class="btn btn-info btn-sm active " >
-                                                        {!!Form::close()!!}   
-
-                                                        </td>
                                                                                                                 
                                                        
                                                     </tr>

@@ -25,10 +25,10 @@ class contoladorCompra extends Controller
     }
     public function index()
     {
-        $comp=compras::Mostrarcompras();
-        $prov =\App\proveedor::All();
-         $comptotal=compras::all();
-        return view('compra.detalledecompra',compact('comp','prov','comptotal')); 
+        $comp=compras::All();
+        
+         //$comptotal=compras::all();
+        return view('compra.detalledecompra',compact('comp')); 
      // return view('compra.modificarcompra',compact('comp')); 
      // $aux =\App\auxiliar::auxComp();
        // return view('layouts.inicio');
@@ -59,13 +59,13 @@ class contoladorCompra extends Controller
     public function llenadoProducto($codigopro){
    // $producto1=\App\paqueteaux::All();
     $producto3=producto::All();
-    $cont=1;
-    foreach ($producto3 as $key) {
+    //$cont=1;
+    //foreach ($producto3 as $key) {
         # code...
-        $cont++;
-    }
+      //  $cont++;
+    //}
 
-    if($codigopro>0 && $codigopro<($cont))
+    if($codigopro>0 )
     {
         $producto2=producto::where('cod',$codigopro)->get();
         //foreach ($producto3 as $p) {
@@ -94,6 +94,8 @@ class contoladorCompra extends Controller
                 $producto->nomProd="";
                 $producto->idProve=0;
     }
+
+
     
         
     
@@ -235,8 +237,8 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
     public function show($id)
     {
         
-         $pro2 =\App\producto::mostrar($id);
-        return view('compra.createcompra',compact('pro2'));
+         //$comps =\App\detalle_compra::where('idcomps',$id)->get();
+      //return view('compra.detalle');
 
     }
 
@@ -249,6 +251,8 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
     public function edit($id)
     {
         //
+        //return view('compra.detalle');
+
     }
 
     /**
@@ -261,6 +265,9 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
     public function update(Request $request, $id)
     {
         //
+      //  $comps =\App\detalle_compra::where('idcomps',$id)->get();
+      //  return view('compra.detalle');
+
     }
 
     /**
@@ -272,5 +279,8 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
     public function destroy($id)
     {
         //
+       // $comps =\App\detalle_compra::where('idcomps',$id)->get();
+        //return view('compra.detalle');
+
     }
 }

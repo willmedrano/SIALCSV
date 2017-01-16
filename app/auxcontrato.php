@@ -15,7 +15,7 @@ class auxcontrato extends Model
     //cancompra; es la cantidad de productos comprados
     //idprods;   es para saber la informacion de ese producto que sea adquirido
     //idcomps;   es para saber que compra que de que se adquirido.
-    protected $fillable = ['preciocont3', 'cancont3', 'idprods3'];//Aqui creamos los campos de la tabla 
+    protected $fillable = ['preciocomp3', 'descompra3', 'cancompra3', 'idprods3'];//Aqui creamos los campos de la tabla 
    
  public static function auxcontrato(){
          return DB::table('auxcontratos')
@@ -24,6 +24,7 @@ class auxcontrato extends Model
             ->orderBy('auxcontratos.id')
             ->get();
    }
+ 
 
    }
 

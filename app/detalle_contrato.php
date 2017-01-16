@@ -12,6 +12,7 @@ class detalle_contrato extends Model
     //idprodet;     que productos va adquirir la escuela
     //idcontratos;  que contratos va con la escuela y la libreria.
     
-    protected $fillable = ['cantidadcon','preciocon', 'idprodet', 'idcontratos'];//Aqui creamos los campos de la tabla 
+    protected $fillable = ['preciov','cantidadv', 'idcontratos', 'idProd'];//Aqui creamos los campos de la tabla 
+   
  
 }
