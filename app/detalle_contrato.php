@@ -20,7 +20,7 @@ class detalle_contrato extends Model
             //->where('detalle_compras.idcomps','=',$id);
           //->join('compras', 'compras.id', '=', )
             
-            ->select('detalle_contratos.*','productos.nomProd')
+            ->select('detalle_contratos.*','productos.nomProd','productos.cPromedio')
             //->orderBy('productos.id')
             ->get();
    }

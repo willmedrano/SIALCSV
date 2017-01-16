@@ -1,5 +1,5 @@
-@extends('probandos')
 
+@extends('probandos')
 @section('content')
 <style>
 .bigicon {
@@ -37,12 +37,15 @@ h2,h1,span
 
 
 
+
+
+
  <div class="title-block">
                     <span class="col-md-1  text-center">
                         <i class="fa fa-shopping-cart  bigicon"></i>
                      </span>
-                        <h1 class="title">Detalle de Compras</h1>
-                        <p class="title-description">Detalle de Compras </p> 
+                        <h1 class="title">Entradas y Salidas</h1>
+                        <p class="title-description">Tabla Entradas y Salidas </p> 
                          
                            
                     </div>
@@ -74,13 +77,16 @@ h2,h1,span
                                              <table class="table table-bordered table-hover" style="width:100%" >
                                                 <thead align="center">
                                                     <tr>
+                                                        <th>#</th>
                                                         <th>Detalle</th>
-                                                        <th>Producto </th>
                                                         
-                                                        <th>Cantidad</th>
-                                                        <th>Precio</th>
-                                                        <th>Sub-Total</th>
                                                         
+                                                        
+                                                        <th>Fecha</th>
+                                                        <th>Ingreso </th>
+                                                        
+                                                        <th>Egreso</th>
+
                                                         
                                                         
                                                          
@@ -89,55 +95,46 @@ h2,h1,span
                                                 </thead>
                                                 <tbody class="buscar">
 
-                                                <?php $total=0 ?>
+                                                    <?php 
+                                                      $in=0;
+                                                      $eg=0;
+                                                    ?>
                                                     @foreach($comp as $comps)
                                                     <tr class="v">
                                                         
                                                         <th  scope="row" >#{{ $comps->id }}</th>
-                                                        <td>{{ $comps->nomProd}} </td>
-                                                      <td>{{ $comps->cantidadv  }}
-
-                                                      </td>
-
-                                                        <td>{{ $comps->cPromedio }}
-
-                                                      </td>
-
-                                                      <td> $
-
-                                                          <?php
-                                                            $a=($comps->cantidadv*$comps->cPromedio);
-                                                            $total=$total+$a;
-                                                            echo round($a, 2);
-                                                            ?></td>
+                                                        <td> {{ $comps->detalle}}</td>
                                                         
+                                                        <?php $date = new DateTime($comps->fecha); ?>
+                                                        <td><?php  echo $date->format('d/m/Y'); ?></td>
+                                                        <?php 
+                                                            $in=$in+$comps->ingreso;
+                                                            $eg=$eg+$comps->egreso;
+                                                         ?>
+                                                         <td>$ {{ $comps->ingreso}}</td>
+                                                        <td>$ {{ $comps->egreso}}</td>
+                                                      
+                                                      
+
                                                         
-                                                       
-                                                        
-                                                       
-                                                        
-                                                                                                                
-                                                       
+
                                                     </tr>
                                                     
                                                   
-                                                    
+                                                    <tr align="center">
+                                                       
+                                                        
                                                     
 
                                                     
                                                       @endforeach
-                                                </tbody>
-                                                <tfoot>
-                                                    
-                                                    <tr align="center">
-                                                       
-                                                        <td colspan="4"><p style="font-weight: bold;">Total</p></td>
-                                                        <td colspan="1" ><p style="font-weight: bold;"> <?php echo $total?></p></td>
-                                                        
+                                                      <td colspan="4"><p style="font-weight: bold;">Total</p></td>
+                                                        <td colspan="1" ><p style="font-weight: bold;">$ <?php echo round(($in-$eg),2) ?></p></td>
+                                                        <td colspan="1" align="left"></td>
 
                                                     </tr>
-                                                
-                                                </tfoot>
+                                                </tbody>
+
                                             </table>
                                         </section>
                                     </div>

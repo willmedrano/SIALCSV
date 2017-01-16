@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use App\contratos;
+use Redirect;
+use Session;
+use Carbon\Carbon;
 class ControladorContrato extends Controller
 {
     /**
@@ -199,6 +202,35 @@ class ControladorContrato extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $productos = contratos::find($id);
+        $aux=$request['hi2'];
+
+        
+        if($aux=='2')
+        {
+            $productos->estado =true;
+        }
+        if($aux=='3')
+        {
+            $productos->estado =false;
+
+            date_default_timezone_set("America/El_Salvador");
+        $date = Carbon::now();
+    \App\pyg::create([
+                'ingreso' => $productos->total,
+                'egreso' => 0,
+                'fecha' => $date,
+                'detalle' => "Por entrega de paquetes",
+            
+        ]);
+        }
+
+
+        $productos->save();
+
+        Session::flash('mensaje','¡Registro Actualizado!');
+        return redirect::to('/contrato')->with('message','update');;
     }
 
     /**

@@ -201,9 +201,10 @@ h2,h1,span
                                         <tr  class="warning" align="center">
                                             <th align="center" colspan="1" ># venta</th>
                                             <th align="center" >producto</th>
-                                            <th align="center">cantidad</th>
+                                            <th align="center">cantidad en Cajas</th>
+                                            <th align="center" >Cantidad en unidades</th>
                                             <th align="center" >precio</th>
-                                            <th align="center" >Fecha</th>
+                                            
                                             
                                             
                                         </tr>
@@ -217,10 +218,12 @@ h2,h1,span
                                                         
                                                         <th  scope="row" >compra #{{ $comps->id }}</th>
                                                         <td>{{ $comps->nomProd}}</td>
+                                                        <td>{{ $comps->cancompra3}}</td>
                                                         <td>{{ $comps->preciocomp3}}</td>
+
                                                         <td>{{ $comps->descompra3}}</td>
 
-                                                        <td>{{ $comps->cancompra3}}</td>
+                                                        
                                                        
                                                         
                                                         

@@ -94,6 +94,13 @@ class ventas extends Controller
             'detalle' => $request['des'],
             'idempl' => $request['codE'],
         ]);
+        \App\pyg::create([
+                'ingreso' => $request['total'],
+                'egreso' => 0,
+                'fecha' => $request['fecha'],
+                'detalle' => "Por venta de Productos",
+            
+        ]);
         $ids;
         $gAux =\App\facturacion::All();
         foreach ($gAux as $valor2) {

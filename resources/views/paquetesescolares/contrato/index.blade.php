@@ -1,6 +1,13 @@
 
 @extends('probandos')
+<?php $message=Session::get('message')?>
 
+@if($message=='update')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong> Sea Actualizado con exito el registro</strong>
+</div>
+@endif
 @section('content')
 <style>
 .bigicon {
@@ -37,6 +44,34 @@ h2,h1,span
                 <article class="content static-tables-page">
 
 
+
+@foreach ($comp as $cat2)
+<div id="gridSystemModal2{{$cat2->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert-warning" bgcolor="blue">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel3" >Desactivar PRODUCTO</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid bd-example-row">
+           {!!Form::model($cat2,['method'=>'PATCH','route'=>['contrato.update',$cat2->id]])!!}
+              <label for="">¿Seguro que desea cambiar el estado del producto?</label>
+              <input type="hidden" name="hi" value="{{ $cat2->estado }}">
+              <input type="hidden" name="hi2" value="3">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+          {!!Form::close()!!}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+@endforeach ()
 
 
  <div class="title-block">
@@ -86,6 +121,7 @@ h2,h1,span
                                                         <th>Total</th>
                                                         <th>Descripción</th>
                                                         <th>Accion</th>
+                                                        <th colspan="1" rowspan="">Estado</th>
                                                          
                                                        
                                                     </tr>
@@ -118,6 +154,16 @@ h2,h1,span
                                                         {!!Form::close()!!}   
 
                                                         </td>
+                                                        @if($comps->estado==true)
+                                                            <td><button type="submit"  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gridSystemModal2{{$comps->id}}">Pendiente</button></td>
+                                                        @endif
+
+                                                        @if($comps->estado==false)
+                                                            <td>Entregado</td>
+                                                        @endif
+
+                                        
+                                
                                                                                                                 
                                                        
                                                     </tr>

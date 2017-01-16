@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\auxiliar2ventas;
 use App\auxiliar3ventas;
+use Carbon\Carbon;
 class auxiliarControl3 extends Controller
 {
     /**
@@ -35,6 +36,8 @@ class auxiliarControl3 extends Controller
     public function create()
     {
         //
+         $comp= \App\pyg::All();
+        return view('pyg.tablapyg',compact('comp'));
 
     }
 
@@ -134,10 +137,10 @@ class auxiliarControl3 extends Controller
         //
 
        $gAux =\App\auxiliar2ventas::All();
-
+$cal=0;
         foreach ($gAux as $valor) 
         {
-            //$cal = \App\producto::find($valor->idprods3);
+            $cal = $cal+$valor->descompra3; // descompra 3 total de venta al mennudeo
             \App\auxiliar3ventas::create([
                 //'' => $valor->preciocomp3,
 
@@ -151,6 +154,15 @@ class auxiliarControl3 extends Controller
                         
             
     }
+    date_default_timezone_set("America/El_Salvador");
+        $date = Carbon::now();
+    \App\pyg::create([
+                'ingreso' => $cal,
+                'egreso' => 0,
+                'fecha' => $date,
+                'detalle' => "Por venta de Productos",
+            
+        ]);
        
         
         

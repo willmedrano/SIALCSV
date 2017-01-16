@@ -270,8 +270,8 @@ h2,h1,span
                                                         <th>Precio de Caja</th>
                                                         <th>#Unidades Caja</th>
                                                         <th>%Ganancias</th>
-                                                        
-                                                        <th>Precio de venta</th>
+                                                        <th>Minimo</th>
+                                                        <th>Precio de venta c/u</th>
                                                         <th>Proveedor</th>
                                                         <th>Descripcion</th>
                                                         <th colspan="1" rowspan="">Accion</th>
@@ -297,6 +297,7 @@ h2,h1,span
                                                             ?></td>
                                                             <td >{{ $pro->uniCaja }}</td>
                                                             <td> % {{ $pro->gUni}}</td>
+                                                              <td>{{ $pro->minimo }}</td>
                                                         <td> $ 
                                                            <?php
                                                             $a=((($pro->cPromedio/$pro->uniCaja)*($pro->gUni/100)))+($pro->cPromedio/$pro->uniCaja);
@@ -305,8 +306,9 @@ h2,h1,span
                                                         </td>
                                                         
                                                         
-                                                        
-                                                                    <td>{{ $pro->nom }}</td>
+                                                        <td>{{ $pro->nom }}</td>
+
+                                                                  
                                                                 
                                                         
                                                         <td>{{ $pro->desc }}</td>

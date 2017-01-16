@@ -54,6 +54,14 @@ class controladorPagar extends Controller
             
             'pagos' => $request['totalPagar'],
         ]);
+
+        \App\pyg::create([
+                'ingreso' => 0,
+                'egreso' => $request['totalPagar'],
+                'fecha' => date("Y/m/d"),
+                'detalle' => "Por pago a empleados",
+            
+        ]);
         
         return redirect('/pagar/create')->with('message','store');
     }

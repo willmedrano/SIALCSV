@@ -126,6 +126,13 @@ class ControladorCompraEsc extends Controller
                 'estadcuota' => true,
 
                 ]);
+            \App\pyg::create([
+                'ingreso' => 0,
+                'egreso' => $request['total'],
+                'fecha' => $request['fechacompra'],
+                'detalle' => "Por compra de paquetes al contado",
+            
+        ]);
         }
         else
         {

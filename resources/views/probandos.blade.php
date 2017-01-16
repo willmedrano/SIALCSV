@@ -391,13 +391,13 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
-                                                contado
+                                            <a href="/ventas">
+                                                facturas pendientes
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
-                                                Carrito
+                                            <a href="/aux5">
+                                                Facturas
                                             </a>
                                         </li>
                                         
@@ -418,7 +418,22 @@
                                         </li>
                                     </ul>
                                 </li> <!-- Aqui finaliza el menu de Reportes i -->
-
+                                    
+<li><!-- Aqui inicia el menu de los Reportes i con sus respectivas opciones -->
+                                    <a href="">
+                                        <i class="fa ">$</i>
+                                            Entradas y salidas
+                                        <i class="fa arrow"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="/aux5/create">
+                                                Ver entradas y salidas
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                    
                                 
 
                                  <li><!-- Aqui inicia el menu de los Seguriidad i con sus respectivas opciones -->

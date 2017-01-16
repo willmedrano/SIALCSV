@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\coutas;
-
+use Carbon\Carbon;
 
 class ControladorCuotas extends Controller
 {
@@ -82,9 +82,20 @@ class ControladorCuotas extends Controller
     {
         $cuota=coutas::find($id);
         $aux=$request['hi2'];
-        
+        date_default_timezone_set("America/El_Salvador");
+        $date = Carbon::now();
         if($aux=='3')
         {   
+            \App\pyg::create([
+                'ingreso' => 0,
+                'egreso' => $cuota->cuotas,
+                'fecha' => $date,
+                'detalle' => "Por pago de cuotas",
+            
+        ]);
+
+
+
             $cuota->estadcuota =true; 
             $cuota->save();
         }

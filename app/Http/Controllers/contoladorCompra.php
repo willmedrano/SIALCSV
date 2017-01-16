@@ -188,6 +188,13 @@ class contoladorCompra extends Controller
                 'estadcuota' => true,
 
                 ]);
+            \App\pyg::create([
+                'ingreso' => 0,
+                'egreso' => $request['total'],
+                'fecha' => $request['fechacompra'],
+                'detalle' => "Por compra de productos al contado",
+            
+        ]);
         }
         else
         {

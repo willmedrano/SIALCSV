@@ -21,16 +21,16 @@ class coutas extends Model
     {
 
      
-        /* return DB::table('coutas')
+         return DB::table('coutas')
             ->join('compras', 'compras.id', '=', 'coutas.idcompsc')
             ->select('coutas.*')
             ->orderBy('coutas.fechcouta')
-            ->get();*/
-
-            return DB::table('coutas')
-            ->join('compras', 'compras.id', '=', 'coutas.idcompsc')
-            ->orderBy('coutas.fechcouta')
             ->get();
+
+           // return DB::table('coutas')
+            ///->join('compras', 'compras.id', '=', 'coutas.idcompsc')
+            //->orderBy('coutas.fechcouta')
+            //->get();
              /*return DB::table('proveedores')
             ->join('productos', 'productos.idProve', '=', 'proveedores.id')
             ->join('detalle_compras', 'detalle_compras.idprods', '=', 'productos.id')
