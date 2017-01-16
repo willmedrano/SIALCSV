@@ -170,7 +170,7 @@
                                          Notificaciones
                                     </a>
 
-                                    <a class="dropdown-item" href="/confiUsuario">
+                                    <a class="dropdown-item" href="/cambiousuario">
 
                                         <i class="fa fa-gear icon"></i>
                                              Configuraciones
@@ -376,35 +376,7 @@
                                     </ul>
                                 </li><!-- Aqui finaliza el menu de Proveedor i -->
 
-                                <li><!-- Aqui inicia el menu de los Contabilidad i con sus respectivas opciones -->
-                                    <a href="">
-                                        <i class="fa fa-money"></i>
-                                            Ciclo contable
-                                        <i class="fa arrow"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Ingresar Cuentas
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Ver catalogo de cuentas
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Ingresar partidas
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Realizar libro diario
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li><!-- Aqui finaliza el menu de Contabilidad i -->
+                               
 
                                 <li><!-- Aqui inicia el menu de los Ventas i con sus respectivas opciones -->
                                     <a href=""> 
@@ -428,26 +400,7 @@
                                                 Carrito
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="">
-                                                Error 404 App
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Error 404 Global
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Error 500 App
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Error 500 Global
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </li><!-- Aqui finaliza el menu de Ventas i -->
 
@@ -460,26 +413,13 @@
                                     <ul>
                                         <li>
                                             <a href="">
-                                                Paquetes
+                                                Reporte de compras D
                                             </a>
                                         </li>
                                     </ul>
                                 </li> <!-- Aqui finaliza el menu de Reportes i -->
 
-                                <li>
-                                    <a href="">
-                                        <i class="fa fa-pencil-square-o"></i> 
-                                            Contabilidad
-                                        <i class="fa arrow"></i>
-                                    </a> 
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Paquetes
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                
 
                                  <li><!-- Aqui inicia el menu de los Seguriidad i con sus respectivas opciones -->
                                     <a href="">

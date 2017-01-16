@@ -29,5 +29,14 @@ class producto extends Model
             ->get();
    }
 
+   public static function proPropdf(){
+       return DB::table('productos')
+            ->join('detalle_compras', 'detalle_compras.idprods', '=', 'productos.id')
+            ->join('compras', 'compras.id', '=', 'detalle_compras.idcomps')
+            ->select('productos.*','detalle_compras.preciocomp','detalle_compras.cancompra', 'compras.fechacompra','compras.montocompra')
+            ->orderBy('productos.id')
+            ->get();
+   }
+
 }
  

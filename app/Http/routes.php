@@ -100,3 +100,26 @@ Route::get('503', function(){
 Route::match(['get','post'],'/VerificarEPCaja/{codigopro}','ventas@VerificarEPCaja');
 Route::match(['get','post'],'/VerificarEPUnidades/{codigopro}','ventas@VerificarEPUnidades');
 Route::resource('notificaciones',"ContraladorNotificaciones");
+Route::get('logout',"logController@logout");//ruta para salir del sistema
+
+/////////////////////////////////////ruta cambio de usuario y contraseña
+Route::resource('cambiousuario','controladorCambiousuario');
+
+
+Route::get('reporte2','PDFcontroller@reporteDCompras');
+
+
+////////////////////////////////////ruta segunda prueba reportes///////////////////////
+
+
+
+
+
+Route::get('reporte','PDFcontroller@index');
+Route::resource('reporte','PDFcontroller');
+Route::get('crear_reporte_porpais/{tipo}/{fecha}','PDFcontroller@crear_reporte_porpais');
+
+
+//////////////////////////////////////rutas prueba email///////////////////////////////
+Route::resource('mail','Mailcontroller');
+Route::get('recuperarContra','controladorRecuperar@index');

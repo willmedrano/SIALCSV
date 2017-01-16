@@ -20,7 +20,7 @@ class usuario extends Model implements AuthenticatableContract,
     //public $timestamps=false;
     protected $table="usuarios";
 
-   protected $fillable = ['login','password','correoEmp','imag','idemp'];
+   protected $fillable = ['login','password','correoEmp','imag','idemp','auxiliar'];
    
    protected $hidden = ['password', 'remember_token'];
 

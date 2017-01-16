@@ -106,7 +106,7 @@ legend{
                                             <th> Nombre </th>
                                             <th> Apellido </th>
                                             <th> Usuario </th>
-                                            <th> Sexo </th>
+                                            <th> Telefono </th>
                                             <th> Cargo </th>
                                             <th> Acceso </th>
                                         </tr>
@@ -134,8 +134,9 @@ legend{
                                                         <td><?php echo $cont; ?> </td>
                                                         <td>{{ $emples->nomEmp }}</td>
                                                         <td>{{ $emples->apeEmp }}</td>
+                                                         <td>{{ $emples->login }}</td>
                                                         <td>{{ $emples->telEmp }}</td>
-                                                        <td>{{ $emples->login }}</td>
+                                                       
                                                         <td>{{ $emples->cargoEmp }}</td>
                                                         
                                                <td><a href="#"   class="btn btn-danger btn-sm" data-id="{{ $emples->id }}" data-toggle="modal" data-target="#delete{{ $emples->id }}">Negar</a>

@@ -84,6 +84,7 @@ jQuery(function($) {
 {!! Form::open(array('route'=>'log.store', 'method' => 'post','files'=>true) )!!}
 
                                             <br>
+                                            <input type="hidden" id="usu" name="usu" value=" {!!Auth::user()->id!!} ">
                                             <div class="form-group">
                                             <div class="form-group col-xs-12" align="center" >
                                             <img src="assets/faces/3.jpg"  alt="Foto"  style="width:160px;height:160px;" id="fotografia_usuario" >

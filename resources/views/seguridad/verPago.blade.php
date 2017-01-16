@@ -116,8 +116,9 @@ h2,h1,span
                                                     <tr>
                                                        <td>  <?php echo $con;?></td>
                                                         <td>{{ $prov->nomEmp }}</td>
-                                                        <td>{{ $prov->dias }}</td>
+                                                        
                                                         <td>{{ $prov->sueldoEmp }}</td>
+                                                        <td>{{ $prov->dias }}</td>
                                                         <td>
                                                           <?php 
                                                             $a=($prov->dias*$prov->sueldoEmp);

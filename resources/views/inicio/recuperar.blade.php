@@ -64,22 +64,34 @@ legend{
         	<span class="l l5"></span>
         </div>        Ayuda
       </h1> </header>
+    
                     <div class="auth-content">
                         <p class="text-xs-center">Recuperacion de contraseña</p>
-                        <form id="signup-form" action="/index.html" method="GET" novalidate="">
+                       
                            
+                           {!!Form::open(['route'=>'mail.store','method'=>'POST'])!!}
                             <div class="form-group"> 
                              <i class="fa fa-google-plus bigicon"></i>
 
-                            <label for="email">Email</label> <input type="email" class="form-control" name="email" id="email" placeholder="Correo electronico" required=""> </div>
-                            
                             
                     
-                            <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Enviar</button> </div>
+                       
+<label for="email">Email</label>
+ <input type="text" class="form-control" name="email" id="email" required > </div>
+
+      
                             
-                        </form>
+                      
+                           
+                    
+                            <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Enviar</button> </div>
+                              
+                            {!!Form::close()!!}
+                          
+                        
                     </div>
                 </div>
+             
                 <div class="text-xs-center">
                     <a href="index.html" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Regresar </a>
                 </div>

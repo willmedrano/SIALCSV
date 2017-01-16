@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\empleado;
+use App\bitacora;
 use App\usuario;//esto agregado chepe jonathan
 use Storage;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+
 class login extends Controller
 {
     /**
@@ -26,7 +29,7 @@ class login extends Controller
     public function index()
     { 
         //referencia al modelo para llenar la tabla
-       $emple=\App\empleado::All();
+       $emple=\App\empleado::All(); 
    
       //$emp=\App\empleado::sEmp();
        return view('seguridad.modEmpleado',compact('emple'));  //para llenar la tabla de modEmpleado
@@ -108,6 +111,29 @@ class login extends Controller
 
             
             ]);
+              $gAux =\App\empleado::All();
+              $ids="";0;
+              $fechaRegistro="";
+              $fechaRegistro="";
+             foreach ($gAux as $valor2) { 
+                            $ids=$valor2->id;
+                            $fechaRegistro=$valor2->created_at;
+                        }
+                    
+            $descrip='Registro de un empleado';
+           // $users = DB::table('usuarios')->where('idemp', '=', $request['usu'])->get(); 
+            //$idemps=$users[0]->idemp;
+            //$emp= \App\empleado::find($idemps); 
+            $tipo="empleado";           
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$fechaRegistro,
+             'hora'=>$fechaRegistro,
+             'tipo'=>$tipo,
+             'idUsu'=>$request['usu'],
+            ]);
+           
+
                 //$usuario=User::find($id);
                // $usuario->imagenurl=$rutadelaimagen;
                 //$r2=$usuario->save();

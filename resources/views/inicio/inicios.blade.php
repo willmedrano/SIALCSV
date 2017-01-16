@@ -98,16 +98,18 @@ legend{
                              
 
                             <div class="form-group"> 
-                            
-                 </label> <a href="reset.html" class="forgot-btn pull-right">¿Olvido su contraseña?</a> 
-                 </div>
-                 <br>
-                 <br>
                             <div class="form-group"> 
                             <button type="submit" class="btn btn-block btn-primary">Entrar</button> 
                             </div>
                             
-                       {!! Form::close() !!}
+                         {!! Form::close() !!}
+                         {!! link_to('recuperarContra', $title='¿Olvidaste tu contraseña?', $attributes=null, $secure=null)!!}
+                  
+                 </div>
+                 <br>
+                 <br>
+               
+                            
                     </div>
                 </div>
                 

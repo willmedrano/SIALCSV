@@ -5,7 +5,7 @@
 
 .bigicon {
     font-size: 35px;
-    color: #36A0FF;
+    color: #36A0FF; 
 }
 legend{
     color: #36A0FF;
@@ -64,37 +64,34 @@ legend{
         	<span class="l l5"></span>
         </div>        Registro de Usuario
         
-      </h1> </header>
+      </h1> </header> 
                     <div class="auth-content">
                         <p class="text-xs-center">Modificacion de Usuario</p>
-                        {!! Form::open(array('route'=>'permitir.store', 'method' => 'post','files'=>true) )!!}
+                        
+                        {!!Form::model(['method'=>'PATCH','route'=>'cambiousuario.update'])!!}
                        <!-- <form id="signup-form" action="/index.html" method="GET" novalidate="">-->
                             <div class="form-group"> 
                                <i class="fa fa-user bigicon"></i>
                             <label for="firstname">Nuevo usuario</label>
                                 <div class="row">
                                     <div class="col-sm-6"> 
-                                    <input type="text" class="form-control" id="login" name="login" placeholder="Nombre" required=""> </div>
+                                    <input type="text" class="form-control" id="login" name="login" placeholder="Nombre" required="" value="{!!Auth::user()->login!!} "> </div>
                                     
                                 </div>
+
+
+                                     <input type="hidden" name="hi2" value="{!!Auth::user()->id!!}">
+
                             </div>
                             <div class="form-group"> 
                              <i class="fa fa-google-plus bigicon"></i>
 
-                            <label for="email">Email</label> <input type="email" class="form-control" id="correoEmp" name="correoEmp" placeholder="Correo electronico" required=""> </div>
+                            <label for="email">Email</label> <input type="email" class="form-control" id="correoEmp" name="correoEmp" placeholder="Correo electronico" required="" value="{!!Auth::user()->correoEmp!!} "> </div>
                              <div class="form-group"> 
-                             <i class="fa fa-unlock bigicon"></i>
-                            <label for="password">Contraseña Actual</label>
-                                <div class="row">
-                                    <div class="col-sm-6"> <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required=""> </div>
-                                    
-                                </div>
+                             
                             </div>
 
-                             <div class="row">
-                                    <div class="col-sm-6"> <input type="hidden" class="form-control" name="pass" id="pass" placeholder="Contraseña" disabled="true"> </div>
-                                    <div class="col-sm-6"> <input type="hidden" class="form-control" name="retype_password" id="retype_password" placeholder="Repita contraseña" disabled="true"> </div>
-                                </div>
+                            
 
 
                             <div class="form-group"> 
@@ -112,8 +109,17 @@ legend{
 
 
                                 <div class="row">
-                                    <div class="col-sm-6"> <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" required=""> </div>
-                                    <div class="col-sm-6"> <input type="password" class="form-control" name="retype_password" id="retype_password" placeholder="Repita contraseña" required=""> </div>
+
+                                    <div class="col-sm-6">
+                                    <p>
+   
+                       
+   
+                                     <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" required="">
+                                      <span id="passok"></span>
+                                    </p>
+                                     </div>
+                                    <div class="col-sm-6"> <input type="password" class="form-control" name="rpass" id="rpass" placeholder="Repita contraseña" required=""> </div>
                                 </div>
                             </div>
                                <?php } 
@@ -123,6 +129,7 @@ legend{
                        {!! Form::close() !!}
                     </div>
                 </div>
+               
                 <div class="text-xs-center">
                     <a href="/" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Regresar </a>
                 </div>
@@ -137,8 +144,60 @@ legend{
             </div>
         </div>
         
-        {!! Html::script('js/vendor.js') !!}
-        {!! Html::script('js/app.js') !!}
+        
     </body>
 
 </html>
+{!! Html::script('js/vendor.js') !!}
+        {!! Html::script('js/app.js') !!}
+@section('scripts')
+   
+  <script type="text/javascript">
+<link rel="stylesheet" type="text/css" media="all" href="style.css" />    
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script>
+$(document).ready(function() {
+
+    $('input[type=password]').keyup(function() {
+        // set password variable
+        var pswd = $(this).val();
+        //validate the length
+        if ( pswd.length < 8 ) {
+            $('#length').removeClass('valid').addClass('invalid');
+        } else {
+            $('#length').removeClass('invalid').addClass('valid');
+        }
+
+        //validate letter
+        if ( pswd.match(/[A-z]/) ) {
+            $('#letter').removeClass('invalid').addClass('valid');
+        } else {
+            $('#letter').removeClass('valid').addClass('invalid');
+        }
+
+        //validate capital letter
+        if ( pswd.match(/[A-Z]/) ) {
+            $('#capital').removeClass('invalid').addClass('valid');
+        } else {
+            $('#capital').removeClass('valid').addClass('invalid');
+        }
+
+        //validate number
+        if ( pswd.match(/\d/) ) {
+            $('#number').removeClass('invalid').addClass('valid');
+        } else {
+            $('#number').removeClass('valid').addClass('invalid');
+        }
+
+    }).focus(function() {
+        $('#pswd_info').show();
+    }).blur(function() {
+        $('#pswd_info').hide();
+    });
+
+});
+</script>
+  </script>
+
+
+ @endsection
