@@ -1,14 +1,7 @@
 
 @extends('probandos')
 
-<?php $message=Session::get('message')?>
 
-@if($message=='update')
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Exito!!</strong>  Actualizado el registro
-</div>
-@endif
 
 @section('content')
 
@@ -74,6 +67,14 @@ jQuery(function($) {
 
                 <article class="content static-tables-page">
 
+<?php $message=Session::get('message')?>
+
+@if($message=='update')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong>  Actualizado el registro
+</div>
+@endif
 
 @foreach ($escuelas as $escuelam)
 <div  id="Edit{{$escuelam->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
