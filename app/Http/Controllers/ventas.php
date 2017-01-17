@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
+use Session;
 
 class ventas extends Controller
 {
@@ -20,6 +22,7 @@ class ventas extends Controller
     }
     public function index()
     {
+       // $id= Auth::user()->idemp;
         $pendiente= \App\auxiliar3ventas::auxComp3();
         
        $emp =\App\empleado::All();
@@ -64,8 +67,8 @@ class ventas extends Controller
      **/
     public function create()
     {
-        
-       $aux =\App\auxiliar2ventas::auxComp3();
+        $id= Auth::user()->idemp;
+       $aux =\App\auxiliar2ventas::auxComp2($id);
        $emp =\App\empleado::All();
        // $pro =\App\compra::mostrarcompra($request);
         $prov =\App\proveedor::All();
@@ -84,7 +87,7 @@ class ventas extends Controller
     {
         //
 
-
+        $id= Auth::user()->idemp;
         \App\facturacion::create([
              
             'fechaf' => $request['fecha'],
@@ -107,7 +110,7 @@ class ventas extends Controller
             $ids=$valor2->id;
         }
 
-        $gAux =\App\auxiliar2ventas::All();
+        $gAux =\App\auxiliar2ventas::auxComp2($id);
 
         foreach ($gAux as $valor) 
         {
@@ -129,7 +132,7 @@ class ventas extends Controller
 
 
 
-  $eAux =\App\auxiliar2ventas::All();
+  $eAux =\App\auxiliar2ventas::auxComp2($id);
         foreach ($eAux as $v) {
                  
                    

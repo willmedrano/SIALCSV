@@ -141,8 +141,8 @@ h2,h1,span
                     <span class="col-md-1  text-center">
                         <i class="fa fa-shopping-cart  bigicon"></i>
                      </span>
-                        <h1 class="title">Detalle de Compras</h1>
-                        <p class="title-description">Detalle de Compras </p> 
+                        <h1 class="title">Compras</h1>
+                        <p class="title-description">Tabla de Compras </p> 
                          
                            
                     </div>

@@ -15,7 +15,7 @@ class CreatePygsTable extends Migration
         Schema::create('pygs', function (Blueprint $table) {
             $table->increments('id');
             $table->double('ingreso', 7, 2);
-            $table->double('egreso', 7, 2)
+            $table->double('egreso', 7, 2);
             $table->date('fecha');
             $table->string('detalle');
   

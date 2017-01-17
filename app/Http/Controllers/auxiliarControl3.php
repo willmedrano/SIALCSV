@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\auxiliar2ventas;
 use App\auxiliar3ventas;
 use Carbon\Carbon;
+use Auth;
+use Session;
 class auxiliarControl3 extends Controller
 {
     /**
@@ -18,6 +20,7 @@ class auxiliarControl3 extends Controller
      */
      public function __construct()
     {
+
         $this->middleware('auth');
     }
     public function index()
@@ -49,6 +52,7 @@ class auxiliarControl3 extends Controller
      */
     public function store(Request $request)
     {
+        
        \App\facturacion::create([
              
             'fechaf' => $request['fecha'],
@@ -97,7 +101,7 @@ class auxiliarControl3 extends Controller
 
        
        
-        return redirect('ventas/create');
+        return redirect('aux5');
 
                                
     }
@@ -135,8 +139,8 @@ class auxiliarControl3 extends Controller
     public function update(Request $request, $id)
     {
         //
-
-       $gAux =\App\auxiliar2ventas::All();
+        $id= Auth::user()->idemp;
+       $gAux =\App\auxiliar2ventas::auxComp2($id);
 $cal=0;
         foreach ($gAux as $valor) 
         {
@@ -169,7 +173,7 @@ $cal=0;
 
 
 
-  $eAux =\App\auxiliar2ventas::All();
+  $eAux =\App\auxiliar2ventas::auxComp2($id);
         foreach ($eAux as $v) {
                  
                    

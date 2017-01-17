@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\auxiliar2ventas;
+use Auth;
+use Session;
 class auxiliarControl2 extends Controller
 {
     /**
@@ -44,11 +46,13 @@ class auxiliarControl2 extends Controller
     public function store(Request $request)
     {
         //
+        $id= Auth::user()->idemp;
         auxiliar2ventas::create([
             'preciocomp3' => $request['unidadesvender'],
             'descompra3' => $request['subtotal'],
             'cancompra3' => $request['cajavender'],
             'idprods3' => $request['hprod'],  
+            'idemp' => $id,
         ]);
 
          $id=$request['hprod'];

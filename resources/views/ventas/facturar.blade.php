@@ -38,40 +38,50 @@ h2,h1,span
 
 <!--Inicio de modal -->
                 <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel">Facturacion al Menudeo</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid bd-example-row">
-         {!! Form::open(['route'=>'aux5.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
-                    <fieldset>
-                        
-
-                        <br>
-                        <div class="form-group">
-                            <span class="col-md-2  text-center" ><label >codigo: </label></span>
-                                                        
-                                  <div class="col-md-6">
-                                                            
-                                  <input id="codE" name="codE" type="text" placeholder="Correlativo de la factura" class="form-control" value="{!!Auth::user()->idemp!!}">
                                 
-                                    </div>
+                                 <div class="modal-dialog" role="document">
+                                    
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-header">
+
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+                                            <h4 class="modal-title" id="gridModalLabel">Realizar Factura</h4>
+                                        
+                                        </div>
+                                        
+                                        <div class="modal-body">
+                                            
+                                            <div class="container-fluid bd-example-row">
+                                            
+                                            {!! Form::open(['route'=>'aux5.store','method'=>'POST','class'=>'form-horizontal','id'=>'frm2','name'=>'frm2']) !!}
+                                                
+                                                <fieldset>
+
+                                                    <div class="form-group">
                             
-                            
-                        </div>
-                        <br>
-                        <div class="form-group">
+                                                        <span class="col-md-2  text-center" ><label >codigo: </label></span>
+                                                        
+                                                        <div class="col-md-6">
+                                                            
+                                                            <input id="codE2" name="codE" type="text" placeholder="Correlativo de la factura" class="form-control" disabled="" value="{!!Auth::user()->idemp!!}">
+                                                            <input type="hidden" name="codE" id="codE" value="{!!Auth::user()->idemp!!}">
+                                
+                                                        </div>
+
+                                                    </div>   <br>
+
+
+                                                    <div class="form-group">
                                                         
                                                         <span class="col-md-2  text-center" ><label >Nombre vendedor: </label></span>
                                                         
                                                         <div class="col-md-6">
                                                             @foreach($emp as $emp1)
                                                             @if($emp1->id== 1 )
-                                                                <input id="" name="nomP" type="text" placeholder="Nombre del Cliente" class="form-control" value="{{ $emp1->nomEmp }}">
+                                                                <input id="" name="nomP" type="text" placeholder="Nombre del Cliente" class="form-control" disabled="" value="{{ $emp1->nomEmp }}">
+                                                                <input type="hidden" name="nomP" id="nomP" value="{{ $emp1->nomEmp }}">
                                 
                                                             @endif
                                                             @endforeach
@@ -79,59 +89,22 @@ h2,h1,span
                                                         </div>
 
                                                     </div>
-                                                    <br>
+<br>
+<br>
                                                     <div class="form-group">
                             
                                                         <span class="col-md-2  text-center">
                                                         <label >Nombre Cliente: </label></span>
                             
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6">
 
-                                                            <input id="cli" name="cli" type="text" placeholder="Nombre del cliente" class="form-control">  
-                                                        
-                                                        </div>
+                                                            <input id="cli" name="cli" type="text" placeholder="Nombre del cliente" class="form-control" required="">
 
-                                                    </div><br>
-                                                    <div class="form-group">
-                                                    
-                                                        <span class="col-md-2  text-center"><label >Sub-Total: </label></span>
-                                                    
-                                                        <div class="col-xs-5">
-                                                            
-                                                             <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control" value="<?php echo round(($total-($total*0.13)),2);
-                                                            ?>">
-                                                        
-                                                        </div>
-                                                    
-                                                    </div>
-
-                                                    <div class="form-group">
-                            
-                                                        <span class="col-md-2  text-center"><label >Iva: </label></span>
-                            
-                                                        <div class="col-md-3">
-                                                            
-                                                            <input id="iva" name="iva" type="text" placeholder="IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
-                                                            ?>">
-
-                                                        </div>
-                           
-                                                        <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i></span>
-                                                    
-                                                    </div>
-
-                                                    <div class="form-group">
-                            
-                                                        <span class="col-md-2  text-center"><label >Total: </label></span>
-                                                        
-                                                        <div class="col-xs-5">
-
-                                                            <input id="total" name="total" type="text" placeholder="Total a pagar" class="form-control" value="<?php echo $total;
-                                                            ?>">
                                                         
                                                         </div>
 
                                                     </div>
+                                                    <br><br>
                                                     <div class="form-group">
                             
                                                         <span class="col-md-2  text-center">
@@ -139,32 +112,87 @@ h2,h1,span
                             
                                                         <div class="col-md-5">
 
-                                                            <input id="fecha" name="fecha" type="date" placeholder="% de descuento" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
+                                                            <input id="fecha2" name="fecha2" type="date" placeholder="% de descuento" class="form-control" disabled value="<?php echo dameFecha(date("Y-m-d"),0);?>"> 
+
+                                                            <input type="hidden" name="fecha" id="fecha" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
                                                         
                                                         </div>
 
                                                     </div>
+                        <br><br>
+                                                    <div class="form-group">
+                                                    
+                                                        <span class="col-md-2  text-center"><label >Sub-Total: </label></span>
+                                                    
+                                                        <div class="col-xs-5">
+                                                            
+                                                             <input id="tipo" name="tipo" type="text" placeholder="sub-total" disabled class="form-control" value="<?php echo round(($total-($total*0.13)),2);
+                                                            ?>">
 
-                        <div class="form-group">
-                            <span class="col-md-2 text-center"><label >Descripción:</label></span>
-                            <div class="col-md-7">
-                                <textarea rows="2" class="form-control" id="des" name="des" placeholder="Agregue la descripcion del producto" rows="7"></textarea>
+                                                        
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    <br><br>
+                                                    <div class="form-group">
+                            
+                                                        <span class="col-md-2  text-center"><label >Iva: </label></span>
+                            
+                                                        <div class="col-md-3">
+                                                            
+                                                            <input id="iva2" name="iva2" type="text" placeholder="IVA agregado " disabled class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            ?>">
+                                                            <input type="hidden" name="iva" id="iva" value="<?php echo round(($total*0.13),2);
+                                                            ?>">
+
+                                                        </div>
+                                                        
+                                                        <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i></span>
+                                                    
+                                                    </div>
+                                                    <br><br>
+                                                    <div class="form-group">
+                            
+                                                        <span class="col-md-2  text-center"><label >Total: </label></span>
+                                                        
+                                                        <div class="col-xs-5">
+
+                                                            <input id="total2" name="total2" type="text" placeholder="Total a pagar" class="form-control" disabled value="<?php echo $total;
+                                                            ?>">
+                                                            <input type="hidden" name="total" id="total" value="<?php echo $total; ?>">
+                                                        
+                                                        </div>
+
+                                                    </div>
+                                                        <br><br>
+                                                    <div class="form-group">
+                                                        
+                                                        <span class="col-md-2 text-center"><label >Descripción:</label></span>
+                            
+                                                        <div class="col-md-7">
+                                                            
+                                                            <textarea rows="2" class="form-control" id="des" name="des" placeholder="Agregue la descripcion de la venta" rows="7" required=""></textarea>
+                                                        
+                                                         </div>
+
+                                                    </div>    
+                                                
+                                                </fieldset>
+                                             
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="modal-footer">
+                                            
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                            
+                                            <button type="submit" class="btn btn-primary">Facturar</button>
+                                        
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                            <br>
-                        
-                    </fieldset>
-                
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Vender</button>
-      </div>
-      {!! Form::close() !!}
-    </div>
-  </div>
-</div>
 <!--fin de modal -->
                     <div class="title-block ">
                         <h1 class="title">

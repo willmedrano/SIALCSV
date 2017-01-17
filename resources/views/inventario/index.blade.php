@@ -248,17 +248,25 @@ h2,h1,span
                                 <button type="submit"  class="btn btn-primary btn-lg">Imprimir</button>
                             
                             
-                        <div class="row table-responsive">
+                       <div class="row table-responsive">
                             
                                 <div class="card table-responsive">
                                     <div class="card-block table-responsive">
                                         <div class="card-title-block table-responsive">
-                                            <h3 class="title">
-                            
-                        </h3> </div>
+                                           <div class="card-title-block">
+                                           <div class="form-group" align="right">
+                                                  <span class="col-md-1 col-md-offset-7 text-center"><i class="fa fa-search bigicon icon_nav"></i>Buscar</span>
+                                               <div class="col-xs-4">
+
+                                                <input id="filtrar" name="name" type="text" class="form-control">
+                                                </div>
+                                                   </div> 
+
+
+                                                   </div> 
+                                                    </div>
                                         <section class="example">
-                                            <table class="table table-bordered table-hover" style="width:100%" >
-                                                <thead align="center">
+                                             <table class="table table-bordered table-hover" style="width:100%" >
                                                     <tr>
                                                         <th>Codigo</th>
                                                         <th>Nombre</th>
@@ -279,7 +287,7 @@ h2,h1,span
                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody id="hola">
+                                                <tbody id="hola" class="buscar">
                                                     @foreach($pro as $pro)
                                                 
 
@@ -349,3 +357,7 @@ h2,h1,span
                            
 
 @stop()
+ @section('scripts')
+    <!--{!!Html::script('js/scriptpersanalizado.js')!!}-->
+    {!!Html::script('js/buscaresc.js')!!}
+  @endsection

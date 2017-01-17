@@ -14,10 +14,18 @@ class auxiliar2ventas extends Model
     //cancompra; es la cantidad de productos comprados
     //idprods;   es para saber la informacion de ese producto que sea adquirido
     //idcomps;   es para saber que compra que de que se adquirido.
-    protected $fillable = ['preciocomp3', 'descompra3', 'cancompra3', 'idprods3'];//Aqui creamos los campos de la tabla 
+    protected $fillable = ['preciocomp3', 'descompra3', 'cancompra3', 'idprods3', 'idemp'];//Aqui creamos los campos de la tabla 
     public static function auxComp3(){
    		 return DB::table('auxiliar2s')
             ->join('productos', 'productos.id', '=', 'auxiliar2s.idprods3')
+            ->select('auxiliar2s.*',  'productos.cod','productos.nomProd')
+            ->orderBy('auxiliar2s.id')
+            ->get();
+   }
+   public static function auxComp2($id){
+         return DB::table('auxiliar2s')
+            ->join('productos', 'productos.id', '=', 'auxiliar2s.idprods3')
+            ->where('auxiliar2s.idemp','=', $id)
             ->select('auxiliar2s.*',  'productos.cod','productos.nomProd')
             ->orderBy('auxiliar2s.id')
             ->get();

@@ -1,12 +1,5 @@
 @extends('probandos')
-<?php $message=Session::get('message')?>
-<div class='notifications top-left'></div>
-@if($message=='store')
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Exito!!</strong> Compra Realizada.
-</div>
-@endif
+
 @section('content')
 <style type="text/css" >
     
@@ -47,7 +40,14 @@ jQuery(function($) {
                
                 
    <article class="content forms-page">         
-                   
+                    <?php $message=Session::get('message')?>
+<div class='notifications top-left'></div>
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Exito!!</strong> Venta Realizada.
+</div>
+@endif                   
         <div class="title-block">
             <span class=""><i class="fa fa-archive bigicon icon_nav" > Ventas </i></span>
                 <p class="title-description"> Registro de VENTAS </p>
@@ -105,8 +105,8 @@ jQuery(function($) {
                                                         
                                                         <div class="col-md-6">
                                                             
-                                                            <input id="codE" name="codE" type="text" placeholder="Correlativo de la factura" class="form-control" value="{!!Auth::user()->idemp!!}
-">
+                                                            <input id="codE2" name="codE" type="text" placeholder="Correlativo de la factura" class="form-control" disabled="" value="{!!Auth::user()->idemp!!}">
+                                                            <input type="hidden" name="codE" id="codE" value="{!!Auth::user()->idemp!!}">
                                 
                                                         </div>
 
@@ -120,7 +120,8 @@ jQuery(function($) {
                                                         <div class="col-md-6">
                                                             @foreach($emp as $emp1)
                                                             @if($emp1->id== 1 )
-                                                                <input id="" name="nomP" type="text" placeholder="Nombre del Cliente" class="form-control" value="{{ $emp1->nomEmp }}">
+                                                                <input id="" name="nomP" type="text" placeholder="Nombre del Cliente" class="form-control" disabled="" value="{{ $emp1->nomEmp }}">
+                                                                <input type="hidden" name="nomP" id="nomP" value="{{ $emp1->nomEmp }}">
                                 
                                                             @endif
                                                             @endforeach
@@ -135,7 +136,8 @@ jQuery(function($) {
                             
                                                         <div class="col-md-5">
 
-                                                            <input id="cli" name="cli" type="text" placeholder="Nombre del cliente" class="form-control">  
+                                                            <input id="cli" name="cli" type="text" placeholder="Nombre del cliente" class="form-control" required="">
+
                                                         
                                                         </div>
 
@@ -148,7 +150,9 @@ jQuery(function($) {
                             
                                                         <div class="col-md-5">
 
-                                                            <input id="fecha" name="fecha" type="date" placeholder="% de descuento" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
+                                                            <input id="fecha2" name="fecha2" type="date" placeholder="% de descuento" class="form-control" disabled value="<?php echo dameFecha(date("Y-m-d"),0);?>"> 
+
+                                                            <input type="hidden" name="fecha" id="fecha" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
                                                         
                                                         </div>
 
@@ -160,8 +164,9 @@ jQuery(function($) {
                                                     
                                                         <div class="col-xs-5">
                                                             
-                                                             <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control" value="<?php echo round(($total-($total*0.13)),2);
+                                                             <input id="tipo" name="tipo" type="text" placeholder="sub-total" disabled class="form-control" value="<?php echo round(($total-($total*0.13)),2);
                                                             ?>">
+
                                                         
                                                         </div>
                                                     
@@ -173,7 +178,9 @@ jQuery(function($) {
                             
                                                         <div class="col-md-3">
                                                             
-                                                            <input id="iva" name="iva" type="text" placeholder="IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            <input id="iva2" name="iva2" type="text" placeholder="IVA agregado " disabled class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            ?>">
+                                                            <input type="hidden" name="iva" id="iva" value="<?php echo round(($total*0.13),2);
                                                             ?>">
 
                                                         </div>
@@ -188,8 +195,9 @@ jQuery(function($) {
                                                         
                                                         <div class="col-xs-5">
 
-                                                            <input id="total" name="total" type="text" placeholder="Total a pagar" class="form-control" value="<?php echo $total;
+                                                            <input id="total2" name="total2" type="text" placeholder="Total a pagar" class="form-control" disabled value="<?php echo $total;
                                                             ?>">
+                                                            <input type="hidden" name="total" id="total" value="<?php echo $total; ?>">
                                                         
                                                         </div>
 
@@ -201,7 +209,7 @@ jQuery(function($) {
                             
                                                         <div class="col-md-7">
                                                             
-                                                            <textarea rows="2" class="form-control" id="des" name="des" placeholder="Agregue la descripcion de la venta" rows="7"></textarea>
+                                                            <textarea rows="2" class="form-control" id="des" name="des" placeholder="Agregue la descripcion de la venta" rows="7" required=""></textarea>
                                                         
                                                          </div>
 
@@ -256,7 +264,9 @@ jQuery(function($) {
                                                         
                                                         <div class="col-xs-5">
                                 
-                                                            <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control" value="<?php echo round(($total-($total*0.13)),2);
+                                                            <input id="tipo" name="tipo" disabled type="text" placeholder="sub-total" class="form-control" value="<?php echo round(($total-($total*0.13)),2);
+                                                            ?>">
+                                                            <input type="hidden" name="tipo" id="tipo" value="<?php echo round(($total-($total*0.13)),2);
                                                             ?>">
                                                          
                                                          </div>
@@ -268,9 +278,11 @@ jQuery(function($) {
                                                         
                                                         <div class="col-md-3">
                                                             
-                                                            <input id="marca" name="marca" type="text" placeholder="IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            <input id="marca" name="marca" type="text"  disabled placeholder=" IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
                                                             ?>">
-
+                                                            <input type="hidden" name="marca" id="marca" value="<?php echo round(($total-($total*0.13)),2);
+                                                            ?>">
+                                                            
                                                         </div>
                                                         
                                                         <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i></span>
@@ -283,22 +295,15 @@ jQuery(function($) {
                                                         
                                                         <div class="col-xs-5">
                                 
-                                                            <input id="tipo" name="tipo" type="text" placeholder="Total a pagar" class="form-control" value="<?php echo $total;
+                                                            <input id="tipo" name="tipo" type="text" placeholder="Total a pagar" class="form-control" disabled value="<?php echo $total;
+                                                            ?>">
+                                                            <input type="hidden" name="tipo" id="tipo" value="<?php echo round($total,2);
                                                             ?>">
                                                         </div>
 
                                                     </div>
                                                     
-                                                    <div class="form-group">
-                            
-                                                        <span class="col-md-2 text-center"><label >Descripción:</label></span>
                                                         
-                                                        <div class="col-md-7">
-                                                            
-                                                            <textarea rows="2" class="form-control" id="message" name="message" placeholder="Agregue la descripcion de la venta" rows="7"></textarea>
-                                                        
-                                                        </div>
-                                                    </div>    
                                                 
                                                 </fieldset>
 
@@ -389,7 +394,7 @@ jQuery(function($) {
                                           
                                         <p>
  
-                                        <input id="cajavender" name="cajavender" type="text" required placeholder="Cajas a Vender"  class="form-control" autocomplete="off">
+                                        <input id="cajavender" name="cajavender" type="number" required placeholder="Cajas a Vender" pattern="[0-9]{1,3}" class="form-control" autocomplete="off" >
                                         <input type="hidden" name="cajadisp" id="cajadisp" value="">
                                         <span id="cajavendertexto"></span>
                                         </p>  
@@ -401,7 +406,7 @@ jQuery(function($) {
                                     
                                     <div class="col-xs-3">
                                         <p>
-                                        <input id="unidadesvender" name="unidadesvender" required type="text" placeholder="Unidades a Vender" class="form-control"  autocomplete="off" pattern="[0-9]{1,3}">
+                                        <input id="unidadesvender" name="unidadesvender"  required type="number" placeholder="Unidades a Vender" class="form-control"  autocomplete="off" pattern="[0-9]{1,3}">
                                         <span id="unidadesvendertexto"></span>
                                         </p>        
                                     </div>

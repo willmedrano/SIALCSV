@@ -117,7 +117,7 @@ jQuery(function($) {
 
                             <span class="col-md-1  text-center"><i class="fa fa-dropbox bigicon"></i></span>
                             <div class="col-md-3">
-                                <input id="uniCaja" name="uniCaja" type="text" requiered placeholder="Unidades de una Caja" class="form-control" required pattern="[0-9]{1,3}">
+                                <input id="uniCaja" name="uniCaja" type="number" min="1" placeholder="Unidades de una Caja" class="form-control" required pattern="[0-9]{1,3}" max="1000">
                                 
                             </div>
                         </div>
@@ -132,7 +132,7 @@ jQuery(function($) {
 
                             <span class="col-md-1  text-center"><i class="fa bigicon" style=" font-weight: bold;">M</i></span>
                             <div class="col-xs-3">
-                                <input id="minimo" name="minimo" type="text" placeholder="unidades minimas requeridas" class="form-control" pattern="[0-9]{1,3}" required>
+                                <input id="minimo" name="minimo" type="number" placeholder="unidades minimas requeridas" class="form-control" pattern="[0-9]{1,3}" required min="0" max="99999"> 
                             </div>
                         </div>
                         <br>
@@ -141,12 +141,12 @@ jQuery(function($) {
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa  bigicon" style=" font-weight: bold;">%</i></span>
                             <div class="col-xs-3">
                                 <input id="gUni"
-                                 name="gUni" type="text" placeholder="porcentaje de ganancia por unidad" pattern="[0-9]{1,3}"  class="form-control" required="">
+                                 name="gUni" type="number" placeholder="porcentaje de ganancia por unidad" pattern="[0-9]{1,3}"  class="form-control" required="" min="0" max="999">
                             </div>
 
                             <span class="col-md-1  text-center"><i class="fa bigicon" style=" font-weight: bold;">%</i></span>
                             <div class="col-xs-3">
-                                <input id="gCaja" name="gCaja" type="text" placeholder="porcentaje de ganancia por Caja" class="form-control" pattern="[0-9]{1,3}" required>
+                                <input id="gCaja" name="gCaja" type="text" placeholder="porcentaje de ganancia por Caja" class="form-control" pattern="[0-9]{1,3}"  required >
                             </div>
 
                         </div>

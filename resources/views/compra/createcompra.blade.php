@@ -130,7 +130,7 @@ jQuery(function($) {
                             <i class="fa fa-barcode bigicon"></i>
                             </span>
                             <div class="col-xs-3"> 
-                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" autofocus> 
+                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" autofocus required=""> 
                             </div>
                         </div>
                         <br> 
@@ -139,7 +139,7 @@ jQuery(function($) {
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input   id="nomproducto" name="nomproducto1" required type="text" disabled="" placeholder="Nombre del Producto" class="form-control">
+                            <input   id="nomproducto" name="nomproducto1" required type="text"  placeholder="Nombre del Producto" class="form-control" readonly="readonly" required>
                             </div>
                             <span class="col-md-1  text-center">
                            <i class="fa fa-truck bigicon"></i>
@@ -170,11 +170,11 @@ jQuery(function($) {
                             <i class="fa fa-shopping-cart bigicon"></i></span>
 
                       <div class="col-xs-3">
-                      <input id="cantcomp" name="cantcomp" type="text" required placeholder="cantidad a comprar" required class="form-control" onkeyup="sumar();">
+                      <input id="cantcomp" name="cantcomp" type="text" required placeholder="cantidad a comprar"  class="form-control" onkeyup="sumar();">
                       </div>
                       <span class="col-md-1  text-center"><i class="fa fa-dollar bigicon"></i></span>
                       <div class="col-xs-3">
-                      <input id="preciocomp" name="preciocomp" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
+                      <input id="preciocomp" name="preciocomp" required type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
                       </div>
                       
                       </div>
