@@ -136,7 +136,7 @@ jQuery(function($) {
                                         <div class="form-group">
 
                                             <span class="col-md-1 col-md-offset-2 text-center">
-                                                <i class="fa fa-tags bigicon"></i>
+                                                <i class="fa fa-dollar (alias) bigicon"></i>
                                             </span>
 
                                             <div class="col-md-3">

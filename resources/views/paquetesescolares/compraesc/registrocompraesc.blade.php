@@ -95,7 +95,7 @@ jQuery(function($) {
                             <i class="fa fa-barcode bigicon"></i>
                             </span>
                             <div class="col-xs-3"> 
-                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Codigo de barra" class="form-control" autofocus> 
+                             <input id="idcodproduc" name="idcodproduc" type="text" placeholder="Código de Barra del Paquete" class="form-control" autofocus> 
                             </div>
                         </div>
                         <br> 
@@ -104,7 +104,7 @@ jQuery(function($) {
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i>
                             </span>
                             <div class="col-md-3">
-                            <input id="nomproducto" name="nomproducto1" disabled type="text" placeholder="Nombre del Producto" class="form-control">
+                            <input id="nomproducto" name="nomproducto1" disabled type="text" placeholder="Nombre del Paquete" class="form-control">
                             </div>
                             <span class="col-md-1  text-center">
                            <i class="fa fa-truck bigicon"></i>
@@ -129,12 +129,12 @@ jQuery(function($) {
                             <i class="fa fa-shopping-cart bigicon"></i></span>
 
                       <div class="col-xs-3">
-                      <input id="cantcomp" name="cantcomp" type="text" required placeholder="cantidad a comprar" class="form-control" onkeyup="sumar();">
+                      <input id="cantcomp" name="cantcomp" type="text" required placeholder="Cantidad de Paquete a Comprar" class="form-control" onkeyup="sumar();">
                       </div>
                       <span class="col-md-1  text-center"><i class="fa fa-dollar bigicon"></i></span>
                       <div class="col-xs-3">
                       <p>
-                      <input id="preciocomp" name="preciocomp" type="text" placeholder="Precio de compra unitario" class="form-control" onkeyup="sumar();">
+                      <input id="preciocomp" name="preciocomp" type="text" placeholder="Precio de Compra del Paquete" class="form-control" onkeyup="sumar();">
 
                        <span id="preciocomptext"></span>
                       </p>
@@ -149,7 +149,7 @@ jQuery(function($) {
                       </span>
 
                      <div class="col-xs-3">
-                     <input id="subtotalcomp" name="subtotalcomp" type="text" placeholder="subtotal" class="form-control" disabled="true">
+                     <input id="subtotalcomp" name="subtotalcomp" type="text" placeholder="Sub-total" class="form-control" disabled="true">
                      </div>
                      
                       <div class="col-xs-3">
@@ -172,13 +172,13 @@ jQuery(function($) {
                                     <thead valign="bottom" align="right" >
                                         <tr  class="warning">
                                             <th align="center" >#</th>
-                                            <th align="center" >codigo</th>
-                                            <th align="center" >producto</th>
-                                            <th align="center">cantidad</th>
-                                            <th align="center" >precio</th>
-                                            <th align="center" >descuento</th>
-                                            <th align="center" >subtotal</th>
-                                            <th align="center" >accion</th>
+                                            <th align="center" >Código</th>
+                                            <th align="center" >Paquete</th>
+                                            <th align="center">Cantidad</th>
+                                            <th align="center" >Precio</th>
+                                           
+                                            <th align="center" >Subtotal</th>
+                                            <th align="center" >Acción</th>
                                             
                                         </tr>
                                     </thead>
@@ -193,7 +193,6 @@ jQuery(function($) {
                                                         <td>{{ $aux2->nomProd }}</td>
                                                         <td>{{ $aux2->cancompra2 }}</td>
                                                         <td>{{ $aux2->preciocomp2 }}</td>
-                                                        <td>{{ $aux2->descompra2}}</td>
                                                         <td>
                                                            <?php
                                                            $d=$aux2->descompra2 / 100;
@@ -301,7 +300,7 @@ jQuery(function($) {
                                             <span class="col-md-1 col-md-offset-2 text-center"><i class="bigicon"style=" font-weight: bold;">#</i></span>
                                                   <div class="col-xs-3">
                                                  
-                                             <input id="cuotas" name="cuotas" type="text" placeholder="Numero de cuotas" class="form-control" onkeyup="cuotasapagar();" required>
+                                             <input id="cuotas" name="cuotas" type="text" placeholder="Número de cuotas" class="form-control" onkeyup="cuotasapagar();" required>
                                                <input type="hidden" name="ncuotas" id="ncuotas" value="1">
                                                </div>
 

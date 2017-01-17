@@ -39,10 +39,10 @@ h2,h1,span
 
  <div class="title-block">
                     <span class="col-md-1  text-center">
-                        <i class="fa fa-shopping-cart  bigicon"></i>
+                        <i class="fa fa-archive bigicon icon_nav  bigicon"></i>
                      </span>
-                        <h1 class="title">Detalle de Compras</h1>
-                        <p class="title-description">Detalle de Compras </p> 
+                        <h1 class="title">Detalle del Contrato</h1>
+                        <p class="title-description">Detalle del Contrato </p> 
                          
                            
                     </div>
@@ -75,7 +75,7 @@ h2,h1,span
                                                 <thead align="center">
                                                     <tr>
                                                         <th>Detalle</th>
-                                                        <th>Producto </th>
+                                                        <th>Paquetes </th>
                                                         
                                                         <th>Cantidad</th>
                                                         <th>Precio</th>

@@ -1,13 +1,6 @@
 @extends('probandos')
-<?php $message=Session::get('message')?>
-<div class='notifications top-left'></div>
-@if($message=='store')
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Exito!!</strong> Compra Realizada.
-</div>
-@endif
 @section('content')
+
 <style type="text/css" >
     
 
@@ -39,7 +32,14 @@ h2,h1,span
                
                 
    <article class="content forms-page">         
-                   
+           <?php $message=Session::get('message')?>
+                <div class='notifications top-left'></div>
+                    @if($message=='store')
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Exito!!</strong> Contrado Realizado.
+                        </div>
+                    @endif        
         <div class="title-block">
             <span class=""><i class="fa fa-archive bigicon icon_nav" > Contratos con Escuela </i></span>
                 <p class="title-description"> Registro de Contratos </p>
@@ -79,7 +79,7 @@ h2,h1,span
 
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-                                            <h4 class="modal-title" id="gridModalLabel">Realizar Venta</h4>
+                                            <h4 class="modal-title" id="gridModalLabel">Realizar Contrato</h4>
                                         
                                         </div>
                                         
@@ -97,8 +97,8 @@ h2,h1,span
                                                         
                                                         <div class="col-md-6">
                                                             
-                                                            <input id="codE" name="codE" type="text" placeholder="Correlativo de la factura" class="form-control" value="1">
-                                
+                                                            <input id="codE" name="codE" type="text" placeholder="Codigo de la Escuela" class="form-control" value="" required>
+                                    
                                                         </div>
 
                                                     </div>   
@@ -110,10 +110,7 @@ h2,h1,span
                                                         
                                                         <div class="col-md-6">
                                                             
-                                                                <input id="nomP" name="nomP" type="text" placeholder="Nombre de la Escuela" class="form-control" value="">
-                                
-                                                            
-                                                            
+                                                                <input id="nomP" name="nomP" type="text" placeholder="Nombre de la Escuela" class="form-control" value="" disabled>                                            
                                                         </div>
 
                                                     </div>
@@ -124,8 +121,9 @@ h2,h1,span
                             
                                                         <div class="col-md-5">
 
-                                                            <input id="cli" name="cli" type="date" placeholder="" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
-                                                        
+                                                            <input id="cli1" name="cli1" type="date" placeholder="" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>" required>  
+                                                            <input type="hidden" id="cli" name="cli" value="<?php echo dameFecha(date("Y-m-d"),0);?>">
+
                                                         </div>
 
                                                     </div>
@@ -137,8 +135,9 @@ h2,h1,span
                             
                                                         <div class="col-md-5">
 
-                                                            <input id="fecha" name="fecha" type="date" placeholder="% de descuento" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
-                                                        
+                                                            <input id="fecha1" name="fecha1" type="date" placeholder="" class="form-control" value="<?php echo dameFecha(date("Y-m-d"),0);?>" disabled>
+                                                            <input type="hidden" id="fecha" name="fecha" value="<?php echo dameFecha(date("Y-m-d"),0);?>">  
+                                          
                                                         </div>
 
                                                     </div>
@@ -150,7 +149,7 @@ h2,h1,span
                                                         <div class="col-xs-5">
                                                             
                                                              <input id="tipo" name="tipo" type="text" placeholder="sub-total" class="form-control" value="<?php echo round(($total-($total*0.13)),2);
-                                                            ?>">
+                                                            ?>" disabled>
                                                         
                                                         </div>
                                                     
@@ -162,9 +161,11 @@ h2,h1,span
                             
                                                         <div class="col-md-3">
                                                             
-                                                            <input id="iva" name="iva" type="text" placeholder="IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            <input id="iva2" name="iva2" type="text" placeholder="IVA agregado " class="form-control" value="<?php echo round(($total*0.13),2);
+                                                            ?>" disabled>
+                                                            <input type="hidden" id="iva" name="iva" value="<?php echo round(($total*0.13),2);
                                                             ?>">
-
+              
                                                         </div>
                            
                                                         <span class="col-md-5  text-center"  ><i class="fa fa-pencil-square-o fa-3x fa-fw bigicon"></i></span>
@@ -177,9 +178,11 @@ h2,h1,span
                                                         
                                                         <div class="col-xs-5">
 
-                                                            <input id="total" name="total" type="text" placeholder="Total a pagar" class="form-control" value="<?php echo $total;
+                                                            <input id="total1" name="total1" type="text" placeholder="Total a pagar" class="form-control" value="<?php echo $total;
+                                                            ?>" disabled>
+                                                            <input type="hidden" id="total" name="total" value="<?php echo $total;
                                                             ?>">
-                                                        
+                                            
                                                         </div>
 
                                                     </div>
@@ -189,8 +192,8 @@ h2,h1,span
                                                         <span class="col-md-2 text-center"><label >Descripción:</label></span>
                             
                                                         <div class="col-md-7">
-                                                            
-                                                            <textarea rows="2" class="form-control" id="des" name="des" placeholder="Agregue la descripcion de la venta" rows="7"></textarea>
+                                              
+                                                            <textarea rows="2" class="form-control" id="des" name="des" placeholder="Agregue la descripción del Contrato" rows="7" required></textarea>
                                                         
                                                          </div>
 
@@ -205,7 +208,7 @@ h2,h1,span
                                             
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                             
-                                            <button type="submit" class="btn btn-primary">Vender</button>
+                                            <button type="submit" class="btn btn-primary">Aceptar</button>
                                         
                                         </div>
                                         {!! Form::close() !!}
@@ -231,7 +234,7 @@ h2,h1,span
 
                                     <div class="col-xs-3"> 
 
-                                        <input id="idcodproduc" name="idcodproduc" type="text" required placeholder="Codigo de barra" class="form-control" > 
+                                        <input id="idcodproduc" name="idcodproduc" type="text" required placeholder="Codigo de Barra del Paquete" class="form-control" > 
                                                                            
                                          </div>
                                     
@@ -247,7 +250,7 @@ h2,h1,span
                                                  
                                     <div class="col-xs-3">
                                         
-                                        <input   id="nomproducto" name="nomproducto1" required type="text" disabled="" placeholder="Nombre del Producto" class="form-control">
+                                        <input   id="nomproducto" name="nomproducto1" required type="text" disabled="" placeholder="Nombre del Paquete" class="form-control">
                                     </div>
                                     
                                     <span class="col-md-1  text-center">
@@ -257,8 +260,6 @@ h2,h1,span
                                     <div class="col-xs-3">
                                         
                                         <select disabled class=" form-control" name="idProve" id="idProve">
-                                            
-                                            <option value="0">--Seleccione un Proveedor--</option>
                                                 
                                             @foreach($prov as $prov1)
 
@@ -286,7 +287,7 @@ h2,h1,span
                                           
                                         <p>
  
-                                        <input id="cajavender" name="cajavender" type="text" required placeholder="Cajas a Vender"  class="form-control" autocomplete="off">
+                                        <input id="cajavender" name="cajavender" type="text" required placeholder="Paquetes a Vender"  class="form-control" autocomplete="off">
                                         <input type="hidden" name="cajadisp" id="cajadisp" value="">
                                         <span id="cajavendertexto"></span>
                                         </p>  
@@ -339,11 +340,10 @@ h2,h1,span
                                                     
                                                     <tr  class="warning" align="center">
                                                         <th align="center" >#</th>
-                                                        <th align="center" >producto</th>
-                                                        <th align="center">cantidad de Cajas</th>
-                                                        <th align="center">cantidad de Unidades</th>
+                                                        <th align="center" >Producto</th>
+                                                        <th align="center">Cantidad de Paquetes</th> 
                                                         <th align="center" >Subtotal</th>
-                                                        <th align="center" colspan="2" >accion</th>
+                                                        <th align="center" >Acción</th>
 
                                                     </tr>
                                                 
@@ -360,9 +360,7 @@ h2,h1,span
                                                     <tr>
                                                         <td><?php $cont++;  echo $cont; ?></td>
                                                         <td>{{ $aux2->nomProd }}</td>
-                                                        <td>{{ $aux2->cancompra3 }}</td>
-                                                        <td>{{ $aux2->preciocomp3 }}</td>
-                                                        
+                                                        <td>{{ $aux2->cancompra3 }}</td>  
                                                         <td>
                                                            <?php 
                                                            $d=$aux2->descompra3;
@@ -390,7 +388,7 @@ h2,h1,span
                                                        
                                                         <td colspan="4"><p style="font-weight: bold;">Total</p></td>
                                                         <td colspan="1" ><p style="font-weight: bold;">$ <?php echo $total ?></p></td>
-                                                        <td colspan="1" align="left"></td>
+                                                        
 
                                                     </tr>
                                                 
@@ -671,7 +669,7 @@ else{
                     subtotalvender=parseFloat(subcajaredondeada);
                     $("#subtotalventa").val(subtotalvender);
                     $("#subtotal").val(subtotalvender);
-                    valido.innerText = "Cantidad maximo de cajas: "+ cantidadcajap +" el monto es: "+subcajaredondeada;
+                    valido.innerText = "Cantidad máxima de paquetes: "+ cantidadcajap +" el monto es: "+subcajaredondeada;
                     valido.style.color = 'green';
                     h= (parseInt( cantidadunitariap) - parseInt(cajasvender2))
                     //valido1.innerText = "Cantidad en unidades disponibles: "+ 0;
@@ -721,7 +719,7 @@ else{
                     $("#subtotalventa").val(subtotalvender);
                     $("#subtotal").val(subtotalvender);
 
-                    valido.innerText = "Cantidad de cajas el monto es: "+subcajaredondeada;
+                    valido.innerText = "Cantidad de Paquetes el monto es: "+subcajaredondeada;
                     valido.style.color = 'blue';
                     if(isNaN(cajasvender2))
                     {

@@ -27,8 +27,18 @@ h2,h1,span
     background:#8c8c8c; 
     color:white;
 }  
+#div1 {
+    overflow:scroll;
+    height:200px;
+    width: 270px;
+}
+
+#div1 table {
+    
+}
+
 </style>
-   
+ <!-- width:500px;  Este es opcional si se lo pongo a la tabla es para que aparesca horizontal el sroll-->
                
  <article class="content forms-page">         
                    
@@ -74,11 +84,21 @@ h2,h1,span
                                 <div class="row">
                  
                                     <div class="col-lg-4">
-                                        <div class="panel panel-primary">
+                                        <div class="panel panel-success">
                                             <div class="panel-heading">
                                                 Control de Pagos  a 15 días
                                             </div>
                                             <div class="panel-body">
+                                             @foreach($cuota as $cuot1)
+
+                             
+               <?php
+                $dt =date("Y/m/d"); 
+                ?>
+            
+                
+        
+                                            @endforeach
                                                 <p>Pago de cuotas al proveedor</p>
                                             </div>
                                             <div class="panel-footer">
@@ -137,19 +157,25 @@ h2,h1,span
                                    <div class="col-lg-4">
                                         <div class="panel panel-success">
                                             <div class="panel-heading">
-                                                 Control de stock mínimo 
+                                            Control de stock mínimo 
+                                                 
                                             </div>
                                             <div class="panel-body">
                                                 <div class="row table-responsive">
                             
                                                     <div class="card table-responsive">
-                                                        <div class="card-block table-responsive">
+                                                         <div id="div1">
                                                  <!-- Calculo de stock minimo -->
                                                             <table class="table table-hover">
                                                         
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Notificaciones <strong><?php echo count($lotes);?></strong></th>
+                                                                        <th>Notificaciones 
+                                                                            <strong><?php  
+                                                                               echo count($lotes);
+                                                                            ?>
+                                                                            </strong>
+                                                                        </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -160,10 +186,11 @@ h2,h1,span
 
                                                                          $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
                                                                         $b= $a;//es para decir cuales son las unidades disponibles
-                                                                              
+                                                                            
                                                                         $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
+                                                                         $cc=$c+5; // es para condición 5 mas el minimo
 
-                                                                        if($b>$c){
+                                                                        if($cc>$c){
                                                                             ?>
                                                                         
                                                                                 <tr>
@@ -260,7 +287,7 @@ h2,h1,span
                                                           
                                                     $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
 
-                                                    if($c>$b){
+                                                    if($b<$c){
                                                         ?>
                                                     <table class="table table-hover">
                                                         

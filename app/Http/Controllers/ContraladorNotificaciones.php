@@ -21,10 +21,12 @@ class ContraladorNotificaciones extends Controller
     }
     public function index()
     {
-        
+            
             $lotes = lotes::proLot();
-
-        return view('notificaciones.notificaion',compact('lotes'));
+            $cuota= \App\coutas::mostar();
+        
+        
+        return view('notificaciones.notificaion',compact('lotes','cuota'));
     }
 
     /**

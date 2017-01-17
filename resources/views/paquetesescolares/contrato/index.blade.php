@@ -1,13 +1,5 @@
 
 @extends('probandos')
-<?php $message=Session::get('message')?>
-
-@if($message=='update')
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong> Sea Actualizado con exito el registro</strong>
-</div>
-@endif
 @section('content')
 <style>
 .bigicon {
@@ -43,6 +35,14 @@ h2,h1,span
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <article class="content static-tables-page">
 
+              <?php $message=Session::get('message')?>
+
+                @if($message=='update')
+                  <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong> Sea Actualizado con exito el registro</strong>
+                  </div>
+                @endif
 
 
 @foreach ($comp as $cat2)
@@ -76,10 +76,10 @@ h2,h1,span
 
  <div class="title-block">
                     <span class="col-md-1  text-center">
-                        <i class="fa fa-shopping-cart  bigicon"></i>
+                        <i class="fa fa-archive bigicon icon_nav bigicon"></i>
                      </span>
-                        <h1 class="title">Facturas</h1>
-                        <p class="title-description">Tabla Facturas </p> 
+                        <h1 class="title">Contratos Realizado o Pendientes</h1>
+                        <p class="title-description">Tabla de Contratos </p> 
                          
                            
                     </div>
@@ -111,16 +111,13 @@ h2,h1,span
                                              <table class="table table-bordered table-hover" style="width:100%" >
                                                 <thead align="center">
                                                     <tr>
-                                                        <th>compra</th>
+                                                        <th>#</th>
                                                         <th>Escuela </th>
-                                                        
                                                         <th>Fecha del Contrato</th>
-                                                        
-                                                        
                                                         <th>Fecha de Entrega</th>
                                                         <th>Total</th>
                                                         <th>Descripción</th>
-                                                        <th>Accion</th>
+                                                        <th>Acción</th>
                                                         <th colspan="1" rowspan="">Estado</th>
                                                          
                                                        
@@ -128,7 +125,7 @@ h2,h1,span
                                                 </thead>
                                                 <tbody class="buscar">
 
-                                                
+                                                    <?php $con=0;?>
                                                     @foreach($comp as $comps)
                                                     <tr class="v">
                                                         
