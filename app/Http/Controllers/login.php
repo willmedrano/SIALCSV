@@ -11,6 +11,9 @@ use App\bitacora;
 use App\usuario;//esto agregado chepe jonathan
 use Storage;
 use Illuminate\Support\Facades\Validator;
+use DB;
+use Auth;
+use Session;
 use Carbon\Carbon;
 
 class login extends Controller
@@ -111,33 +114,24 @@ class login extends Controller
 
             
             ]);
-              $gAux =\App\empleado::All();
-              $ids="";0;
-              $fechaRegistro="";
-              $fechaRegistro="";
-             foreach ($gAux as $valor2) { 
-                            $ids=$valor2->id;
-                            $fechaRegistro=$valor2->created_at;
-                        }
-                    
-            $descrip='Registro de un empleado';
-           // $users = DB::table('usuarios')->where('idemp', '=', $request['usu'])->get(); 
-            //$idemps=$users[0]->idemp;
-            //$emp= \App\empleado::find($idemps); 
-            $tipo="empleado";           
+           
+             $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip="Ingreso un empleado".$emp[0]->nomEmp;
+
            \App\bitacora::create([
              'descripcion'=>$descrip,  
-             'fecha'=>$fechaRegistro,
-             'hora'=>$fechaRegistro,
+             'fecha'=>$date,
+             'hora'=>$h,
              'tipo'=>$tipo,
-             'idUsu'=>$request['usu'],
-            ]);
-           
-
-                //$usuario=User::find($id);
-               // $usuario->imagenurl=$rutadelaimagen;
-                //$r2=$usuario->save();
-                //return view("mensajes.msj_correcto")->with("msj","Imagen agregada correctamente");
+             'idUsu'=>$emp[0]->id,
+            ]);        
+            
+    
             }
              
 
@@ -228,7 +222,7 @@ class login extends Controller
     {
         $trab = empleado::find($id);
         $aux=$request['hi2'];
-       
+        $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
         if($aux=='1')
         {
         $trab->nomEmp = $request['nomEmp'];
@@ -243,18 +237,36 @@ class login extends Controller
         $trab->sexEmp = $request['sexo'];
         //$trab->sexEmp = $request['sexo'];correoEmp
         //$trab->contraEmp = $request['desc'];
+          $descrip=$emp[0]->nomEmp." modifico un empleado ";
         }
 
         if($aux=='2')
         {
             $trab->estadoEmp =true;
+              $descrip=$emp[0]->nomEmp." Activo un empleado ";
+
         }
         if($aux=='3')
         {
             $trab->estadoEmp =false;
+              $descrip=$emp[0]->nomEmp." Desactivo un empleado ";
         }
 
+         
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+       
 
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);    
         $trab->save();
         
 

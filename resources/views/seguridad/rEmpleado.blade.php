@@ -191,7 +191,7 @@ jQuery(function($) {
                                                     <select class=" form-control" name="puesto">
                                                         <option>Administrador</option>
                                                         <option>Vendedor</option>
-                                                        <option>Otro</option>   
+                                                   
                                                     </select>
                                                 </div>
                                             </div>
@@ -202,7 +202,7 @@ jQuery(function($) {
                                                     <i class="fa fa-dollar bigicon icon_nav" ></i>
                                                 </span>
                                                 <div class="col-xs-4">
-                                                    <input id="fname" name="salario" type="text" placeholder="Salario" class="form-control" required=>
+                                                    <input id="fname" name="salario" type="text" placeholder="Salario diario" class="form-control" max="99" min="1"required=>
                                                 </div>
                                             </div>
                                             <br>

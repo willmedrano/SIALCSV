@@ -7,7 +7,10 @@ use App\empleado;
 use App\usuario;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Session;
+use DB;
+use Auth;
+use Carbon\Carbon;
 class controladorNegar extends Controller
 {
     /**
@@ -93,6 +96,21 @@ class controladorNegar extends Controller
     public function destroy($id)
     {
         //
+        $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." nego permiso a un Empleado";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
 
         $auxeliminar= usuario::find($id);
         $auxeliminar->delete();

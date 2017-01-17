@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\usuario;
+use App\bitacora;
+use Storage;
+use Illuminate\Support\Facades\Validator;
+use DB;
+use Auth;
+use Session;
+use Carbon\Carbon;
 
 class controladorCambiousuario extends Controller
 {
@@ -74,15 +82,18 @@ class controladorCambiousuario extends Controller
      */
     public function update(Request $request, $id)
     {
-        $aux=$request['hi2'];
+        
           //esto agregado chepe jonathan
-usuario::create([
-            'login'=>$request['login'],
-            'password'=>bcrypt($request['pass']),
-            'correoEmp'=>$request['correoEmp'],
-            'idemp'=>$aux,
-            ]);
-            return redirect('/permitir/');
+
+        $trab = usuario::find($id);
+           
+            $trab->login=$request['login'];
+            $trab->password=bcrypt($request['pass']);
+            $trab->correoEmp=$request['correoEmp'];
+            $trab->auxiliar=$request['pass'];
+        
+         $trab->save();
+            return redirect('/inicio/');
     }
 
     /**

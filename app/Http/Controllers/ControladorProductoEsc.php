@@ -14,6 +14,10 @@ use App\coutas;
 use App\auxiliar;
 use App\lotes;
 use App\Http\Requests\RequestProducto;
+ use Session;
+use DB;
+use Auth;
+use Carbon\Carbon;
 class ControladorProductoEsc extends Controller
 {
     /**
@@ -68,6 +72,22 @@ class ControladorProductoEsc extends Controller
             'desc' => $request['desc'],
             'cPromedio' => $request['cPromedio'],
         ]);
+
+$emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." ingresó un nuevo paquete";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
         
         return redirect('paquete/create')->with('message','store');
     }

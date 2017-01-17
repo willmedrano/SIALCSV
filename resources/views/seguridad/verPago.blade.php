@@ -117,22 +117,23 @@ h2,h1,span
                                                        <td>  <?php echo $con;?></td>
                                                         <td>{{ $prov->nomEmp }}</td>
                                                         
-                                                        <td>{{ $prov->sueldoEmp }}</td>
+                                                        <td>${{ $prov->sueldoEmp }}</td>
                                                         <td>{{ $prov->dias }}</td>
-                                                        <td>
+                                                        <td>$
                                                           <?php 
                                                             $a=($prov->dias*$prov->sueldoEmp);
                                                             echo round($a,2);
                                                           ?>
                                                         </td>
-                                                        <td>
+                                                        <td>$
                                                           <?php 
                                                             $a=($prov->pagos)-($prov->dias*$prov->sueldoEmp);
                                                             echo round($a,2);
                                                           ?>
                                                         </td>
-                                                        <td>{{ $prov->pagos }}</td>
-                                                        <td>{{ $prov->fechpago }}</td>
+                                                        <td>${{ $prov->pagos }}</td>
+                                                        <td><?php $date = new DateTime($prov->fechpago );  echo $date->format('d/m/Y'); ?></td>
+
                                                         
                                                        
                                                        

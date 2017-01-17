@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\contratos;
 use Redirect;
+use Auth;
 use Session;
 use Carbon\Carbon;
 class ControladorContrato extends Controller
@@ -116,7 +117,21 @@ class ControladorContrato extends Controller
                                  
         }
 
-        
+        $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." registró un nuevo contrato";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
  
         
         return redirect('contrato/create')->with('message','store');;
@@ -207,6 +222,7 @@ class ControladorContrato extends Controller
         $aux=$request['hi2'];
 
         
+$emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
         if($aux=='2')
         {
             $productos->estado =true;
@@ -224,11 +240,27 @@ class ControladorContrato extends Controller
                 'detalle' => "Por entrega de paquetes",
             
         ]);
+    $descrip=$emp[0]->nomEmp." entrego paquete";
         }
 
 
         $productos->save();
 
+
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
         Session::flash('mensaje','¡Registro Actualizado!');
         return redirect::to('/contrato')->with('message','update');;
     }

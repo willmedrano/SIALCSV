@@ -12,6 +12,11 @@ use App\detalle_compra;
 use App\coutas;
 use App\auxiliarp;
 use App\lotes;
+ use Session;
+use DB;
+use Auth;
+use Carbon\Carbon;
+
 class ControladorCompraEsc extends Controller
 {
     /**
@@ -169,6 +174,21 @@ SELECT id, fechcouta, estadcuota, morac, ncuotas, cuotas, idcompsc,
   FROM coutas;
 
         */
+  $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." realizó compra de paquetes";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
         
         return redirect('comprapaquete/create')->with('message','store');
     }

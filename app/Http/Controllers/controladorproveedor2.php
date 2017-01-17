@@ -8,6 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\proveedor;
 use App\Http\Requests\RequestProveedor;
+use DB;
+use Auth;
+use Session;
+use Carbon\Carbon;
 class controladorproveedor2 extends Controller
 {
     /**
@@ -54,6 +58,22 @@ class controladorproveedor2 extends Controller
             'dir'=>$request['dir'],
 
             ]);
+       $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." Ingreso un proveedor";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
+
         return redirect('/prove/create')->with('message','store');
 
     }
@@ -106,6 +126,22 @@ class controladorproveedor2 extends Controller
 
 
         $proves->save();
+
+        $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." Modifico un proveedor";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
 
         return redirect('/prove')->with('message','update');
     }

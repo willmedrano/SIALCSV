@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\coutas;
+ use Session;
+use DB;
+use Auth;
 use Carbon\Carbon;
 
 class ControladorCuotas extends Controller
@@ -100,8 +103,22 @@ class ControladorCuotas extends Controller
             $cuota->save();
         }
 
-
+         
+     $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
      
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." realizó el pago de cuota";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
 
        // Session::flash('mensaje','¡Registro Actualizado!');
         return redirect('/cuotas/');

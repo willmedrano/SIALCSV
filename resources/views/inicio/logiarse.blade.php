@@ -75,12 +75,13 @@ jQuery(function($) {
       </h1> </header> 
                     <div class="auth-content">
                         <p class="text-xs-center">Modificacion de Usuario</p>
+                        <?php $idc=Auth::user()->id; ?>
                         
-                        {!!Form::model(['method'=>'PATCH','route'=>'cambiousuario.update'])!!}
+                        {!!Form::model(['method'=>'PATCH','route'=>['cambiousuario.update',$idc]])!!}
                        <!-- <form id="signup-form" action="/index.html" method="GET" novalidate="">-->
                             <div class="form-group"> 
                                <i class="fa fa-user bigicon"></i>
-                            <label for="firstname">Nuevo usuario</label>
+                            <label>Nuevo usuario</label>
                                 <div class="row">
                                     <div class="col-sm-6"> 
                                     <input type="text" class="form-control" id="login" name="login" placeholder="Nombre" required="" value="{!!Auth::user()->login!!} "> </div>
@@ -94,7 +95,7 @@ jQuery(function($) {
                             <div class="form-group"> 
                              <i class="fa fa-google-plus bigicon"></i>
 
-                            <label for="email">Email</label> <input type="email" class="form-control" id="correoEmp" name="correoEmp" placeholder="Correo electronico" required="" value="{!!Auth::user()->correoEmp!!} "> </div>
+                            <label>Email</label> <input type="email" class="form-control" id="correoEmp" name="correoEmp" placeholder="Correo electronico" required="" value="{!!Auth::user()->correoEmp!!} "> </div>
                              <div class="form-group"> 
                              
                             </div>
@@ -104,16 +105,11 @@ jQuery(function($) {
 
                             <div class="form-group"> 
                              <i class="fa fa-unlock-alt bigicon"></i>
-                            <label for="password">Nueva Contraseña</label>
+                            <label>Nueva Contraseña</label>
 
                                
                                    
-                                     <?php
-                                     $h=0;
-                     
-                                        if($h==0){
-                                          
-                                      ?>
+                                     
 
 
                                 <div class="row">
@@ -129,8 +125,8 @@ jQuery(function($) {
                                      </div>
                                    
                             </div>
-                               <?php } 
-                                                     ?>
+                               
+                                                     
                             <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Aceptar</button> </div>
                             
                        {!! Form::close() !!}
@@ -138,7 +134,7 @@ jQuery(function($) {
                 </div>
                
                 <div class="text-xs-center">
-                    <a href="/" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Regresar </a>
+                    <a href="/inicio" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Regresar </a>
                 </div>
             </div>
         </div>

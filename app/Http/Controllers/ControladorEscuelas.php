@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\EscuelaRequest;
 use App\Http\Controllers\Controller;
-use Session;
 use Redirect;
 use App\Escuelas;
+use Session;
+use DB;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Routing\Route;//importar las routas que necesito para utilizar
 
 class ControladorEscuelas extends Controller
@@ -71,6 +74,23 @@ class ControladorEscuelas extends Controller
             'diresc'=>$request['diresc'],
 
             ]);
+
+        $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." Ingreso una Escuela";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
+
         
         return redirect('/escuela/create')->with('message','store');
         
@@ -144,6 +164,22 @@ class ControladorEscuelas extends Controller
 
 
         $escuelaM->save();
+        $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
+         date_default_timezone_set("America/El_Salvador");
+        $h= "" . date("h:i:s:a");
+     
+        $date = Carbon::now();
+         $tipo="usuario"; 
+         $descrip=$emp[0]->nomEmp." Modifico una Escuela";
+
+           \App\bitacora::create([
+             'descripcion'=>$descrip,  
+             'fecha'=>$date,
+             'hora'=>$h,
+             'tipo'=>$tipo,
+             'idUsu'=>$emp[0]->id,
+            ]);
+
 
 
     

@@ -78,22 +78,22 @@ public function MostrarInicio(){
 
     public function logout(){
        
-
-          /* $emp=DB::table('empleados')->where('empleados.id', '=', Auth::user()->idUsu)->get();
+          
+          $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
          date_default_timezone_set("America/El_Salvador");
         $h= "" . date("h:i:s:a");;
      
         $date = Carbon::now();
          $tipo="usuario"; 
-         $descrip="Cerrado sesion el".$emp[0]->nomEmp;
+         $descrip="Cerro sesion ".$emp[0]->nomEmp;
 
            \App\bitacora::create([
              'descripcion'=>$descrip,  
              'fecha'=>$date,
              'hora'=>$h,
              'tipo'=>$tipo,
-             'idUsu'=>$users[0]->idemp,
-            ]);*/
+             'idUsu'=>$emp[0]->id,
+            ]);
         Auth::logout();
         return view('inicio.inicios');
     }
