@@ -12,13 +12,7 @@ use Session;
 use DB;
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+
 
 class Controladorpermitir extends Controller
 {
@@ -69,20 +63,19 @@ usuario::create([
             'password'=>bcrypt($request['pass']),
             'correoEmp'=>$request['correoEmp'],
             'imag'=>$request['imagen'],
-              'auxiliar'=>$request['pass'],
+            'auxiliar'=>$request['pass'],
             'idemp'=>$aux,
             
-
             ]);
 
-\App\user::create([
+/*\App\user::create([
             'name'=>$request['login'],
-            'email'=>$request['correoEmp'],
+        'email'=>$request['correoEmp'],
             'password'=>bcrypt($request['pass']),
             
 
-            ]);
-
+            ]);*/
+    
 $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
          date_default_timezone_set("America/El_Salvador");
         $h= "" . date("h:i:s:a");

@@ -20,7 +20,7 @@ class usuario extends Model implements AuthenticatableContract,
     //public $timestamps=false;
     protected $table="usuarios";
 
-   protected $fillable = ['login','password','correoEmp','imag','idemp','auxiliar'];
+   protected $fillable = ['login','password','correoEmp', 'estadousurio','imag','idemp','auxiliar'];
    
    protected $hidden = ['password', 'remember_token'];
 
@@ -32,4 +32,13 @@ class usuario extends Model implements AuthenticatableContract,
             ->get(); 	
     }
 
+    public static function usua()
+   {
+      return  DB::table('empleados')
+            ->join('usuarios', 'usuarios.idemp','=','empleados.id')
+            ->select('empleados.*','usuarios.estadousurio')
+            ->orderBy('empleados.id')
+            ->get();  
+    }
+    
 }

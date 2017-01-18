@@ -60,7 +60,7 @@ class AuthController extends Controller
      
 
 
-    if (Auth::attempt(['login'=>$request['username'],'password'=>$request['pass']]))
+    if (Auth::attempt(['login'=>$request['username'],'password'=>$request['pass'],'estadousurio'=>true]))
     {
 
            $users = DB::table('usuarios')->where('login', '=', $request['username'])->get();

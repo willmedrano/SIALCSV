@@ -19,21 +19,22 @@ legend{
                
 
                <article class="content static-tables-page">
-              
-@foreach ($emple as $cat3)
- <div id="delete{{$cat3->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+
+
+               @foreach ($emple as $cat3)
+ <div id="gridSystemModal3{{$cat3->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="alert-danger">
+      <div class="alert-warning">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
-<h4 class="modal-title" id="gridModalLabel3">NEGAR ACCESO</h4>
+<h4 class="modal-title" id="gridModalLabel3">ACTIVAR EMPLEADO</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid bd-example-row">
-          {!!Form::open(['route'=>['negar.destroy',$cat3->id],'method'=>'DELETE'])!!}
-              <label for="">¿Seguro que desea negar el acceso a este empleado?</label>
-              <input type="hidden" name="hi" value="">
+          {!!Form::model($cat3,['method'=>'PATCH','route'=>['negar.update',$cat3->id]])!!}
+              <label for="">¿Seguro que desea cambiar el estado del empleado?</label>
+              <input type="hidden" name="hi" value="{{ $cat3->estadoEmp }}">
               <input type="hidden" name="hi2" value="2">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -46,7 +47,35 @@ legend{
     </div>
   </div>
 </div>
-@endforeach()
+@endforeach
+              
+@foreach ($emple as $cat2)
+<div id="gridSystemModal2{{$cat2->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert-warning" bgcolor="blue">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="col-md-2  text-center" style="color: white;" ><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+<h4 class="modal-title" id="gridModalLabel3" >DESACTIVAR EMPLEADO</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid bd-example-row">
+           {!!Form::model($cat2,['method'=>'PATCH','route'=>['negar.update',$cat2->id]])!!}
+              <label for="">¿Seguro que desea cambiar el estado del empleado?</label>
+              <input type="hidden" name="hi" value="{{ $cat2->estadoEmp }}">
+              <input type="hidden" name="hi2" value="3">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+          {!!Form::close()!!}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+@endforeach
                   
                    
                     <div class="title-block">
@@ -118,9 +147,9 @@ legend{
                                      <?php
                                      
                       
-                                        if(($emples->estadoEmp==true)){
+                                            
                                           
-                                              if($emples->id==1 || $emples->login==Auth::user()->login )
+                                              if($emples->id==1 || $emples->login==Auth::user()->login /*|| $emples->estadousurio==false*/ )
                                               {
 
                                               }
@@ -131,20 +160,26 @@ legend{
                                      
 
                                                     <tr>
-                                                        <td><?php echo $cont; ?> </td>
+                                                        <td>{{ $emples->id }}</td>
                                                         <td>{{ $emples->nomEmp }}</td>
                                                         <td>{{ $emples->apeEmp }}</td>
                                                          <td>{{ $emples->login }}</td>
                                                         <td>{{ $emples->telEmp }}</td>
                                                        
                                                         <td>{{ $emples->cargoEmp }}</td>
-                                                        
-                                               <td><a href="#"   class="btn btn-danger btn-sm" data-id="{{ $emples->id }}" data-toggle="modal" data-target="#delete{{ $emples->id }}">Negar</a>
+                                                        @if($emples->estadousurio==true)
+                                                      <td><a href="#"  class="btn btn-danger btn-sm" data-toggle="modal" data-target="#gridSystemModal2{{$emples->id}}">Negar Acceso</a></td>  
+                                                        @endif
+                                                        @if($emples->estadousurio==false)
+                                                      <td><a href="#"  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gridSystemModal3{{$emples->id}}">Dar Acceso</a></td>  
+                                                        @endif
+
+                                                            
                                                     
 
                                                     </tr>
                                 
-                                                <?php } }
+                                                <?php } 
                                             
                                                      ?>
 

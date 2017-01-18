@@ -27,7 +27,7 @@ class CreateUsuariosTable extends Migration
              
         });
          // Insert some stuff
-    DB::table('usuarios')->insert(array('login'=>'admin1', 'password'=>bcrypt('admin1'), 'correoEmp' => 'sol212@hotmail.com', 'imag' => 'userimagen-1.jpg','auxiliar'=>'admin1' ,'idemp' => 1, 'created_at' => ' 2015-09-03 ' ,
+    DB::table('usuarios')->insert(array('login'=>'elio', 'password'=>bcrypt('monterrosa'), 'correoEmp' => 'willmedrano93@gmail.com', 'imag' => 'userimagen-1.jpg','auxiliar'=>'monterrosa' ,'idemp' => 1, 'created_at' => ' 2015-09-03 ' ,
             'updated_at' => ' 2015-09-03 '));
     }
 

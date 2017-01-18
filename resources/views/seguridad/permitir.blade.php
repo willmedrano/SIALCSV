@@ -64,7 +64,28 @@ jQuery(function($) {
                    
                </tr>
            </thead>
-           <body>
+           <body onload="function hola()">
+           
+
+
+           <script>
+    //alert("Page is loaded");
+
+     
+            $('#myModal').on('show.bs.modal', function hola(e) {
+               
+    //get data-id attribute of the clicked element
+          var productId = $(e.relatedTarget).data('empleid');
+
+         alert(productid);
+
+        //var productName = $(e.relatedTarget).data('product_name');
+    //$("#confirmDelete #pName").val( productName );
+    //$("#delForm").attr('action', 'put your action here with productId');//e.g. 'domainname/products/' + productId
+});
+    
+
+</script>
 
 
      
@@ -238,7 +259,7 @@ jQuery(function($) {
 
 
                                                     <tr>
-                                                        <td><?php echo $cont; ?></td>
+                                                        <td>{{ $emples->id }}</td>
                                                         <td>{{ $emples->nomEmp }}</td>
                                                         <td>{{ $emples->apeEmp }}</td>
                                                         <td>{{ $emples->telEmp }}</td>

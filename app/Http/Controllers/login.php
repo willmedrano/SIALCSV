@@ -221,6 +221,12 @@ class login extends Controller
     public function update(Request $request, $id)
     {
         $trab = empleado::find($id);
+        //$trab2 = \App\usuario::where('idemp',$id)->get();
+       
+       // $trab3= \App\usuario::find($trab2[0]->id);
+    
+        //$costo =\App\producto::find($id);
+        //$producto=\App\lotes::where('idprodsl',$productor[0]->id)->get();
         $aux=$request['hi2'];
         $emp=DB::table('empleados')->where('empleados.id', '=',Auth::user()->idemp)->get();
         if($aux=='1')
@@ -243,12 +249,26 @@ class login extends Controller
         if($aux=='2')
         {
             $trab->estadoEmp =true;
-              $descrip=$emp[0]->nomEmp." Activo un empleado ";
+            //if(empty($trab3)){
+
+            //}
+            //else{
+                 //$trab3->estadousurio=true;
+                 //$trab3->save();
+            //}
+               $descrip=$emp[0]->nomEmp." Activo un empleado ";
 
         }
         if($aux=='3')
         {
             $trab->estadoEmp =false;
+            // if(empty($trab3)){
+
+            // }
+            // else{
+                 //$trab3->estadousurio=false;
+                // $trab3->save();
+            // }
               $descrip=$emp[0]->nomEmp." Desactivo un empleado ";
         }
 
