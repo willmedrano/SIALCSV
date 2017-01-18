@@ -76,8 +76,8 @@ jQuery(function($) {
                     <div class="auth-content">
                         <p class="text-xs-center">Modificacion de Usuario</p>
                         <?php $idc=Auth::user()->id; ?>
+                        {!!Form::open(['route'=>['cambiousuario.update',$idc],'method'=>'PATCH'])!!}
                         
-                        {!!Form::model(['method'=>'PATCH','route'=>['cambiousuario.update',$idc]])!!}
                        <!-- <form id="signup-form" action="/index.html" method="GET" novalidate="">-->
                             <div class="form-group"> 
                                <i class="fa fa-user bigicon"></i>

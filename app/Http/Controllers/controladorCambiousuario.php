@@ -71,6 +71,7 @@ class controladorCambiousuario extends Controller
     public function edit($id)
     {
         //
+        return redirect('/inicio/');
     }
 
     /**
@@ -91,6 +92,7 @@ class controladorCambiousuario extends Controller
             $trab->password=bcrypt($request['pass']);
             $trab->correoEmp=$request['correoEmp'];
             $trab->auxiliar=$request['pass'];
+           // $trab->remember_token=rememberToken();
         
          $trab->save();
             return redirect('/inicio/');
