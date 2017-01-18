@@ -101,7 +101,7 @@ class auxiliarControl3 extends Controller
 
        
        
-        return redirect('aux5');
+        return redirect('reporte9');
 
                                
     }

@@ -114,6 +114,7 @@ Route::get('reporte5','PDFcontroller@reporteDEmpleados');
 Route::get('reporte6','PDFcontroller@reporteDCatalogo');
 Route::get('reporte7','PDFcontroller@reporteDPyg');
 Route::get('reporte8','PDFcontroller@reporteDComprasDetalle');
+Route::get('reporte9','PDFcontroller@reporteDFactura');
 ////////////////////////////////////ruta segunda prueba reportes///////////////////////
 
 

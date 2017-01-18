@@ -158,12 +158,10 @@ h2,h1,span
                                         <div class="panel panel-success">
                                             <div class="panel-heading">
                                             Control de stock mínimo 
-                                                 
+                                                  
                                             </div>
                                             <div class="panel-body">
-                                                <div class="row table-responsive">
-                            
-                                                    <div class="card table-responsive">
+                                               
                                                          <div id="div1">
                                                  <!-- Calculo de stock minimo -->
                                                             <table class="table table-hover">
@@ -171,8 +169,31 @@ h2,h1,span
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Notificaciones 
-                                                                            <strong><?php  
-                                                                               echo count($lotes);
+                                                                            <strong>
+                                                                            <?php $con=0; $a=0; $b=0; $c=0; $cc=0; ?>
+                                                                            @foreach($lotes as $pro)
+                                                                            <?php 
+                                                                           
+
+                                                                            
+                                                                            
+                                                                    $a=$pro->canlote;//LO que tengo en lote de unidades caja
+                                                                        $b= round($a,2);//es para decir cuales son las unidades disponibles
+                                                                            
+                                                                        $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
+                                                                         $cc=$c+5; // es para condición 5 mas el minimo
+
+                                                                                if($a>$c && $a<$cc )
+                                                                                {
+                                                                                 $con=$con+1;
+                                                                                }
+                                                                            ?>
+                                                                            @endforeach
+                                                                            <?php
+                                                                            if($con > 0)
+                                                                            {
+                                                                            echo $c;
+                                                                                 }
                                                                             ?>
                                                                             </strong>
                                                                         </th>
@@ -184,13 +205,13 @@ h2,h1,span
                           
                                                                         <?php
 
-                                                                         $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
+                                                                         $a=$pro->canlote;//LO que tengo en lote de unidades caja
                                                                         $b= $a;//es para decir cuales son las unidades disponibles
                                                                             
                                                                         $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
                                                                          $cc=$c+5; // es para condición 5 mas el minimo
 
-                                                                        if($cc>$c){
+                                                                        if($a>$c && $a<$cc  ){
                                                                             ?>
                                                                         
                                                                                 <tr>
@@ -208,8 +229,7 @@ h2,h1,span
                                                                     @endforeach
                                                                  </tbody>
                                                             </table>
-                                                        </div>
-                                                    </div>
+                                                       
                                                 </div>
                                <!-- Finaliza el calculo stock minimo -->
                                                 
@@ -232,7 +252,7 @@ h2,h1,span
       
                                                 <?php
 
-                                                     $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
+                                                     $a=$pro->canlote;//LO que tengo en lote de unidades caja
                                                     $b= $a;//es para decir cuales son las unidades disponibles
                                                           
                                                     $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
@@ -287,7 +307,7 @@ h2,h1,span
                                                           
                                                     $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
 
-                                                    if($b<$c){
+                                                    if($b < $c){
                                                         ?>
                                                     <table class="table table-hover">
                                                         

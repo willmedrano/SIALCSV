@@ -16,13 +16,13 @@ use App\ventasp;
 use App\lotes;
 use App\pagos;
 use App\pyg;
+
 class PDFcontroller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-
      */
     public function __construct()
     {
@@ -151,6 +151,27 @@ public function reporteDPagos(Request $request)
       return $pdf->stream('reporte');
     }
 
+public function reporteDFactura(Request $request)
+    {
+
+      $fch1=$request->fechaInicial;
+      $fch2=$request->fechaFinal;
+       $gAux =\App\facturacion::All();
+        foreach ($gAux as $valor2) {
+            $ids=$valor2->id;
+        }
+        $fac=\App\facturacion::find($ids);
+      $detalle=ventasp::pro2($ids);
+      
+      $date = date('d-m-Y');
+      $date1 = date('g:i:s a');
+      $vistaurl="pdf.reporte_facturas";
+      $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle','fac'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+
+      return $pdf->stream('reporte');
+    }
 
 
 public function reporteDEmpleados(Request $request)

@@ -152,7 +152,7 @@ class ventas extends Controller
                                  
         }
 
-        return redirect('ventas/create')->with('message','store');
+        return redirect('reporte9');
     }
 
     /**
