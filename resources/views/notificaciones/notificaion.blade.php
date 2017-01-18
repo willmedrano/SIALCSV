@@ -109,7 +109,7 @@ h2,h1,span
                                     
                                     <div class="col-lg-4">
                                         
-                                        <div class="panel panel-success active">
+                                        <div class="panel panel-warning active">
                                             <div class="panel-heading">
                                                 Control de Pagos  a 5 días
                                             </div>
@@ -183,7 +183,7 @@ h2,h1,span
                                                                         $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
                                                                          $cc=$c+5; // es para condición 5 mas el minimo
 
-                                                                                if($a>$c && $a<$cc )
+                                                                                if($a>$c)
                                                                                 {
                                                                                  $con=$con+1;
                                                                                 }
@@ -205,13 +205,13 @@ h2,h1,span
                           
                                                                         <?php
 
-                                                                         $a=$pro->canlote;//LO que tengo en lote de unidades caja
+                                                                         $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
                                                                         $b= $a;//es para decir cuales son las unidades disponibles
                                                                             
                                                                         $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
                                                                          $cc=$c+5; // es para condición 5 mas el minimo
 
-                                                                        if($a>$c && $a<$cc  ){
+                                                                        if($a>$c){
                                                                             ?>
                                                                         
                                                                                 <tr>
@@ -252,7 +252,7 @@ h2,h1,span
       
                                                 <?php
 
-                                                     $a=$pro->canlote;//LO que tengo en lote de unidades caja
+                                                     $a=($pro->canlote/$pro->uniCaja);//LO que tengo en lote de unidades caja
                                                     $b= $a;//es para decir cuales son las unidades disponibles
                                                           
                                                     $c=$pro->minimo;//paea tener las unidades minimas que me forman la caja de la tabla producto
