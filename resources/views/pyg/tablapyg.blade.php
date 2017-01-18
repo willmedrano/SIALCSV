@@ -54,7 +54,7 @@ h2,h1,span
 
 
                             
-                                <button type="submit"  class="btn btn-primary btn-lg">Imprimir</button>
+                                 <a href="/reporte7"> <input type="button" value="imprimir" class="btn btn-primary btn-lg"/></a>.
                             
                              <div class="row table-responsive">
                             
@@ -129,7 +129,7 @@ h2,h1,span
                                                     
                                                       @endforeach
                                                       <td colspan="4"><p style="font-weight: bold;">Total</p></td>
-                                                        <td colspan="1" ><p style="font-weight: bold;">$ <?php echo round(($in-$eg),2) ?></p></td>
+                                                        <td colspan="1" ><p style="font-weight: bold;">$ <?php echo round(($in-$eg),2); ?></p></td>
                                                         <td colspan="1" align="left"></td>
 
                                                     </tr>

@@ -15,6 +15,7 @@ use App\detalle_compra;
 use App\ventasp;
 use App\lotes;
 use App\pagos;
+use App\pyg;
 class PDFcontroller extends Controller
 {
     /**
@@ -39,11 +40,29 @@ public function reporteDCompras(Request $request)
       $fch2=$request->fechaFinal;
       
 
-      $detalle=producto::proPropdf();
+      $detalle=compras::All();
       
       $date = date('d-m-Y');
       $date1 = date('g:i:s a');
-      $vistaurl="pdf.prueba_reporte";
+      $vistaurl="pdf.reporte_compra";
+      $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+
+      return $pdf->stream('reporte');
+    }
+
+public function reporteDComprasDetalle(Request $request)
+    {
+      $fch1=$request->fechaInicial;
+      $fch2=$request->fechaFinal;
+      
+
+      $detalle=\App\empleado::detaComp();
+      
+      $date = date('d-m-Y');
+      $date1 = date('g:i:s a');
+      $vistaurl="pdf.reporte_detallecompra";
       $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle'))->render();
       $pdf = \App::make('dompdf.wrapper');
       $pdf->loadHTML($view);
@@ -53,14 +72,13 @@ public function reporteDCompras(Request $request)
 
 
 
-
     public function reporteDVentas(Request $request)
     {
       $fch1=$request->fechaInicial;
       $fch2=$request->fechaFinal;
       
 
-      $detalle=ventasp::Ventaspdf();
+      $detalle=\App\facturacion::emp();
       
       $date = date('d-m-Y');
       $date1 = date('g:i:s a');
@@ -71,6 +89,29 @@ public function reporteDCompras(Request $request)
 
       return $pdf->stream('reporte');
     }
+
+
+
+public function reporteDPyg(Request $request)
+    {
+      $fch1=$request->fechaInicial;
+      $fch2=$request->fechaFinal;
+      
+
+      $detalle=\App\pyg::All();
+      
+      $date = date('d-m-Y');
+      $date1 = date('g:i:s a');
+      $vistaurl="pdf.reporte_pyg";
+      $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+
+      return $pdf->stream('reporte');
+    }
+
+
+
 
     public function reporteDInventarios(Request $request)
     {
@@ -114,6 +155,7 @@ public function reporteDPagos(Request $request)
 
 public function reporteDEmpleados(Request $request)
     {
+
       $fch1=$request->fechaInicial;
       $fch2=$request->fechaFinal;
       
@@ -133,28 +175,56 @@ public function reporteDEmpleados(Request $request)
 
 
 
+public function reporteDCatalogo(Request $request)
+    {
 
+      $fch1=$request->fechaInicial;
+      $fch2=$request->fechaFinal;
+      
 
+      $detalle=producto::proPro();
+      
+      $date = date('d-m-Y');
+      $date1 = date('g:i:s a');
+      $vistaurl="pdf.reporte_catalogo";
+      $view =  \View::make($vistaurl, compact('date','date1','fch1','fch2','detalle'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
 
+      return $pdf->stream('reporte');
+    }
 
     public function crearPDF($datos,$vistaurl,$tipo) 
     {
 
+      $date2 = date('d-m-Y');
+      $date1 = date('g:i:s a');
+
        $data = $datos;
         $date = date('Y-m-d');
-        $view =  \View::make($vistaurl, compact('data', 'date'))->render();
+        $view =  \View::make($vistaurl, compact('data', 'date','date2','date1'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         
-        if($tipo==1){return $pdf->stream('reporte');}
+        if($tipo==1){return $pdf->stream('reporte');}if($tipo==3){return $pdf->stream('reportvd');}
         if($tipo==2){return $pdf->download('reporte.pdf'); }
     }
 
 
      public function crear_reporte_porpais($tipo,$fech){
-
-     $vistaurl="pdf.reporte_por_pais";
+     if ($tipo==1) {
+      $vistaurl="pdf.reporte_por_pais";
      $paises=empleado::Rnombre($fech);
+     }
+     
+     if($tipo==3){
+      $fech=$request["nac"];
+
+
+        $vistaurl="pdf.reporte_ventas";
+     $paises=empleado::fv($fech);
+     }
+
      return $this->crearPDF($paises, $vistaurl,$tipo);
     }
    
@@ -185,8 +255,39 @@ public function reporteDEmpleados(Request $request)
 
         $vistaurl="pdf.reporte_por_pais";
      $paises=empleado::Rnombre($fech);
+
      return $this->crearPDF($paises, $vistaurl,$tipo);
     }
+
+
+
+
+    public function pdfstoreventa(Request $request)
+    {
+        $tipo=3;
+
+        $fech=$request["nac"];
+
+
+        $vistaurl="pdf.reporte_ventas";
+     $paises=empleado::fv($fech);
+
+     return $this->crearPDF($paises, $vistaurl,$tipo);
+    }
+
+     public function pdfstorevent(Request $request)
+    {
+        $tipo=3;
+
+        $fech=$request["nac"];
+
+
+        $vistaurl="pdf.reporte_ventas";
+     $paises=empleado::fv($fech);
+
+     return $this->crearPDF($paises, $vistaurl,$tipo);
+    }
+
 
     /**
      * Display the specified resource.

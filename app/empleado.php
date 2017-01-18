@@ -43,13 +43,15 @@ class empleado extends Model
       return $this->hasMany('App\usuario','login','idemp');
     }
 
+ public static function detaComp(){
+       return DB::table('productos')
+       ->join('detalle_compras', 'detalle_compras.idprods', '=', 'productos.id')
+       ->join('compras', 'compras.id', '=', 'detalle_compras.idcomps')
+        ->select('detalle_compras.*','productos.nomProd')
+            //->orderBy('productos.id')
+            ->get();
+   }
 
-    //public static function sEmp(){
-   		 //return DB::table('empleados')
-            
-//return empleado::select('empleados.sexEmp')
-          //  ->get();
-//}
 }
 
 

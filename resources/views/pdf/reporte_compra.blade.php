@@ -46,7 +46,7 @@ h2,h1,span
 
           <td width="350" align="center" colspan="5">
  
-          <h3 class="box-title">REPORTE DE VENTA </h3>
+          <h3 class="box-title">REPORTE DE COMPRA </h3>
            <p>Fecha :<?=  $date; ?></p>
             <p>Impresión : <?=  $date1; ?></p>
            
@@ -65,15 +65,10 @@ h2,h1,span
         <tr>
           
           
-          <th>Compra</th>
-         
-            <th>Vendedor</th>                                            
-          <th>Cliente</th>
-                                                        
-                                                        
-          <th>Fecha</th>
+          <th>compra</th>
+          <th>Tipo de Pago </th>
+          <th>Fecha de Compra</th>
           <th>Total</th>
-        <th>Descripción</th>
         </tr>
 
       </thead>
@@ -84,30 +79,21 @@ h2,h1,span
         ?>  
          @foreach($detalle as $comps)
           
+                                              
                                                     <tr class="v">
                                                         
-                                                        <th  scope="row" >#{{ $comps->id }} </th>
-                                                    <td>{{ $comps->nomEmp}}</td>
-                                                      <td>{{ $comps->nomcli  }}
-
-                                                      </td>
-
+                                                        <th  scope="row" >#{{ $comps->id }}</th>
+                                                        <td>{{ $comps->tipopago  }}</td>
                                                         
                                                         
-                                                        
-                                                        <?php $date = new DateTime($comps->fechaf); ?>
+                                                        <?php $date = new DateTime($comps->fechacompra); ?>
                                                         <td><?php  echo $date->format('d/m/Y'); ?></td>
                                                         
-                                                        <td> $ {{ $comps->total}}</td>
-                                                        <td> {{ $comps->detalle}}</td>
-                                                        
-                                                      
-                                                                                                                
-                                                       
+                                                        <td> $ {{ $comps->montocompra}}</td>
                                                     </tr>
                                                     
          
-        @endforeach
+                                             @endforeach
        
 
       </tbody>

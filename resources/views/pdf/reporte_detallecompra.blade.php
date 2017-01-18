@@ -46,7 +46,7 @@ h2,h1,span
 
           <td width="350" align="center" colspan="5">
  
-          <h3 class="box-title">REPORTE DE VENTA </h3>
+          <h3 class="box-title">REPORTE DE DETALLE DE COMPRA </h3>
            <p>Fecha :<?=  $date; ?></p>
             <p>Impresión : <?=  $date1; ?></p>
            
@@ -65,15 +65,15 @@ h2,h1,span
         <tr>
           
           
-          <th>Compra</th>
-         
-            <th>Vendedor</th>                                            
-          <th>Cliente</th>
+         <th>Detalle</th>
+                                                        <th>Producto </th>
+                                                        
+                                                        <th>Cantidad</th>
                                                         
                                                         
-          <th>Fecha</th>
-          <th>Total</th>
-        <th>Descripción</th>
+                                                        
+                                                        <th>precio</th>
+                                                        <th>total</th>
         </tr>
 
       </thead>
@@ -84,30 +84,31 @@ h2,h1,span
         ?>  
          @foreach($detalle as $comps)
           
+                                              
                                                     <tr class="v">
                                                         
-                                                        <th  scope="row" >#{{ $comps->id }} </th>
-                                                    <td>{{ $comps->nomEmp}}</td>
-                                                      <td>{{ $comps->nomcli  }}
+                                                        <th  scope="row" >#{{ $comps->id }}</th>
+                                                        <td>{{ $comps->nomProd  }}</td>
+                                                        
+                                                        
+                                                        <td>{{ $comps->cancompra}}</td>
+                                                       
+                                                        <td>$ {{ $comps->preciocomp}}</td>
+                                                          <td> $
 
-                                                      </td>
-
+                                                          <?php
+                                                            $a=($comps->cancompra*$comps->preciocomp);
+                                                            $total=$total+$a;
+                                                            echo round($a, 2);
+                                                            ?></td>
                                                         
-                                                        
-                                                        
-                                                        <?php $date = new DateTime($comps->fechaf); ?>
-                                                        <td><?php  echo $date->format('d/m/Y'); ?></td>
-                                                        
-                                                        <td> $ {{ $comps->total}}</td>
-                                                        <td> {{ $comps->detalle}}</td>
-                                                        
-                                                      
                                                                                                                 
                                                        
                                                     </tr>
                                                     
+                                                    
          
-        @endforeach
+                                             @endforeach
        
 
       </tbody>

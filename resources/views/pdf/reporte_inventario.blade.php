@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reporte de Compras</title>
+  <title>Reporte de Inventario</title>
 <style>
 .bigicon { 
     font-size: 35px;

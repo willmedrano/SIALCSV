@@ -111,16 +111,20 @@ Route::get('reporte3','PDFcontroller@reporteDVentas');
 Route::get('reporte4','PDFcontroller@reporteDInventarios');
 Route::get('reporte5','PDFcontroller@reporteDPagos');
 Route::get('reporte5','PDFcontroller@reporteDEmpleados');
-
-
-
+Route::get('reporte6','PDFcontroller@reporteDCatalogo');
+Route::get('reporte7','PDFcontroller@reporteDPyg');
+Route::get('reporte8','PDFcontroller@reporteDComprasDetalle');
 ////////////////////////////////////ruta segunda prueba reportes///////////////////////
 
 
 
 
 
-Route::get('reporte','PDFcontroller@index');
+//Route::get('reporte','PDFcontroller@index');
+Route::get('reporte3v','PDFcontroller@pdfstorveenta');
+Route::get('reportvd','PDFcontroller@pdfstorevent');
+Route::get('crear_reporte_porvd/{tipo}/{fecha}','PDFcontroller@crear_reporte_porvd');
+
 Route::resource('reporte','PDFcontroller');
 Route::get('crear_reporte_porpais/{tipo}/{fecha}','PDFcontroller@crear_reporte_porpais');
 
@@ -128,3 +132,6 @@ Route::get('crear_reporte_porpais/{tipo}/{fecha}','PDFcontroller@crear_reporte_p
 //////////////////////////////////////rutas prueba email///////////////////////////////
 Route::resource('mail','Mailcontroller');
 Route::get('recuperarContra','controladorRecuperar@index');
+
+
+Route::resource('bitacora','controladorbitacora');

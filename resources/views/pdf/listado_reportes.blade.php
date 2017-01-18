@@ -1,6 +1,6 @@
 @extends('probandos')
 
-<?php $message=Session::get('message')?>
+<?php $message=Session::get('message');?>
 
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">

@@ -47,7 +47,7 @@ h2,h1,span
 
 
                             
-                                <button type="submit"  class="btn btn-primary btn-lg">Imprimir</button>
+                                 <a href="/reporte4"> <input type="button" value="imprimir" class="btn btn-primary btn-lg"/></a>.
                             
                             
                         <div class="row table-responsive">

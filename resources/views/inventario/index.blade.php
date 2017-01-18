@@ -1,5 +1,5 @@
 @extends('probandos')
-<?php $message=Session::get('message')?>
+<?php $message=Session::get('message');?>
 
 @if($message=='update')
 <div class="alert alert-success alert-dismissible" role="alert">
@@ -245,7 +245,7 @@ h2,h1,span
 
 
                             
-                                <button type="submit"  class="btn btn-primary btn-lg">Imprimir</button>
+                                 <a href="/reporte6"> <input type="button" value="imprimir" class="btn btn-primary btn-lg"/></a>.
                             
                             
                        <div class="row table-responsive">
@@ -267,6 +267,7 @@ h2,h1,span
                                                     </div>
                                         <section class="example">
                                              <table class="table table-bordered table-hover" style="width:100%" >
+                                                   <thead align="center">
                                                     <tr>
                                                         <th>Codigo</th>
                                                         <th>Nombre</th>

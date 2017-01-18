@@ -35,113 +35,7 @@
 
                         <ul class="nav-profile">
 
-                            <li class="notifications new">
-
-                                <a href="" data-toggle="dropdown">
-
-                                    <i class="fa fa-bell-o"></i>
-                                    <sup>
-                                        <span class="counter">8</span>
-                                    </sup>
-                                </a>
-
-                                <div class="dropdown-menu notifications-dropdown-menu">
-
-                                    <ul class="notifications-container">
-
-                                        <li>
-                                            <a href="" class="notification-item">
-
-                                                <div class="img-col">
-
-                                                    <div class="img" style="background-image: url('../imagenes/{!!Auth::user()->imag!!}')">
-                                                        
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="body-col">
-                                                    <p>
-                                                        <span class="accent">Paquete Escolar </span>
-                                                            Entrega de paquetes en: 
-                                                        <span class="accent">2 dias centro escolar "Sor Henriquez"
-                                                        </span>. 
-                                                    </p>
-                                                </div>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="" class="notification-item">
-
-                                                <div class="img-col">
-
-                                                    <div class="img" style="background-image: url('../imagenes/{!!Auth::user()->imag!!}')">
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="body-col">
-
-                                                    <p>
-                                                        <span class="accent">Pago a proveedor
-                                                        </span> pagar cuota 11 a  : 
-                                                        <span class="accent">Libreria Americana.
-                                                        </span>.
-
-                                                    </p>
-
-                                                </div>
-
-                                            </a>
-
-                                        </li>
-
-                                        <li>
-
-                                            <a href="" class="notification-item">
-
-                                                <div class="img-col">
-
-                                                    <div class="img" style="background-image: url('../imagenes/{!!Auth::user()->imag!!}')">
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="body-col">
-
-                                                    <p> 
-                                                        <span class="accent">Poca existencia
-                                                        </span> Cuadernos #2 
-                                                        <span class="accent">
-                                                        Comprar producto
-                                                        </span> 
-                                                    </p>
-
-                                                </div>
-
-                                            </a>
-
-                                        </li>
-
-                                    </ul>
-
-                                    <footer>
-
-                                        <ul>
-
-                                            <li>
-
-                                                <a href="">
-                                                Ver Todo
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </footer>
-                                </div>
-                            </li>
+                           
 
                             <li class="profile dropdown">
 
@@ -159,11 +53,7 @@
 
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa fa-user icon"></i>
-                                         Perfil
-                                    </a>
-
+                                    
                                     <a class="dropdown-item" href="/notificaciones">
 
                                         <i class="fa fa-bell icon"></i>
@@ -412,8 +302,29 @@
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="">
-                                                Reporte de compras D
+                                            <a href="/reporte2">
+                                                Compras
+                                            </a>
+                                            <a href="/reporte8">
+                                                Detalle de compra
+                                            </a>
+                                            <a href="/reporte3">
+                                                Ventas
+                                            </a>
+                                            <a href="/reporte7">
+                                                Perdidas y Ganancias
+                                            </a>
+                                            <a href="/reporte4">
+                                                Inventario
+                                            </a>
+                                            <a href="/reporte6">
+                                                Catalogo
+                                            </a>
+                                            <a href="/reporte">
+                                                Empleado
+                                            </a>
+                                            <a href="/reporte5">
+                                                Pago empleado
                                             </a>
                                         </li>
                                     </ul>

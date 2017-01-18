@@ -16,7 +16,10 @@ class controladorbitacora extends Controller
      */
     public function index()
     {
-        //
+         $bita=\App\bitacora::All();
+        
+         //$comptotal=compras::all();
+        return view('bitacoras.bitacorasv',compact('bita')); 
     }
 
     /**

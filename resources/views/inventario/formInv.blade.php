@@ -37,7 +37,7 @@ jQuery(function($) {
 
 
                 <article class="content forms-page">
-                            <?php $message=Session::get('message')?>
+                            <?php $message=Session::get('message');?>
 
                 @if($message=='store')
 
