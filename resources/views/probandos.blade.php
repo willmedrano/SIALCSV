@@ -362,7 +362,12 @@
                                         </li>
                                         <li>
                                             <a href="/negar/">
-                                                Negar Acceso
+                                                Administrar Acceso
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/bitacora/">
+                                                bitacora
                                             </a>
                                         </li>
                                     </ul>
